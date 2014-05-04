@@ -10,6 +10,7 @@
 
 @interface BaseViewController : UIViewController
 
+- (void)alertWithtitle:(NSString *)title andMessage:(NSString *)message;
 - (void)showLoader;
 - (void)hideLoader;
 

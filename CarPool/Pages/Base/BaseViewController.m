@@ -24,6 +24,16 @@
 
 #pragma - Public Methods -
 
+- (void)alertWithtitle:(NSString *)title andMessage:(NSString *)message
+{
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title
+                                                    message:message
+                                                   delegate:nil
+                                          cancelButtonTitle:@"Ok"
+                                          otherButtonTitles:nil];
+    [alert show];
+}
+
 - (void)showLoader
 {
     [self.progressHud show:YES];

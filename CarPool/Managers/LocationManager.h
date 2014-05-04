@@ -12,6 +12,7 @@
 @interface LocationManager : NSObject
 
 @property (nonatomic, strong, readonly) CLLocation *currentLocation;
+@property (nonatomic, assign, readonly) CLAuthorizationStatus authorizationStatus;
 
 + (LocationManager *)sharedInstance;
 

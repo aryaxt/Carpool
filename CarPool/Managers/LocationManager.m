@@ -51,4 +51,9 @@
     _currentLocation = [locations lastObject];
 }
 
+- (CLAuthorizationStatus)authorizationStatus
+{
+    return [CLLocationManager authorizationStatus];
+}
+
 @end
