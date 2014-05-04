@@ -1,0 +1,8 @@
+platform :ios, '7.0'
+
+pod "AFNetworking", "~> 2.0"
+pod "OCMock", "~> 2.2.4"
+pod "SVPullToRefresh", "~> 0.4.1"
+pod "iOS-Slide-Menu", "~> 1.4.0"
+pod "Parse-iOS-SDK", "~> 1.2.15"
+pod "OCMapper", "~> 1.0.3"
