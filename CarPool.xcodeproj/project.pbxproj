@@ -42,6 +42,8 @@
 		9226EF201916A4190014B319 /* CarPoolRequestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF1F1916A4190014B319 /* CarPoolRequestClient.m */; };
 		9226EF231916A4370014B319 /* CarPoolRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF221916A4370014B319 /* CarPoolRequest.m */; };
 		9226EF261916A5AB0014B319 /* MyOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF251916A5AB0014B319 /* MyOfferCell.m */; };
+		9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF291916DAA80014B319 /* SignUpViewController.m */; };
+		9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF2D1916E31F0014B319 /* LocationSearchViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +116,10 @@
 		9226EF221916A4370014B319 /* CarPoolRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolRequest.m; sourceTree = "<group>"; };
 		9226EF241916A5AB0014B319 /* MyOfferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOfferCell.h; sourceTree = "<group>"; };
 		9226EF251916A5AB0014B319 /* MyOfferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOfferCell.m; sourceTree = "<group>"; };
+		9226EF281916DAA80014B319 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		9226EF291916DAA80014B319 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		9226EF2C1916E31F0014B319 /* LocationSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchViewController.h; sourceTree = "<group>"; };
+		9226EF2D1916E31F0014B319 /* LocationSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -225,6 +231,8 @@
 		9226EED11915788D0014B319 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				9226EF2B1916E3070014B319 /* LocationSearch */,
+				9226EF271916DA0E0014B319 /* SignUp */,
 				9226EF1719169CDC0014B319 /* Base */,
 				9226EF011915DCD30014B319 /* Account */,
 				9226EF021915DCD30014B319 /* Settings */,
@@ -365,6 +373,24 @@
 				9226EF1919169CF00014B319 /* BaseViewController.m */,
 			);
 			path = Base;
+			sourceTree = "<group>";
+		};
+		9226EF271916DA0E0014B319 /* SignUp */ = {
+			isa = PBXGroup;
+			children = (
+				9226EF281916DAA80014B319 /* SignUpViewController.h */,
+				9226EF291916DAA80014B319 /* SignUpViewController.m */,
+			);
+			path = SignUp;
+			sourceTree = "<group>";
+		};
+		9226EF2B1916E3070014B319 /* LocationSearch */ = {
+			isa = PBXGroup;
+			children = (
+				9226EF2C1916E31F0014B319 /* LocationSearchViewController.h */,
+				9226EF2D1916E31F0014B319 /* LocationSearchViewController.m */,
+			);
+			path = LocationSearch;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -511,6 +537,7 @@
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
 				9226EF001915DBAA0014B319 /* MyRequestsViewController.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
+				9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */,
 				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
 				9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */,
@@ -520,6 +547,7 @@
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,
 				9226EF051915DCDF0014B319 /* AccountViewController.m in Sources */,
+				9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */,
 				9226EF081915DCEB0014B319 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

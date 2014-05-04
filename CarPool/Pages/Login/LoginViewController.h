@@ -9,14 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "AuthenticationClient.h"
 #import "BaseViewController.h"
+#import "SignUpViewController.h"
+#import <Parse/Parse.h>
 
-@interface LoginViewController : BaseViewController
-
-@property (nonatomic, strong) AuthenticationClient *authClient;
-@property (nonatomic, strong) IBOutlet UITextField *txtUsername;
-@property (nonatomic, strong) IBOutlet UITextField *txtPassword;
-
-- (IBAction)loginSelected:(id)sender;
-- (IBAction)facebookLoginSelected:(id)sender;
+@interface LoginViewController : PFLogInViewController <PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @end
