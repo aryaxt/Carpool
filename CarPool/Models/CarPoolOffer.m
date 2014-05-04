@@ -10,7 +10,7 @@
 #import <Parse/PFObject+Subclass.h>
 
 @implementation CarPoolOffer
-@dynamic date;
+@dynamic time;
 @dynamic user;
 @dynamic period;
 @dynamic startPoint;
@@ -19,6 +19,11 @@
 + (NSString *)parseClassName
 {
     return NSStringFromClass([self class]);
+}
+
++ (void)load
+{
+    [self registerSubclass];
 }
 
 @end

@@ -7,8 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "BaseViewController.h"
 
-@interface MenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface MenuViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 

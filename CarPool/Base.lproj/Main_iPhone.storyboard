@@ -82,6 +82,7 @@
                                 </state>
                                 <connections>
                                     <action selector="facebookLoginSelected:" destination="lcP-xe-4Vl" eventType="touchUpInside" id="5Rd-2j-jIi"/>
+                                    <segue destination="lNv-P4-8RP" kind="push" id="60p-8I-Es7"/>
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ko7-rb-DCT">
@@ -121,6 +122,9 @@
                         <outlet property="txtPassword" destination="G3p-3C-j2M" id="0W3-Ua-oUs"/>
                         <outlet property="txtUsername" destination="Ko7-rb-DCT" id="14J-r6-1F4"/>
                         <segue destination="ntY-Xt-R3p" kind="push" identifier="LoginSuccess" id="d5g-X8-uJW"/>
+                        <segue destination="e0Q-Mz-Jqy" kind="push" id="UId-Zv-jDY"/>
+                        <segue destination="iES-YQ-ICw" kind="push" id="WRg-On-5Gk"/>
+                        <segue destination="6GC-Fz-Zg8" kind="push" id="HY2-2N-gEr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mk0-oP-JrO" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -140,17 +144,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="o3c-nn-mXO">
-                        <barButtonItem key="rightBarButtonItem" title="Item" systemItem="add" id="ziy-lS-AkP">
-                            <connections>
-                                <segue destination="ilB-Po-NVU" kind="modal" id="Urn-Cf-2fZ"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Home" id="o3c-nn-mXO"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hiA-uS-Ubf" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="926" y="50"/>
+            <point key="canvasLocation" x="1036" y="78"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="llL-cr-jXy">
@@ -165,10 +163,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Settings" id="9yw-Fk-6dT"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0F-Uz-2XG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="926" y="-629"/>
+            <point key="canvasLocation" x="1036" y="-623"/>
         </scene>
         <!--Account View Controller - Account-->
         <scene sceneID="KoL-GR-dLp">
@@ -183,10 +182,11 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Account" id="9ZN-fp-tFJ"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4m-c0-dxi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="926" y="-1324"/>
+            <point key="canvasLocation" x="1036" y="-1318"/>
         </scene>
         <!--My Offers View Controller - Offers-->
         <scene sceneID="pXw-DO-ENC">
@@ -199,12 +199,62 @@
                     <view key="view" contentMode="scaleToFill" id="fZG-kv-b8M">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="115" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="x6w-WL-fVM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MyOfferCell" rowHeight="115" id="bOk-Yb-D7s" customClass="MyOfferCell">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="115"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bOk-Yb-D7s" id="wFz-T0-BNv">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="114"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AU9-Fz-UJc">
+                                                    <rect key="frame" x="222" y="69" width="44" height="30"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <state key="normal" title="Delete">
+                                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="deleteSelected:" destination="bOk-Yb-D7s" eventType="touchUpInside" id="X85-vR-D42"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="phl-Bb-AdJ">
+                                                    <rect key="frame" x="60" y="40" width="42" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="e0Q-Mz-Jqy" id="3j4-k1-RwD"/>
+                                    <outlet property="delegate" destination="e0Q-Mz-Jqy" id="wY6-mf-vIR"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Create Offer" id="gGq-IK-ETF">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="b0z-nY-yF6">
+                            <connections>
+                                <segue destination="ilB-Po-NVU" kind="modal" identifier="CreateOfferViewController" id="O8E-Tc-amn"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="tableView" destination="x6w-WL-fVM" id="rS5-bh-Pb7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VOh-3d-T2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="926" y="725"/>
+            <point key="canvasLocation" x="1036" y="753"/>
         </scene>
         <!--My Requests View Controller - Requests-->
         <scene sceneID="cI4-wP-BcH">
@@ -217,12 +267,37 @@
                     <view key="view" contentMode="scaleToFill" id="upd-fG-lR7">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="eAk-HL-hGj">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RequestCell" id="wyf-Tk-xhO">
+                                        <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="wyf-Tk-xhO" id="Xye-lX-6Ja">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="iES-YQ-ICw" id="Gpb-Ke-KIe"/>
+                                    <outlet property="delegate" destination="iES-YQ-ICw" id="r3q-HY-uW8"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Requests" id="hho-G1-j28"/>
+                    <connections>
+                        <outlet property="tableView" destination="eAk-HL-hGj" id="hSX-iO-oXQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VQK-6a-VJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="926" y="1389"/>
+            <point key="canvasLocation" x="1036" y="1417"/>
         </scene>
         <!--Create Offer View Controller-->
         <scene sceneID="Rbr-bn-DMQ">
@@ -311,7 +386,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8m-0N-5Di" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1370" y="50"/>
+            <point key="canvasLocation" x="1434" y="753"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

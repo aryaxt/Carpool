@@ -17,6 +17,34 @@
     [super viewDidLoad];
 }
 
+#pragma - UITableView Delegate & Datasource -
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.requests.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"RequestCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    //CarPoolOffer *offer = [self.requests objectAtIndex:indexPath.row];
+    //cell.textLabel.text = [NSString stringWithFormat:@"%@", ];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
+
 #pragma - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu

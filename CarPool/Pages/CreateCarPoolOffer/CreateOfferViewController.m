@@ -31,11 +31,11 @@
     //Period *period = [[Period alloc] init];
     
     CarPoolOffer *offer = [[CarPoolOffer alloc] init];
-    offer.date = self.datePicker.date;
+    offer.time = self.datePicker.date;
     offer.startPoint = [PFGeoPoint geoPointWithLocation:[LocationManager sharedInstance].currentLocation];
     offer.endPoint = [PFGeoPoint geoPointWithLocation:[LocationManager sharedInstance].currentLocation];
     //offer.period = period;
-    [offer.user addObject:[PFUser currentUser]];
+    offer.user = [PFUser currentUser];
     
     
     /*[offer setValue:self.datePicker.date forKey:@"date"];
@@ -48,7 +48,7 @@
     [offer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (succeeded)
         {
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self.delegate createOfferViewControllerDidCreateOffer:offer];
         }
         else
         {
@@ -59,7 +59,7 @@
 
 - (IBAction)cancelSelected:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self.delegate createOfferViewControllerDidSelectCancel];
 }
 
 - (IBAction)segmentedControlChanged:(id)sender

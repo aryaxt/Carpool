@@ -8,7 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
+#import "BaseViewController.h"
 
-@interface MyRequestsViewController : UIViewController <SlideNavigationControllerDelegate>
+@interface MyRequestsViewController : BaseViewController <SlideNavigationControllerDelegate>
+
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *requests;
 
 @end

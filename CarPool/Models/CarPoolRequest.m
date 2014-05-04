@@ -1,17 +1,19 @@
 //
-//  Period.m
+//  CarPoolRequest.m
 //  CarPool
 //
-//  Created by Aryan on 5/3/14.
+//  Created by Aryan on 5/4/14.
 //  Copyright (c) 2014 aryaxt. All rights reserved.
 //
 
-#import "Period.h"
+#import "CarPoolRequest.h"
 #import <Parse/PFObject+Subclass.h>
 
-@implementation Period
-@dynamic code;
-@dynamic name;
+@implementation CarPoolRequest
+@dynamic status;
+@dynamic message;
+@dynamic user;
+@dynamic offer;
 
 + (NSString *)parseClassName
 {

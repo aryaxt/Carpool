@@ -80,9 +80,6 @@
 
 - (void)setupParse
 {
-    [Period registerSubclass];
-    [CarPoolOffer registerSubclass];
-    
     [Parse setApplicationId:@"WbXbttZhD3ZvTT6IH0bQvWrMh2rHoQFZcqwYzpVD" clientKey:@"6GHLpG6v8SsY6fodVYhRPRiC7B6JY1u6s2763HOA"];
 }
 

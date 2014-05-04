@@ -7,9 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseViewController.h"
+#import "CarPoolOffer.h"
 
-@interface CreateOfferViewController : UIViewController
+@protocol CreateOfferViewControllerDelegate
+- (void)createOfferViewControllerDidSelectCancel;
+- (void)createOfferViewControllerDidCreateOffer:(CarPoolOffer *)offer;
+@end
 
+@interface CreateOfferViewController : BaseViewController
+
+@property (nonatomic, assign) id <CreateOfferViewControllerDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *periodSegmentedControl;
 @property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
 @property (nonatomic, strong) IBOutlet UITextField *dateTextField;

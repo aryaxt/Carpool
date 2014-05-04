@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AuthenticationClient.h"
+#import "BaseViewController.h"
 
-@interface LoginViewController : UIViewController
+@interface LoginViewController : BaseViewController
 
+@property (nonatomic, strong) AuthenticationClient *authClient;
 @property (nonatomic, strong) IBOutlet UITextField *txtUsername;
 @property (nonatomic, strong) IBOutlet UITextField *txtPassword;
 

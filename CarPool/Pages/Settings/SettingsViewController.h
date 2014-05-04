@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
+#import "BaseViewController.h"
 
-@interface SettingsViewController : UIViewController <SlideNavigationControllerDelegate>
+@interface SettingsViewController : BaseViewController <SlideNavigationControllerDelegate>
 
 @end

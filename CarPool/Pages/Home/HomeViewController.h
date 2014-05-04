@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
+#import "BaseViewController.h"
 
-@interface HomeViewController : UIViewController <SlideNavigationControllerDelegate>
+@interface HomeViewController : BaseViewController <SlideNavigationControllerDelegate>
 
 @end

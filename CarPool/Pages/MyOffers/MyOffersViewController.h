@@ -8,7 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
+#import "CarPoolOffer.h"
+#import "CarPoolOfferClient.h"
+#import "BaseViewController.h"
+#import "SVPullToRefresh.h"
+#import "UITableView+Additions.h"
+#import "MyOfferCell.h"
+#import "UIAlertView+Blocks.h"
+#import "CreateOfferViewController.h"
 
-@interface MyOffersViewController : UIViewController <SlideNavigationControllerDelegate>
+@interface MyOffersViewController : BaseViewController <SlideNavigationControllerDelegate, MyOfferCellDelegate, CreateOfferViewControllerDelegate>
+
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *offers;
+@property (nonatomic, strong) CarPoolOfferClient *offerClient;
 
 @end

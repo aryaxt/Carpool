@@ -35,6 +35,13 @@
 		9226EF051915DCDF0014B319 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF041915DCDF0014B319 /* AccountViewController.m */; };
 		9226EF081915DCEB0014B319 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF071915DCEB0014B319 /* SettingsViewController.m */; };
 		9226EF0B1915E18A0014B319 /* Period.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF0A1915E18A0014B319 /* Period.m */; };
+		9226EF13191694FC0014B319 /* CarPoolOfferClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF12191694FC0014B319 /* CarPoolOfferClient.m */; };
+		9226EF16191695120014B319 /* AuthenticationClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF15191695120014B319 /* AuthenticationClient.m */; };
+		9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF1919169CF00014B319 /* BaseViewController.m */; };
+		9226EF1D19169F810014B319 /* UITableView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF1C19169F810014B319 /* UITableView+Additions.m */; };
+		9226EF201916A4190014B319 /* CarPoolRequestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF1F1916A4190014B319 /* CarPoolRequestClient.m */; };
+		9226EF231916A4370014B319 /* CarPoolRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF221916A4370014B319 /* CarPoolRequest.m */; };
+		9226EF261916A5AB0014B319 /* MyOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF251916A5AB0014B319 /* MyOfferCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +100,20 @@
 		9226EF071915DCEB0014B319 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		9226EF091915E18A0014B319 /* Period.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Period.h; sourceTree = "<group>"; };
 		9226EF0A1915E18A0014B319 /* Period.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Period.m; sourceTree = "<group>"; };
+		9226EF11191694FC0014B319 /* CarPoolOfferClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolOfferClient.h; sourceTree = "<group>"; };
+		9226EF12191694FC0014B319 /* CarPoolOfferClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolOfferClient.m; sourceTree = "<group>"; };
+		9226EF14191695120014B319 /* AuthenticationClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationClient.h; sourceTree = "<group>"; };
+		9226EF15191695120014B319 /* AuthenticationClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AuthenticationClient.m; sourceTree = "<group>"; };
+		9226EF1819169CF00014B319 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		9226EF1919169CF00014B319 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		9226EF1B19169F810014B319 /* UITableView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Additions.h"; sourceTree = "<group>"; };
+		9226EF1C19169F810014B319 /* UITableView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Additions.m"; sourceTree = "<group>"; };
+		9226EF1E1916A4190014B319 /* CarPoolRequestClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolRequestClient.h; sourceTree = "<group>"; };
+		9226EF1F1916A4190014B319 /* CarPoolRequestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolRequestClient.m; sourceTree = "<group>"; };
+		9226EF211916A4370014B319 /* CarPoolRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolRequest.h; sourceTree = "<group>"; };
+		9226EF221916A4370014B319 /* CarPoolRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolRequest.m; sourceTree = "<group>"; };
+		9226EF241916A5AB0014B319 /* MyOfferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOfferCell.h; sourceTree = "<group>"; };
+		9226EF251916A5AB0014B319 /* MyOfferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOfferCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +178,7 @@
 		9226EE9F191573530014B319 /* CarPool */ = {
 			isa = PBXGroup;
 			children = (
+				9226EF10191694EC0014B319 /* Clients */,
 				9226EEEF1915CBC10014B319 /* Models */,
 				9226EEE91915B8190014B319 /* Managers */,
 				9226EED619157A6F0014B319 /* Categories */,
@@ -203,6 +225,7 @@
 		9226EED11915788D0014B319 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				9226EF1719169CDC0014B319 /* Base */,
 				9226EF011915DCD30014B319 /* Account */,
 				9226EF021915DCD30014B319 /* Settings */,
 				9226EEF71915DB610014B319 /* MyRequests */,
@@ -229,6 +252,8 @@
 			children = (
 				9226EED719157A870014B319 /* UIViewController+Additions.h */,
 				9226EED819157A870014B319 /* UIViewController+Additions.m */,
+				9226EF1B19169F810014B319 /* UITableView+Additions.h */,
+				9226EF1C19169F810014B319 /* UITableView+Additions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -274,6 +299,8 @@
 			children = (
 				9226EEF01915CBE90014B319 /* CarPoolOffer.h */,
 				9226EEF11915CBE90014B319 /* CarPoolOffer.m */,
+				9226EF211916A4370014B319 /* CarPoolRequest.h */,
+				9226EF221916A4370014B319 /* CarPoolRequest.m */,
 				9226EF091915E18A0014B319 /* Period.h */,
 				9226EF0A1915E18A0014B319 /* Period.m */,
 			);
@@ -285,6 +312,8 @@
 			children = (
 				9226EEFB1915DB9A0014B319 /* MyOffersViewController.h */,
 				9226EEFC1915DB9A0014B319 /* MyOffersViewController.m */,
+				9226EF241916A5AB0014B319 /* MyOfferCell.h */,
+				9226EF251916A5AB0014B319 /* MyOfferCell.m */,
 			);
 			path = MyOffers;
 			sourceTree = "<group>";
@@ -314,6 +343,28 @@
 				9226EF071915DCEB0014B319 /* SettingsViewController.m */,
 			);
 			path = Settings;
+			sourceTree = "<group>";
+		};
+		9226EF10191694EC0014B319 /* Clients */ = {
+			isa = PBXGroup;
+			children = (
+				9226EF11191694FC0014B319 /* CarPoolOfferClient.h */,
+				9226EF12191694FC0014B319 /* CarPoolOfferClient.m */,
+				9226EF14191695120014B319 /* AuthenticationClient.h */,
+				9226EF15191695120014B319 /* AuthenticationClient.m */,
+				9226EF1E1916A4190014B319 /* CarPoolRequestClient.h */,
+				9226EF1F1916A4190014B319 /* CarPoolRequestClient.m */,
+			);
+			path = Clients;
+			sourceTree = "<group>";
+		};
+		9226EF1719169CDC0014B319 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9226EF1819169CF00014B319 /* BaseViewController.h */,
+				9226EF1919169CF00014B319 /* BaseViewController.m */,
+			);
+			path = Base;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -449,16 +500,23 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9226EF16191695120014B319 /* AuthenticationClient.m in Sources */,
 				9226EEAA191573530014B319 /* AppDelegate.m in Sources */,
 				9226EED51915789F0014B319 /* MenuViewController.m in Sources */,
+				9226EF261916A5AB0014B319 /* MyOfferCell.m in Sources */,
+				9226EF1D19169F810014B319 /* UITableView+Additions.m in Sources */,
+				9226EF231916A4370014B319 /* CarPoolRequest.m in Sources */,
 				9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */,
 				9226EEFD1915DB9A0014B319 /* MyOffersViewController.m in Sources */,
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
 				9226EF001915DBAA0014B319 /* MyRequestsViewController.m in Sources */,
+				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
 				9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */,
 				9226EED919157A870014B319 /* UIViewController+Additions.m in Sources */,
+				9226EF201916A4190014B319 /* CarPoolRequestClient.m in Sources */,
+				9226EF13191694FC0014B319 /* CarPoolOfferClient.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,
 				9226EF051915DCDF0014B319 /* AccountViewController.m in Sources */,
