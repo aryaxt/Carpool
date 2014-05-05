@@ -10,10 +10,18 @@
 
 @implementation CarPoolOfferClient
 
-- (void)fetchCarpoolOffersForUSer:(PFUser *)user withCompletion:(void (^)(NSArray *objects, NSError *error))completion
+- (void)fetchCarpoolOffersForUser:(PFUser *)user includeLocations:(BOOL)includeLocations
+                   withCompletion:(void (^)(NSArray *objects, NSError *error))completion;
 {
     PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([CarPoolOffer class])];
     [query whereKey:@"user" equalTo:user];
+    
+    if (includeLocations)
+    {
+        [query includeKey:@"startLocation"];
+        [query includeKey:@"endLocation"];
+    }
+    
     [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         
         NSMutableArray *offers = [NSMutableArray array];
@@ -29,6 +37,11 @@
 - (void)deleteCarpoolOffer:(CarPoolOffer *)offer withCompletion:(void (^)(BOOL succeeded, NSError *error))completion
 {
     [offer deleteInBackgroundWithBlock:completion];
+}
+
+- (void)createOffer:(CarPoolOffer *)offer withCompletion:(void (^)(BOOL succeeded, NSError *error))completion
+{
+    [offer saveInBackgroundWithBlock:completion];
 }
 
 @end

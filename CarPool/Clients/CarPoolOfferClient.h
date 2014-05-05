@@ -12,7 +12,8 @@
 
 @interface CarPoolOfferClient : NSObject
 
-- (void)fetchCarpoolOffersForUSer:(PFUser *)user withCompletion:(void (^)(NSArray *objects, NSError *error))completion;
 - (void)deleteCarpoolOffer:(CarPoolOffer *)offer withCompletion:(void (^)(BOOL succeeded, NSError *error))completion;
+- (void)createOffer:(CarPoolOffer *)offer withCompletion:(void (^)(BOOL succeeded, NSError *error))completion;
+- (void)fetchCarpoolOffersForUser:(PFUser *)user includeLocations:(BOOL)includeLocations withCompletion:(void (^)(NSArray *objects, NSError *error))completion;
 
 @end

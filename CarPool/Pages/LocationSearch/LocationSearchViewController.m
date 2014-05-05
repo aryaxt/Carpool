@@ -18,6 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self.searchBar becomeFirstResponder];
 }
 
 #pragma - UITableView Delegate & Datasource -
@@ -41,7 +43,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     SPGooglePlacesAutocompletePlace *place = [self.locations objectAtIndex:indexPath.row];
-    [self.delegate locationSearchViewControllerDidSelectPlace:place];
+    [self.delegate locationSearchViewControllerDidSelectPlace:place withTag:self.tag];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -91,7 +93,8 @@
         {
             if (places.count == 1)
             {
-                [self.delegate locationSearchViewControllerDidSelectPlace:[places firstObject]];
+                [self.delegate locationSearchViewControllerDidSelectPlace:[places firstObject] withTag:self.tag];
+                self.tag = nil;
             }
             else
             {
@@ -123,10 +126,8 @@
 {
     SPGooglePlacesAutocompleteQuery *query = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:AUTOCOMPLETE_API_KEY];
     query.input = search;
-    //query.radius = 100.0;
     query.language = @"en";
-    query.types = SPPlaceTypeGeocode; // Only return geocoding (address) results.
-    //query.location = CLLocationCoordinate2DMake(37.76999, -122.44696);
+    query.types = SPPlaceTypeGeocode;
     
     [query fetchPlaces:^(NSArray *places, NSError *error) {
         self.locations = places;

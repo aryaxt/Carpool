@@ -41,7 +41,8 @@
 
 - (void)fetchAndPopulateData
 {
-    [self.offerClient fetchCarpoolOffersForUSer:[PFUser currentUser]
+    [self.offerClient fetchCarpoolOffersForUser:[PFUser currentUser]
+                               includeLocations:YES
                                  withCompletion:^(NSArray *offers, NSError *error) {
                                      [self hideLoader];
                                      [self.tableView.pullToRefreshView stopAnimating];

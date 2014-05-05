@@ -14,7 +14,12 @@
 
 - (void)setOffer:(CarPoolOffer *)offer
 {
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     
+    self.lblTime.text = [dateFormatter stringFromDate:offer.time];
+    self.lblFrom.text = offer.startLocation.name;
+    self.lblTo.text = offer.endLocation.name;
 }
 
 #pragma - IBActions -

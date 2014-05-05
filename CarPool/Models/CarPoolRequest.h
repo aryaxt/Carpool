@@ -7,12 +7,15 @@
 //
 
 #import <Parse/Parse.h>
+#import "Location.h"
 
 @interface CarPoolRequest : PFObject <PFSubclassing>
 
 @property (nonatomic, strong) NSNumber *status;
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) Location *startLocation;
+@property (nonatomic, strong) Location *endLocation;
 @property (nonatomic, strong, readonly) PFRelation *offer;
 
 @end

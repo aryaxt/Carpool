@@ -16,7 +16,7 @@
 
 @protocol LocationSearchViewControllerDelegate <NSObject>
 - (void)locationSearchViewControllerDidSelectCance;
-- (void)locationSearchViewControllerDidSelectPlace:(SPGooglePlacesAutocompletePlace *)place;
+- (void)locationSearchViewControllerDidSelectPlace:(SPGooglePlacesAutocompletePlace *)place withTag:(NSString *)tag;
 @end
 
 @interface LocationSearchViewController : BaseViewController <UISearchBarDelegate, CurrentLocationHeaderViewDelegate, UITableViewDataSource, UITableViewDelegate>
@@ -25,6 +25,7 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) CurrentLocationHeaderView *currentLocationHeaderView;
 @property (nonatomic, strong) NSArray *locations;
+@property (nonatomic, copy) NSString *tag;
 @property (nonatomic, weak) id <LocationSearchViewControllerDelegate> delegate;
 
 - (IBAction)cancelSelected:(id)sender;

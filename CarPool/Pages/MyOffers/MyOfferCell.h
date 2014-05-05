@@ -17,8 +17,8 @@
 @interface MyOfferCell : UITableViewCell
 
 @property (nonatomic, weak) id <MyOfferCellDelegate> delegate;
-@property (nonatomic, strong) IBOutlet UILabel *lblMessage;
 @property (nonatomic, strong) IBOutlet UILabel *lblTime;
+@property (nonatomic, strong) IBOutlet UILabel *lblFrom;
 @property (nonatomic, strong) IBOutlet UILabel *lblTo;
 
 - (void)setOffer:(CarPoolOffer *)offer;

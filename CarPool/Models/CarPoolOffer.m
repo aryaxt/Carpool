@@ -13,8 +13,9 @@
 @dynamic time;
 @dynamic user;
 @dynamic period;
-@dynamic startPoint;
-@dynamic endPoint;
+@dynamic startLocation;
+@dynamic endLocation;
+@dynamic message;
 
 + (NSString *)parseClassName
 {
