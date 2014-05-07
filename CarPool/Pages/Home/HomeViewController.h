@@ -7,9 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "SlideNavigationController.h"
 #import "BaseViewController.h"
 
-@interface HomeViewController : BaseViewController <SlideNavigationControllerDelegate>
+@interface HomeViewController : BaseViewController <SlideNavigationControllerDelegate, MKMapViewDelegate>
+
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong) IBOutlet UIToolbar *searchToolbar;
+
+- (IBAction)searchSelected:(id)sender;
 
 @end

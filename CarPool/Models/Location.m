@@ -26,7 +26,9 @@
     [self registerSubclass];
 }
 
-+ (Location *)locationFrom:(SPGooglePlacesAutocompletePlace *)autoCompletePlace
+#pragma - Class Methods -
+
++ (Location *)locationFromGoogleAutoCompletePLace:(SPGooglePlacesAutocompletePlace *)autoCompletePlace
 {
     Location *location = [[Location alloc] init];
     location.name = autoCompletePlace.name;
@@ -37,6 +39,16 @@
         location.geoPoint = [PFGeoPoint geoPointWithLatitude:placemark.location.coordinate.latitude
                                                    longitude:placemark.location.coordinate.longitude];
     }];
+    
+    return location;
+}
+
++ (Location *)locationFromPlaceMark:(CLPlacemark *)placeMark
+{
+    Location *location = [[Location alloc] init];
+    location.name = placeMark.name;
+    location.geoPoint = [PFGeoPoint geoPointWithLatitude:placeMark.location.coordinate.latitude
+                                               longitude:placeMark.location.coordinate.longitude];
     
     return location;
 }

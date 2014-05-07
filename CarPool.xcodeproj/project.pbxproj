@@ -52,6 +52,8 @@
 		92B568D619170E2900CEF58F /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D319170E2900CEF58F /* calendar.png */; };
 		92B568D719170E2900CEF58F /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D419170E2900CEF58F /* startPoint.png */; };
 		92B568DA1917147700CEF58F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B568D91917147700CEF58F /* Location.m */; };
+		92B568DD19172EE200CEF58F /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B568DC19172EE200CEF58F /* OfferDetailViewController.m */; };
+		92B568DF19172F5700CEF58F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B568DE19172F5700CEF58F /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -138,6 +140,9 @@
 		92B568D419170E2900CEF58F /* startPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startPoint.png; sourceTree = "<group>"; };
 		92B568D81917147700CEF58F /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		92B568D91917147700CEF58F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		92B568DB19172EE200CEF58F /* OfferDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailViewController.h; sourceTree = "<group>"; };
+		92B568DC19172EE200CEF58F /* OfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailViewController.m; sourceTree = "<group>"; };
+		92B568DE19172F5700CEF58F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +150,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92B568DF19172F5700CEF58F /* MapKit.framework in Frameworks */,
 				9226EEEE1915B8E70014B319 /* CoreLocation.framework in Frameworks */,
 				9226EE9C191573530014B319 /* CoreGraphics.framework in Frameworks */,
 				9226EE9E191573530014B319 /* UIKit.framework in Frameworks */,
@@ -189,6 +195,7 @@
 		9226EE98191573530014B319 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92B568DE19172F5700CEF58F /* MapKit.framework */,
 				9226EEED1915B8E70014B319 /* CoreLocation.framework */,
 				9226EE99191573530014B319 /* Foundation.framework */,
 				9226EE9B191573530014B319 /* CoreGraphics.framework */,
@@ -343,6 +350,8 @@
 				9226EEFC1915DB9A0014B319 /* MyOffersViewController.m */,
 				9226EF241916A5AB0014B319 /* MyOfferCell.h */,
 				9226EF251916A5AB0014B319 /* MyOfferCell.m */,
+				92B568DB19172EE200CEF58F /* OfferDetailViewController.h */,
+				92B568DC19172EE200CEF58F /* OfferDetailViewController.m */,
 			);
 			path = MyOffers;
 			sourceTree = "<group>";
@@ -582,6 +591,7 @@
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */,
+				92B568DD19172EE200CEF58F /* OfferDetailViewController.m in Sources */,
 				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
 				9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */,
@@ -731,6 +741,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarPool/CarPool-Prefix.pch";
 				INFOPLIST_FILE = "CarPool/CarPool-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -745,6 +756,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarPool/CarPool-Prefix.pch";
 				INFOPLIST_FILE = "CarPool/CarPool-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

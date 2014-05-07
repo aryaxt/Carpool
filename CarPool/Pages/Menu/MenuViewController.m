@@ -24,6 +24,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.view.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.view.layer.borderWidth = 1;
 }
 
 #pragma - UITableView Delegate & Datasource -

@@ -13,16 +13,18 @@
 #import "CurrentLocationHeaderView.h"
 #import "BaseViewController.h"
 #import "LocationManager.h"
+#import "Location.h"
 
 @protocol LocationSearchViewControllerDelegate <NSObject>
 - (void)locationSearchViewControllerDidSelectCance;
-- (void)locationSearchViewControllerDidSelectPlace:(SPGooglePlacesAutocompletePlace *)place withTag:(NSString *)tag;
+- (void)locationSearchViewControllerDidSelectLocation:(Location *)location withTag:(NSString *)tag;
 @end
 
 @interface LocationSearchViewController : BaseViewController <UISearchBarDelegate, CurrentLocationHeaderViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, strong) CurrentLocationHeaderView *currentLocationHeaderView;
 @property (nonatomic, strong) NSArray *locations;
 @property (nonatomic, copy) NSString *tag;

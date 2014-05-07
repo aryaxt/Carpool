@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "CarPoolOffer.h"
+#import "LocationManager.h"
 
 @implementation HomeViewController
 
@@ -16,6 +17,32 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.mapView.delegate = self;
+    
+    [self.searchBar removeFromSuperview];
+}
+
+#pragma - Private Methods -
+
+#pragma - IBActions -
+
+- (IBAction)searchSelected:(id)sender
+{
+    
+}
+
+#pragma - MKMapViewDelegate -
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
+{
+   /* MKCoordinateRegion region;
+    region.center.latitude = mapView.userLocation.coordinate.latitude;
+    region.center.longitude = mapView.userLocation.coordinate.longitude;
+    region.span.latitudeDelta = .2;
+    region.span.longitudeDelta = .2;
+    
+    [self.mapView setRegion:region animated:YES];*/
 }
 
 #pragma - SlideNavigationController Methods -

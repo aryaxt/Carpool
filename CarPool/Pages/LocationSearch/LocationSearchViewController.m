@@ -19,6 +19,14 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.titleView = self.searchBar;
+    
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelSelected:)];
+    self.navigationItem.leftBarButtonItem = cancelItem;
+    
+    UIBarButtonItem *loadingItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicatorView];
+    self.navigationItem.rightBarButtonItem = loadingItem;
+    
     [self.searchBar becomeFirstResponder];
 }
 
@@ -34,16 +42,16 @@
     static NSString *cellIdentifier = @"LocationSearchCell";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    SPGooglePlacesAutocompletePlace *place = [self.locations objectAtIndex:indexPath.row];
-    cell.textLabel.text = place.name;
+    Location *location = [self.locations objectAtIndex:indexPath.row];
+    cell.textLabel.text = location.name;
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    SPGooglePlacesAutocompletePlace *place = [self.locations objectAtIndex:indexPath.row];
-    [self.delegate locationSearchViewControllerDidSelectPlace:place withTag:self.tag];
+    Location *location = [self.locations objectAtIndex:indexPath.row];
+    [self.delegate locationSearchViewControllerDidSelectLocation:location withTag:self.tag];
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
@@ -55,6 +63,11 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return self.currentLocationHeaderView.frame.size.height;
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    [self.searchBar resignFirstResponder];
 }
 
 #pragma - IBActions -
@@ -76,31 +89,29 @@
         return;
     }
     
-    //TODO: Check to make sure that location exists, and user has given permission to CLLocationManager
+    [self.activityIndicatorView startAnimating];
     
-    SPGooglePlacesAutocompleteQuery *query = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:AUTOCOMPLETE_API_KEY];
-    query.language = @"en";
-    query.location = CLLocationCoordinate2DMake(
-                                                locationManager.currentLocation.coordinate.latitude,
-                                                locationManager.currentLocation.coordinate.longitude);
-    
-    [query fetchPlaces:^(NSArray *places, NSError *error) {
-        if (error)
-        {
-            [self alertWithtitle:@"Error" andMessage:@"There was a problem searching your location"];
-        }
-        else
-        {
-            if (places.count == 1)
-            {
-                [self.delegate locationSearchViewControllerDidSelectPlace:[places firstObject] withTag:self.tag];
-                self.tag = nil;
-            }
-            else
-            {
-                [self alertWithtitle:@"Error" andMessage:@"There was a problem searching your location"];
-            }
-        }
+    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
+    [geocoder reverseGeocodeLocation:locationManager.currentLocation
+                   completionHandler:^(NSArray *placemarks, NSError *error) {
+                       [self.activityIndicatorView stopAnimating];
+                       
+                       if (error)
+                       {
+                           [self alertWithtitle:@"Error" andMessage:@"There was a problem searching for this location"];
+                       }
+                       else
+                       {
+                           NSMutableArray *locations = [NSMutableArray array];
+                           
+                           for (CLPlacemark *placeMark in placemarks)
+                           {
+                               [locations addObject:[Location locationFromPlaceMark:placeMark]];
+                           }
+                           
+                           self.locations = locations;
+                           [self.tableView deleteRowsAndAnimateNewRowsIn:locations.count];
+                       }
     }];
 }
 
@@ -112,12 +123,14 @@
     {
         if (searchText.length > MIN_CHARACTER_REQUIRED_FOR_SEARCH)
         {
+            [self.activityIndicatorView startAnimating];
             [NSObject cancelPreviousPerformRequestsWithTarget:self];
             [self performSelector:@selector(performSearch:) withObject:searchText afterDelay:.6];
         }
     }
     else
     {
+        self.locations = nil;
         [self.tableView deleteRowsAndAnimateNewRowsIn:0];
     }
 }
@@ -130,8 +143,24 @@
     query.types = SPPlaceTypeGeocode;
     
     [query fetchPlaces:^(NSArray *places, NSError *error) {
-        self.locations = places;
-        [self.tableView deleteRowsAndAnimateNewRowsIn:places.count];
+        [self.activityIndicatorView stopAnimating];
+        
+        if (error)
+        {
+            [self alertWithtitle:@"Error" andMessage:@"There was a problem searching for this location"];
+        }
+        else
+        {
+            NSMutableArray *locations = [NSMutableArray array];
+            
+            for (SPGooglePlacesAutocompletePlace *place in places)
+            {
+                [locations addObject:[Location locationFromGoogleAutoCompletePLace:place]];
+            }
+            
+            self.locations = locations;
+            [self.tableView deleteRowsAndAnimateNewRowsIn:places.count];
+        }
     }];
 }
 

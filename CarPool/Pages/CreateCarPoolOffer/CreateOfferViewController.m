@@ -65,11 +65,13 @@
     if (!self.offer.startLocation)
     {
         [self alertWithtitle:@"Error" andMessage:@"Starting location is required"];
+        return;
     }
     
     if (!self.offer.endLocation)
     {
         [self alertWithtitle:@"Error" andMessage:@"Ending location is required"];
+        return;
     }
     [self showLoader];
     
@@ -127,9 +129,10 @@
     if (textField == self.txtStartLocation || textField == self.txtEndLocation)
     {
         LocationSearchViewController *vc = (LocationSearchViewController *) [LocationSearchViewController viewController];
+        UINavigationController *nacVontroller = [[UINavigationController alloc] initWithRootViewController:vc];
         vc.delegate = self;
         vc.tag = (textField == self.txtStartLocation) ? LOCATION_SEARCH_START : LOCATION_SEARCH_END;
-        [self presentViewController:vc animated:YES completion:nil];
+        [self presentViewController:nacVontroller animated:YES completion:nil];
         
         return false;
     }
@@ -144,17 +147,17 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (void)locationSearchViewControllerDidSelectPlace:(SPGooglePlacesAutocompletePlace *)place withTag:(NSString *)tag
+- (void)locationSearchViewControllerDidSelectLocation:(Location *)location withTag:(NSString *)tag
 {
     [self dismissViewControllerAnimated:YES completion:nil];
     
     if ([tag isEqualToString:LOCATION_SEARCH_START])
     {
-        self.offer.startLocation = [Location locationFrom:place];
+        self.offer.startLocation = location;
     }
     else if ([tag isEqualToString:LOCATION_SEARCH_END])
     {
-        self.offer.endLocation = [Location locationFrom:place];
+        self.offer.endLocation = location;
     }
     
     [self populateData];

@@ -32,7 +32,7 @@
 {
     if ([segue.identifier isEqual:@"CreateOfferViewController"])
     {
-        CreateOfferViewController *vc = segue.destinationViewController;
+        CreateOfferViewController *vc = (CreateOfferViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
         vc.delegate = self;
     }
 }

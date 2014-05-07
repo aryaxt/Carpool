@@ -34,8 +34,8 @@
     
     [PFFacebookUtils initializeFacebook];
     
-    if ([PFUser currentUser] && // Check if a user is cached
-        [PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]) // Check if user is linked to Facebook
+    if ([PFUser currentUser] //&& // Check if a user is cached
+        /*[PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]*/) // Check if user is linked to Facebook
     {
         [self loginSucceeded];
         return;

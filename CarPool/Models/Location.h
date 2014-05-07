@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import <CoreLocation/CoreLocation.h>
 #import <SPGooglePlacesAutocomplete/SPGooglePlacesAutocompletePlace.h>
 
 @interface Location : PFObject<PFSubclassing>
@@ -16,6 +17,7 @@
 @property (nonatomic, strong) NSString *identifier;
 @property (nonatomic, strong) PFGeoPoint *geoPoint;
 
-+ (Location *)locationFrom:(SPGooglePlacesAutocompletePlace *)autoCompletePlace;
++ (Location *)locationFromGoogleAutoCompletePLace:(SPGooglePlacesAutocompletePlace *)autoCompletePlace;
++ (Location *)locationFromPlaceMark:(CLPlacemark *)placeMark;
 
 @end
