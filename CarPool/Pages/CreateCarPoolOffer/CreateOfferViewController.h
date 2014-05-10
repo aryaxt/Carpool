@@ -18,7 +18,7 @@
 - (void)createOfferViewControllerDidCreateOffer:(CarPoolOffer *)offer;
 @end
 
-@interface CreateOfferViewController : BaseViewController <LocationSearchViewControllerDelegate, UITextFieldDelegate>
+@interface CreateOfferViewController : BaseViewController <LocationSearchViewControllerDelegate, UITextFieldDelegate, UITextViewDelegate>
 
 @property (nonatomic, assign) id <CreateOfferViewControllerDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *periodSegmentedControl;
@@ -27,12 +27,16 @@
 @property (nonatomic, strong) IBOutlet UITextField *txtStartLocation;
 @property (nonatomic, strong) IBOutlet UITextField *txtEndLocation;
 @property (nonatomic, strong) IBOutlet UITextView *txtMessage;
+@property (nonatomic, strong) IBOutlet UIView *messageView;
+@property (nonatomic, strong) IBOutlet UIButton *btnCloseMessage;
 @property (nonatomic, strong) CarPoolOffer *offer;
 @property (nonatomic, strong) CarPoolOfferClient *offerClient;
+@property (nonatomic, assign) CGRect messageViewOriginalFrame;
 
 - (IBAction)createSelected:(id)sender;
 - (IBAction)cancelSelected:(id)sender;
 - (IBAction)segmentedControlChanged:(id)sender;
 - (IBAction)datePickerChangedValue:(id)sender;
+- (IBAction)closeMessageSelected:(id)sender;
 
 @end

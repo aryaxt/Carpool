@@ -43,6 +43,7 @@
 {
     [self.offerClient fetchCarpoolOffersForUser:[PFUser currentUser]
                                includeLocations:YES
+                                    includeUser:NO
                                  withCompletion:^(NSArray *offers, NSError *error) {
                                      [self hideLoader];
                                      [self.tableView.pullToRefreshView stopAnimating];

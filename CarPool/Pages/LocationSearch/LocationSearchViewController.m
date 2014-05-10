@@ -26,6 +26,11 @@
     
     UIBarButtonItem *loadingItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicatorView];
     self.navigationItem.rightBarButtonItem = loadingItem;
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
     
     [self.searchBar becomeFirstResponder];
 }

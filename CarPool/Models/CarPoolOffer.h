@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import "User.h"
 #import "Period.h"
 #import "Location.h"
 
@@ -16,7 +17,7 @@
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) Location *startLocation;
 @property (nonatomic, strong) Location *endLocation;
-@property (nonatomic, strong) PFUser *user;
+@property (nonatomic, strong) User *user;
 @property (nonatomic, strong) Period *period;
 
 @end

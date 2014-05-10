@@ -48,11 +48,14 @@
 		9226EF33191700940014B319 /* CurrentLocationHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9226EF32191700940014B319 /* CurrentLocationHeaderView.xib */; };
 		9226EF36191704A70014B319 /* currentLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 9226EF35191704A70014B319 /* currentLocation.png */; };
 		9226EF38191707F10014B319 /* poweredByGoogle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9226EF37191707F10014B319 /* poweredByGoogle.png */; };
+		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
+		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
+		927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */; };
+		92881405191DD6BF00726DD8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 92881404191DD6BF00726DD8 /* User.m */; };
 		92B568D519170E2900CEF58F /* endPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D219170E2900CEF58F /* endPoint.png */; };
 		92B568D619170E2900CEF58F /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D319170E2900CEF58F /* calendar.png */; };
 		92B568D719170E2900CEF58F /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D419170E2900CEF58F /* startPoint.png */; };
 		92B568DA1917147700CEF58F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B568D91917147700CEF58F /* Location.m */; };
-		92B568DD19172EE200CEF58F /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B568DC19172EE200CEF58F /* OfferDetailViewController.m */; };
 		92B568DF19172F5700CEF58F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B568DE19172F5700CEF58F /* MapKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,13 +138,18 @@
 		9226EF32191700940014B319 /* CurrentLocationHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CurrentLocationHeaderView.xib; sourceTree = "<group>"; };
 		9226EF35191704A70014B319 /* currentLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = currentLocation.png; sourceTree = "<group>"; };
 		9226EF37191707F10014B319 /* poweredByGoogle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByGoogle.png; sourceTree = "<group>"; };
+		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
+		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
+		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
+		927ABFC2191DC14B00CC3A2B /* OfferDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailViewController.h; sourceTree = "<group>"; };
+		927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailViewController.m; sourceTree = "<group>"; };
+		92881403191DD6BF00726DD8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		92881404191DD6BF00726DD8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		92B568D219170E2900CEF58F /* endPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endPoint.png; sourceTree = "<group>"; };
 		92B568D319170E2900CEF58F /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		92B568D419170E2900CEF58F /* startPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startPoint.png; sourceTree = "<group>"; };
 		92B568D81917147700CEF58F /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		92B568D91917147700CEF58F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
-		92B568DB19172EE200CEF58F /* OfferDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailViewController.h; sourceTree = "<group>"; };
-		92B568DC19172EE200CEF58F /* OfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailViewController.m; sourceTree = "<group>"; };
 		92B568DE19172F5700CEF58F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -288,6 +296,8 @@
 				9226EED819157A870014B319 /* UIViewController+Additions.m */,
 				9226EF1B19169F810014B319 /* UITableView+Additions.h */,
 				9226EF1C19169F810014B319 /* UITableView+Additions.m */,
+				927ABFBA191A19F000CC3A2B /* UIView+Additions.h */,
+				927ABFBB191A19F000CC3A2B /* UIView+Additions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -297,6 +307,8 @@
 			children = (
 				9226EEDB19157BEA0014B319 /* HomeViewController.h */,
 				9226EEDC19157BEA0014B319 /* HomeViewController.m */,
+				927ABFC2191DC14B00CC3A2B /* OfferDetailViewController.h */,
+				927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -339,6 +351,8 @@
 				9226EF0A1915E18A0014B319 /* Period.m */,
 				92B568D81917147700CEF58F /* Location.h */,
 				92B568D91917147700CEF58F /* Location.m */,
+				92881403191DD6BF00726DD8 /* User.h */,
+				92881404191DD6BF00726DD8 /* User.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -350,8 +364,6 @@
 				9226EEFC1915DB9A0014B319 /* MyOffersViewController.m */,
 				9226EF241916A5AB0014B319 /* MyOfferCell.h */,
 				9226EF251916A5AB0014B319 /* MyOfferCell.m */,
-				92B568DB19172EE200CEF58F /* OfferDetailViewController.h */,
-				92B568DC19172EE200CEF58F /* OfferDetailViewController.m */,
 			);
 			path = MyOffers;
 			sourceTree = "<group>";
@@ -429,6 +441,7 @@
 		9226EF341917041C0014B319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				927ABFB8191A170300CC3A2B /* closeButton.png */,
 				92B568D219170E2900CEF58F /* endPoint.png */,
 				92B568D319170E2900CEF58F /* calendar.png */,
 				92B568D419170E2900CEF58F /* startPoint.png */,
@@ -525,6 +538,7 @@
 				9226EEAD191573530014B319 /* Main_iPhone.storyboard in Resources */,
 				9226EF36191704A70014B319 /* currentLocation.png in Resources */,
 				9226EEA4191573530014B319 /* InfoPlist.strings in Resources */,
+				927ABFB9191A170300CC3A2B /* closeButton.png in Resources */,
 				9226EF38191707F10014B319 /* poweredByGoogle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -578,12 +592,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				9226EF16191695120014B319 /* AuthenticationClient.m in Sources */,
+				927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */,
 				9226EEAA191573530014B319 /* AppDelegate.m in Sources */,
 				9226EED51915789F0014B319 /* MenuViewController.m in Sources */,
 				9226EF261916A5AB0014B319 /* MyOfferCell.m in Sources */,
 				9226EF1D19169F810014B319 /* UITableView+Additions.m in Sources */,
 				9226EF231916A4370014B319 /* CarPoolRequest.m in Sources */,
 				9226EF31191700830014B319 /* CurrentLocationHeaderView.m in Sources */,
+				92881405191DD6BF00726DD8 /* User.m in Sources */,
 				9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */,
 				9226EEFD1915DB9A0014B319 /* MyOffersViewController.m in Sources */,
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
@@ -591,13 +607,13 @@
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */,
-				92B568DD19172EE200CEF58F /* OfferDetailViewController.m in Sources */,
 				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
 				9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */,
 				9226EED919157A870014B319 /* UIViewController+Additions.m in Sources */,
 				9226EF201916A4190014B319 /* CarPoolRequestClient.m in Sources */,
 				9226EF13191694FC0014B319 /* CarPoolOfferClient.m in Sources */,
+				927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,
 				9226EF051915DCDF0014B319 /* AccountViewController.m in Sources */,

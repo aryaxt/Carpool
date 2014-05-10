@@ -21,7 +21,7 @@
     
     for (int i=0 ; i<newRows ; i++)
     {
-        [self insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+        [self insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
     }
     
     [self endUpdates];

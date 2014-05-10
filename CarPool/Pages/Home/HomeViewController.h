@@ -10,12 +10,17 @@
 #import <MapKit/MapKit.h>
 #import "SlideNavigationController.h"
 #import "BaseViewController.h"
+#import "CarPoolOfferClient.h"
+#import "OfferDetailViewController.h"
 
-@interface HomeViewController : BaseViewController <SlideNavigationControllerDelegate, MKMapViewDelegate>
+@interface HomeViewController : BaseViewController <SlideNavigationControllerDelegate, MKMapViewDelegate, OfferDetailViewControllerDelegate>
 
+@property (nonatomic, strong) CarPoolOfferClient *offerClient;
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
-@property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
-@property (nonatomic, strong) IBOutlet UIToolbar *searchToolbar;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) OfferDetailViewController *offerDetailViewController;
+@property (nonatomic, strong) CarPoolOffer *currentOffer;
+@property (nonatomic, strong) NSMutableArray *offers;
 
 - (IBAction)searchSelected:(id)sender;
 

@@ -12,11 +12,15 @@
 #import "LocationManager.h"
 #import "LocationSearchViewController.h"
 #import "UIViewController+Additions.h"
+#import "UIView+Additions.h"
 
 @implementation CreateOfferViewController
 
 #define LOCATION_SEARCH_START @"LOCATION_SEARCH_START"
 #define LOCATION_SEARCH_END @"LOCATION_SEARCH_END"
+#define KEYBOARD_PORTRAIT_HEIGHT 216
+#define NAVIGATION_BAR_HEIGHT 64
+#define MESSAGE_TEXT_VIEW_OFFSET 6
 
 #pragma - UIViewController Methods -
 
@@ -33,6 +37,15 @@
     self.datePicker.date = [NSDate date];
     self.txtDate.inputView = self.datePicker;
     self.txtMessage.text = @"";
+    
+    self.btnCloseMessage.hidden = YES;
+    self.btnCloseMessage.transform = CGAffineTransformScale(self.btnCloseMessage.transform, .1, .1);
+    self.messageViewOriginalFrame = self.messageView.frame;
+    self.messageView.backgroundColor = [UIColor clearColor];
+    
+    self.txtMessage.layer.borderWidth = .6;
+    self.txtMessage.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.txtMessage.layer.cornerRadius = 5;
     
     [self populateData];
 }
@@ -113,6 +126,18 @@
     [self populateData];
 }
 
+- (IBAction)closeMessageSelected:(id)sender
+{
+    [self.btnCloseMessage animateShrinkWithCompletion:^{
+        [UIView animateWithDuration:.3 animations:^{
+            self.btnCloseMessage.hidden = YES;
+            self.messageView.frame = self.messageViewOriginalFrame;
+        }completion:^(BOOL finished) {
+            [self.txtMessage resignFirstResponder];
+        }];
+    }];
+}
+
 #pragma - Touch Detection -
 
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
@@ -138,6 +163,27 @@
     }
     
     return true;
+}
+
+#pragma - UITextViewDelegate -
+
+- (void)textViewDidBeginEditing:(UITextView *)textView
+{
+    CGRect rect = CGRectMake(0,
+                             MESSAGE_TEXT_VIEW_OFFSET + NAVIGATION_BAR_HEIGHT,
+                             self.messageView.frame.size.width,
+                             self.view.frame.size.height - KEYBOARD_PORTRAIT_HEIGHT - (MESSAGE_TEXT_VIEW_OFFSET * 2) - NAVIGATION_BAR_HEIGHT);
+    
+    [UIView animateWithDuration:.3
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseOut
+                     animations:^{
+        self.messageView.frame = rect;
+    } completion:^(BOOL finished) {
+
+        self.btnCloseMessage.hidden = NO;
+        [self.btnCloseMessage animatePopWithCompletion:nil];
+    }];
 }
 
 #pragma - LocationSearchViewControllerDelegate -
