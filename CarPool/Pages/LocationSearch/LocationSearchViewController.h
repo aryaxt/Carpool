@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <MapKit/MapKit.h>
 #import "SPGooglePlacesAutocompleteQuery.h"
 #import "SPGooglePlacesAutocompletePlace.h"
 #import "UITableView+Additions.h"
-#import "CurrentLocationHeaderView.h"
+#import "LocationSearchHeaderView.h"
 #import "BaseViewController.h"
 #import "LocationManager.h"
 #import "Location.h"
@@ -20,12 +21,13 @@
 - (void)locationSearchViewControllerDidSelectLocation:(Location *)location withTag:(NSString *)tag;
 @end
 
-@interface LocationSearchViewController : BaseViewController <UISearchBarDelegate, CurrentLocationHeaderViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface LocationSearchViewController : BaseViewController <UISearchBarDelegate, LocationSearchHeaderViewDelegate, UITableViewDataSource, UITableViewDelegate>
 
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicatorView;
-@property (nonatomic, strong) CurrentLocationHeaderView *currentLocationHeaderView;
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) LocationSearchHeaderView *locationSearchHeaderView;
 @property (nonatomic, strong) NSArray *locations;
 @property (nonatomic, copy) NSString *tag;
 @property (nonatomic, weak) id <LocationSearchViewControllerDelegate> delegate;

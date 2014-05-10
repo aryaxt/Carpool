@@ -12,6 +12,7 @@
 @class MyOfferCell;
 @protocol MyOfferCellDelegate
 - (void)myOfferCellDidSelectDelete:(MyOfferCell *)cell;
+- (void)myOfferCellDidSelectEdit:(MyOfferCell *)cell;
 @end
 
 @interface MyOfferCell : UITableViewCell
@@ -23,5 +24,6 @@
 
 - (void)setOffer:(CarPoolOffer *)offer;
 - (IBAction)deleteSelected:(id)sender;
+- (IBAction)editSelected:(id)sender;
 
 @end

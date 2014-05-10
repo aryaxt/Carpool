@@ -15,6 +15,8 @@
 
 #define STATUS_BAR_HEIGHT 20
 #define NAV_BAR_HEIGHT 44
+#define DETAIL_VIEW_ANIMATION .3
+#define DETAIL_VIEW_QUICK_ANIMATION .15
 
 #pragma - UIViewController Methods -
 
@@ -24,16 +26,14 @@
     
     self.mapView.delegate = self;
     
-    [self.navigationController.view addSubview:self.offerDetailViewController.view];
-    [self setShowOfferDetail:NO animated:NO];
-    
     [self.offerClient fetchCarpoolOffersForUser:[PFUser currentUser]
                                includeLocations:YES
                                     includeUser:YES
                                  withCompletion:^(NSArray *offers, NSError *error) {
                                      if (error)
                                      {
-                                         [self alertWithtitle:@"Error" andMessage:@"There was a problem searching for carpool offers"];
+                                         [self alertWithtitle:@"Error"
+                                                   andMessage:@"There was a problem searching for carpool offers"];
                                      }
                                      else
                                      {
@@ -51,18 +51,31 @@
     }];
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController.view addSubview:self.offerDetailViewController.view];
+    [self setShowOfferDetail:NO withDuration:0];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [super viewWillDisappear:animated];
+    
+    [self.offerDetailViewController.view removeFromSuperview];
+}
+
 #pragma - Private Methods -
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
-
-        MKCoordinateRegion region;
-        region.center = mapView.userLocation.coordinate;
-        region.span = MKCoordinateSpanMake(1, 1);
-        
-        region = [mapView regionThatFits:region];
-        [mapView setRegion:region animated:YES];
+    MKCoordinateRegion region;
+    region.center = mapView.userLocation.coordinate;
+    region.span = MKCoordinateSpanMake(1, 1);
     
+    region = [mapView regionThatFits:region];
+    [mapView setRegion:region animated:YES];
 }
 
 #pragma - IBActions -
@@ -103,18 +116,24 @@
 {
     MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
     
-        MKMapItem *fromItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:from addressDictionary:nil]];
+    MKMapItem *fromItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:from
+                                                                                     addressDictionary:nil]];
+    
+    MKMapItem *toItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:to
+                                                                                   addressDictionary:nil]];
+    
     [request setSource:fromItem];
-    
-            MKMapItem *toItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:to addressDictionary:nil]];
     [request setDestination:toItem];
-    
     [request setTransportType:MKDirectionsTransportTypeAutomobile];
     [request setRequestsAlternateRoutes:YES];
     
     MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
     
+    [self showLoader];
+    
     [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        [self hideLoader];
+        
         if (!error)
         {
             for (MKRoute *route in [response routes])
@@ -123,6 +142,18 @@
             }
         }
     }];
+}
+
+- (UIColor *)randomColor
+{
+    CGFloat redLevel = rand() / (float) RAND_MAX;
+    CGFloat greenLevel = rand() / (float) RAND_MAX;
+    CGFloat blueLevel = rand() / (float) RAND_MAX;
+    
+    return [UIColor colorWithRed:redLevel
+                           green:greenLevel
+                            blue:blueLevel
+                           alpha:1.0];
 }
 
 #pragma - MKMapViewDelegate -
@@ -143,8 +174,12 @@
     if ([overlay isKindOfClass:[MKPolyline class]])
     {
         MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
-        [renderer setStrokeColor:[UIColor blueColor]];
+        [renderer setStrokeColor:[self randomColor]];
         [renderer setLineWidth:5.0];
+        
+        [self.mapView setRegion:MKCoordinateRegionForMapRect([overlay boundingMapRect])
+                       animated:YES];
+        
         return renderer;
     }
     
@@ -168,21 +203,20 @@
 - (void)offerDetailViewControllerDidSelectExpand
 {
     CGRect rect = self.offerDetailViewController.view.frame;
-    [self setShowOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? YES : NO animated:YES];
+    [self setShowOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? YES : NO
+                withDuration:DETAIL_VIEW_ANIMATION];
 }
 
-- (void)setShowOfferDetail:(BOOL)show animated:(BOOL)animated
+- (void)setShowOfferDetail:(BOOL)show withDuration:(NSTimeInterval)duration
 {
-    [UIView animateWithDuration:(animated)? .3 : 0
+    [UIView animateWithDuration:duration
                           delay:0
-                        options:UIViewAnimationOptionCurveEaseOut
+                        options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
         CGRect rect = _offerDetailViewController.view.frame;
         rect.origin.y = (show) ? STATUS_BAR_HEIGHT : self.navigationController.view.frame.size.height-NAV_BAR_HEIGHT;
         _offerDetailViewController.view.frame = rect;
-    } completion:^(BOOL finished) {
-        
-    }];
+    } completion:nil];
 }
 
 - (void)offerDetailViewControllerDidDetectPan:(UIPanGestureRecognizer *)pan
@@ -208,11 +242,13 @@
         
         if (positiveYVelocity > 500)
         {
-            [self setShowOfferDetail:(velocityY > 0) ? NO : YES animated:YES];
+            [self setShowOfferDetail:(velocityY > 0) ? NO : YES
+                        withDuration:DETAIL_VIEW_QUICK_ANIMATION];
         }
         else
         {
-            [self setShowOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? NO : YES animated:YES];
+            [self setShowOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? NO : YES
+                        withDuration:DETAIL_VIEW_ANIMATION];
         }
     }
 }
@@ -241,14 +277,21 @@
                                                            currentOffer.endLocation.geoPoint.longitude);
     
     [self addPolulineFrom:from to:to];
+    [self.mapView removeAnnotations:[self.mapView annotations]];
+    [self addPinsFrom:from to:to];
+}
+
+- (void)addPinsFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
+{
+    MKPointAnnotation *annotationFrom = [[MKPointAnnotation alloc] init];
+    [annotationFrom setCoordinate:from];
+    [annotationFrom setTitle:@"From"];
+    [self.mapView addAnnotation:annotationFrom];
     
-    MKCoordinateRegion mkr;
-    mkr.center = from;
-    MKCoordinateSpan span;
-    span.latitudeDelta = 0.0144927536;
-    span.longitudeDelta = 0.0144927536;
-    mkr.span = span;
-    [self.mapView setRegion:mkr animated:YES];
+    MKPointAnnotation *annotationTo = [[MKPointAnnotation alloc] init];
+    [annotationTo setCoordinate:to];
+    [annotationTo setTitle:@"To"];
+    [self.mapView addAnnotation:annotationTo];
 }
 
 - (CarPoolOfferClient *)offerClient
@@ -267,6 +310,7 @@
     {
         _offerDetailViewController = (OfferDetailViewController *)[OfferDetailViewController viewController];
         _offerDetailViewController.delegate = self;
+        _offerDetailViewController.view.alpha = .9;
     }
     
     return _offerDetailViewController;

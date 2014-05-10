@@ -46,7 +46,13 @@
 + (Location *)locationFromPlaceMark:(CLPlacemark *)placeMark
 {
     Location *location = [[Location alloc] init];
-    location.name = placeMark.name;
+    
+    location.name = [NSString stringWithFormat:@"%@, %@, %@, %@",
+                     placeMark.name,
+                     placeMark.locality,
+                     placeMark.administrativeArea,
+                     placeMark.country];
+    
     location.geoPoint = [PFGeoPoint geoPointWithLatitude:placeMark.location.coordinate.latitude
                                                longitude:placeMark.location.coordinate.longitude];
     

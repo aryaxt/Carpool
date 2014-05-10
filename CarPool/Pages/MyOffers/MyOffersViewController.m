@@ -10,6 +10,9 @@
 
 @implementation MyOffersViewController
 
+#define CELL_MIN_HEIGHT 117
+#define CELL_MAX_HEIGHT 163
+
 #pragma - UIViewController Methods -
 
 - (void)viewDidLoad
@@ -107,9 +110,25 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return ([self.indexPathForExpandedCell isEqual:indexPath]) ? CELL_MAX_HEIGHT : CELL_MIN_HEIGHT;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    if ([self.indexPathForExpandedCell isEqual:indexPath])
+    {
+        self.indexPathForExpandedCell = nil;
+    }
+    else
+    {
+        self.indexPathForExpandedCell = indexPath;
+    }
     
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 
 #pragma - MyOfferCellDelegate MEthods -
@@ -129,6 +148,11 @@
                                            otherButtonItems:[RIButtonItem itemWithLabel:@"No" action:nil], nil];
     
     [alert show];
+}
+
+- (void)myOfferCellDidSelectEdit:(MyOfferCell *)cell
+{
+    
 }
 
 #pragma - CreateOfferViewControllerDelegate -

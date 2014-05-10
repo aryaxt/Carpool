@@ -29,4 +29,9 @@
     [self.delegate myOfferCellDidSelectDelete:self];
 }
 
+- (IBAction)editSelected:(id)sender
+{
+    [self.delegate myOfferCellDidSelectEdit:self];
+}
+
 @end

@@ -62,12 +62,12 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return self.currentLocationHeaderView;
+    return self.locationSearchHeaderView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return self.currentLocationHeaderView.frame.size.height;
+    return self.locationSearchHeaderView.frame.size.height;
 }
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
@@ -82,9 +82,15 @@
     [self.delegate locationSearchViewControllerDidSelectCance];
 }
 
-#pragma - CurrentLocationHeaderViewDelegate -
+#pragma - LocationSearchHeaderViewDelegate -
 
-- (void)currentLocationHeaderViewDidDetectTap
+
+- (void)locationSearchHeaderViewDidSelectMapSearch
+{
+    
+}
+
+- (void)locationSearchHeaderViewDidSelectCurrentLocationSearch
 {
     LocationManager *locationManager = [LocationManager sharedInstance];
     
@@ -171,15 +177,15 @@
 
 #pragma - Setter & Getter -
 
-- (CurrentLocationHeaderView *)currentLocationHeaderView
+- (LocationSearchHeaderView *)locationSearchHeaderView
 {
-    if (!_currentLocationHeaderView)
+    if (!_locationSearchHeaderView)
     {
-        _currentLocationHeaderView = [[CurrentLocationHeaderView alloc] init];
-        _currentLocationHeaderView.delegate = self;
+        _locationSearchHeaderView = [[LocationSearchHeaderView alloc] init];
+        _locationSearchHeaderView.delegate = self;
     }
     
-    return _currentLocationHeaderView;
+    return _locationSearchHeaderView;
 }
 
 @end

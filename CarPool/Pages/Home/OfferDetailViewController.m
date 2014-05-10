@@ -55,6 +55,14 @@
     
     self.btnTitle.title = offer.user.name;
     [self.offerOwnerPhoto setImageWithURL:[NSURL URLWithString:offer.user.photoUrl]];
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    
+    self.lblDate.text = [dateFormatter stringFromDate:offer.time];
+    self.lblStartLocation.text = offer.startLocation.name;
+    self.lblEndLocation.text = offer.endLocation.name;
+    self.lblMessage.text = offer.message;
 }
 
 @end

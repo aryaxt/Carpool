@@ -17,10 +17,11 @@
 #import "UIAlertView+Blocks.h"
 #import "CreateOfferViewController.h"
 
-@interface MyOffersViewController : BaseViewController <SlideNavigationControllerDelegate, MyOfferCellDelegate, CreateOfferViewControllerDelegate>
+@interface MyOffersViewController : BaseViewController <SlideNavigationControllerDelegate, MyOfferCellDelegate, CreateOfferViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *offers;
 @property (nonatomic, strong) CarPoolOfferClient *offerClient;
+@property (nonatomic, strong) NSIndexPath *indexPathForExpandedCell;
 
 @end
