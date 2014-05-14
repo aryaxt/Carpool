@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
-#import "SPGooglePlacesAutocompleteQuery.h"
-#import "SPGooglePlacesAutocompletePlace.h"
 #import "UITableView+Additions.h"
 #import "LocationSearchHeaderView.h"
 #import "BaseViewController.h"
 #import "LocationManager.h"
+#import "LocationSearchClient.h"
 #import "Location.h"
 
 @protocol LocationSearchViewControllerDelegate <NSObject>
@@ -25,12 +24,12 @@
 
 @property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicatorView;
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) LocationSearchHeaderView *locationSearchHeaderView;
 @property (nonatomic, strong) NSArray *locations;
 @property (nonatomic, copy) NSString *tag;
 @property (nonatomic, weak) id <LocationSearchViewControllerDelegate> delegate;
+@property (nonatomic, strong) LocationSearchClient *locationSearchClient;
 
 - (IBAction)cancelSelected:(id)sender;
 

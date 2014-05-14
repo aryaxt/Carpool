@@ -10,14 +10,14 @@
 
 @implementation AccountViewController
 
-#pragma - UIViewController Methods -
+#pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
 
-#pragma - SlideNavigationController Methods -
+#pragma mark - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {

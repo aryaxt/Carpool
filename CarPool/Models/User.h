@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) NSString *username;
 @property (nonatomic, strong) NSString *name;
-@property (nonatomic, strong) NSString *gender;
+@property (nonatomic, strong) NSNumber *gender;
 @property (nonatomic, strong) NSString *photoUrl;
 
 @end

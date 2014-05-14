@@ -10,14 +10,14 @@
 
 @protocol LocationSearchHeaderViewDelegate <NSObject>
 - (void)locationSearchHeaderViewDidSelectCurrentLocationSearch;
-- (void)locationSearchHeaderViewDidSelectMapSearch;
 @end
 
 @interface LocationSearchHeaderView : UIView
 
 @property (nonatomic, weak) id <LocationSearchHeaderViewDelegate> delegate;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *indicatorView;
 
 - (IBAction)currentLocationSelected:(id)sender;
-- (IBAction)mapSelected:(id)sender;
+- (void)setShowLoader:(BOOL)show;
 
 @end

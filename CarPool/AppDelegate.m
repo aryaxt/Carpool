@@ -15,6 +15,7 @@
 #import "Period.h"
 #import "CarPoolOffer.h"
 #import <Parse/Parse.h>
+#import "InstallationManager.h"
 
 @implementation AppDelegate
 
@@ -26,6 +27,11 @@
     
     // Start location manager
     [LocationManager sharedInstance];
+    
+    [application registerForRemoteNotificationTypes:
+     UIRemoteNotificationTypeBadge |
+     UIRemoteNotificationTypeAlert |
+     UIRemoteNotificationTypeSound];
     
     // Override point for customization after application launch.
     return YES;
@@ -81,6 +87,21 @@
 - (void)setupParse
 {
     [Parse setApplicationId:@"WbXbttZhD3ZvTT6IH0bQvWrMh2rHoQFZcqwYzpVD" clientKey:@"6GHLpG6v8SsY6fodVYhRPRiC7B6JY1u6s2763HOA"];
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [InstallationManager sharedInstance].deviceToken = deviceToken;
+}
+
+- (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
+{
+    NSLog(@"%@", error);
+}
+
+- (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
+{
+    [PFPush handlePush:userInfo];
 }
 
 @end

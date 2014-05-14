@@ -7,10 +7,11 @@
 //
 
 #import "LoginViewController.h"
+#import "InstallationManager.h"
 
 @implementation LoginViewController
 
-#pragma - UIViewController Methods -
+#pragma mark - UIViewController Methods -
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
@@ -58,10 +59,12 @@
 
 - (void)loginSucceeded
 {
+    [[InstallationManager sharedInstance] registerDeviceTokenWithParse];
+    
     [self performSegueWithIdentifier:@"LoginSuccess" sender:self];
 }
 
-#pragma - PFLogInViewControllerDelegate -
+#pragma mark - PFLogInViewControllerDelegate -
 
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
 {
@@ -76,11 +79,12 @@
             NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
             [dateFormatter setDateFormat:@"MM/dd/yyyy"];
             NSDate *birthDay = [dateFormatter dateFromString:userData[@"birthday"]];
+            NSNumber *gender = [userData[@"gender"] isEqualToString:@"male"] ? @1 : @2;
             
             PFUser *user = [PFUser currentUser];
             [user setValue:userData[@"name"] forKey:@"name"];
             [user setValue:birthDay forKey:@"birthday"];
-            [user setValue:userData[@"gender"] forKey:@"gender"];
+            [user setValue:gender forKey:@"gender"];
             [user setValue:photoUrl forKey:@"photoUrl"];
             
             [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
@@ -100,7 +104,7 @@
     NSLog(@"");
 }
 
-#pragma - PFSignUpViewControllerDelegate -
+#pragma mark - PFSignUpViewControllerDelegate -
 
 - (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user
 {

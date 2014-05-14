@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "CarPoolRequest.h"
 
 @interface CarPoolRequestClient : NSObject
+
+- (void)createRequest:(CarPoolRequest *)request withCompletion:(void (^)(BOOL succeeded, NSError *error))completion;
 
 @end

@@ -11,11 +11,14 @@
 
 @implementation CarPoolOffer
 @dynamic time;
-@dynamic user;
+@dynamic from;
 @dynamic period;
+@dynamic preferredGender;
 @dynamic startLocation;
 @dynamic endLocation;
 @dynamic message;
+@dynamic minAge;
+@dynamic maxage;
 
 + (NSString *)parseClassName
 {

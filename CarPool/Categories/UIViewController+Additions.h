@@ -10,7 +10,7 @@
 
 @interface UIViewController (Additions)
 
-+ (UIViewController *)viewControllerByIdentifier:(NSString *)identifier;
-+ (UIViewController *)viewController;
++ (id)viewControllerByIdentifier:(NSString *)identifier;
++ (id)viewController;
 
 @end

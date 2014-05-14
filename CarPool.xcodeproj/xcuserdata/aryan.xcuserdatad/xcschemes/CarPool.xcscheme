@@ -16,7 +16,7 @@
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "9226EE95191573530014B319"
                BuildableName = "CarPool.app"
-               BlueprintName = "CarPool"
+               BlueprintName = "Carpool"
                ReferencedContainer = "container:CarPool.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,7 +44,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9226EE95191573530014B319"
             BuildableName = "CarPool.app"
-            BlueprintName = "CarPool"
+            BlueprintName = "Carpool"
             ReferencedContainer = "container:CarPool.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
@@ -63,7 +63,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9226EE95191573530014B319"
             BuildableName = "CarPool.app"
-            BlueprintName = "CarPool"
+            BlueprintName = "Carpool"
             ReferencedContainer = "container:CarPool.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -81,7 +81,7 @@
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "9226EE95191573530014B319"
             BuildableName = "CarPool.app"
-            BlueprintName = "CarPool"
+            BlueprintName = "Carpool"
             ReferencedContainer = "container:CarPool.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

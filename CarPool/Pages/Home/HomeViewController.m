@@ -8,6 +8,7 @@
 
 #import "HomeViewController.h"
 #import "CarPoolOffer.h"
+#import "CarPoolRequest.h"
 #import "LocationManager.h"
 #import "UIViewController+Additions.h"
 
@@ -15,10 +16,10 @@
 
 #define STATUS_BAR_HEIGHT 20
 #define NAV_BAR_HEIGHT 44
-#define DETAIL_VIEW_ANIMATION .3
+#define DETAIL_VIEW_ANIMATION .25
 #define DETAIL_VIEW_QUICK_ANIMATION .15
 
-#pragma - UIViewController Methods -
+#pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
 {
@@ -26,10 +27,7 @@
     
     self.mapView.delegate = self;
     
-    [self.offerClient fetchCarpoolOffersForUser:[PFUser currentUser]
-                               includeLocations:YES
-                                    includeUser:YES
-                                 withCompletion:^(NSArray *offers, NSError *error) {
+    [self.offerClient searchCarpoolOfferswithCompletion:^(NSArray *offers, NSError *error) {
                                      if (error)
                                      {
                                          [self alertWithtitle:@"Error"
@@ -66,26 +64,21 @@
     [self.offerDetailViewController.view removeFromSuperview];
 }
 
-#pragma - Private Methods -
+#pragma mark - SlideNavigationController Methods -
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
-    MKCoordinateRegion region;
-    region.center = mapView.userLocation.coordinate;
-    region.span = MKCoordinateSpanMake(1, 1);
-    
-    region = [mapView regionThatFits:region];
-    [mapView setRegion:region animated:YES];
+    return YES;
 }
 
-#pragma - IBActions -
+#pragma mark - IBActions -
 
 - (IBAction)searchSelected:(id)sender
 {
     
 }
 
-#pragma - UITableView Delegate & Datasource -
+#pragma mark - UITableView Delegate & Datasource -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -110,7 +103,7 @@
     
 }
 
-#pragma - Private MEthods -
+#pragma mark - Private MEthods -
 
 - (void)addPolulineFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
 {
@@ -156,17 +149,11 @@
                            alpha:1.0];
 }
 
-#pragma - MKMapViewDelegate -
+#pragma mark - MKMapViewDelegate -
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
 {
-   /* MKCoordinateRegion region;
-    region.center.latitude = mapView.userLocation.coordinate.latitude;
-    region.center.longitude = mapView.userLocation.coordinate.longitude;
-    region.span.latitudeDelta = .2;
-    region.span.longitudeDelta = .2;
-    
-    [self.mapView setRegion:region animated:YES];*/
+
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay
@@ -186,7 +173,7 @@
     return nil;
 }
 
-#pragma - OfferDetailViewControllerDelegate -
+#pragma mark - OfferDetailViewControllerDelegate -
 
 - (void)offerDetailViewControllerDidSelectNext
 {
@@ -205,18 +192,6 @@
     CGRect rect = self.offerDetailViewController.view.frame;
     [self setShowOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? YES : NO
                 withDuration:DETAIL_VIEW_ANIMATION];
-}
-
-- (void)setShowOfferDetail:(BOOL)show withDuration:(NSTimeInterval)duration
-{
-    [UIView animateWithDuration:duration
-                          delay:0
-                        options:UIViewAnimationOptionCurveEaseIn
-                     animations:^{
-        CGRect rect = _offerDetailViewController.view.frame;
-        rect.origin.y = (show) ? STATUS_BAR_HEIGHT : self.navigationController.view.frame.size.height-NAV_BAR_HEIGHT;
-        _offerDetailViewController.view.frame = rect;
-    } completion:nil];
 }
 
 - (void)offerDetailViewControllerDidDetectPan:(UIPanGestureRecognizer *)pan
@@ -253,14 +228,44 @@
     }
 }
 
-#pragma - SlideNavigationController Methods -
+#pragma mark - Private MEthods -
 
-- (BOOL)slideNavigationControllerShouldDisplayLeftMenu
+- (void)setShowOfferDetail:(BOOL)show withDuration:(NSTimeInterval)duration
 {
-    return YES;
+    [UIView animateWithDuration:duration
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+                         CGRect rect = _offerDetailViewController.view.frame;
+                         rect.origin.y = (show) ? STATUS_BAR_HEIGHT : self.navigationController.view.frame.size.height-NAV_BAR_HEIGHT;
+                         _offerDetailViewController.view.frame = rect;
+                     } completion:nil];
 }
 
-#pragma - Setter & Getter -
+- (void)addPinsFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
+{
+    MKPointAnnotation *annotationFrom = [[MKPointAnnotation alloc] init];
+    [annotationFrom setCoordinate:from];
+    [annotationFrom setTitle:@"From"];
+    [self.mapView addAnnotation:annotationFrom];
+    
+    MKPointAnnotation *annotationTo = [[MKPointAnnotation alloc] init];
+    [annotationTo setCoordinate:to];
+    [annotationTo setTitle:@"To"];
+    [self.mapView addAnnotation:annotationTo];
+}
+
+- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
+{
+    MKCoordinateRegion region;
+    region.center = mapView.userLocation.coordinate;
+    region.span = MKCoordinateSpanMake(1, 1);
+    
+    region = [mapView regionThatFits:region];
+    [mapView setRegion:region animated:YES];
+}
+
+#pragma mark - Setter & Getter -
 
 - (void)setCurrentOffer:(CarPoolOffer *)currentOffer
 {
@@ -279,19 +284,6 @@
     [self addPolulineFrom:from to:to];
     [self.mapView removeAnnotations:[self.mapView annotations]];
     [self addPinsFrom:from to:to];
-}
-
-- (void)addPinsFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
-{
-    MKPointAnnotation *annotationFrom = [[MKPointAnnotation alloc] init];
-    [annotationFrom setCoordinate:from];
-    [annotationFrom setTitle:@"From"];
-    [self.mapView addAnnotation:annotationFrom];
-    
-    MKPointAnnotation *annotationTo = [[MKPointAnnotation alloc] init];
-    [annotationTo setCoordinate:to];
-    [annotationTo setTitle:@"To"];
-    [self.mapView addAnnotation:annotationTo];
 }
 
 - (CarPoolOfferClient *)offerClient

@@ -10,4 +10,9 @@
 
 @implementation CarPoolRequestClient
 
+- (void)createRequest:(CarPoolRequest *)request withCompletion:(void (^)(BOOL succeeded, NSError *error))completion
+{
+    [request saveInBackgroundWithBlock:completion];
+}
+
 @end

@@ -8,10 +8,11 @@
 
 #import "OfferDetailViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "CreateRequestViewController.h"
 
 @implementation OfferDetailViewController
 
-#pragma - UIViewController Methods -
+#pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
 {
@@ -23,14 +24,24 @@
     [self.view addGestureRecognizer:panRecognizer];
 }
 
-#pragma - GestureRecognizer -
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CreateRequestViewController"])
+    {
+        CreateRequestViewController *vc = (CreateRequestViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
+        vc.delegate = self;
+        vc.offer = self.carPoolOffer;
+    }
+}
+
+#pragma mark - GestureRecognizer -
 
 - (void)panDetected:(UIPanGestureRecognizer *)panRecognizer
 {
     [self.delegate offerDetailViewControllerDidDetectPan:panRecognizer];
 }
 
-#pragma - IBActions -
+#pragma mark - IBActions -
 
 - (IBAction)nextSelected:(id)sender
 {
@@ -47,14 +58,27 @@
     [self.delegate offerDetailViewControllerDidSelectExpand];
 }
 
-#pragma - Setter & Getter -
+#pragma mark - CreateRequestViewControllerDelegate -
+
+- (void)createRequestViewControllerDidSelectCancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)createRequestViewControllerDidCreateOffer:(CarPoolOffer *)offr
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+    [self alertWithtitle:@"Yay" andMessage:@"Offer was created"];
+}
+
+#pragma mark - Setter & Getter -
 
 - (void)setCarPoolOffer:(CarPoolOffer *)offer
 {
     _carPoolOffer = offer;
     
-    self.btnTitle.title = offer.user.name;
-    [self.offerOwnerPhoto setImageWithURL:[NSURL URLWithString:offer.user.photoUrl]];
+    self.btnTitle.title = offer.from.name;
+    [self.offerOwnerPhoto setImageWithURL:[NSURL URLWithString:offer.from.photoUrl]];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];

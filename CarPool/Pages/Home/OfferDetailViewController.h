@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import "CarPoolOffer.h"
+#import "CreateRequestViewController.h"
 
 @protocol OfferDetailViewControllerDelegate <NSObject>
 - (void)offerDetailViewControllerDidSelectNext;
@@ -16,7 +17,7 @@
 - (void)offerDetailViewControllerDidDetectPan:(UIPanGestureRecognizer *)pan;
 @end
 
-@interface OfferDetailViewController : BaseViewController
+@interface OfferDetailViewController : BaseViewController <CreateRequestViewControllerDelegate>
 
 @property (nonatomic, weak) id <OfferDetailViewControllerDelegate> delegate;
 @property (nonatomic, strong) CarPoolOffer *carPoolOffer;

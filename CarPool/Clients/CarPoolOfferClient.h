@@ -14,6 +14,7 @@
 
 - (void)deleteCarpoolOffer:(CarPoolOffer *)offer withCompletion:(void (^)(BOOL succeeded, NSError *error))completion;
 - (void)createOffer:(CarPoolOffer *)offer withCompletion:(void (^)(BOOL succeeded, NSError *error))completion;
+- (void)searchCarpoolOfferswithCompletion:(void (^)(NSArray *objects, NSError *error))completion;
 - (void)fetchCarpoolOffersForUser:(PFUser *)user includeLocations:(BOOL)includeLocations includeUser:(BOOL)includeUser withCompletion:(void (^)(NSArray *objects, NSError *error))completion;
 
 @end

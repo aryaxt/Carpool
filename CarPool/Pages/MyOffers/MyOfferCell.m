@@ -10,7 +10,7 @@
 
 @implementation MyOfferCell
 
-#pragma - Public Methods -
+#pragma mark - Public Methods -
 
 - (void)setOffer:(CarPoolOffer *)offer
 {
@@ -22,7 +22,7 @@
     self.lblTo.text = offer.endLocation.name;
 }
 
-#pragma - IBActions -
+#pragma mark - IBActions -
 
 - (IBAction)deleteSelected:(id)sender
 {

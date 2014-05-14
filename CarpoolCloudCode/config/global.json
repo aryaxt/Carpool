@@ -1,0 +1,14 @@
+{
+    "applications": {
+        "CarPool": {
+            "applicationId": "WbXbttZhD3ZvTT6IH0bQvWrMh2rHoQFZcqwYzpVD", 
+            "masterKey": "u8rLLfyIyMNKde4FHMCW4GJvZRde5MIjujlwYuWb"
+        }, 
+        "_default": {
+            "link": "CarPool"
+        }
+    }, 
+    "global": {
+        "parseVersion": "1.2.18"
+    }
+}

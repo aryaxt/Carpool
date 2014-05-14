@@ -7,24 +7,35 @@
 //
 
 #import "LocationSearchViewController.h"
+#import "UIView+Additions.h"
+
+typedef enum {
+    SearchTypeMap,
+    SearchTypeText
+}SearchType;
 
 @implementation LocationSearchViewController
 
 #define MIN_CHARACTER_REQUIRED_FOR_SEARCH 3
-#define AUTOCOMPLETE_API_KEY @"AIzaSyC52xwGjuNVfBq4yHlQiGrlswCERkZZ16w"
 
-#pragma - UIViewController Methods -
+#pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    self.navigationItem.titleView = self.searchBar;
+    [self switchToSearchType:SearchTypeText animated:NO];
     
-    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(cancelSelected:)];
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                   style:UIBarButtonItemStylePlain
+                                                                  target:self
+                                                                  action:@selector(cancelSelected:)];
     self.navigationItem.leftBarButtonItem = cancelItem;
     
-    UIBarButtonItem *loadingItem = [[UIBarButtonItem alloc] initWithCustomView:self.activityIndicatorView];
+    UIBarButtonItem *loadingItem = [[UIBarButtonItem alloc] initWithTitle:@"Change"
+                                                                    style:UIBarButtonItemStylePlain
+                                                                   target:self
+                                                                   action:@selector(searchTypeSelected:)];
     self.navigationItem.rightBarButtonItem = loadingItem;
 }
 
@@ -35,7 +46,7 @@
     [self.searchBar becomeFirstResponder];
 }
 
-#pragma - UITableView Delegate & Datasource -
+#pragma mark - UITableView Delegate & Datasource -
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
@@ -75,19 +86,51 @@
     [self.searchBar resignFirstResponder];
 }
 
-#pragma - IBActions -
+#pragma mark - IBActions -
 
 - (IBAction)cancelSelected:(id)sender
 {
     [self.delegate locationSearchViewControllerDidSelectCance];
 }
 
-#pragma - LocationSearchHeaderViewDelegate -
-
-
-- (void)locationSearchHeaderViewDidSelectMapSearch
+- (void)searchTypeSelected:(id)sender
 {
+    SearchType type = (self.mapView.frame.origin.x == 0) ? SearchTypeText : SearchTypeMap;
+    [self switchToSearchType:type animated:YES];
+}
+
+#pragma mark - LocationSearchHeaderViewDelegate -
+
+- (void)switchToSearchType:(SearchType)type animated:(BOOL)animated
+{
+    if (type == SearchTypeMap)
+    {
+        [self.searchBar resignFirstResponder];
+        self.navigationItem.titleView = nil;
+    }
+    else
+    {
+        [self.searchBar becomeFirstResponder];
+        self.navigationItem.titleView = self.searchBar;
+    }
     
+    NSInteger width = self.view.frame.size.width;
+    CGRect tableRect = self.tableView.frame;
+    tableRect.origin.x = (type == SearchTypeText) ? 0 : width *-1;
+    CGRect mapRect = self.mapView.frame;
+    mapRect.origin.x = (type == SearchTypeMap) ? 0 : width *2;
+    
+    [UIView animateWithDuration:(animated) ? .3 : 0
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseIn
+                     animations:^{
+        self.tableView.frame = tableRect;
+        self.mapView.frame = mapRect;
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 }
 
 - (void)locationSearchHeaderViewDidSelectCurrentLocationSearch
@@ -100,33 +143,26 @@
         return;
     }
     
-    [self.activityIndicatorView startAnimating];
+    [self.locationSearchHeaderView setShowLoader:YES];
     
-    CLGeocoder *geocoder = [[CLGeocoder alloc] init];
-    [geocoder reverseGeocodeLocation:locationManager.currentLocation
-                   completionHandler:^(NSArray *placemarks, NSError *error) {
-                       [self.activityIndicatorView stopAnimating];
-                       
-                       if (error)
-                       {
-                           [self alertWithtitle:@"Error" andMessage:@"There was a problem searching for this location"];
-                       }
-                       else
-                       {
-                           NSMutableArray *locations = [NSMutableArray array];
-                           
-                           for (CLPlacemark *placeMark in placemarks)
-                           {
-                               [locations addObject:[Location locationFromPlaceMark:placeMark]];
-                           }
-                           
-                           self.locations = locations;
-                           [self.tableView deleteRowsAndAnimateNewRowsIn:locations.count];
-                       }
+    [self.locationSearchClient searchByLocation:locationManager.currentLocation
+                                 withCompletion:^(NSArray *locations, NSError *error) {
+        
+                                     [self.locationSearchHeaderView setShowLoader:NO];
+                                     
+                                     if (error)
+                                     {
+                                         [self alertWithtitle:@"Error" andMessage:@"There was a problem searching for this location"];
+                                     }
+                                     else
+                                     {
+                                         self.locations = locations;
+                                         [self.tableView deleteRowsAndAnimateNewRowsIn:locations.count];
+                                     }
     }];
 }
 
-#pragma - UISearchBarDelegate -
+#pragma mark - UISearchBarDelegate -
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
@@ -134,7 +170,7 @@
     {
         if (searchText.length > MIN_CHARACTER_REQUIRED_FOR_SEARCH)
         {
-            [self.activityIndicatorView startAnimating];
+            [self.locationSearchHeaderView setShowLoader:YES];
             [NSObject cancelPreviousPerformRequestsWithTarget:self];
             [self performSelector:@selector(performSearch:) withObject:searchText afterDelay:.6];
         }
@@ -146,36 +182,29 @@
     }
 }
 
+#pragma mark - Private Methods -
+
 - (void)performSearch:(NSString *)search
 {
-    SPGooglePlacesAutocompleteQuery *query = [[SPGooglePlacesAutocompleteQuery alloc] initWithApiKey:AUTOCOMPLETE_API_KEY];
-    query.input = search;
-    query.language = @"en";
-    query.types = SPPlaceTypeGeocode;
-    
-    [query fetchPlaces:^(NSArray *places, NSError *error) {
-        [self.activityIndicatorView stopAnimating];
+    [self.locationSearchClient searchByKeyword:search
+                                   withCompletion:^(NSArray *locations, NSError *error) {
         
-        if (error)
-        {
-            [self alertWithtitle:@"Error" andMessage:@"There was a problem searching for this location"];
-        }
-        else
-        {
-            NSMutableArray *locations = [NSMutableArray array];
-            
-            for (SPGooglePlacesAutocompletePlace *place in places)
-            {
-                [locations addObject:[Location locationFromGoogleAutoCompletePLace:place]];
-            }
-            
-            self.locations = locations;
-            [self.tableView deleteRowsAndAnimateNewRowsIn:places.count];
-        }
+                                       [self.locationSearchHeaderView setShowLoader:NO];
+                                       
+                                       if (error)
+                                       {
+                                           [self alertWithtitle:@"Error"
+                                                     andMessage:@"There was a problem searching for this location"];
+                                       }
+                                       else
+                                       {
+                                           self.locations = locations;
+                                           [self.tableView deleteRowsAndAnimateNewRowsIn:locations.count];
+                                       }
     }];
 }
 
-#pragma - Setter & Getter -
+#pragma mark - Setter & Getter -
 
 - (LocationSearchHeaderView *)locationSearchHeaderView
 {
@@ -186,6 +215,16 @@
     }
     
     return _locationSearchHeaderView;
+}
+
+- (LocationSearchClient *)locationSearchClient
+{
+    if (!_locationSearchClient)
+    {
+        _locationSearchClient = [[LocationSearchClient alloc] init];
+    }
+    
+    return _locationSearchClient;
 }
 
 @end

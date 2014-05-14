@@ -7,6 +7,7 @@
 //
 
 #import <Parse/Parse.h>
+#import "CarPoolOffer.h"
 #import "Location.h"
 #import "User.h"
 
@@ -14,9 +15,9 @@
 
 @property (nonatomic, strong) NSNumber *status;
 @property (nonatomic, strong) NSString *message;
-@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) User *from;
 @property (nonatomic, strong) Location *startLocation;
 @property (nonatomic, strong) Location *endLocation;
-@property (nonatomic, strong, readonly) PFRelation *offer;
+@property (nonatomic, strong) CarPoolOffer *offer;
 
 @end

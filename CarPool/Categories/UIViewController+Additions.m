@@ -10,13 +10,13 @@
 
 @implementation UIViewController (Additions)
 
-+ (UIViewController *)viewControllerByIdentifier:(NSString *)identifier
++ (id)viewControllerByIdentifier:(NSString *)identifier
 {
     UIStoryboard *storyBoard = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     return [storyBoard instantiateViewControllerWithIdentifier:identifier];
 }
 
-+ (UIViewController *)viewController
++ (id)viewController
 {
     return [[self class] viewControllerByIdentifier:NSStringFromClass(self)];
 }

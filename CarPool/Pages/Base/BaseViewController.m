@@ -15,14 +15,14 @@
 
 @implementation BaseViewController
 
-#pragma - UIViewController Methods -
+#pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
 
-#pragma - Public Methods -
+#pragma mark - Public Methods -
 
 - (void)alertWithtitle:(NSString *)title andMessage:(NSString *)message
 {
@@ -44,7 +44,7 @@
     [self.progressHud hide:YES];
 }
 
-#pragma - Setter & Getter -
+#pragma mark - Setter & Getter -
 
 - (MBProgressHUD *)progressHud
 {

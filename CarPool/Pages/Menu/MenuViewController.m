@@ -19,7 +19,7 @@
 
 @implementation MenuViewController
 
-#pragma - UIViewController Methods -
+#pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
 {
@@ -29,7 +29,7 @@
     self.view.layer.borderWidth = 1;
 }
 
-#pragma - UITableView Delegate & Datasource -
+#pragma mark - UITableView Delegate & Datasource -
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {

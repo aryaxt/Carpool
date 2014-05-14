@@ -10,14 +10,14 @@
 
 @implementation MyRequestsViewController
 
-#pragma - UIViewController Methods -
+#pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 }
 
-#pragma - UITableView Delegate & Datasource -
+#pragma mark - UITableView Delegate & Datasource -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -45,7 +45,7 @@
     
 }
 
-#pragma - SlideNavigationController Methods -
+#pragma mark - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {

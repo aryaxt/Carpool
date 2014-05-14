@@ -13,7 +13,7 @@
 #define CELL_MIN_HEIGHT 117
 #define CELL_MAX_HEIGHT 163
 
-#pragma - UIViewController Methods -
+#pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
 {
@@ -40,7 +40,7 @@
     }
 }
 
-#pragma - Private Methods -
+#pragma mark - Private Methods -
 
 - (void)fetchAndPopulateData
 {
@@ -86,7 +86,7 @@
     }];
 }
 
-#pragma - UITableView Delegate & Datasource -
+#pragma mark - UITableView Delegate & Datasource -
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -131,7 +131,7 @@
     [self.tableView endUpdates];
 }
 
-#pragma - MyOfferCellDelegate MEthods -
+#pragma mark - MyOfferCellDelegate MEthods -
 
 - (void)myOfferCellDidSelectDelete:(MyOfferCell *)cell
 {
@@ -155,7 +155,7 @@
     
 }
 
-#pragma - CreateOfferViewControllerDelegate -
+#pragma mark - CreateOfferViewControllerDelegate -
 
 - (void)createOfferViewControllerDidSelectCancel
 {
@@ -171,14 +171,14 @@
     }];
 }
 
-#pragma - SlideNavigationController Methods -
+#pragma mark - SlideNavigationController Methods -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
     return YES;
 }
 
-#pragma - Setter & Getter -
+#pragma mark - Setter & Getter -
 
 - (CarPoolOfferClient *)offerClient
 {

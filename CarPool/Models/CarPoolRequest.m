@@ -12,8 +12,10 @@
 @implementation CarPoolRequest
 @dynamic status;
 @dynamic message;
-@dynamic user;
+@dynamic from;
 @dynamic offer;
+@dynamic startLocation;
+@dynamic endLocation;
 
 + (NSString *)parseClassName
 {

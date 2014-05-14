@@ -14,7 +14,7 @@
 
 @implementation LocationManager
 
-#pragma - Initialization -
+#pragma mark - Initialization -
 
 + (LocationManager *)sharedInstance
 {
@@ -43,7 +43,7 @@
     
 }
 
-#pragma - CLLocationManager Delegate -
+#pragma mark - CLLocationManager Delegate -
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
