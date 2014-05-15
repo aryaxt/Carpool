@@ -13,6 +13,7 @@
 @dynamic status;
 @dynamic message;
 @dynamic from;
+@dynamic to;
 @dynamic offer;
 @dynamic startLocation;
 @dynamic endLocation;

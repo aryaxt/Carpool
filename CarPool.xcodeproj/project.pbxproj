@@ -10,6 +10,9 @@
 		7EDDE6976D904ED2B1399CB5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9C8540FCBD4CDAAF57AC3E /* libPods.a */; };
 		9217A59819231698005E3A36 /* Installation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59719231698005E3A36 /* Installation.m */; };
 		9217A59B19231724005E3A36 /* InstallationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59A19231724005E3A36 /* InstallationManager.m */; };
+		9217A5A319245214005E3A36 /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59E19245214005E3A36 /* main.js */; };
+		9217A5A419245214005E3A36 /* global.json in Resources */ = {isa = PBXBuildFile; fileRef = 9217A5A019245214005E3A36 /* global.json */; };
+		9217A5A519245214005E3A36 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 9217A5A219245214005E3A36 /* index.html */; };
 		9226EE9A191573530014B319 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EE99191573530014B319 /* Foundation.framework */; };
 		9226EE9C191573530014B319 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EE9B191573530014B319 /* CoreGraphics.framework */; };
 		9226EE9E191573530014B319 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EE9D191573530014B319 /* UIKit.framework */; };
@@ -82,6 +85,9 @@
 		9217A59719231698005E3A36 /* Installation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Installation.m; sourceTree = "<group>"; };
 		9217A59919231724005E3A36 /* InstallationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallationManager.h; sourceTree = "<group>"; };
 		9217A59A19231724005E3A36 /* InstallationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallationManager.m; sourceTree = "<group>"; };
+		9217A59E19245214005E3A36 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
+		9217A5A019245214005E3A36 /* global.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = global.json; sourceTree = "<group>"; };
+		9217A5A219245214005E3A36 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		9226EE96191573530014B319 /* Carpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9226EE99191573530014B319 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9226EE9B191573530014B319 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -197,9 +203,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9217A59C19245214005E3A36 /* CarpoolCloudCode */ = {
+			isa = PBXGroup;
+			children = (
+				9217A59D19245214005E3A36 /* cloud */,
+				9217A59F19245214005E3A36 /* config */,
+				9217A5A119245214005E3A36 /* public */,
+			);
+			path = CarpoolCloudCode;
+			sourceTree = "<group>";
+		};
+		9217A59D19245214005E3A36 /* cloud */ = {
+			isa = PBXGroup;
+			children = (
+				9217A59E19245214005E3A36 /* main.js */,
+			);
+			path = cloud;
+			sourceTree = "<group>";
+		};
+		9217A59F19245214005E3A36 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				9217A5A019245214005E3A36 /* global.json */,
+			);
+			path = config;
+			sourceTree = "<group>";
+		};
+		9217A5A119245214005E3A36 /* public */ = {
+			isa = PBXGroup;
+			children = (
+				9217A5A219245214005E3A36 /* index.html */,
+			);
+			path = public;
+			sourceTree = "<group>";
+		};
 		9226EE8D191573530014B319 = {
 			isa = PBXGroup;
 			children = (
+				9217A59C19245214005E3A36 /* CarpoolCloudCode */,
 				9226EE9F191573530014B319 /* CarPool */,
 				9226EEC1191573530014B319 /* CarPoolTests */,
 				9226EE98191573530014B319 /* Frameworks */,
@@ -577,8 +618,10 @@
 				92B568D519170E2900CEF58F /* endPoint.png in Resources */,
 				9226EEB0191573530014B319 /* Main_iPad.storyboard in Resources */,
 				9226EEB5191573530014B319 /* Images.xcassets in Resources */,
+				9217A5A419245214005E3A36 /* global.json in Resources */,
 				9226EF33191700940014B319 /* LocationSearchHeaderView.xib in Resources */,
 				928266C4191E904F001AD534 /* currntLocation.png in Resources */,
+				9217A5A519245214005E3A36 /* index.html in Resources */,
 				92B568D619170E2900CEF58F /* calendar.png in Resources */,
 				92B568D719170E2900CEF58F /* startPoint.png in Resources */,
 				9226EEAD191573530014B319 /* Main_iPhone.storyboard in Resources */,
@@ -653,6 +696,7 @@
 				9226EF001915DBAA0014B319 /* MyRequestsViewController.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
+				9217A5A319245214005E3A36 /* main.js in Sources */,
 				9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */,
 				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,

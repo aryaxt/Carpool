@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSNumber *status;
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) User *from;
+@property (nonatomic, strong) User *to;
 @property (nonatomic, strong) Location *startLocation;
 @property (nonatomic, strong) Location *endLocation;
 @property (nonatomic, strong) CarPoolOffer *offer;

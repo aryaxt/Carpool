@@ -30,7 +30,6 @@
     [super viewDidLoad];
     
     self.offer = [[CarPoolOffer alloc] init];
-    self.offer.from = [User currentUser];
     
     [self.datePicker removeFromSuperview];
     self.datePicker.minimumDate = [NSDate date];
@@ -74,6 +73,7 @@
 - (IBAction)createSelected:(id)sender
 {
     self.offer.message = self.txtMessage.text;
+    self.offer.from = [User currentUser];
     
     if (!self.offer.startLocation)
     {

@@ -58,6 +58,7 @@
     
     self.request.message = self.txtMessage.text;
     self.request.from = [User currentUser];
+    self.request.to = self.offer.from;
     self.request.offer = self.offer;
     
     [self.requestClient createRequest:self.request withCompletion:^(BOOL succeeded, NSError *error) {
