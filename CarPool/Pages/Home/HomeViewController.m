@@ -105,7 +105,7 @@
 
 #pragma mark - Private MEthods -
 
-- (void)addPolulineFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
+- (void)addPolylineFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
 {
     MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
     
@@ -137,18 +137,6 @@
     }];
 }
 
-- (UIColor *)randomColor
-{
-    CGFloat redLevel = rand() / (float) RAND_MAX;
-    CGFloat greenLevel = rand() / (float) RAND_MAX;
-    CGFloat blueLevel = rand() / (float) RAND_MAX;
-    
-    return [UIColor colorWithRed:redLevel
-                           green:greenLevel
-                            blue:blueLevel
-                           alpha:1.0];
-}
-
 #pragma mark - MKMapViewDelegate -
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated
@@ -161,8 +149,8 @@
     if ([overlay isKindOfClass:[MKPolyline class]])
     {
         MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
-        [renderer setStrokeColor:[self randomColor]];
-        [renderer setLineWidth:5.0];
+        [renderer setStrokeColor:[UIColor randomColor]];
+        [renderer setLineWidth:2.0];
         
         [self.mapView setRegion:MKCoordinateRegionForMapRect([overlay boundingMapRect])
                        animated:YES];
@@ -255,16 +243,6 @@
     [self.mapView addAnnotation:annotationTo];
 }
 
-- (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
-{
-    MKCoordinateRegion region;
-    region.center = mapView.userLocation.coordinate;
-    region.span = MKCoordinateSpanMake(1, 1);
-    
-    region = [mapView regionThatFits:region];
-    [mapView setRegion:region animated:YES];
-}
-
 #pragma mark - Setter & Getter -
 
 - (void)setCurrentOffer:(CarPoolOffer *)currentOffer
@@ -281,7 +259,7 @@
                                                            currentOffer.endLocation.geoPoint.latitude,
                                                            currentOffer.endLocation.geoPoint.longitude);
     
-    [self addPolulineFrom:from to:to];
+    [self addPolylineFrom:from to:to];
     [self.mapView removeAnnotations:[self.mapView annotations]];
     [self addPinsFrom:from to:to];
 }

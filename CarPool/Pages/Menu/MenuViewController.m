@@ -14,6 +14,7 @@
 #import "HomeViewController.h"
 #import "AccountViewController.h"
 #import "SettingsViewController.h"
+#import "InboxViewController.h"
 #import <Parse/Parse.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
@@ -33,7 +34,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 7;
+    return 8;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -58,16 +59,20 @@
         case 3:
         cell.textLabel.text = @"My Requests";
         break;
-        
+            
         case 4:
+            cell.textLabel.text = @"Inbox";
+            break;
+        
+        case 5:
         cell.textLabel.text = @"Account";
         break;
         
-        case 5:
+        case 6:
         cell.textLabel.text = @"Settings";
         break;
         
-        case 6:
+        case 7:
         cell.textLabel.text = @"Sign Out";
         break;
         
@@ -94,16 +99,20 @@
         case 3:
         viewContorller = [MyRequestsViewController viewController];
         break;
-        
+            
         case 4:
+            viewContorller = [InboxViewController viewController];
+            break;
+        
+        case 5:
         viewContorller = [AccountViewController viewController];
         break;
         
-        case 5:
+        case 6:
         viewContorller = [SettingsViewController viewController];
         break;
         
-        case 6:
+        case 7:
         [PFUser logOut];
         [[PFFacebookUtils session] closeAndClearTokenInformation];
         [[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];

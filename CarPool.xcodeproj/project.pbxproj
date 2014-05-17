@@ -8,11 +8,21 @@
 
 /* Begin PBXBuildFile section */
 		7EDDE6976D904ED2B1399CB5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9C8540FCBD4CDAAF57AC3E /* libPods.a */; };
+		920917F119270C63009701FA /* InboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917F019270C63009701FA /* InboxCell.m */; };
+		920917F51927AD4B009701FA /* RequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917F41927AD4B009701FA /* RequestDetailViewController.m */; };
+		920917F81927ADA3009701FA /* UIImageView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917F71927ADA3009701FA /* UIImageView+Additions.m */; };
+		920917FB1927B187009701FA /* MKMapView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917FA1927B187009701FA /* MKMapView+Additions.m */; };
+		920917FE1927B89F009701FA /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917FD1927B89F009701FA /* UIColor+Additions.m */; };
+		920918011927DE1E009701FA /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918001927DE1E009701FA /* CommentCell.m */; };
+		920918041927EDEA009701FA /* CommentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918031927EDEA009701FA /* CommentClient.m */; };
+		920918071927EF84009701FA /* CarPoolRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918061927EF84009701FA /* CarPoolRequestEngine.m */; };
 		9217A59819231698005E3A36 /* Installation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59719231698005E3A36 /* Installation.m */; };
 		9217A59B19231724005E3A36 /* InstallationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59A19231724005E3A36 /* InstallationManager.m */; };
 		9217A5A319245214005E3A36 /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59E19245214005E3A36 /* main.js */; };
 		9217A5A419245214005E3A36 /* global.json in Resources */ = {isa = PBXBuildFile; fileRef = 9217A5A019245214005E3A36 /* global.json */; };
 		9217A5A519245214005E3A36 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 9217A5A219245214005E3A36 /* index.html */; };
+		9217A5A919245AD9005E3A36 /* InboxViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A5A819245AD9005E3A36 /* InboxViewController.m */; };
+		9217A5AC1924681E005E3A36 /* Comment.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A5AB1924681E005E3A36 /* Comment.m */; };
 		9226EE9A191573530014B319 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EE99191573530014B319 /* Foundation.framework */; };
 		9226EE9C191573530014B319 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EE9B191573530014B319 /* CoreGraphics.framework */; };
 		9226EE9E191573530014B319 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EE9D191573530014B319 /* UIKit.framework */; };
@@ -81,6 +91,22 @@
 /* Begin PBXFileReference section */
 		2B9C8540FCBD4CDAAF57AC3E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		715CC3CC364D4C49AB5B958E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		920917EF19270C63009701FA /* InboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxCell.h; sourceTree = "<group>"; };
+		920917F019270C63009701FA /* InboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxCell.m; sourceTree = "<group>"; };
+		920917F31927AD4B009701FA /* RequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestDetailViewController.h; sourceTree = "<group>"; };
+		920917F41927AD4B009701FA /* RequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestDetailViewController.m; sourceTree = "<group>"; };
+		920917F61927ADA3009701FA /* UIImageView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Additions.h"; sourceTree = "<group>"; };
+		920917F71927ADA3009701FA /* UIImageView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Additions.m"; sourceTree = "<group>"; };
+		920917F91927B187009701FA /* MKMapView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+Additions.h"; sourceTree = "<group>"; };
+		920917FA1927B187009701FA /* MKMapView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+Additions.m"; sourceTree = "<group>"; };
+		920917FC1927B89F009701FA /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Additions.h"; sourceTree = "<group>"; };
+		920917FD1927B89F009701FA /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
+		920917FF1927DE1E009701FA /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		920918001927DE1E009701FA /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		920918021927EDEA009701FA /* CommentClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentClient.h; sourceTree = "<group>"; };
+		920918031927EDEA009701FA /* CommentClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentClient.m; sourceTree = "<group>"; };
+		920918051927EF84009701FA /* CarPoolRequestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolRequestEngine.h; sourceTree = "<group>"; };
+		920918061927EF84009701FA /* CarPoolRequestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolRequestEngine.m; sourceTree = "<group>"; };
 		9217A59619231698005E3A36 /* Installation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Installation.h; sourceTree = "<group>"; };
 		9217A59719231698005E3A36 /* Installation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Installation.m; sourceTree = "<group>"; };
 		9217A59919231724005E3A36 /* InstallationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallationManager.h; sourceTree = "<group>"; };
@@ -88,6 +114,10 @@
 		9217A59E19245214005E3A36 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		9217A5A019245214005E3A36 /* global.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = global.json; sourceTree = "<group>"; };
 		9217A5A219245214005E3A36 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
+		9217A5A719245AD9005E3A36 /* InboxViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxViewController.h; sourceTree = "<group>"; };
+		9217A5A819245AD9005E3A36 /* InboxViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxViewController.m; sourceTree = "<group>"; };
+		9217A5AA1924681E005E3A36 /* Comment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Comment.h; sourceTree = "<group>"; };
+		9217A5AB1924681E005E3A36 /* Comment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Comment.m; sourceTree = "<group>"; };
 		9226EE96191573530014B319 /* Carpool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Carpool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9226EE99191573530014B319 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		9226EE9B191573530014B319 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -203,6 +233,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		920917F21927AD36009701FA /* RequestDetail */ = {
+			isa = PBXGroup;
+			children = (
+				920917F31927AD4B009701FA /* RequestDetailViewController.h */,
+				920917F41927AD4B009701FA /* RequestDetailViewController.m */,
+				920917FF1927DE1E009701FA /* CommentCell.h */,
+				920918001927DE1E009701FA /* CommentCell.m */,
+			);
+			path = RequestDetail;
+			sourceTree = "<group>";
+		};
 		9217A59C19245214005E3A36 /* CarpoolCloudCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -235,6 +276,18 @@
 				9217A5A219245214005E3A36 /* index.html */,
 			);
 			path = public;
+			sourceTree = "<group>";
+		};
+		9217A5A619245AB9005E3A36 /* Inbox */ = {
+			isa = PBXGroup;
+			children = (
+				920917F21927AD36009701FA /* RequestDetail */,
+				9217A5A719245AD9005E3A36 /* InboxViewController.h */,
+				9217A5A819245AD9005E3A36 /* InboxViewController.m */,
+				920917EF19270C63009701FA /* InboxCell.h */,
+				920917F019270C63009701FA /* InboxCell.m */,
+			);
+			path = Inbox;
 			sourceTree = "<group>";
 		};
 		9226EE8D191573530014B319 = {
@@ -275,12 +328,12 @@
 		9226EE9F191573530014B319 /* CarPool */ = {
 			isa = PBXGroup;
 			children = (
-				928266C8191E9B6B001AD534 /* Subclasses */,
 				9226EF341917041C0014B319 /* Images */,
+				9226EED619157A6F0014B319 /* Categories */,
+				928266C8191E9B6B001AD534 /* Subclasses */,
 				9226EF10191694EC0014B319 /* Clients */,
 				9226EEEF1915CBC10014B319 /* Models */,
 				9226EEE91915B8190014B319 /* Managers */,
-				9226EED619157A6F0014B319 /* Categories */,
 				9226EED11915788D0014B319 /* Pages */,
 				9226EEA8191573530014B319 /* AppDelegate.h */,
 				9226EEA9191573530014B319 /* AppDelegate.m */,
@@ -324,6 +377,7 @@
 		9226EED11915788D0014B319 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				9217A5A619245AB9005E3A36 /* Inbox */,
 				928266CF191EFDF4001AD534 /* CreateCarPoolRequest */,
 				9226EF2B1916E3070014B319 /* LocationSearch */,
 				9226EF271916DA0E0014B319 /* SignUp */,
@@ -358,6 +412,12 @@
 				9226EF1C19169F810014B319 /* UITableView+Additions.m */,
 				927ABFBA191A19F000CC3A2B /* UIView+Additions.h */,
 				927ABFBB191A19F000CC3A2B /* UIView+Additions.m */,
+				920917F61927ADA3009701FA /* UIImageView+Additions.h */,
+				920917F71927ADA3009701FA /* UIImageView+Additions.m */,
+				920917F91927B187009701FA /* MKMapView+Additions.h */,
+				920917FA1927B187009701FA /* MKMapView+Additions.m */,
+				920917FC1927B89F009701FA /* UIColor+Additions.h */,
+				920917FD1927B89F009701FA /* UIColor+Additions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -417,6 +477,8 @@
 				92881404191DD6BF00726DD8 /* User.m */,
 				9217A59619231698005E3A36 /* Installation.h */,
 				9217A59719231698005E3A36 /* Installation.m */,
+				9217A5AA1924681E005E3A36 /* Comment.h */,
+				9217A5AB1924681E005E3A36 /* Comment.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -464,12 +526,16 @@
 			children = (
 				9226EF11191694FC0014B319 /* CarPoolOfferClient.h */,
 				9226EF12191694FC0014B319 /* CarPoolOfferClient.m */,
-				9226EF14191695120014B319 /* AuthenticationClient.h */,
-				9226EF15191695120014B319 /* AuthenticationClient.m */,
 				9226EF1E1916A4190014B319 /* CarPoolRequestClient.h */,
 				9226EF1F1916A4190014B319 /* CarPoolRequestClient.m */,
+				920918021927EDEA009701FA /* CommentClient.h */,
+				920918031927EDEA009701FA /* CommentClient.m */,
 				928266CC191EABF6001AD534 /* LocationSearchClient.h */,
 				928266CD191EABF6001AD534 /* LocationSearchClient.m */,
+				9226EF14191695120014B319 /* AuthenticationClient.h */,
+				9226EF15191695120014B319 /* AuthenticationClient.m */,
+				920918051927EF84009701FA /* CarPoolRequestEngine.h */,
+				920918061927EF84009701FA /* CarPoolRequestEngine.m */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -686,32 +752,42 @@
 				9226EF261916A5AB0014B319 /* MyOfferCell.m in Sources */,
 				928266CE191EABF7001AD534 /* LocationSearchClient.m in Sources */,
 				9217A59B19231724005E3A36 /* InstallationManager.m in Sources */,
+				9217A5AC1924681E005E3A36 /* Comment.m in Sources */,
+				920917F81927ADA3009701FA /* UIImageView+Additions.m in Sources */,
 				9226EF1D19169F810014B319 /* UITableView+Additions.m in Sources */,
 				9226EF231916A4370014B319 /* CarPoolRequest.m in Sources */,
+				920917FB1927B187009701FA /* MKMapView+Additions.m in Sources */,
 				9226EF31191700830014B319 /* LocationSearchHeaderView.m in Sources */,
 				92881405191DD6BF00726DD8 /* User.m in Sources */,
 				9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */,
 				9226EEFD1915DB9A0014B319 /* MyOffersViewController.m in Sources */,
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
+				920917F51927AD4B009701FA /* RequestDetailViewController.m in Sources */,
 				9226EF001915DBAA0014B319 /* MyRequestsViewController.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				9217A5A319245214005E3A36 /* main.js in Sources */,
 				9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */,
 				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
+				920918071927EF84009701FA /* CarPoolRequestEngine.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
 				9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */,
+				920917FE1927B89F009701FA /* UIColor+Additions.m in Sources */,
 				9226EED919157A870014B319 /* UIViewController+Additions.m in Sources */,
 				9226EF201916A4190014B319 /* CarPoolRequestClient.m in Sources */,
 				9226EF13191694FC0014B319 /* CarPoolOfferClient.m in Sources */,
 				928266CB191E9B9C001AD534 /* PinEnabledMapView.m in Sources */,
 				927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */,
+				9217A5A919245AD9005E3A36 /* InboxViewController.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,
+				920918041927EDEA009701FA /* CommentClient.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,
 				9217A59819231698005E3A36 /* Installation.m in Sources */,
 				9226EF051915DCDF0014B319 /* AccountViewController.m in Sources */,
+				920918011927DE1E009701FA /* CommentCell.m in Sources */,
 				9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */,
 				928266D2191EFE05001AD534 /* CreateRequestViewController.m in Sources */,
+				920917F119270C63009701FA /* InboxCell.m in Sources */,
 				9226EF081915DCEB0014B319 /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

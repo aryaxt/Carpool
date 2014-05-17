@@ -129,8 +129,6 @@ typedef enum {
     } completion:^(BOOL finished) {
         
     }];
-    
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
 }
 
 - (void)locationSearchHeaderViewDidSelectCurrentLocationSearch
@@ -157,7 +155,7 @@ typedef enum {
                                      else
                                      {
                                          self.locations = locations;
-                                         [self.tableView deleteRowsAndAnimateNewRowsIn:locations.count];
+                                         [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:locations.count];
                                      }
     }];
 }
@@ -178,7 +176,7 @@ typedef enum {
     else
     {
         self.locations = nil;
-        [self.tableView deleteRowsAndAnimateNewRowsIn:0];
+        [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:0];
     }
 }
 
@@ -199,7 +197,7 @@ typedef enum {
                                        else
                                        {
                                            self.locations = locations;
-                                           [self.tableView deleteRowsAndAnimateNewRowsIn:locations.count];
+                                           [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:locations.count];
                                        }
     }];
 }

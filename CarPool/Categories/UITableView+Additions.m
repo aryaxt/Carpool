@@ -10,21 +10,26 @@
 
 @implementation UITableView (Additions)
 
-- (void)deleteRowsAndAnimateNewRowsIn:(NSInteger)newRows
+- (void)deleteRowsAndAnimateNewRows:(NSInteger)newRows inSection:(NSInteger)section
 {
     [self beginUpdates];
     
-    for (int i=0 ; i<[self numberOfRowsInSection:0] ; i++)
+    for (int i=0 ; i<[self numberOfRowsInSection:section] ; i++)
     {
-        [self deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [self deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:section]] withRowAnimation:UITableViewRowAnimationTop];
     }
     
     for (int i=0 ; i<newRows ; i++)
     {
-        [self insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+        [self insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:section]] withRowAnimation:UITableViewRowAnimationTop];
     }
     
     [self endUpdates];
+}
+
+- (void)deleteRowsAndAnimateNewRowsInSectionZero:(NSInteger)newRows
+{
+    [self deleteRowsAndAnimateNewRows:newRows inSection:0];
 }
 
 @end

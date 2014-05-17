@@ -56,14 +56,17 @@
     
     [self showLoader];
     
-    self.request.message = self.txtMessage.text;
+    self.request.time = self.offer.time;
     self.request.from = [User currentUser];
     self.request.to = self.offer.from;
     self.request.offer = self.offer;
     
-    [self.requestClient createRequest:self.request withCompletion:^(BOOL succeeded, NSError *error) {
-        [self hideLoader];
-        
+    Comment *comment = [[Comment alloc] init];
+    comment.from = [User currentUser];
+    comment.to = self.offer.from;
+    comment.message = self.txtMessage.text;
+    
+    [self.requestEngine createRequest:self.request withInitialComment:comment andCompletion:^(NSError *error) {
         if (error)
         {
             [self alertWithtitle:@"Error" andMessage:@"There was a problem sending your offer"];
@@ -164,14 +167,14 @@
 
 #pragma mark - Setter & Gettr -
 
-- (CarPoolRequestClient *)requestClient
+- (CarPoolRequestEngine *)requestEngine
 {
-    if (!_requestClient)
+    if (!_requestEngine)
     {
-        _requestClient = [[CarPoolRequestClient alloc] init];
+        _requestEngine = [[CarPoolRequestEngine alloc] init];
     }
     
-    return _requestClient;
+    return _requestEngine;
 }
 
 @end

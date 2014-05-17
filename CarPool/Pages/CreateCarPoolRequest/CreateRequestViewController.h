@@ -8,9 +8,10 @@
 
 #import "BaseViewController.h"
 #import "CarPoolRequest.h"
-#import "CarPoolRequestClient.h"
+#import "CarPoolRequestEngine.h"
 #import "CarPoolOffer.h"
 #import "LocationSearchViewController.h"
+#import "Comment.h"
 
 @protocol CreateRequestViewControllerDelegate <NSObject>
 - (void)createRequestViewControllerDidSelectCancel;
@@ -27,7 +28,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnCloseMessage;
 @property (nonatomic, strong) CarPoolOffer *offer;
 @property (nonatomic, strong) CarPoolRequest *request;
-@property (nonatomic, strong) CarPoolRequestClient *requestClient;
+@property (nonatomic, strong) CarPoolRequestEngine *requestEngine;
 @property (nonatomic, assign) CGRect messageViewOriginalFrame;
 
 - (IBAction)sendSelected:(id)sender;

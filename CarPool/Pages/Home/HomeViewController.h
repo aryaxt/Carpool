@@ -13,6 +13,7 @@
 #import "CarPoolOfferClient.h"
 #import "OfferDetailViewController.h"
 #import "CreateRequestViewController.h"
+#import "UIColor+Additions.h"
 
 @interface HomeViewController : BaseViewController <SlideNavigationControllerDelegate, MKMapViewDelegate, OfferDetailViewControllerDelegate>
 

@@ -1,23 +1,20 @@
 //
-//  CarPoolRequest.m
+//  Comment.m
 //  CarPool
 //
-//  Created by Aryan on 5/4/14.
+//  Created by Aryan on 5/14/14.
 //  Copyright (c) 2014 aryaxt. All rights reserved.
 //
 
-#import "CarPoolRequest.h"
+#import "Comment.h"
 #import <Parse/PFObject+Subclass.h>
 
-@implementation CarPoolRequest
-@dynamic time;
-@dynamic status;
-@dynamic comments;
+@implementation Comment
+@dynamic message;
+@dynamic read;
 @dynamic from;
 @dynamic to;
-@dynamic offer;
-@dynamic startLocation;
-@dynamic endLocation;
+@dynamic request;
 
 + (NSString *)parseClassName
 {

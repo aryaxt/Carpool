@@ -10,6 +10,7 @@
 
 @interface UITableView (Additions)
 
-- (void)deleteRowsAndAnimateNewRowsIn:(NSInteger)newRows;
+- (void)deleteRowsAndAnimateNewRowsInSectionZero:(NSInteger)newRows;
+- (void)deleteRowsAndAnimateNewRows:(NSInteger)newRows inSection:(NSInteger)section;
 
 @end

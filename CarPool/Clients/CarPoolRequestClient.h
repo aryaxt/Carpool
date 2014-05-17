@@ -8,9 +8,14 @@
 
 #import <Foundation/Foundation.h>
 #import "CarPoolRequest.h"
+#import "Comment.h"
 
 @interface CarPoolRequestClient : NSObject
 
-- (void)createRequest:(CarPoolRequest *)request withCompletion:(void (^)(BOOL succeeded, NSError *error))completion;
+- (void)fetchRequestById:(NSString *)objectId withCompletion:(void (^)(CarPoolRequest *request, NSError *error))completion;
+- (void)fetchMyRequestsIncludeOffer:(BOOL)includeOffer
+                        includeFrom:(BOOL)includeFrom
+                          includeTo:(BOOL)includeTo
+                     withCompletion:(void (^)(NSArray *requests, NSError *error))completion;
 
 @end

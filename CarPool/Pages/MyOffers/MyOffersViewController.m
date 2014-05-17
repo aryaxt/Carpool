@@ -58,7 +58,7 @@
                                      else
                                      {
                                          self.offers = [offers mutableCopy];
-                                         [self.tableView deleteRowsAndAnimateNewRowsIn:self.offers.count];
+                                         [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:self.offers.count];
                                      }
                                  }];
 }
