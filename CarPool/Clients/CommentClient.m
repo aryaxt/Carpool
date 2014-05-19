@@ -12,6 +12,8 @@
 
 - (void)addComment:(Comment *)comment toRequest:(CarPoolRequest *)request withCompletion:(void (^)(NSError *error))completion
 {
+    comment.request = request;
+    
     [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error)
         {
@@ -56,9 +58,11 @@
 
 - (void)fetchCommentsForRequest:(CarPoolRequest *)request withCompletion:(void (^)(NSArray *comments, NSError *error))completion
 {
-    [request.comments.query orderByDescending:@"createdAt"];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Comment class])];
+    [query whereKey:@"request" equalTo:request];
+    [query orderByAscending:@"createdAt"];
     
-    [request.comments.query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
         NSMutableArray *comments = [NSMutableArray array];
         
         for (PFObject *object in objects)

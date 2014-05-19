@@ -16,6 +16,8 @@
 {
     [super viewDidLoad];
     
+    self.comments = [NSMutableArray array];
+    
     [self showLoader];
     
     [self.commentClient fetchMyCommentsWithCompletion:^(NSArray *comments, NSError *error) {
@@ -27,8 +29,8 @@
         }
         else
         {
-            self.comments = [comments mutableCopy];
-            [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:comments.count];
+            [self filterAndAddComments:comments];
+            [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:self.comments.count];
         }
     }];
 }
@@ -56,6 +58,66 @@
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
     return YES;
+}
+
+#pragma mark - PushNotificationHandler -
+
+- (BOOL)canHandlePushNotificationWithType:(NSString *)type
+{
+    if ([type isEqualToString:PushNotificationTypeComment])
+    {
+        // Do Stuff
+        
+        
+        return YES;
+    }
+    
+    return NO;
+}
+
+#pragma mark - Private Methods -
+
+- (void)filterAndAddComments:(NSArray *)comments
+{
+    NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
+    
+    for (Comment *comment in comments)
+    {
+        if (comment.request)
+        {
+            Comment *existingcomment = [dictionary objectForKey:comment.request.objectId];
+            
+            if (existingcomment)
+            {
+                if ([comment.createdAt timeIntervalSinceDate:existingcomment.createdAt] > 0)
+                {
+                    [dictionary setObject:comment forKey:comment.request.objectId];
+                }
+            }
+            else
+            {
+                [dictionary setObject:comment forKey:comment.request.objectId];
+            }
+        }
+        else
+        {
+            Comment *existingcomment = [dictionary objectForKey:comment.from.objectId];
+            
+            if (existingcomment)
+            {
+                if ([comment.createdAt timeIntervalSinceDate:existingcomment.createdAt] > 0)
+                {
+                    [dictionary setObject:comment forKey:comment.from.objectId];
+                }
+            }
+            else
+            {
+                [dictionary setObject:comment forKey:comment.from.objectId];
+            }
+        }
+    }
+    
+    self.comments = [dictionary allValues];
 }
 
 #pragma mark - UITableView Delegate & Datasource -

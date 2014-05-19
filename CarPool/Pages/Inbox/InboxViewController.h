@@ -12,11 +12,12 @@
 #import "InboxCell.h"
 #import "SlideNavigationController.h"
 #import "RequestDetailViewController.h"
+#import "PushNotificationManager.h"
 
-@interface InboxViewController : BaseViewController <SlideNavigationControllerDelegate>
+@interface InboxViewController : BaseViewController <SlideNavigationControllerDelegate, PushNotificationHandler>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) CommentClient *commentClient;
-@property (nonatomic, strong) NSMutableArray *comments;
+@property (nonatomic, strong) NSArray *comments;
 
 @end

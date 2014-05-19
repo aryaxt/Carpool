@@ -22,16 +22,4 @@
     self.lblTo.text = offer.endLocation.name;
 }
 
-#pragma mark - IBActions -
-
-- (IBAction)deleteSelected:(id)sender
-{
-    [self.delegate myOfferCellDidSelectDelete:self];
-}
-
-- (IBAction)editSelected:(id)sender
-{
-    [self.delegate myOfferCellDidSelectEdit:self];
-}
-
 @end

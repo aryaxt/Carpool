@@ -15,5 +15,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *gender;
 @property (nonatomic, strong) NSString *photoUrl;
+@property (nonatomic, strong, readonly) PFRelation *friends;
+@property (nonatomic, strong, readonly) PFRelation *blockedUsers;
 
 @end

@@ -14,6 +14,8 @@
 @dynamic name;
 @dynamic gender;
 @dynamic photoUrl;
+@dynamic friends;
+@dynamic blockedUsers;
 
 + (void)load
 {

@@ -9,12 +9,11 @@
 #import "MenuViewController.h"
 #import "SlideNavigationController.h"
 #import "UIViewController+Additions.h"
-#import "MyOffersViewController.h"
-#import "MyRequestsViewController.h"
 #import "HomeViewController.h"
 #import "AccountViewController.h"
 #import "SettingsViewController.h"
 #import "InboxViewController.h"
+#import "MyActivitiesViewController.h"
 #import <Parse/Parse.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
@@ -26,15 +25,22 @@
 {
     [super viewDidLoad];
     
-    self.view.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.view.layer.borderColor = [UIColor whiteColor].CGColor;
     self.view.layer.borderWidth = 1;
+    
+    self.topView.layer.borderWidth = .6;
+    self.topView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    
+    self.lblName.text = [User currentUser].name;
+    [self.imgProfilePhoto setUserPhotoStyle];
+    [self.imgProfilePhoto setImageWithURL:[NSURL URLWithString:[User currentUser].photoUrl]];
 }
 
 #pragma mark - UITableView Delegate & Datasource -
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 8;
+    return 6;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -44,35 +50,26 @@
     
     switch (indexPath.row) {
         case 0:
-        cell.textLabel.text = [PFUser currentUser][@"name"];
-        [cell.imageView setImageWithURL:[NSURL URLWithString:[PFUser currentUser][@"photoUrl"]]];
-        break;
-        
-        case 1:
         cell.textLabel.text = @"Home";
         break;
         
-        case 2:
-        cell.textLabel.text = @"My Offers";
-        break;
-        
-        case 3:
-        cell.textLabel.text = @"My Requests";
+        case 1:
+        cell.textLabel.text = @"My Activities";
         break;
             
-        case 4:
+        case 2:
             cell.textLabel.text = @"Inbox";
             break;
         
-        case 5:
+        case 3:
         cell.textLabel.text = @"Account";
         break;
         
-        case 6:
+        case 4:
         cell.textLabel.text = @"Settings";
         break;
         
-        case 7:
+        case 5:
         cell.textLabel.text = @"Sign Out";
         break;
         
@@ -87,34 +84,32 @@
 {
     UIViewController *viewContorller;
     
-    switch (indexPath.row) {
-        case 1:
+    switch (indexPath.row)
+    {
+        case 0:
         viewContorller = [HomeViewController viewController];
         break;
         
-        case 2:
-        viewContorller = [MyOffersViewController viewController];
-        break;
-        
-        case 3:
-        viewContorller = [MyRequestsViewController viewController];
+        case 1:
+        viewContorller = [MyActivitiesViewController viewController];
         break;
             
-        case 4:
+        case 2:
             viewContorller = [InboxViewController viewController];
             break;
         
-        case 5:
+        case 3:
         viewContorller = [AccountViewController viewController];
         break;
         
-        case 6:
+        case 4:
         viewContorller = [SettingsViewController viewController];
         break;
         
-        case 7:
+        case 5:
         [PFUser logOut];
         [[PFFacebookUtils session] closeAndClearTokenInformation];
+            
         [[SlideNavigationController sharedInstance] popToRootViewControllerAnimated:YES];
         return;
         break;

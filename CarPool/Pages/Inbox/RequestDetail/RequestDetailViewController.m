@@ -38,6 +38,10 @@
 {
     [self showLoader];
     
+    self.btnAccept.hidden = YES;
+    self.btnDecline.hidden = YES;
+    self.lblStatusInfo.hidden = YES;
+    
     [self.requestClient fetchRequestById:self.request.objectId withCompletion:^(CarPoolRequest *request, NSError *error) {
         [self hideLoader];
         
@@ -49,10 +53,32 @@
         {
             self.request = request;
             
-            self.lblRequesterName.text = self.request.from.username;
+            self.lblRequesterName.text = self.request.to.name;
             [self.imgRequesterPhoto setUserPhotoStyle];
-            [self.imgRequesterPhoto setImageWithURL:[NSURL URLWithString:self.request.from.photoUrl]
+            [self.imgRequesterPhoto setImageWithURL:[NSURL URLWithString:self.request.to.photoUrl]
                                    placeholderImage:[UIImage imageNamed:@"sfdfgdfg"]];
+            
+            BOOL isRequestFromMe = [self.request.to.objectId isEqualToString:[User currentUser].objectId];
+            
+            if (request.status)
+            {
+                self.lblStatusInfo.hidden = NO;
+                self.lblStatusInfo.text = (request.status.boolValue) ? @"Accepted" : @"Declined";
+                self.lblStatusInfo.textColor = (request.status.boolValue) ? [UIColor greenColor] : [UIColor redColor];
+            }
+            else
+            {
+                if (isRequestFromMe)
+                {
+                    self.btnAccept.hidden = NO;
+                    self.btnDecline.hidden = NO;
+                }
+                else
+                {
+                    self.lblStatusInfo.hidden = NO;
+                    self.lblStatusInfo.text = @"Request Pending";
+                }
+            }
             
             [self addPolyline];
         }
@@ -114,6 +140,25 @@
     }];
 }
 
+- (void)changeRequestStatus:(BOOL)status
+{
+    self.btnAccept.enabled = NO;
+    self.btnDecline.enabled = NO;
+    
+    [self.requestEngine updateRequest:self.request withStatus:status andCompletion:^(NSError *error) {
+        if (error)
+        {
+            self.btnAccept.enabled = YES;
+            self.btnDecline.enabled = YES;
+            [self alertWithtitle:@"Error" andMessage:@"There was a problem responding to this request"];
+        }
+        else
+        {
+            // Update state after success
+        }
+    }];
+}
+
 #pragma mark - IBActions -
 
 - (IBAction)sendSelected:(id)sender
@@ -150,6 +195,16 @@
                             [weakSelf.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
                         }
     }];
+}
+
+- (IBAction)acceptSelected:(id)sender
+{
+    [self changeRequestStatus:YES];
+}
+
+- (IBAction)declineSelected:(id)sender
+{
+    [self changeRequestStatus:NO];
 }
 
 #pragma mark - UITableView Delegate & Datasource -
@@ -214,6 +269,9 @@
         return self.commentHeaderView.frame.size.height;
 }
 
+#pragma mark - UITextViewDelegate -
+
+
 #pragma mark - MKMapViewDelegate -
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id <MKOverlay>)overlay
@@ -243,6 +301,16 @@
     }
     
     return _requestClient;
+}
+
+- (CarPoolRequestEngine *)requestEngine
+{
+    if (!_requestEngine)
+    {
+        _requestEngine = [[CarPoolRequestEngine alloc] init];
+    }
+    
+    return _requestEngine;
 }
 
 - (CommentClient *)commentClient

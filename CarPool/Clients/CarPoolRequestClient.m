@@ -16,8 +16,10 @@
                      withCompletion:(void (^)(NSArray *requests, NSError *error))completion
 {
     PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([CarPoolRequest class])];
-    [query whereKey:@"to" equalTo:[User currentUser]];
+    [query whereKey:@"from" equalTo:[User currentUser]];
     [query whereKey:@"time" greaterThanOrEqualTo:[NSDate date]];
+    [query includeKey:@"startLocation"];
+    [query includeKey:@"endLocation"];
     
     if (includeOffer)
         [query includeKey:@"offer"];

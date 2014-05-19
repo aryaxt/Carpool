@@ -12,5 +12,6 @@
 
 - (void)deleteRowsAndAnimateNewRowsInSectionZero:(NSInteger)newRows;
 - (void)deleteRowsAndAnimateNewRows:(NSInteger)newRows inSection:(NSInteger)section;
+- (void)deleteRowsAndAnimateNewRows:(NSInteger)newRows inSection:(NSInteger)section withDeleteAnimatiion:(UITableViewRowAnimation)deleteAnimation andInsertAnimation:(UITableViewRowAnimation)insertAnimation;
 
 @end

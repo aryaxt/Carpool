@@ -9,10 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "CarPoolOffer.h"
 
-@class MyOfferCell;
 @protocol MyOfferCellDelegate
-- (void)myOfferCellDidSelectDelete:(MyOfferCell *)cell;
-- (void)myOfferCellDidSelectEdit:(MyOfferCell *)cell;
 @end
 
 @interface MyOfferCell : UITableViewCell
@@ -23,7 +20,5 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblTo;
 
 - (void)setOffer:(CarPoolOffer *)offer;
-- (IBAction)deleteSelected:(id)sender;
-- (IBAction)editSelected:(id)sender;
 
 @end

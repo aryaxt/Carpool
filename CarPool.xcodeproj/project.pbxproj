@@ -17,7 +17,7 @@
 		920918041927EDEA009701FA /* CommentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918031927EDEA009701FA /* CommentClient.m */; };
 		920918071927EF84009701FA /* CarPoolRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918061927EF84009701FA /* CarPoolRequestEngine.m */; };
 		9217A59819231698005E3A36 /* Installation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59719231698005E3A36 /* Installation.m */; };
-		9217A59B19231724005E3A36 /* InstallationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59A19231724005E3A36 /* InstallationManager.m */; };
+		9217A59B19231724005E3A36 /* PushNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59A19231724005E3A36 /* PushNotificationManager.m */; };
 		9217A5A319245214005E3A36 /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59E19245214005E3A36 /* main.js */; };
 		9217A5A419245214005E3A36 /* global.json in Resources */ = {isa = PBXBuildFile; fileRef = 9217A5A019245214005E3A36 /* global.json */; };
 		9217A5A519245214005E3A36 /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 9217A5A219245214005E3A36 /* index.html */; };
@@ -45,8 +45,6 @@
 		9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEEB1915B82B0014B319 /* LocationManager.m */; };
 		9226EEEE1915B8E70014B319 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EEED1915B8E70014B319 /* CoreLocation.framework */; };
 		9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEF11915CBE90014B319 /* CarPoolOffer.m */; };
-		9226EEFD1915DB9A0014B319 /* MyOffersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEFC1915DB9A0014B319 /* MyOffersViewController.m */; };
-		9226EF001915DBAA0014B319 /* MyRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEFF1915DBAA0014B319 /* MyRequestsViewController.m */; };
 		9226EF051915DCDF0014B319 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF041915DCDF0014B319 /* AccountViewController.m */; };
 		9226EF081915DCEB0014B319 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF071915DCEB0014B319 /* SettingsViewController.m */; };
 		9226EF0B1915E18A0014B319 /* Period.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF0A1915E18A0014B319 /* Period.m */; };
@@ -56,12 +54,14 @@
 		9226EF1D19169F810014B319 /* UITableView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF1C19169F810014B319 /* UITableView+Additions.m */; };
 		9226EF201916A4190014B319 /* CarPoolRequestClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF1F1916A4190014B319 /* CarPoolRequestClient.m */; };
 		9226EF231916A4370014B319 /* CarPoolRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF221916A4370014B319 /* CarPoolRequest.m */; };
-		9226EF261916A5AB0014B319 /* MyOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF251916A5AB0014B319 /* MyOfferCell.m */; };
 		9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF291916DAA80014B319 /* SignUpViewController.m */; };
 		9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF2D1916E31F0014B319 /* LocationSearchViewController.m */; };
 		9226EF31191700830014B319 /* LocationSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF30191700830014B319 /* LocationSearchHeaderView.m */; };
 		9226EF33191700940014B319 /* LocationSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9226EF32191700940014B319 /* LocationSearchHeaderView.xib */; };
 		9226EF38191707F10014B319 /* poweredByGoogle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9226EF37191707F10014B319 /* poweredByGoogle.png */; };
+		923E15D71929215200AD1B5A /* MyOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E15D41929215200AD1B5A /* MyOfferCell.m */; };
+		923E15D81929215200AD1B5A /* MyActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E15D61929215200AD1B5A /* MyActivitiesViewController.m */; };
+		923E15DB19292F7700AD1B5A /* MyRequestCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E15DA19292F7700AD1B5A /* MyRequestCell.m */; };
 		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
 		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
 		927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */; };
@@ -109,8 +109,8 @@
 		920918061927EF84009701FA /* CarPoolRequestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolRequestEngine.m; sourceTree = "<group>"; };
 		9217A59619231698005E3A36 /* Installation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Installation.h; sourceTree = "<group>"; };
 		9217A59719231698005E3A36 /* Installation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Installation.m; sourceTree = "<group>"; };
-		9217A59919231724005E3A36 /* InstallationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstallationManager.h; sourceTree = "<group>"; };
-		9217A59A19231724005E3A36 /* InstallationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstallationManager.m; sourceTree = "<group>"; };
+		9217A59919231724005E3A36 /* PushNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationManager.h; sourceTree = "<group>"; };
+		9217A59A19231724005E3A36 /* PushNotificationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationManager.m; sourceTree = "<group>"; };
 		9217A59E19245214005E3A36 /* main.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = main.js; sourceTree = "<group>"; };
 		9217A5A019245214005E3A36 /* global.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = global.json; sourceTree = "<group>"; };
 		9217A5A219245214005E3A36 /* index.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
@@ -151,10 +151,6 @@
 		9226EEED1915B8E70014B319 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9226EEF01915CBE90014B319 /* CarPoolOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolOffer.h; sourceTree = "<group>"; };
 		9226EEF11915CBE90014B319 /* CarPoolOffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolOffer.m; sourceTree = "<group>"; };
-		9226EEFB1915DB9A0014B319 /* MyOffersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOffersViewController.h; sourceTree = "<group>"; };
-		9226EEFC1915DB9A0014B319 /* MyOffersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOffersViewController.m; sourceTree = "<group>"; };
-		9226EEFE1915DBAA0014B319 /* MyRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRequestsViewController.h; sourceTree = "<group>"; };
-		9226EEFF1915DBAA0014B319 /* MyRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRequestsViewController.m; sourceTree = "<group>"; };
 		9226EF031915DCDF0014B319 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
 		9226EF041915DCDF0014B319 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		9226EF061915DCEB0014B319 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -173,8 +169,6 @@
 		9226EF1F1916A4190014B319 /* CarPoolRequestClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolRequestClient.m; sourceTree = "<group>"; };
 		9226EF211916A4370014B319 /* CarPoolRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolRequest.h; sourceTree = "<group>"; };
 		9226EF221916A4370014B319 /* CarPoolRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolRequest.m; sourceTree = "<group>"; };
-		9226EF241916A5AB0014B319 /* MyOfferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOfferCell.h; sourceTree = "<group>"; };
-		9226EF251916A5AB0014B319 /* MyOfferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOfferCell.m; sourceTree = "<group>"; };
 		9226EF281916DAA80014B319 /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
 		9226EF291916DAA80014B319 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		9226EF2C1916E31F0014B319 /* LocationSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchViewController.h; sourceTree = "<group>"; };
@@ -183,6 +177,12 @@
 		9226EF30191700830014B319 /* LocationSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchHeaderView.m; sourceTree = "<group>"; };
 		9226EF32191700940014B319 /* LocationSearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationSearchHeaderView.xib; sourceTree = "<group>"; };
 		9226EF37191707F10014B319 /* poweredByGoogle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByGoogle.png; sourceTree = "<group>"; };
+		923E15D31929215200AD1B5A /* MyOfferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOfferCell.h; sourceTree = "<group>"; };
+		923E15D41929215200AD1B5A /* MyOfferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOfferCell.m; sourceTree = "<group>"; };
+		923E15D51929215200AD1B5A /* MyActivitiesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyActivitiesViewController.h; sourceTree = "<group>"; };
+		923E15D61929215200AD1B5A /* MyActivitiesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyActivitiesViewController.m; sourceTree = "<group>"; };
+		923E15D919292F7700AD1B5A /* MyRequestCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRequestCell.h; sourceTree = "<group>"; };
+		923E15DA19292F7700AD1B5A /* MyRequestCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRequestCell.m; sourceTree = "<group>"; };
 		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
@@ -377,6 +377,7 @@
 		9226EED11915788D0014B319 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				923E15D21929215200AD1B5A /* MyActivities */,
 				9217A5A619245AB9005E3A36 /* Inbox */,
 				928266CF191EFDF4001AD534 /* CreateCarPoolRequest */,
 				9226EF2B1916E3070014B319 /* LocationSearch */,
@@ -384,8 +385,6 @@
 				9226EF1719169CDC0014B319 /* Base */,
 				9226EF011915DCD30014B319 /* Account */,
 				9226EF021915DCD30014B319 /* Settings */,
-				9226EEF71915DB610014B319 /* MyRequests */,
-				9226EEF61915DB560014B319 /* MyOffers */,
 				9226EEE51915B7680014B319 /* CreateCarPoolOffer */,
 				9226EEDE19157D100014B319 /* Login */,
 				9226EEDA19157BDA0014B319 /* Home */,
@@ -456,8 +455,8 @@
 			children = (
 				9226EEEA1915B82B0014B319 /* LocationManager.h */,
 				9226EEEB1915B82B0014B319 /* LocationManager.m */,
-				9217A59919231724005E3A36 /* InstallationManager.h */,
-				9217A59A19231724005E3A36 /* InstallationManager.m */,
+				9217A59919231724005E3A36 /* PushNotificationManager.h */,
+				9217A59A19231724005E3A36 /* PushNotificationManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -481,26 +480,6 @@
 				9217A5AB1924681E005E3A36 /* Comment.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		9226EEF61915DB560014B319 /* MyOffers */ = {
-			isa = PBXGroup;
-			children = (
-				9226EEFB1915DB9A0014B319 /* MyOffersViewController.h */,
-				9226EEFC1915DB9A0014B319 /* MyOffersViewController.m */,
-				9226EF241916A5AB0014B319 /* MyOfferCell.h */,
-				9226EF251916A5AB0014B319 /* MyOfferCell.m */,
-			);
-			path = MyOffers;
-			sourceTree = "<group>";
-		};
-		9226EEF71915DB610014B319 /* MyRequests */ = {
-			isa = PBXGroup;
-			children = (
-				9226EEFE1915DBAA0014B319 /* MyRequestsViewController.h */,
-				9226EEFF1915DBAA0014B319 /* MyRequestsViewController.m */,
-			);
-			path = MyRequests;
 			sourceTree = "<group>";
 		};
 		9226EF011915DCD30014B319 /* Account */ = {
@@ -582,6 +561,19 @@
 				9226EF37191707F10014B319 /* poweredByGoogle.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		923E15D21929215200AD1B5A /* MyActivities */ = {
+			isa = PBXGroup;
+			children = (
+				923E15D31929215200AD1B5A /* MyOfferCell.h */,
+				923E15D41929215200AD1B5A /* MyOfferCell.m */,
+				923E15D919292F7700AD1B5A /* MyRequestCell.h */,
+				923E15DA19292F7700AD1B5A /* MyRequestCell.m */,
+				923E15D51929215200AD1B5A /* MyActivitiesViewController.h */,
+				923E15D61929215200AD1B5A /* MyActivitiesViewController.m */,
+			);
+			path = MyActivities;
 			sourceTree = "<group>";
 		};
 		928266C8191E9B6B001AD534 /* Subclasses */ = {
@@ -749,10 +741,10 @@
 				927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */,
 				9226EEAA191573530014B319 /* AppDelegate.m in Sources */,
 				9226EED51915789F0014B319 /* MenuViewController.m in Sources */,
-				9226EF261916A5AB0014B319 /* MyOfferCell.m in Sources */,
 				928266CE191EABF7001AD534 /* LocationSearchClient.m in Sources */,
-				9217A59B19231724005E3A36 /* InstallationManager.m in Sources */,
+				9217A59B19231724005E3A36 /* PushNotificationManager.m in Sources */,
 				9217A5AC1924681E005E3A36 /* Comment.m in Sources */,
+				923E15D71929215200AD1B5A /* MyOfferCell.m in Sources */,
 				920917F81927ADA3009701FA /* UIImageView+Additions.m in Sources */,
 				9226EF1D19169F810014B319 /* UITableView+Additions.m in Sources */,
 				9226EF231916A4370014B319 /* CarPoolRequest.m in Sources */,
@@ -760,10 +752,8 @@
 				9226EF31191700830014B319 /* LocationSearchHeaderView.m in Sources */,
 				92881405191DD6BF00726DD8 /* User.m in Sources */,
 				9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */,
-				9226EEFD1915DB9A0014B319 /* MyOffersViewController.m in Sources */,
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
 				920917F51927AD4B009701FA /* RequestDetailViewController.m in Sources */,
-				9226EF001915DBAA0014B319 /* MyRequestsViewController.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				9217A5A319245214005E3A36 /* main.js in Sources */,
@@ -780,9 +770,11 @@
 				927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */,
 				9217A5A919245AD9005E3A36 /* InboxViewController.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,
+				923E15DB19292F7700AD1B5A /* MyRequestCell.m in Sources */,
 				920918041927EDEA009701FA /* CommentClient.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,
 				9217A59819231698005E3A36 /* Installation.m in Sources */,
+				923E15D81929215200AD1B5A /* MyActivitiesViewController.m in Sources */,
 				9226EF051915DCDF0014B319 /* AccountViewController.m in Sources */,
 				920918011927DE1E009701FA /* CommentCell.m in Sources */,
 				9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */,
@@ -902,7 +894,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Aryan Ghassemi (T5E8BV8RVA)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;

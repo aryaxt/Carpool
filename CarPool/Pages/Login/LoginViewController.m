@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "InstallationManager.h"
+#import "PushNotificationManager.h"
 
 @implementation LoginViewController
 
@@ -59,7 +59,7 @@
 
 - (void)loginSucceeded
 {
-    [[InstallationManager sharedInstance] registerDeviceTokenWithParse];
+    [[PushNotificationManager sharedInstance] registerDeviceWithParse];
     
     [self performSegueWithIdentifier:@"LoginSuccess" sender:self];
 }

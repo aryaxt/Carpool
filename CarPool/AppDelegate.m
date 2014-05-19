@@ -15,7 +15,7 @@
 #import "Period.h"
 #import "CarPoolOffer.h"
 #import <Parse/Parse.h>
-#import "InstallationManager.h"
+#import "PushNotificationManager.h"
 
 @implementation AppDelegate
 
@@ -91,7 +91,7 @@
 
 - (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
 {
-    [InstallationManager sharedInstance].deviceToken = deviceToken;
+    [PushNotificationManager sharedInstance].deviceToken = deviceToken;
 }
 
 - (void)application:(UIApplication *)application didFailToRegisterForRemoteNotificationsWithError:(NSError *)error
@@ -101,7 +101,7 @@
 
 - (void)application:(UIApplication *)application didReceiveRemoteNotification:(NSDictionary *)userInfo
 {
-    [PFPush handlePush:userInfo];
+    [[PushNotificationManager sharedInstance] handlePushNotification:userInfo];
 }
 
 @end
