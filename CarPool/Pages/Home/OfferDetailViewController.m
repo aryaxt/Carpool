@@ -24,16 +24,6 @@
     [self.view addGestureRecognizer:panRecognizer];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"CreateRequestViewController"])
-    {
-        CreateRequestViewController *vc = (CreateRequestViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
-        vc.delegate = self;
-        vc.offer = self.carPoolOffer;
-    }
-}
-
 #pragma mark - GestureRecognizer -
 
 - (void)panDetected:(UIPanGestureRecognizer *)panRecognizer
@@ -58,17 +48,9 @@
     [self.delegate offerDetailViewControllerDidSelectExpand];
 }
 
-#pragma mark - CreateRequestViewControllerDelegate -
-
-- (void)createRequestViewControllerDidSelectCancel
+- (IBAction)requestOfferSelected:(id)sender
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
-- (void)createRequestViewControllerDidCreateOffer:(CarPoolOffer *)offr
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-    [self alertWithtitle:@"Yay" andMessage:@"Offer was created"];
+    [self.delegate offerDetailViewControllerDidSelectRequestForOffer:self.carPoolOffer];
 }
 
 #pragma mark - Setter & Getter -

@@ -173,6 +173,7 @@
                     <connections>
                         <outlet property="mapView" destination="jPe-J5-nYf" id="wqJ-oW-j7C"/>
                         <outlet property="tableView" destination="aLD-7q-1MG" id="Dhe-uc-9S4"/>
+                        <segue destination="IWh-Sh-QDo" kind="push" identifier="CreateRequestViewController" id="erW-pf-wU3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hiA-uS-Ubf" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -261,7 +262,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="olk-Y5-AwJ" kind="modal" identifier="CreateRequestViewController" id="tZ8-6w-Upf"/>
+                                    <action selector="requestOfferSelected:" destination="gyc-uE-Tqn" eventType="touchUpInside" id="xTA-km-wIg"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -283,21 +284,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ur1-ot-Epk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1466" y="78"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Iyd-gZ-3R5">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="olk-Y5-AwJ" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="WWA-RB-nIi">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="IWh-Sh-QDo" kind="relationship" relationship="rootViewController" id="2m6-eE-GTA"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="A0x-xo-u99" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1878" y="83"/>
         </scene>
         <!--Create Request View Controller - Create Offer-->
         <scene sceneID="Xsk-0K-cmM">
@@ -372,11 +358,6 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Create Offer" id="D01-Cc-HCE">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="Gds-0S-iwF">
-                            <connections>
-                                <action selector="cancelSelected:" destination="IWh-Sh-QDo" id="dJ2-xb-MaF"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Send" id="g0S-UM-ouL">
                             <connections>
                                 <action selector="sendSelected:" destination="IWh-Sh-QDo" id="CY1-tY-1r0"/>
@@ -393,7 +374,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKY-Ti-gj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2296" y="83"/>
+            <point key="canvasLocation" x="1878" y="67"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="llL-cr-jXy">
@@ -571,7 +552,7 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="b0z-nY-yF6">
                             <connections>
-                                <segue destination="uOg-0I-MpC" kind="modal" identifier="CreateOfferViewController" id="DkP-VF-fLn"/>
+                                <segue destination="ilB-Po-NVU" kind="push" identifier="CreateOfferViewController" id="Tkw-P3-ymQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -803,21 +784,6 @@
             </objects>
             <point key="canvasLocation" x="1466" y="1435"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="Tzc-4u-dc6">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="uOg-0I-MpC" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aE7-M1-v0U">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="ilB-Po-NVU" kind="relationship" relationship="rootViewController" id="e0v-C6-mgZ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vRf-gB-dJn" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1466" y="753"/>
-        </scene>
         <!--Create Offer View Controller - Create Offer-->
         <scene sceneID="Rbr-bn-DMQ">
             <objects>
@@ -942,12 +908,10 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <toolbarItems>
+                        <barButtonItem systemItem="add" id="XyM-nQ-Lfi"/>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Create Offer" id="yn5-DJ-eUW">
-                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="SjD-Kb-R81">
-                            <connections>
-                                <action selector="cancelSelected:" destination="ilB-Po-NVU" id="raJ-zJ-kEl"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Create" id="S0h-iq-qcd">
                             <connections>
                                 <action selector="createSelected:" destination="ilB-Po-NVU" id="3ch-w9-6Yx"/>
@@ -955,6 +919,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         </barButtonItem>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="btnCloseMessage" destination="BOu-gz-ob7" id="PHd-VM-8sQ"/>
                         <outlet property="datePicker" destination="NuE-QL-Kbj" id="TIm-q5-CY0"/>
@@ -968,7 +933,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8m-0N-5Di" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1878" y="753"/>
+            <point key="canvasLocation" x="1466" y="753"/>
         </scene>
         <!--Location Search View Controller-->
         <scene sceneID="cNs-yJ-msj">
@@ -1029,7 +994,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBB-HF-5Ms" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2306" y="753"/>
+            <point key="canvasLocation" x="1878" y="753"/>
         </scene>
     </scenes>
     <resources>

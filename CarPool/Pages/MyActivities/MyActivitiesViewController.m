@@ -47,7 +47,7 @@
 {
     if ([segue.identifier isEqual:@"CreateOfferViewController"])
     {
-        CreateOfferViewController *vc = (CreateOfferViewController *)((UINavigationController *)segue.destinationViewController).topViewController;
+        CreateOfferViewController *vc = segue.destinationViewController;
         vc.delegate = self;
     }
 }
@@ -56,7 +56,7 @@
 
 - (void)populateData
 {
-    int count = (self.segmentedControl.selectedSegmentIndex == 0) ? self.offers.count : self.requests.count;
+    NSInteger count = (self.segmentedControl.selectedSegmentIndex == 0) ? self.offers.count : self.requests.count;
     int insertAnimation = (self.segmentedControl.selectedSegmentIndex == 0) ? UITableViewRowAnimationLeft : UITableViewRowAnimationRight;
     int deleteAnimation = (self.segmentedControl.selectedSegmentIndex == 0) ? UITableViewRowAnimationRight : UITableViewRowAnimationLeft;
     
@@ -210,18 +210,11 @@
 
 #pragma mark - CreateOfferViewControllerDelegate -
 
-- (void)createOfferViewControllerDidSelectCancel
-{
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 - (void)createOfferViewControllerDidCreateOffer:(CarPoolOffer *)offer
 {
-    [self dismissViewControllerAnimated:YES completion:^{
-        [self.offers insertObject:offer atIndex:0];
-        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
-                              withRowAnimation:UITableViewRowAnimationTop];
-    }];
+    [self.offers insertObject:offer atIndex:0];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+                          withRowAnimation:UITableViewRowAnimationTop];
 }
 
 #pragma mark - SlideNavigationController Methods -

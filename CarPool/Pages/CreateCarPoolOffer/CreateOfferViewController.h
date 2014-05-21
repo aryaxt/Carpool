@@ -14,7 +14,6 @@
 #import "CarPoolOfferClient.h"
 
 @protocol CreateOfferViewControllerDelegate
-- (void)createOfferViewControllerDidSelectCancel;
 - (void)createOfferViewControllerDidCreateOffer:(CarPoolOffer *)offer;
 @end
 
@@ -34,7 +33,6 @@
 @property (nonatomic, assign) CGRect messageViewOriginalFrame;
 
 - (IBAction)createSelected:(id)sender;
-- (IBAction)cancelSelected:(id)sender;
 - (IBAction)segmentedControlChanged:(id)sender;
 - (IBAction)datePickerChangedValue:(id)sender;
 - (IBAction)closeMessageSelected:(id)sender;

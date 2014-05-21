@@ -8,16 +8,16 @@
 
 #import "BaseViewController.h"
 #import "CarPoolOffer.h"
-#import "CreateRequestViewController.h"
 
 @protocol OfferDetailViewControllerDelegate <NSObject>
 - (void)offerDetailViewControllerDidSelectNext;
 - (void)offerDetailViewControllerDidSelectPrevious;
 - (void)offerDetailViewControllerDidSelectExpand;
 - (void)offerDetailViewControllerDidDetectPan:(UIPanGestureRecognizer *)pan;
+- (void)offerDetailViewControllerDidSelectRequestForOffer:(CarPoolOffer *)offer;
 @end
 
-@interface OfferDetailViewController : BaseViewController <CreateRequestViewControllerDelegate>
+@interface OfferDetailViewController : BaseViewController
 
 @property (nonatomic, weak) id <OfferDetailViewControllerDelegate> delegate;
 @property (nonatomic, strong) CarPoolOffer *carPoolOffer;
@@ -32,5 +32,6 @@
 - (IBAction)nextSelected:(id)sender;
 - (IBAction)previousSelected:(id)sender;
 - (IBAction)titleSelected:(id)sender;
+- (IBAction)requestOfferSelected:(id)sender;
 
 @end

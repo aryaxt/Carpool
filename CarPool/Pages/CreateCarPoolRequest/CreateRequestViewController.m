@@ -9,6 +9,7 @@
 #import "CreateRequestViewController.h"
 #import "UIViewController+Additions.h"
 #import "UIView+Additions.h"
+#import "UIAlertView+Blocks.h"
 
 @implementation CreateRequestViewController
 
@@ -73,14 +74,17 @@
         }
         else
         {
-            [self.delegate createRequestViewControllerDidCreateOffer:self.offer];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                            message:@"Your request was sent."
+                                                   cancelButtonItem:[RIButtonItem itemWithLabel:@"Ok"
+                                                                                         action:^{
+                
+                [self.navigationController popViewControllerAnimated:YES];
+            }] otherButtonItems:nil];
+            
+            [alert show];
         }
     }];
-}
-
-- (IBAction)cancelSelected:(id)sender
-{
-    [self.delegate createRequestViewControllerDidSelectCancel];
 }
 
 - (IBAction)closeMessageSelected:(id)sender

@@ -11,6 +11,7 @@
 #import "CarPoolRequest.h"
 #import "LocationManager.h"
 #import "UIViewController+Additions.h"
+#import "CreateRequestViewController.h"
 
 @implementation HomeViewController
 
@@ -62,6 +63,15 @@
     [super viewWillDisappear:animated];
     
     [self.offerDetailViewController.view removeFromSuperview];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"CreateRequestViewController"])
+    {
+        CreateRequestViewController *vc = segue.destinationViewController;
+        vc.offer = sender;
+    }
 }
 
 #pragma mark - SlideNavigationController Methods -
@@ -214,6 +224,11 @@
                         withDuration:DETAIL_VIEW_ANIMATION];
         }
     }
+}
+
+- (void)offerDetailViewControllerDidSelectRequestForOffer:(CarPoolOffer *)offer
+{
+    [self performSegueWithIdentifier:@"CreateRequestViewController" sender:offer];
 }
 
 #pragma mark - Private MEthods -

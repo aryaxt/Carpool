@@ -13,6 +13,7 @@
 #import "LocationSearchViewController.h"
 #import "UIViewController+Additions.h"
 #import "UIView+Additions.h"
+#import "UIAlertView+Blocks.h"
 #import "User.h"
 
 @implementation CreateOfferViewController
@@ -94,18 +95,22 @@
         
         if (succeeded)
         {
-            [self.delegate createOfferViewControllerDidCreateOffer:self.offer];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
+                                                            message:@"Your request was sent."
+                                                   cancelButtonItem:[RIButtonItem itemWithLabel:@"Ok"
+                                                                                         action:^{
+                                                                                             
+                                                                                             [self.navigationController popViewControllerAnimated:YES];
+                                                                                             [self.delegate createOfferViewControllerDidCreateOffer:self.offer];
+                                                                                         }] otherButtonItems:nil];
+            
+            [alert show];
         }
         else
         {
             [self alertWithtitle:@"Error" andMessage:@"There was a problem creating this offer"];
         }
     }];
-}
-
-- (IBAction)cancelSelected:(id)sender
-{
-    [self.delegate createOfferViewControllerDidSelectCancel];
 }
 
 - (IBAction)segmentedControlChanged:(id)sender

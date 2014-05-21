@@ -13,14 +13,8 @@
 #import "LocationSearchViewController.h"
 #import "Comment.h"
 
-@protocol CreateRequestViewControllerDelegate <NSObject>
-- (void)createRequestViewControllerDidSelectCancel;
-- (void)createRequestViewControllerDidCreateOffer:(CarPoolOffer *)offer;
-@end
-
 @interface CreateRequestViewController : BaseViewController <LocationSearchViewControllerDelegate>
 
-@property (nonatomic, weak) id <CreateRequestViewControllerDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UITextView *txtMessage;
 @property (nonatomic, strong) IBOutlet UITextField *txtFrom;
 @property (nonatomic, strong) IBOutlet UITextField *txtTo;
@@ -32,7 +26,6 @@
 @property (nonatomic, assign) CGRect messageViewOriginalFrame;
 
 - (IBAction)sendSelected:(id)sender;
-- (IBAction)cancelSelected:(id)sender;
 - (IBAction)closeMessageSelected:(id)sender;
 
 @end
