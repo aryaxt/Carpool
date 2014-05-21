@@ -14,6 +14,7 @@
 @dynamic name;
 @dynamic gender;
 @dynamic photoUrl;
+@dynamic profile;
 @dynamic friends;
 @dynamic blockedUsers;
 

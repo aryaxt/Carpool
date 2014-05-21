@@ -13,6 +13,6 @@
 @interface CarPoolRequestEngine : NSObject
 
 - (void)createRequest:(CarPoolRequest *)request withInitialComment:(Comment *)comment andCompletion:(void (^)(NSError *error))completion;
-- (void)updateRequest:(CarPoolRequest *)request withStatus:(BOOL)status andCompletion:(void (^)(NSError *error))completion;
+- (void)updateRequest:(CarPoolRequest *)request withStatus:(BOOL)status andCompletion:(void (^)(Comment *comment, NSError *error))completion;
 
 @end

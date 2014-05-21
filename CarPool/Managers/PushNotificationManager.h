@@ -10,7 +10,7 @@
 #import "Installation.h"
 
 @protocol PushNotificationHandler <NSObject>
-- (BOOL)canHandlePushNotificationWithType:(NSString *)type;
+- (BOOL)canHandlePushNotificationWithType:(NSString *)type andData:(NSDictionary *)data;
 @end
 
 @interface PushNotificationManager : NSObject

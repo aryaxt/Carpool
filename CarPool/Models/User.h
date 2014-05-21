@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
+#import "Profile.h"
 
 @interface User : PFUser<PFSubclassing>
 
@@ -15,6 +16,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSNumber *gender;
 @property (nonatomic, strong) NSString *photoUrl;
+@property (nonatomic, strong) Profile *profile;
 @property (nonatomic, strong, readonly) PFRelation *friends;
 @property (nonatomic, strong, readonly) PFRelation *blockedUsers;
 

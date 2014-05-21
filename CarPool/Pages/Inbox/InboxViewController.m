@@ -16,23 +16,8 @@
 {
     [super viewDidLoad];
     
-    self.comments = [NSMutableArray array];
-    
     [self showLoader];
-    
-    [self.commentClient fetchMyCommentsWithCompletion:^(NSArray *comments, NSError *error) {
-        [self hideLoader];
-        
-        if (error)
-        {
-            [self alertWithtitle:@"Error" andMessage:@"There was a problem loading requests"];
-        }
-        else
-        {
-            [self filterAndAddComments:comments];
-            [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:self.comments.count];
-        }
-    }];
+    [self fetchAndPopulateDataAnimated:YES withCompletion:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -62,12 +47,13 @@
 
 #pragma mark - PushNotificationHandler -
 
-- (BOOL)canHandlePushNotificationWithType:(NSString *)type
+- (BOOL)canHandlePushNotificationWithType:(NSString *)type andData:(NSDictionary *)data
 {
     if ([type isEqualToString:PushNotificationTypeComment])
     {
-        // Do Stuff
-        
+        [self fetchAndPopulateDataAnimated:NO withCompletion:^{
+            // Do some animation to tell the user they recieved a new message
+        }];
         
         return YES;
     }
@@ -76,6 +62,30 @@
 }
 
 #pragma mark - Private Methods -
+
+- (void)fetchAndPopulateDataAnimated:(BOOL)animated withCompletion:(void (^)(void))completion
+{
+    [self.commentClient fetchMyCommentsWithCompletion:^(NSArray *comments, NSError *error) {
+        [self hideLoader];
+        
+        if (error)
+        {
+            [self alertWithtitle:@"Error" andMessage:@"There was a problem loading requests"];
+        }
+        else
+        {
+            [self filterAndAddComments:comments];
+            
+            if (animated)
+                [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:self.comments.count];
+            else
+                [self.tableView reloadData];
+            
+            if (completion)
+                completion();
+        }
+    }];
+}
 
 - (void)filterAndAddComments:(NSArray *)comments
 {
@@ -117,7 +127,9 @@
         }
     }
     
-    self.comments = [dictionary allValues];
+    NSSortDescriptor *sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"createdAt" ascending:NO];
+    NSArray *sortedInbox = [[dictionary allValues] sortedArrayUsingDescriptors:@[sortDescriptor]];
+    self.comments = [sortedInbox mutableCopy];
 }
 
 #pragma mark - UITableView Delegate & Datasource -

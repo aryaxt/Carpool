@@ -48,18 +48,18 @@
     }];
 }
 
-- (void)updateRequest:(CarPoolRequest *)request withStatus:(BOOL)status andCompletion:(void (^)(NSError *error))completion
+- (void)updateRequest:(CarPoolRequest *)request withStatus:(BOOL)status andCompletion:(void (^)(Comment *comment, NSError *error))completion
 {
     if (request.status != nil)
     {
-        completion([NSError errorWithDomain:@"Cannot change status of request" code:0 userInfo:nil]);
+        completion(nil, [NSError errorWithDomain:@"Cannot change status of request" code:0 userInfo:nil]);
         return;
     }
     
     [request refreshInBackgroundWithBlock:^(PFObject *object, NSError *error) {
         if (error)
         {
-            completion(error);
+            completion(nil, error);
             return;
         }
         
@@ -67,7 +67,7 @@
         
         if (refreshedRequest.status != nil)
         {
-            completion([NSError errorWithDomain:@"Cannot change status of request" code:0 userInfo:nil]);
+            completion(nil, [NSError errorWithDomain:@"Cannot change status of request" code:0 userInfo:nil]);
             return;
         }
         
@@ -75,7 +75,7 @@
         [refreshedRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error)
             {
-                completion(error);
+                completion(nil, error);
                 return;
             }
             
@@ -88,12 +88,12 @@
             [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                 if (error)
                 {
-                    completion(error);
+                    completion(nil, error);
                     [comment deleteEventually];
                 }
                 else
                 {
-                    completion(nil);
+                    completion(comment, nil);
                 }
             }];
         }];

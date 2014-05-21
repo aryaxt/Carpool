@@ -33,7 +33,25 @@ NSString *PushNotificationTypeComment = @"comment";
 {
     NSDictionary *data = [userInfo objectForKey:@"data"];
     NSString *type = [data objectForKey:@"type"];
-    [[NSNotificationCenter defaultCenter] postNotificationName:type object:data];
+    
+    BOOL canViewControllerHandleNotification = NO;
+    UIViewController *vc = [SlideNavigationController sharedInstance].topViewController;
+    
+    if ([vc conformsToProtocol:@protocol(PushNotificationHandler)])
+    {
+        canViewControllerHandleNotification = [(id <PushNotificationHandler>)vc canHandlePushNotificationWithType:type andData:data];
+    }
+    
+    if (!canViewControllerHandleNotification)
+    {
+        //TODO: Do something smarter here
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"PushNotification"
+                                                        message:@"Fix me"
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)registerDeviceWithParse

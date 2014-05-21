@@ -68,30 +68,38 @@
 
 - (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
 {
-    FBRequest *request = [FBRequest requestForMe];
-    
-    [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
-        if (!error) {
-            NSDictionary *userData = (NSDictionary *)result;
-            
-            NSString *photoUrl = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", userData[@"id"]];
-            
-            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-            [dateFormatter setDateFormat:@"MM/dd/yyyy"];
-            NSDate *birthDay = [dateFormatter dateFromString:userData[@"birthday"]];
-            NSNumber *gender = [userData[@"gender"] isEqualToString:@"male"] ? @1 : @2;
-            
-            PFUser *user = [PFUser currentUser];
-            [user setValue:userData[@"name"] forKey:@"name"];
-            [user setValue:birthDay forKey:@"birthday"];
-            [user setValue:gender forKey:@"gender"];
-            [user setValue:photoUrl forKey:@"photoUrl"];
-            
-            [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-                [self loginSucceeded];
-            }];
-        }
-    }];
+    if ([PFFacebookUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        FBRequest *request = [FBRequest requestForMe];
+        
+        [request startWithCompletionHandler:^(FBRequestConnection *connection, id result, NSError *error) {
+            if (!error)
+            {
+                NSDictionary *userData = (NSDictionary *)result;
+                
+                NSString *photoUrl = [NSString stringWithFormat:@"https://graph.facebook.com/%@/picture?type=large&return_ssl_resources=1", userData[@"id"]];
+                
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"MM/dd/yyyy"];
+                NSDate *birthDay = [dateFormatter dateFromString:userData[@"birthday"]];
+                NSNumber *gender = [userData[@"gender"] isEqualToString:@"male"] ? @1 : @2;
+                
+                PFUser *user = [PFUser currentUser];
+                [user setValue:userData[@"name"] forKey:@"name"];
+                [user setValue:birthDay forKey:@"birthday"];
+                [user setValue:gender forKey:@"gender"];
+                [user setValue:photoUrl forKey:@"photoUrl"];
+                
+                [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+                    [self loginSucceeded];
+                }];
+            }
+        }];
+    }
+    else
+    {
+        [self loginSucceeded];
+    }
 }
 
 - (void)logInViewController:(PFLogInViewController *)logInController didFailToLogInWithError:(NSError *)error

@@ -1,13 +1,5 @@
 
 
-Parse.Cloud.beforeSave("User", function(request, response) {
-	if (request.object.get("name") == null) {
-		request.object.set('name', request.object.get("username"));
-	}
-	
-	response.success();
-});
-
 Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {
 	if (request.object.get("time") == null) {
 		response.error("time is missing");

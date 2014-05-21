@@ -17,8 +17,9 @@
 #import "CommentCell.h"
 #import "CommentClient.h"
 #import "CarPoolRequestEngine.h"
+#import "PushNotificationManager.h"
 
-@interface RequestDetailViewController : BaseViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate>
+@interface RequestDetailViewController : BaseViewController <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, PushNotificationHandler>
 
 @property (nonatomic, strong) CarPoolRequest *request;
 @property (nonatomic, strong) CarPoolRequestEngine *requestEngine;

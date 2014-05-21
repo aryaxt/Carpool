@@ -18,6 +18,6 @@
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) CommentClient *commentClient;
-@property (nonatomic, strong) NSArray *comments;
+@property (nonatomic, strong) NSMutableArray *comments;
 
 @end

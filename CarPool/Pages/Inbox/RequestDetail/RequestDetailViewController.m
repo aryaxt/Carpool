@@ -29,7 +29,7 @@
     self.txtNewMessage.layer.cornerRadius = 5;
     
     [self fetchRequestDetail];
-    [self fetchComments];
+    [self fetchCommentsAnimated:YES withCompletion:nil];
 }
 
 #pragma mark - Private Methods -
@@ -85,7 +85,7 @@
     }];
 }
 
-- (void)fetchComments
+- (void)fetchCommentsAnimated:(BOOL)animated withCompletion:(void (^)(void))completion
 {
     [self.loadCommentIndicatorView startAnimating];
     self.btnSendMessage.hidden = YES;
@@ -96,7 +96,14 @@
         [self.loadCommentIndicatorView stopAnimating];
         
         self.comments = (NSMutableArray *)comments;
-        [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:1];
+        
+        if (animated)
+            [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:1];
+        else
+            [self.tableView reloadData];
+        
+        if (completion)
+            completion();
     }];
 }
 
@@ -145,7 +152,9 @@
     self.btnAccept.enabled = NO;
     self.btnDecline.enabled = NO;
     
-    [self.requestEngine updateRequest:self.request withStatus:status andCompletion:^(NSError *error) {
+    [self.requestEngine updateRequest:self.request
+                           withStatus:status
+                        andCompletion:^(Comment *comment, NSError *error) {
         if (error)
         {
             self.btnAccept.enabled = YES;
@@ -154,7 +163,10 @@
         }
         else
         {
-            // Update state after success
+            [self.comments addObject:comment];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:1];
+            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
         }
     }];
 }
@@ -269,8 +281,23 @@
         return self.commentHeaderView.frame.size.height;
 }
 
-#pragma mark - UITextViewDelegate -
+#pragma mark - PushNotificationHandler -
 
+- (BOOL)canHandlePushNotificationWithType:(NSString *)type andData:(NSDictionary *)data
+{
+    if ([type isEqualToString:PushNotificationTypeComment] &&
+        [self.request.objectId isEqual:[data objectForKey:@"requestId"]])
+    {
+        [self fetchCommentsAnimated:NO withCompletion:^{
+            NSIndexPath *indeexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:1];
+            [self.tableView scrollToRowAtIndexPath:indeexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }];
+        
+        return YES;
+    }
+    
+    return NO;
+}
 
 #pragma mark - MKMapViewDelegate -
 
