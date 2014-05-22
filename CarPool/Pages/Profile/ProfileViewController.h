@@ -7,7 +7,22 @@
 //
 
 #import "BaseViewController.h"
+#import <Parse/Parse.h>
+#import "UIImageView+Additions.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "User.h"
+#import "SlideNavigationController.h"
 
-@interface ProfileViewController : BaseViewController
+@interface ProfileViewController : BaseViewController <SlideNavigationControllerDelegate>
+
+@property (nonatomic, strong) User *user;
+@property (nonatomic, strong) IBOutlet UIImageView *imgProfilePicture;
+@property (nonatomic, strong) IBOutlet UILabel *lblName;
+@property (nonatomic, strong) IBOutlet UILabel *lblAboutMe;
+@property (nonatomic, strong) IBOutlet UILabel *lblInterests;
+@property (nonatomic, strong) IBOutlet UILabel *lblMusicMoviesBooks;
+
+- (IBAction)addFriendSelected:(id)sender;
+- (IBAction)blockUserSelected:(id)sender;
 
 @end

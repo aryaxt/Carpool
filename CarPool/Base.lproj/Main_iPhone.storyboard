@@ -285,7 +285,7 @@
             </objects>
             <point key="canvasLocation" x="1466" y="78"/>
         </scene>
-        <!--Create Request View Controller - Create Offer-->
+        <!--Create Request View Controller - Create Request-->
         <scene sceneID="Xsk-0K-cmM">
             <objects>
                 <viewController storyboardIdentifier="CreateRequestViewController" id="IWh-Sh-QDo" customClass="CreateRequestViewController" sceneMemberID="viewController">
@@ -357,7 +357,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Create Offer" id="D01-Cc-HCE">
+                    <navigationItem key="navigationItem" title="Create Request" id="D01-Cc-HCE">
                         <barButtonItem key="rightBarButtonItem" title="Send" id="g0S-UM-ouL">
                             <connections>
                                 <action selector="sendSelected:" destination="IWh-Sh-QDo" id="CY1-tY-1r0"/>
@@ -391,16 +391,73 @@
             </objects>
             <point key="canvasLocation" x="1036" y="-623"/>
         </scene>
-        <!--Account View Controller - Account-->
+        <!--Profile View Controller - Account-->
         <scene sceneID="KoL-GR-dLp">
             <objects>
-                <viewController storyboardIdentifier="AccountViewController" title="Account" id="lNv-P4-8RP" customClass="AccountViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ProfileViewController" title="Account" id="lNv-P4-8RP" customClass="ProfileViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Md1-Tq-ReB">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bxm-qs-eQV">
+                                <rect key="frame" x="133" y="89" width="172" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="RO1-Ke-i6f">
+                                <rect key="frame" x="20" y="211" width="285" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="VHl-zy-2gV">
+                                <rect key="frame" x="10" y="77" width="109" height="108"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yrH-la-u1d">
+                                <rect key="frame" x="20" y="332" width="285" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="uXU-IG-7rb">
+                                <rect key="frame" x="20" y="439" width="285" height="76"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="kLw-Q8-acv">
+                                <rect key="frame" x="131" y="118" width="76" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add Friend">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addFriendSelected:" destination="lNv-P4-8RP" eventType="touchUpInside" id="3Iv-zB-7JH"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eyo-Ir-vsz">
+                                <rect key="frame" x="131" y="155" width="76" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Block User">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="blockUserSelected:" destination="lNv-P4-8RP" eventType="touchUpInside" id="pW8-av-gRq"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Account" id="9ZN-fp-tFJ"/>
+                    <navigationItem key="navigationItem" title="Profile" id="9ZN-fp-tFJ"/>
+                    <connections>
+                        <outlet property="imgProfilePicture" destination="VHl-zy-2gV" id="LRO-XN-nTg"/>
+                        <outlet property="lblAboutMe" destination="RO1-Ke-i6f" id="DBW-80-zJm"/>
+                        <outlet property="lblInterests" destination="yrH-la-u1d" id="4pB-FK-mHZ"/>
+                        <outlet property="lblMusicMoviesBooks" destination="uXU-IG-7rb" id="bh5-dF-Hra"/>
+                        <outlet property="lblName" destination="bxm-qs-eQV" id="0AM-Qf-gxQ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4m-c0-dxi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

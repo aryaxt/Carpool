@@ -45,7 +45,6 @@
 		9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEEB1915B82B0014B319 /* LocationManager.m */; };
 		9226EEEE1915B8E70014B319 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EEED1915B8E70014B319 /* CoreLocation.framework */; };
 		9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEF11915CBE90014B319 /* CarPoolOffer.m */; };
-		9226EF051915DCDF0014B319 /* AccountViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF041915DCDF0014B319 /* AccountViewController.m */; };
 		9226EF081915DCEB0014B319 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF071915DCEB0014B319 /* SettingsViewController.m */; };
 		9226EF0B1915E18A0014B319 /* Period.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF0A1915E18A0014B319 /* Period.m */; };
 		9226EF13191694FC0014B319 /* CarPoolOfferClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF12191694FC0014B319 /* CarPoolOfferClient.m */; };
@@ -154,8 +153,6 @@
 		9226EEED1915B8E70014B319 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		9226EEF01915CBE90014B319 /* CarPoolOffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolOffer.h; sourceTree = "<group>"; };
 		9226EEF11915CBE90014B319 /* CarPoolOffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolOffer.m; sourceTree = "<group>"; };
-		9226EF031915DCDF0014B319 /* AccountViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountViewController.h; sourceTree = "<group>"; };
-		9226EF041915DCDF0014B319 /* AccountViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountViewController.m; sourceTree = "<group>"; };
 		9226EF061915DCEB0014B319 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		9226EF071915DCEB0014B319 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		9226EF091915E18A0014B319 /* Period.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Period.h; sourceTree = "<group>"; };
@@ -393,7 +390,6 @@
 				9226EF2B1916E3070014B319 /* LocationSearch */,
 				9226EF271916DA0E0014B319 /* SignUp */,
 				9226EF1719169CDC0014B319 /* Base */,
-				9226EF011915DCD30014B319 /* Account */,
 				9226EF021915DCD30014B319 /* Settings */,
 				9226EEE51915B7680014B319 /* CreateCarPoolOffer */,
 				9226EEDE19157D100014B319 /* Login */,
@@ -494,15 +490,6 @@
 				923E15E01929A67400AD1B5A /* Reference.m */,
 			);
 			path = Models;
-			sourceTree = "<group>";
-		};
-		9226EF011915DCD30014B319 /* Account */ = {
-			isa = PBXGroup;
-			children = (
-				9226EF031915DCDF0014B319 /* AccountViewController.h */,
-				9226EF041915DCDF0014B319 /* AccountViewController.m */,
-			);
-			path = Account;
 			sourceTree = "<group>";
 		};
 		9226EF021915DCD30014B319 /* Settings */ = {
@@ -801,7 +788,6 @@
 				9226EEA6191573530014B319 /* main.m in Sources */,
 				9217A59819231698005E3A36 /* Installation.m in Sources */,
 				923E15D81929215200AD1B5A /* MyActivitiesViewController.m in Sources */,
-				9226EF051915DCDF0014B319 /* AccountViewController.m in Sources */,
 				920918011927DE1E009701FA /* CommentCell.m in Sources */,
 				9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */,
 				928266D2191EFE05001AD534 /* CreateRequestViewController.m in Sources */,

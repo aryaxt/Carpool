@@ -10,7 +10,7 @@
 #import "SlideNavigationController.h"
 #import "UIViewController+Additions.h"
 #import "HomeViewController.h"
-#import "AccountViewController.h"
+#import "ProfileViewController.h"
 #import "SettingsViewController.h"
 #import "InboxViewController.h"
 #import "MyActivitiesViewController.h"
@@ -62,7 +62,7 @@
             break;
         
         case 3:
-        cell.textLabel.text = @"Account";
+        cell.textLabel.text = @"Profile";
         break;
         
         case 4:
@@ -99,7 +99,11 @@
             break;
         
         case 3:
-        viewContorller = [AccountViewController viewController];
+        {
+            ProfileViewController *vc = [ProfileViewController viewController];
+            vc.user = [User currentUser];
+            viewContorller = vc;
+        }
         break;
         
         case 4:

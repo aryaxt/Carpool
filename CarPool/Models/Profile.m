@@ -10,6 +10,9 @@
 #import <Parse/PFObject+Subclass.h>
 
 @implementation Profile
+@dynamic aboutMe;
+@dynamic interests;
+@dynamic musicMoviesBooks;
 
 + (NSString *)parseClassName
 {
