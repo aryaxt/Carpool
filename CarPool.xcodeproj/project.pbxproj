@@ -55,8 +55,6 @@
 		9226EF231916A4370014B319 /* CarPoolRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF221916A4370014B319 /* CarPoolRequest.m */; };
 		9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF291916DAA80014B319 /* SignUpViewController.m */; };
 		9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF2D1916E31F0014B319 /* LocationSearchViewController.m */; };
-		9226EF31191700830014B319 /* LocationSearchHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF30191700830014B319 /* LocationSearchHeaderView.m */; };
-		9226EF33191700940014B319 /* LocationSearchHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9226EF32191700940014B319 /* LocationSearchHeaderView.xib */; };
 		9226EF38191707F10014B319 /* poweredByGoogle.png in Resources */ = {isa = PBXBuildFile; fileRef = 9226EF37191707F10014B319 /* poweredByGoogle.png */; };
 		923E15D71929215200AD1B5A /* MyOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E15D41929215200AD1B5A /* MyOfferCell.m */; };
 		923E15D81929215200AD1B5A /* MyActivitiesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E15D61929215200AD1B5A /* MyActivitiesViewController.m */; };
@@ -64,6 +62,9 @@
 		923E15DE1929A54800AD1B5A /* Profile.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E15DD1929A54800AD1B5A /* Profile.m */; };
 		923E15E11929A67400AD1B5A /* Reference.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E15E01929A67400AD1B5A /* Reference.m */; };
 		923E15E51929A85000AD1B5A /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E15E41929A85000AD1B5A /* ProfileViewController.m */; };
+		923E94EA1930F6D3008411AA /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 923E94E91930F6D3008411AA /* filter.png */; };
+		923E94EE1930F894008411AA /* SearchFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94ED1930F894008411AA /* SearchFilterViewController.m */; };
+		923E94F11931178B008411AA /* SearchFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94F01931178B008411AA /* SearchFilter.m */; };
 		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
 		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
 		927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */; };
@@ -173,9 +174,6 @@
 		9226EF291916DAA80014B319 /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		9226EF2C1916E31F0014B319 /* LocationSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchViewController.h; sourceTree = "<group>"; };
 		9226EF2D1916E31F0014B319 /* LocationSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchViewController.m; sourceTree = "<group>"; };
-		9226EF2F191700830014B319 /* LocationSearchHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchHeaderView.h; sourceTree = "<group>"; };
-		9226EF30191700830014B319 /* LocationSearchHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchHeaderView.m; sourceTree = "<group>"; };
-		9226EF32191700940014B319 /* LocationSearchHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LocationSearchHeaderView.xib; sourceTree = "<group>"; };
 		9226EF37191707F10014B319 /* poweredByGoogle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = poweredByGoogle.png; sourceTree = "<group>"; };
 		923E15D31929215200AD1B5A /* MyOfferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOfferCell.h; sourceTree = "<group>"; };
 		923E15D41929215200AD1B5A /* MyOfferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOfferCell.m; sourceTree = "<group>"; };
@@ -189,6 +187,11 @@
 		923E15E01929A67400AD1B5A /* Reference.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reference.m; sourceTree = "<group>"; };
 		923E15E31929A85000AD1B5A /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
 		923E15E41929A85000AD1B5A /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
+		923E94E91930F6D3008411AA /* filter.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = filter.png; sourceTree = "<group>"; };
+		923E94EC1930F894008411AA /* SearchFilterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFilterViewController.h; sourceTree = "<group>"; };
+		923E94ED1930F894008411AA /* SearchFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFilterViewController.m; sourceTree = "<group>"; };
+		923E94EF1931178B008411AA /* SearchFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFilter.h; sourceTree = "<group>"; };
+		923E94F01931178B008411AA /* SearchFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFilter.m; sourceTree = "<group>"; };
 		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
@@ -430,6 +433,7 @@
 		9226EEDA19157BDA0014B319 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				923E94EB1930F887008411AA /* Search Filter */,
 				9226EEDB19157BEA0014B319 /* HomeViewController.h */,
 				9226EEDC19157BEA0014B319 /* HomeViewController.m */,
 				927ABFC2191DC14B00CC3A2B /* OfferDetailViewController.h */,
@@ -543,9 +547,6 @@
 			children = (
 				9226EF2C1916E31F0014B319 /* LocationSearchViewController.h */,
 				9226EF2D1916E31F0014B319 /* LocationSearchViewController.m */,
-				9226EF2F191700830014B319 /* LocationSearchHeaderView.h */,
-				9226EF30191700830014B319 /* LocationSearchHeaderView.m */,
-				9226EF32191700940014B319 /* LocationSearchHeaderView.xib */,
 			);
 			path = LocationSearch;
 			sourceTree = "<group>";
@@ -553,6 +554,7 @@
 		9226EF341917041C0014B319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				923E94E91930F6D3008411AA /* filter.png */,
 				928266C6191E9195001AD534 /* map.png */,
 				928266C2191E904F001AD534 /* currntLocation.png */,
 				927ABFB8191A170300CC3A2B /* closeButton.png */,
@@ -584,6 +586,17 @@
 				923E15E41929A85000AD1B5A /* ProfileViewController.m */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		923E94EB1930F887008411AA /* Search Filter */ = {
+			isa = PBXGroup;
+			children = (
+				923E94EC1930F894008411AA /* SearchFilterViewController.h */,
+				923E94ED1930F894008411AA /* SearchFilterViewController.m */,
+				923E94EF1931178B008411AA /* SearchFilter.h */,
+				923E94F01931178B008411AA /* SearchFilter.m */,
+			);
+			path = "Search Filter";
 			sourceTree = "<group>";
 		};
 		928266C8191E9B6B001AD534 /* Subclasses */ = {
@@ -687,11 +700,11 @@
 				9226EEB0191573530014B319 /* Main_iPad.storyboard in Resources */,
 				9226EEB5191573530014B319 /* Images.xcassets in Resources */,
 				9217A5A419245214005E3A36 /* global.json in Resources */,
-				9226EF33191700940014B319 /* LocationSearchHeaderView.xib in Resources */,
 				928266C4191E904F001AD534 /* currntLocation.png in Resources */,
 				9217A5A519245214005E3A36 /* index.html in Resources */,
 				92B568D619170E2900CEF58F /* calendar.png in Resources */,
 				92B568D719170E2900CEF58F /* startPoint.png in Resources */,
+				923E94EA1930F6D3008411AA /* filter.png in Resources */,
 				9226EEAD191573530014B319 /* Main_iPhone.storyboard in Resources */,
 				9226EEA4191573530014B319 /* InfoPlist.strings in Resources */,
 				927ABFB9191A170300CC3A2B /* closeButton.png in Resources */,
@@ -760,18 +773,19 @@
 				9226EF1D19169F810014B319 /* UITableView+Additions.m in Sources */,
 				9226EF231916A4370014B319 /* CarPoolRequest.m in Sources */,
 				920917FB1927B187009701FA /* MKMapView+Additions.m in Sources */,
-				9226EF31191700830014B319 /* LocationSearchHeaderView.m in Sources */,
 				92881405191DD6BF00726DD8 /* User.m in Sources */,
 				9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */,
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
 				920917F51927AD4B009701FA /* RequestDetailViewController.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				923E15E51929A85000AD1B5A /* ProfileViewController.m in Sources */,
+				923E94F11931178B008411AA /* SearchFilter.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				9217A5A319245214005E3A36 /* main.js in Sources */,
 				9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */,
 				923E15DE1929A54800AD1B5A /* Profile.m in Sources */,
 				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
+				923E94EE1930F894008411AA /* SearchFilterViewController.m in Sources */,
 				920918071927EF84009701FA /* CarPoolRequestEngine.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
 				9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */,

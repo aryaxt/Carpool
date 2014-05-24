@@ -24,6 +24,10 @@ typedef enum {
 {
     [super viewDidLoad];
     
+    self.locationSearchHeaderView.layer.borderWidth = .6;
+    self.locationSearchHeaderView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.mapView.delegate = self;
+    
     [self switchToSearchType:SearchTypeText animated:NO];
     
     UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
@@ -31,12 +35,6 @@ typedef enum {
                                                                   target:self
                                                                   action:@selector(cancelSelected:)];
     self.navigationItem.leftBarButtonItem = cancelItem;
-    
-    UIBarButtonItem *loadingItem = [[UIBarButtonItem alloc] initWithTitle:@"Change"
-                                                                    style:UIBarButtonItemStylePlain
-                                                                   target:self
-                                                                   action:@selector(searchTypeSelected:)];
-    self.navigationItem.rightBarButtonItem = loadingItem;
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -71,32 +69,92 @@ typedef enum {
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
-- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    return self.locationSearchHeaderView;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
-{
-    return self.locationSearchHeaderView.frame.size.height;
-}
-
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     [self.searchBar resignFirstResponder];
 }
 
+#pragma mark - PinEnabledMapViewDelegate -
+
+- (void)pinEnabledMapViewWillStartSearchingInCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    [self.indicatorView startAnimating];
+}
+
+- (void)pinEnabledMapViewDidFailToSearchWithError:(NSError *)error
+{
+    [self.indicatorView stopAnimating];
+}
+
+- (void)pinEnabledMapViewDidFindLocations:(NSArray *)locations
+{
+    [self.indicatorView stopAnimating];
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view
+{
+    UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Select Location" style:UIBarButtonItemStyleDone target:self action:@selector(mapLocationselected:)];
+    self.navigationItem.rightBarButtonItem = item;
+}
+
 #pragma mark - IBActions -
+
+- (void)mapLocationselected:(id)sender
+{
+    NSInteger index = [self.mapView.annotations indexOfObject:[self.mapView.selectedAnnotations firstObject]];
+    Location *location = [self.mapView locationAtIndex:index];
+    [self.delegate locationSearchViewControllerDidSelectLocation:location withTag:self.tag];
+}
 
 - (IBAction)cancelSelected:(id)sender
 {
     [self.delegate locationSearchViewControllerDidSelectCance];
 }
 
-- (void)searchTypeSelected:(id)sender
+- (IBAction)searchTypeSelected:(id)sender
 {
-    SearchType type = (self.mapView.frame.origin.x == 0) ? SearchTypeText : SearchTypeMap;
-    [self switchToSearchType:type animated:YES];
+    SearchType switchToType = (self.tableView.frame.origin.x == 0) ? SearchTypeMap : SearchTypeText;
+    [self switchToSearchType:switchToType animated:YES];
+}
+
+- (IBAction)currentLocationSelected:(id)sender
+{
+    LocationManager *locationManager = [LocationManager sharedInstance];
+    SearchType type = (self.tableView.frame.origin.x == 0) ? SearchTypeText : SearchTypeMap;
+    
+    if (type == SearchTypeText)
+    {
+        if (locationManager.authorizationStatus != kCLAuthorizationStatusAuthorized)
+        {
+            [self alertWithtitle:@"Error" andMessage:@"Location manager is disabled, please enable location manager and try again"];
+            return;
+        }
+        
+        [self.indicatorView startAnimating];
+        
+        [self.locationSearchClient searchByLocation:locationManager.currentLocation
+                                     withCompletion:^(NSArray *locations, NSError *error) {
+                                         
+                                         [self.indicatorView stopAnimating];
+                                         
+                                         if (error)
+                                         {
+                                             [self alertWithtitle:@"Error" andMessage:@"There was a problem searching for this location"];
+                                         }
+                                         else
+                                         {
+                                             self.locations = locations;
+                                             [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:locations.count];
+                                         }
+                                     }];
+    }
+    else if (type == SearchTypeMap)
+    {
+        MKCoordinateRegion region = MKCoordinateRegionMake(
+                                                           locationManager.currentLocation.coordinate,
+                                                           MKCoordinateSpanMake(0, 0));
+        [self.mapView setRegion:region animated:YES];
+    }
 }
 
 #pragma mark - LocationSearchHeaderViewDelegate -
@@ -105,12 +163,14 @@ typedef enum {
 {
     if (type == SearchTypeMap)
     {
+        [self.mapView deselectAnnotation:[[self.mapView selectedAnnotations] firstObject] animated:YES];
         [self.searchBar resignFirstResponder];
         self.navigationItem.titleView = nil;
     }
     else
     {
         [self.searchBar becomeFirstResponder];
+        self.navigationItem.rightBarButtonItem = nil;
         self.navigationItem.titleView = self.searchBar;
     }
     
@@ -131,35 +191,6 @@ typedef enum {
     }];
 }
 
-- (void)locationSearchHeaderViewDidSelectCurrentLocationSearch
-{
-    LocationManager *locationManager = [LocationManager sharedInstance];
-    
-    if (locationManager.authorizationStatus != kCLAuthorizationStatusAuthorized)
-    {
-        [self alertWithtitle:@"Error" andMessage:@"Location manager is disabled, please enable location manager and try again"];
-        return;
-    }
-    
-    [self.locationSearchHeaderView setShowLoader:YES];
-    
-    [self.locationSearchClient searchByLocation:locationManager.currentLocation
-                                 withCompletion:^(NSArray *locations, NSError *error) {
-        
-                                     [self.locationSearchHeaderView setShowLoader:NO];
-                                     
-                                     if (error)
-                                     {
-                                         [self alertWithtitle:@"Error" andMessage:@"There was a problem searching for this location"];
-                                     }
-                                     else
-                                     {
-                                         self.locations = locations;
-                                         [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:locations.count];
-                                     }
-    }];
-}
-
 #pragma mark - UISearchBarDelegate -
 
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
@@ -168,7 +199,7 @@ typedef enum {
     {
         if (searchText.length > MIN_CHARACTER_REQUIRED_FOR_SEARCH)
         {
-            [self.locationSearchHeaderView setShowLoader:YES];
+            [self.indicatorView startAnimating];
             [NSObject cancelPreviousPerformRequestsWithTarget:self];
             [self performSelector:@selector(performSearch:) withObject:searchText afterDelay:.6];
         }
@@ -187,7 +218,7 @@ typedef enum {
     [self.locationSearchClient searchByKeyword:search
                                    withCompletion:^(NSArray *locations, NSError *error) {
         
-                                       [self.locationSearchHeaderView setShowLoader:NO];
+                                       [self.indicatorView stopAnimating];
                                        
                                        if (error)
                                        {
@@ -203,17 +234,6 @@ typedef enum {
 }
 
 #pragma mark - Setter & Getter -
-
-- (LocationSearchHeaderView *)locationSearchHeaderView
-{
-    if (!_locationSearchHeaderView)
-    {
-        _locationSearchHeaderView = [[LocationSearchHeaderView alloc] init];
-        _locationSearchHeaderView.delegate = self;
-    }
-    
-    return _locationSearchHeaderView;
-}
 
 - (LocationSearchClient *)locationSearchClient
 {

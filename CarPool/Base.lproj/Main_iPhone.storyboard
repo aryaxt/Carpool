@@ -143,7 +143,7 @@
             </objects>
             <point key="canvasLocation" x="495" y="50"/>
         </scene>
-        <!--Home View Controller - Home-->
+        <!--Home View Controller - Search-->
         <scene sceneID="aay-20-XmK">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="ntY-Xt-R3p" customClass="HomeViewController" sceneMemberID="viewController">
@@ -167,8 +167,12 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Home" id="o3c-nn-mXO">
-                        <barButtonItem key="rightBarButtonItem" systemItem="organize" id="rdK-rY-NzH"/>
+                    <navigationItem key="navigationItem" title="Search" id="o3c-nn-mXO">
+                        <barButtonItem key="rightBarButtonItem" image="filter.png" id="lfh-44-R6T">
+                            <connections>
+                                <segue destination="NOD-4Z-Kly" kind="push" identifier="SearchFilterViewController" id="RSX-Ny-cdY"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="mapView" destination="jPe-J5-nYf" id="wqJ-oW-j7C"/>
@@ -283,7 +287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ur1-ot-Epk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466" y="78"/>
+            <point key="canvasLocation" x="1466" y="-324"/>
         </scene>
         <!--Create Request View Controller - Create Request-->
         <scene sceneID="Xsk-0K-cmM">
@@ -374,7 +378,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKY-Ti-gj5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1878" y="67"/>
+            <point key="canvasLocation" x="1878" y="78"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="llL-cr-jXy">
@@ -389,7 +393,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0F-Uz-2XG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1036" y="-623"/>
+            <point key="canvasLocation" x="1036" y="-1053"/>
         </scene>
         <!--Profile View Controller - Account-->
         <scene sceneID="KoL-GR-dLp">
@@ -461,7 +465,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4m-c0-dxi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1036" y="-1318"/>
+            <point key="canvasLocation" x="1036" y="-1796"/>
         </scene>
         <!--My Activities View Controller - Offers-->
         <scene sceneID="pXw-DO-ENC">
@@ -621,7 +625,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VOh-3d-T2R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1036" y="753"/>
+            <point key="canvasLocation" x="1036" y="1341"/>
         </scene>
         <!--Inbox View Controller - Inbox-->
         <scene sceneID="4xe-Ui-fp6">
@@ -686,7 +690,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucp-F6-HmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1036" y="1435"/>
+            <point key="canvasLocation" x="1036" y="2211"/>
         </scene>
         <!--Request Detail View Controller - Request-->
         <scene sceneID="fBJ-si-2me">
@@ -839,7 +843,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jKC-Gc-gW5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466" y="1435"/>
+            <point key="canvasLocation" x="1466" y="2211"/>
         </scene>
         <!--Create Offer View Controller - Create Offer-->
         <scene sceneID="Rbr-bn-DMQ">
@@ -990,7 +994,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8m-0N-5Di" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466" y="753"/>
+            <point key="canvasLocation" x="1466" y="1341"/>
         </scene>
         <!--Location Search View Controller-->
         <scene sceneID="cNs-yJ-msj">
@@ -1001,8 +1005,8 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hos-Mh-sBt">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <rect key="frame" x="0.0" y="36" width="320" height="532"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationSearchCell" textLabel="zrK-Eg-UBa" style="IBUITableViewCellStyleDefault" id="LCL-Cg-kxH">
@@ -1037,13 +1041,63 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 </connections>
                             </searchBar>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" id="NDi-rQ-hT4" customClass="PinEnabledMapView">
-                                <rect key="frame" x="-42" y="65" width="320" height="503"/>
+                                <rect key="frame" x="-42" y="65" width="362" height="503"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </mapView>
+                            <view contentMode="scaleToFill" id="8Fo-V4-DkD">
+                                <rect key="frame" x="0.0" y="62" width="320" height="37"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mrg-JB-Dk7">
+                                        <rect key="frame" x="12" y="7" width="30" height="25"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="currntLocation.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="currentLocationSelected:" destination="O43-2Z-4I9" eventType="touchUpInside" id="utf-i6-pOW"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Current Location" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HFj-V4-R9p">
+                                        <rect key="frame" x="50" y="0.0" width="71" height="37"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="a5x-e4-9Cc">
+                                        <rect key="frame" x="150" y="10" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <color key="tintColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="color" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="y4z-na-E68">
+                                        <rect key="frame" x="276" y="1" width="35" height="33"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" backgroundImage="map.png">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="searchTypeSelected:" destination="O43-2Z-4I9" eventType="touchUpInside" id="wWx-Ov-Mtp"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Map View" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="08O-Ob-ztA">
+                                        <rect key="frame" x="228" y="5" width="39" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.94813526459999997" alpha="1" colorSpace="calibratedWhite"/>
+                                <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <connections>
+                        <outlet property="indicatorView" destination="a5x-e4-9Cc" id="tbS-ys-UN6"/>
+                        <outlet property="locationSearchHeaderView" destination="8Fo-V4-DkD" id="AaX-cg-TNY"/>
                         <outlet property="mapView" destination="NDi-rQ-hT4" id="MbR-oq-bML"/>
                         <outlet property="searchBar" destination="KSC-OH-N36" id="xR1-yV-ChT"/>
                         <outlet property="tableView" destination="hos-Mh-sBt" id="TVL-0X-Qt6"/>
@@ -1051,13 +1105,69 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBB-HF-5Ms" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1878" y="753"/>
+            <point key="canvasLocation" x="1878" y="1341"/>
+        </scene>
+        <!--Search Filter View Controller - Search Filter-->
+        <scene sceneID="Vyq-OQ-sHa">
+            <objects>
+                <viewController storyboardIdentifier="SearchFilterViewController" id="NOD-4Z-Kly" customClass="SearchFilterViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KTx-C0-LfS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" id="bRz-FG-GhT">
+                                <rect key="frame" x="20" y="109" width="182" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <segments>
+                                    <segment title="Male"/>
+                                    <segment title="Any"/>
+                                    <segment title="Female"/>
+                                </segments>
+                            </segmentedControl>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gender" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NcH-ei-e6g">
+                                <rect key="frame" x="20" y="75" width="86" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2h1-gg-yb7">
+                                <rect key="frame" x="220" y="526" width="75" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                                <state key="normal" title="Clear Filter">
+                                    <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="clearFilterSelected:" destination="NOD-4Z-Kly" eventType="touchUpInside" id="1zZ-0S-XnU"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search Filter" id="jiK-y3-MAJ">
+                        <barButtonItem key="rightBarButtonItem" title="Apply" id="n8C-0z-H6r">
+                            <connections>
+                                <action selector="applyFilterselected:" destination="NOD-4Z-Kly" id="xdO-Tx-7wG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="genderSegmentedControl" destination="bRz-FG-GhT" id="KY3-b9-2bs"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="deJ-TK-Qy0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1466" y="480"/>
         </scene>
     </scenes>
     <resources>
         <image name="calendar.png" width="512" height="512"/>
         <image name="closeButton.png" width="49" height="53"/>
+        <image name="currntLocation.png" width="128" height="128"/>
         <image name="endPoint.png" width="420" height="640"/>
+        <image name="filter.png" width="30" height="30"/>
+        <image name="map.png" width="256" height="256"/>
         <image name="startPoint.png" width="420" height="640"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

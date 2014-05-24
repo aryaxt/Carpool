@@ -25,8 +25,8 @@
 {
     [super viewDidLoad];
     
-    self.view.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.view.layer.borderWidth = 1;
+    /*self.view.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.view.layer.borderWidth = 1;*/
     
     self.topView.layer.borderWidth = .6;
     self.topView.layer.borderColor = [UIColor lightGrayColor].CGColor;

@@ -26,36 +26,37 @@
         [query includeKey:@"from"];
     }
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        NSMutableArray *offers = [NSMutableArray array];
-        for (PFObject *object in objects)
-        {
-            [offers addObject:(CarPoolOffer *)object];
-        }
-        
-        completion(offers, error);
-    }];
+    [self fetchOffersWithquery:query andCompletion:completion];
 }
 
-- (void)searchCarpoolOfferswithCompletion:(void (^)(NSArray *objects, NSError *error))completion
+- (void)searchWithinGeoBoxWithSouthWestCoordinate:(CLLocationCoordinate2D)southWest andNorthEast:(CLLocationCoordinate2D)northEast withCompletion:(void (^)(NSArray *offers, NSError *error))completion
 {
+    PFGeoPoint *southWestGeoPiint = [PFGeoPoint geoPointWithLatitude:southWest.latitude longitude:southWest.longitude];
+    PFGeoPoint *northeastGeoPiint = [PFGeoPoint geoPointWithLatitude:northEast.latitude longitude:northEast.longitude];
+    
     PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([CarPoolOffer class])];
+    [query whereKey:@"startLocation" withinGeoBoxFromSouthwest:southWestGeoPiint toNortheast:northeastGeoPiint];
+    [query whereKey:@"endLocation" withinGeoBoxFromSouthwest:southWestGeoPiint toNortheast:northeastGeoPiint];
     [query includeKey:@"startLocation"];
     [query includeKey:@"endLocation"];
     [query includeKey:@"from"];
     
+    [self fetchOffersWithquery:query andCompletion:completion];
+}
+
+- (void)searchWithinLocation:(CLLocationCoordinate2D)location withLimit:(NSInteger)limit andCompletion:(void (^)(NSArray *offers, NSError *error))completion
+{
+    //PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:location.latitude longitude:location.longitude];
     
-    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-        
-        NSMutableArray *offers = [NSMutableArray array];
-        for (PFObject *object in objects)
-        {
-            [offers addObject:(CarPoolOffer *)object];
-        }
-        
-        completion(offers, error);
-    }];
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([CarPoolOffer class])];
+    //[query whereKey:@"startLocation" nearGeoPoint:geoPoint];
+    //[query whereKey:@"endLocation" nearGeoPoint:geoPoint];
+    [query setLimit:limit];
+    [query includeKey:@"startLocation"];
+    [query includeKey:@"endLocation"];
+    [query includeKey:@"from"];
+    
+    [self fetchOffersWithquery:query andCompletion:completion];
 }
 
 - (void)deleteCarpoolOffer:(CarPoolOffer *)offer withCompletion:(void (^)(BOOL succeeded, NSError *error))completion
@@ -66,6 +67,22 @@
 - (void)createOffer:(CarPoolOffer *)offer withCompletion:(void (^)(BOOL succeeded, NSError *error))completion
 {
     [offer saveInBackgroundWithBlock:completion];
+}
+
+#pragma mark - Private Methods -
+
+- (void)fetchOffersWithquery:(PFQuery *)query andCompletion:(void (^)(NSArray *offers, NSError *error))completion
+{
+    [query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+        
+        NSMutableArray *offers = [NSMutableArray array];
+        for (PFObject *object in objects)
+        {
+            [offers addObject:(CarPoolOffer *)object];
+        }
+        
+        completion(offers, error);
+    }];
 }
 
 @end

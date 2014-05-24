@@ -12,7 +12,7 @@
 
 @interface PinEnabledMapView()<MKMapViewDelegate>
 @property (nonatomic, strong) LocationSearchClient *searchclient;
-@property (nonatomic, strong) UIView *loadingView;
+@property (nonatomic, strong) NSArray *locations;
 @end
 
 @implementation PinEnabledMapView
@@ -41,12 +41,17 @@
 
 - (void)setup
 {
-    self.delegate = self;
-    
     UILongPressGestureRecognizer *gestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressDetected:)];
     [self addGestureRecognizer:gestureRecognizer];
     
     [self goToCurrentLocation];
+}
+
+#pragma mark - Public MEthods -
+
+- (Location *)locationAtIndex:(NSInteger)index
+{
+    return [self.locations objectAtIndex:index];
 }
 
 #pragma mark - Private MEthods -
@@ -73,64 +78,48 @@
         
     CGPoint point = [gestureRecognizer locationInView:self];
     CLLocationCoordinate2D coord = [self convertPoint:point toCoordinateFromView:self];
-    CLLocation *location = [[CLLocation alloc] initWithCoordinate:coord altitude:0 horizontalAccuracy:0 verticalAccuracy:0 course:0 speed:0 timestamp:0];
+    
+    [self.delegate pinEnabledMapViewWillStartSearchingInCoordinate:coord];
+    
+    CLLocation *clLocation = [[CLLocation alloc] initWithCoordinate:coord
+                                                         altitude:0
+                                               horizontalAccuracy:0
+                                                 verticalAccuracy:0
+                                                           course:0
+                                                            speed:0
+                                                        timestamp:0];
     _pinLocation = coord;
     
     __weak PinEnabledMapView *wekSelf = self;
     
-    [self setShowLoading:YES withCompletion:nil];
-    
-    [self.searchclient searchByLocation:location withCompletion:^(NSArray *locations, NSError *error) {
-        [wekSelf setShowLoading:NO withCompletion:^{
-            if (!error && locations.count == 1)
+    [self.searchclient searchByLocation:clLocation withCompletion:^(NSArray *locations, NSError *error) {
+        
+        wekSelf.locations = locations;
+        [wekSelf removeAnnotations:[wekSelf annotations]];
+        
+        if (!error)
+        {
+            [self.delegate pinEnabledMapViewDidFindLocations:locations];
+            
+            for (Location *location in locations)
             {
                 MKPointAnnotation *annotation = [[MKPointAnnotation alloc] init];
                 [annotation setCoordinate:coord];
-                [annotation setTitle:[[locations firstObject] name]];
-                [wekSelf removeAnnotations:[wekSelf annotations]];
+                [annotation setTitle:location.name];
                 [wekSelf addAnnotation:annotation];
-                [wekSelf selectAnnotation:annotation animated:YES];
             }
-        }];
-    }];
-}
-
-- (void)setShowLoading:(BOOL)show withCompletion:(void (^)())completion
-{
-    if (show)
-    {
-        self.loadingView = [[UIView alloc] initWithFrame:self.bounds];
-        self.loadingView.backgroundColor = [UIColor blackColor];
-        self.loadingView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
-        [self addSubview:self.loadingView];
-        
-        UIActivityIndicatorView *activityIndicator = [[UIActivityIndicatorView alloc] init];
-        [activityIndicator startAnimating];
-        activityIndicator.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin;
-        [activityIndicator setCenter:self.loadingView.center];
-        [self.loadingView addSubview:activityIndicator];
-        
-        self.loadingView.alpha = 0;
-        
-        [UIView animateWithDuration:.5 animations:^{
-            self.loadingView.alpha = .5;
-        } completion:^(BOOL finished) {
-            if (completion)
-                completion();
-        }];
-    }
-    else
-    {
-        [UIView animateWithDuration:.5 animations:^{
-            self.loadingView.alpha = 0;
-        } completion:^(BOOL finished) {
-            [self.loadingView removeFromSuperview];
-            self.loadingView = nil;
             
-            if (completion)
-                completion();
-        }];
-    }
+            if (locations.count == 1)
+            {
+                [wekSelf selectAnnotation:[self.annotations objectAtIndex:0] animated:YES];
+                [self.delegate mapView:self didSelectAnnotationView:[self.annotations objectAtIndex:0]];;
+            }
+        }
+        else
+        {
+            [self.delegate pinEnabledMapViewDidFailToSearchWithError:error];
+        }
+    }];
 }
 
 #pragma mark - Setter & Getter -

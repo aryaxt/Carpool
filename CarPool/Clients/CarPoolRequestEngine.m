@@ -50,7 +50,7 @@
 
 - (void)updateRequest:(CarPoolRequest *)request withStatus:(BOOL)status andCompletion:(void (^)(Comment *comment, NSError *error))completion
 {
-    if (request.status != nil)
+    if (request.status && request.status.boolValue == status)
     {
         completion(nil, [NSError errorWithDomain:@"Cannot change status of request" code:0 userInfo:nil]);
         return;
@@ -65,13 +65,14 @@
         
         CarPoolRequest *refreshedRequest = (CarPoolRequest *)request;
         
-        if (refreshedRequest.status != nil)
+        if (request.status && request.status.boolValue == status)
         {
             completion(nil, [NSError errorWithDomain:@"Cannot change status of request" code:0 userInfo:nil]);
             return;
         }
         
         refreshedRequest.status = (status) ? @YES : @NO;
+        
         [refreshedRequest saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
             if (error)
             {

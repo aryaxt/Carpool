@@ -38,9 +38,7 @@
 {
     [self showLoader];
     
-    self.btnAccept.hidden = YES;
-    self.btnDecline.hidden = YES;
-    self.lblStatusInfo.hidden = YES;
+    [self hideAcceptanceStatus];
     
     [self.requestClient fetchRequestById:self.request.objectId withCompletion:^(CarPoolRequest *request, NSError *error) {
         [self hideLoader];
@@ -58,31 +56,52 @@
             [self.imgRequesterPhoto setImageWithURL:[NSURL URLWithString:self.request.to.photoUrl]
                                    placeholderImage:[UIImage imageNamed:@"sfdfgdfg"]];
             
-            BOOL isRequestFromMe = [self.request.to.objectId isEqualToString:[User currentUser].objectId];
-            
-            if (request.status)
-            {
-                self.lblStatusInfo.hidden = NO;
-                self.lblStatusInfo.text = (request.status.boolValue) ? @"Accepted" : @"Declined";
-                self.lblStatusInfo.textColor = (request.status.boolValue) ? [UIColor greenColor] : [UIColor redColor];
-            }
-            else
-            {
-                if (isRequestFromMe)
-                {
-                    self.btnAccept.hidden = NO;
-                    self.btnDecline.hidden = NO;
-                }
-                else
-                {
-                    self.lblStatusInfo.hidden = NO;
-                    self.lblStatusInfo.text = @"Request Pending";
-                }
-            }
+            [self updateAcceptanceStatus];
             
             [self addPolyline];
         }
     }];
+}
+
+- (void)updateAcceptanceStatus
+{
+    BOOL isRequestFromMe = [self.request.to.objectId isEqualToString:[User currentUser].objectId];
+    
+    if (self.request.status && !isRequestFromMe)
+    {
+        self.lblStatusInfo.hidden = NO;
+        self.lblStatusInfo.text = (self.request.status.boolValue) ? @"Accepted" : @"Declined";
+        self.lblStatusInfo.textColor = (self.request.status.boolValue) ? [UIColor greenColor] : [UIColor redColor];
+    }
+    else
+    {
+        if (isRequestFromMe)
+        {
+            self.btnAccept.titleLabel.textColor = (self.request.status.boolValue) ?
+                [UIColor greenColor] :
+                [UIColor lightGrayColor];
+            self.btnDecline.titleLabel.textColor = (self.request.status.boolValue) ?
+                [UIColor lightGrayColor] :
+                [UIColor redColor];
+
+            self.btnAccept.hidden = NO;
+            self.btnDecline.hidden = NO;
+        }
+        else
+        {
+            self.lblStatusInfo.hidden = NO;
+            self.lblStatusInfo.text = @"Request Pending";
+        }
+    }
+}
+
+- (void)hideAcceptanceStatus
+{
+    self.btnAccept.titleLabel.textColor = [UIColor lightGrayColor];
+    self.btnDecline.titleLabel.textColor = [UIColor lightGrayColor];
+    self.btnAccept.hidden = YES;
+    self.btnDecline.hidden = YES;
+    self.lblStatusInfo.hidden = YES;
 }
 
 - (void)fetchCommentsAnimated:(BOOL)animated withCompletion:(void (^)(void))completion
@@ -167,6 +186,8 @@
             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:1];
             [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            
+            [self updateAcceptanceStatus];
         }
     }];
 }

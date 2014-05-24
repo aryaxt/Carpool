@@ -7,11 +7,6 @@
 //
 
 #import "HomeViewController.h"
-#import "CarPoolOffer.h"
-#import "CarPoolRequest.h"
-#import "LocationManager.h"
-#import "UIViewController+Additions.h"
-#import "CreateRequestViewController.h"
 
 @implementation HomeViewController
 
@@ -28,26 +23,7 @@
     
     self.mapView.delegate = self;
     
-    [self.offerClient searchCarpoolOfferswithCompletion:^(NSArray *offers, NSError *error) {
-                                     if (error)
-                                     {
-                                         [self alertWithtitle:@"Error"
-                                                   andMessage:@"There was a problem searching for carpool offers"];
-                                     }
-                                     else
-                                     {
-                                         self.offers = [offers mutableCopy];
-                                         
-                                         if (offers.count)
-                                         {
-                                             [self setCurrentOffer:[self.offers firstObject]];
-                                         }
-                                         else
-                                         {
-                                            // ANIMATE toolbar down
-                                         }
-                                     }
-    }];
+    [self performSearch];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -55,7 +31,7 @@
     [super viewWillAppear:animated];
     
     [self.navigationController.view addSubview:self.offerDetailViewController.view];
-    [self setShowOfferDetail:NO withDuration:0];
+    [self setHideOfferDetail:(self.offers.count) ? NO : YES animated:NO];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -72,6 +48,12 @@
         CreateRequestViewController *vc = segue.destinationViewController;
         vc.offer = sender;
     }
+    else if ([segue.identifier isEqualToString:@"SearchFilterViewController"])
+    {
+        SearchFilterViewController *vc = segue.destinationViewController;
+        vc.searchFilter = self.searchFilter;
+        vc.delegate = self;
+    }
 }
 
 #pragma mark - SlideNavigationController Methods -
@@ -86,6 +68,11 @@
 - (IBAction)searchSelected:(id)sender
 {
     
+}
+
+- (IBAction)filterButtonSelected:(id)sender
+{
+    [[SlideNavigationController sharedInstance] toggleRightMenu];
 }
 
 #pragma mark - UITableView Delegate & Datasource -
@@ -113,38 +100,13 @@
     
 }
 
-#pragma mark - Private MEthods -
+#pragma mark - SearchFilterViewControllerDelegate -
 
-- (void)addPolylineFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
+- (void)searchFilterViewControllerDidApplyFilter:(SearchFilter *)filter
 {
-    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
-    
-    MKMapItem *fromItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:from
-                                                                                     addressDictionary:nil]];
-    
-    MKMapItem *toItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:to
-                                                                                   addressDictionary:nil]];
-    
-    [request setSource:fromItem];
-    [request setDestination:toItem];
-    [request setTransportType:MKDirectionsTransportTypeAutomobile];
-    [request setRequestsAlternateRoutes:YES];
-    
-    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
-    
-    [self showLoader];
-    
-    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
-        [self hideLoader];
-        
-        if (!error)
-        {
-            for (MKRoute *route in [response routes])
-            {
-                [self.mapView addOverlay:[route polyline] level:MKOverlayLevelAboveRoads];
-            }
-        }
-    }];
+    [self.navigationController popViewControllerAnimated:YES];
+    self.searchFilter = filter;
+    [self performSearch];
 }
 
 #pragma mark - MKMapViewDelegate -
@@ -188,7 +150,7 @@
 - (void)offerDetailViewControllerDidSelectExpand
 {
     CGRect rect = self.offerDetailViewController.view.frame;
-    [self setShowOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? YES : NO
+    [self setExpandOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? YES : NO
                 withDuration:DETAIL_VIEW_ANIMATION];
 }
 
@@ -215,12 +177,12 @@
         
         if (positiveYVelocity > 500)
         {
-            [self setShowOfferDetail:(velocityY > 0) ? NO : YES
+            [self setExpandOfferDetail:(velocityY > 0) ? NO : YES
                         withDuration:DETAIL_VIEW_QUICK_ANIMATION];
         }
         else
         {
-            [self setShowOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? NO : YES
+            [self setExpandOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? NO : YES
                         withDuration:DETAIL_VIEW_ANIMATION];
         }
     }
@@ -233,14 +195,26 @@
 
 #pragma mark - Private MEthods -
 
-- (void)setShowOfferDetail:(BOOL)show withDuration:(NSTimeInterval)duration
+- (void)setExpandOfferDetail:(BOOL)expand withDuration:(NSTimeInterval)duration
 {
     [UIView animateWithDuration:duration
                           delay:0
                         options:UIViewAnimationOptionCurveEaseIn
                      animations:^{
                          CGRect rect = _offerDetailViewController.view.frame;
-                         rect.origin.y = (show) ? STATUS_BAR_HEIGHT : self.navigationController.view.frame.size.height-NAV_BAR_HEIGHT;
+                         rect.origin.y = (expand) ? STATUS_BAR_HEIGHT : self.navigationController.view.frame.size.height-NAV_BAR_HEIGHT;
+                         _offerDetailViewController.view.frame = rect;
+                     } completion:nil];
+}
+
+- (void)setHideOfferDetail:(BOOL)hide animated:(BOOL)animated
+{
+    [UIView animateWithDuration:(animated) ? .3 : 0
+                          delay:0
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         CGRect rect = _offerDetailViewController.view.frame;
+                         rect.origin.y = (hide) ? self.navigationController.view.frame.size.height : self.navigationController.view.frame.size.height-NAV_BAR_HEIGHT;
                          _offerDetailViewController.view.frame = rect;
                      } completion:nil];
 }
@@ -256,6 +230,68 @@
     [annotationTo setCoordinate:to];
     [annotationTo setTitle:@"To"];
     [self.mapView addAnnotation:annotationTo];
+}
+
+- (void)addPolylineFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
+{
+    MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
+    
+    MKMapItem *fromItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:from
+                                                                                     addressDictionary:nil]];
+    
+    MKMapItem *toItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:to
+                                                                                   addressDictionary:nil]];
+    
+    [request setSource:fromItem];
+    [request setDestination:toItem];
+    [request setTransportType:MKDirectionsTransportTypeAutomobile];
+    [request setRequestsAlternateRoutes:YES];
+    
+    MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+    
+    [self showLoader];
+    
+    [directions calculateDirectionsWithCompletionHandler:^(MKDirectionsResponse *response, NSError *error) {
+        [self hideLoader];
+        
+        if (!error)
+        {
+            for (MKRoute *route in [response routes])
+            {
+                [self.mapView addOverlay:[route polyline] level:MKOverlayLevelAboveRoads];
+            }
+        }
+    }];
+}
+
+- (void)performSearch
+{
+    [self.offerClient searchWithinLocation:CLLocationCoordinate2DMake(0, 0)
+                                 withLimit:10
+                             andCompletion:^(NSArray *offers, NSError *error) {
+                                 
+                                 [self setHideOfferDetail:(offers.count) ? NO : YES animated:YES];
+                                 
+                                 if (error)
+                                 {
+                                     [self alertWithtitle:@"Error"
+                                               andMessage:@"There was a problem searching for carpool offers"];
+                                 }
+                                 else
+                                 {
+                                     self.title = [NSString stringWithFormat:@"Found %d Offers", offers.count];
+                                     self.offers = [offers mutableCopy];
+                                     
+                                     if (offers.count)
+                                     {
+                                         [self setCurrentOffer:[self.offers firstObject]];
+                                     }
+                                     else
+                                     {
+                                         // ANIMATE toolbar down
+                                     }
+                                 }
+                             }];
 }
 
 #pragma mark - Setter & Getter -
