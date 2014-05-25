@@ -8,6 +8,7 @@
 
 #import "ProfileViewController.h"
 #import "CreateReferenceViewController.h"
+#import "ReferencesViewController.h"
 
 @implementation ProfileViewController
 
@@ -57,6 +58,11 @@
     if ([segue.identifier isEqualToString:@"CreateReferenceViewController"])
     {
         CreateReferenceViewController *vc = segue.destinationViewController;
+        vc.user = self.user;
+    }
+    else if ([segue.identifier isEqualToString:@"ReferencesViewController"])
+    {
+        ReferencesViewController *vc = segue.destinationViewController;
         vc.user = self.user;
     }
 }

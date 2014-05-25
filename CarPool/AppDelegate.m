@@ -16,6 +16,7 @@
 #import "CarPoolOffer.h"
 #import <Parse/Parse.h>
 #import "PushNotificationManager.h"
+#import "ApplicationVersionManager.h"
 
 @implementation AppDelegate
 
@@ -27,6 +28,9 @@
     
     // Start location manager
     [LocationManager sharedInstance];
+    
+    // Start application version
+    [ApplicationVersionManager sharedInstance];
     
     [application registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeBadge |

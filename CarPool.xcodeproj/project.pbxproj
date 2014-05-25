@@ -67,6 +67,11 @@
 		923E94F11931178B008411AA /* SearchFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94F01931178B008411AA /* SearchFilter.m */; };
 		923E94F5193165BF008411AA /* CreateReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94F4193165BF008411AA /* CreateReferenceViewController.m */; };
 		923E94F819316769008411AA /* ReferenceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94F719316769008411AA /* ReferenceClient.m */; };
+		923E94FC193198E0008411AA /* ReferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94FB193198E0008411AA /* ReferencesViewController.m */; };
+		923E94FF19319D6A008411AA /* ReferenceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94FE19319D6A008411AA /* ReferenceCell.m */; };
+		923E95021931B96E008411AA /* ApplicationVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E95011931B96E008411AA /* ApplicationVersion.m */; };
+		923E95051931BA02008411AA /* ApplicationVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E95041931BA02008411AA /* ApplicationVersionManager.m */; };
+		923E95081931BA16008411AA /* ApplicationVersionClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E95071931BA16008411AA /* ApplicationVersionClient.m */; };
 		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
 		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
 		927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */; };
@@ -198,6 +203,16 @@
 		923E94F4193165BF008411AA /* CreateReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateReferenceViewController.m; sourceTree = "<group>"; };
 		923E94F619316769008411AA /* ReferenceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceClient.h; sourceTree = "<group>"; };
 		923E94F719316769008411AA /* ReferenceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceClient.m; sourceTree = "<group>"; };
+		923E94FA193198E0008411AA /* ReferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferencesViewController.h; sourceTree = "<group>"; };
+		923E94FB193198E0008411AA /* ReferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferencesViewController.m; sourceTree = "<group>"; };
+		923E94FD19319D6A008411AA /* ReferenceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceCell.h; sourceTree = "<group>"; };
+		923E94FE19319D6A008411AA /* ReferenceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceCell.m; sourceTree = "<group>"; };
+		923E95001931B96E008411AA /* ApplicationVersion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationVersion.h; sourceTree = "<group>"; };
+		923E95011931B96E008411AA /* ApplicationVersion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationVersion.m; sourceTree = "<group>"; };
+		923E95031931BA02008411AA /* ApplicationVersionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationVersionManager.h; sourceTree = "<group>"; };
+		923E95041931BA02008411AA /* ApplicationVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationVersionManager.m; sourceTree = "<group>"; };
+		923E95061931BA16008411AA /* ApplicationVersionClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationVersionClient.h; sourceTree = "<group>"; };
+		923E95071931BA16008411AA /* ApplicationVersionClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationVersionClient.m; sourceTree = "<group>"; };
 		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
@@ -473,6 +488,8 @@
 				9226EEEB1915B82B0014B319 /* LocationManager.m */,
 				9217A59919231724005E3A36 /* PushNotificationManager.h */,
 				9217A59A19231724005E3A36 /* PushNotificationManager.m */,
+				923E95031931BA02008411AA /* ApplicationVersionManager.h */,
+				923E95041931BA02008411AA /* ApplicationVersionManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -498,6 +515,8 @@
 				923E15DD1929A54800AD1B5A /* Profile.m */,
 				923E15DF1929A67400AD1B5A /* Reference.h */,
 				923E15E01929A67400AD1B5A /* Reference.m */,
+				923E95001931B96E008411AA /* ApplicationVersion.h */,
+				923E95011931B96E008411AA /* ApplicationVersion.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -528,6 +547,8 @@
 				920918061927EF84009701FA /* CarPoolRequestEngine.m */,
 				923E94F619316769008411AA /* ReferenceClient.h */,
 				923E94F719316769008411AA /* ReferenceClient.m */,
+				923E95061931BA16008411AA /* ApplicationVersionClient.h */,
+				923E95071931BA16008411AA /* ApplicationVersionClient.m */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -590,6 +611,7 @@
 		923E15E21929A84400AD1B5A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				923E94F9193198AC008411AA /* References */,
 				923E94F2193165AC008411AA /* CreateReference */,
 				923E15E31929A85000AD1B5A /* ProfileViewController.h */,
 				923E15E41929A85000AD1B5A /* ProfileViewController.m */,
@@ -615,6 +637,17 @@
 				923E94F4193165BF008411AA /* CreateReferenceViewController.m */,
 			);
 			path = CreateReference;
+			sourceTree = "<group>";
+		};
+		923E94F9193198AC008411AA /* References */ = {
+			isa = PBXGroup;
+			children = (
+				923E94FA193198E0008411AA /* ReferencesViewController.h */,
+				923E94FB193198E0008411AA /* ReferencesViewController.m */,
+				923E94FD19319D6A008411AA /* ReferenceCell.h */,
+				923E94FE19319D6A008411AA /* ReferenceCell.m */,
+			);
+			path = References;
 			sourceTree = "<group>";
 		};
 		928266C8191E9B6B001AD534 /* Subclasses */ = {
@@ -783,7 +816,9 @@
 				9226EEAA191573530014B319 /* AppDelegate.m in Sources */,
 				9226EED51915789F0014B319 /* MenuViewController.m in Sources */,
 				928266CE191EABF7001AD534 /* LocationSearchClient.m in Sources */,
+				923E95021931B96E008411AA /* ApplicationVersion.m in Sources */,
 				9217A59B19231724005E3A36 /* PushNotificationManager.m in Sources */,
+				923E94FF19319D6A008411AA /* ReferenceCell.m in Sources */,
 				9217A5AC1924681E005E3A36 /* Comment.m in Sources */,
 				923E15E11929A67400AD1B5A /* Reference.m in Sources */,
 				923E15D71929215200AD1B5A /* MyOfferCell.m in Sources */,
@@ -800,6 +835,8 @@
 				923E94F819316769008411AA /* ReferenceClient.m in Sources */,
 				923E94F11931178B008411AA /* SearchFilter.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
+				923E94FC193198E0008411AA /* ReferencesViewController.m in Sources */,
+				923E95051931BA02008411AA /* ApplicationVersionManager.m in Sources */,
 				9217A5A319245214005E3A36 /* main.js in Sources */,
 				9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */,
 				923E15DE1929A54800AD1B5A /* Profile.m in Sources */,
@@ -816,6 +853,7 @@
 				927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */,
 				9217A5A919245AD9005E3A36 /* InboxViewController.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,
+				923E95081931BA16008411AA /* ApplicationVersionClient.m in Sources */,
 				923E15DB19292F7700AD1B5A /* MyRequestCell.m in Sources */,
 				920918041927EDEA009701FA /* CommentClient.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,

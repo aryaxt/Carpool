@@ -53,10 +53,17 @@
     }];
 }
 
-- (void)fetchReferencesForUser:(User *)user byType:(NSString *)type andCompletion:(void (^)(NSArray *references, NSError *error))completion
+- (void)fetchReferencesForUser:(User *)user
+                        byType:(NSString *)type
+                          limit:(NSInteger)limit
+                       skip:(NSInteger)skip
+                 andCompletion:(void (^)(NSArray *references, NSError *error))completion
 {
     PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Reference class])];
     [query whereKey:@"to" equalTo:user];
+    [query includeKey:@"from"];
+    [query setLimit:limit];
+    [query setSkip:skip];
     
     if (type)
     {

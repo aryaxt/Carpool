@@ -15,6 +15,10 @@
 - (void)saveReference:(Reference *)reference withCompletion:(void (^)(NSError *error))completion;
 - (void)fetchReferenceFromUser:(User *)from toUser:(User *)to withCompletion:(void (^)(Reference *, NSError *error))completion;
 - (void)fetchReferenceCountsForUser:(User *)user withCompletion:(void (^) (NSNumber *poitive, NSNumber *negative, NSError *error))completion;
-- (void)fetchReferencesForUser:(User *)user byType:(NSString *)type andCompletion:(void (^)(NSArray *references, NSError *error))completion;
+- (void)fetchReferencesForUser:(User *)user
+                        byType:(NSString *)type
+                          limit:(NSInteger)limit
+                       skip:(NSInteger)skip
+                 andCompletion:(void (^)(NSArray *references, NSError *error))completion;
 
 @end
