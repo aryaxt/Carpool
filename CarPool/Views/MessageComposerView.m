@@ -36,7 +36,7 @@
 - (void)reset
 {
     self.txtMessage.text = @"";
-    [self resizeView];
+    [self sizeToFit];
 }
 
 - (void)becomeFirstResponse
