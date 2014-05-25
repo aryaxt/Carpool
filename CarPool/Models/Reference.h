@@ -12,6 +12,9 @@
 
 @interface Reference : PFObject<PFSubclassing>
 
+extern NSString *ReferenceTypePositive;
+extern NSString *ReferenceTypeNegative;
+
 @property (nonatomic, strong) NSString *text;
 @property (nonatomic, strong) NSString *type;
 @property (nonatomic, strong) User *from;

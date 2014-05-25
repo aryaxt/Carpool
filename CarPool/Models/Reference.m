@@ -15,6 +15,9 @@
 @dynamic from;
 @dynamic to;
 
+NSString *ReferenceTypePositive = @"positive";
+NSString *ReferenceTypeNegative = @"negative";
+
 + (NSString *)parseClassName
 {
     return NSStringFromClass([self class]);

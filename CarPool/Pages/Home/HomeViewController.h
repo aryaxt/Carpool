@@ -20,6 +20,7 @@
 #import "UIViewController+Additions.h"
 #import "CreateRequestViewController.h"
 #import "SearchFilterViewController.h"
+#import "SearchFilter.h"
 
 @interface HomeViewController : BaseViewController <SlideNavigationControllerDelegate, MKMapViewDelegate, OfferDetailViewControllerDelegate, SearchFilterViewControllerDelegate>
 

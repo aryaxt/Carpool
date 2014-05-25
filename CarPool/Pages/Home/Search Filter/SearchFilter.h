@@ -7,9 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Location.h"
 
 @interface SearchFilter : NSObject
 
 @property (nonatomic, strong) NSNumber *gender;
+@property (nonatomic, strong) NSDate *date;
+@property (nonatomic, strong) NSNumber *minAge;
+@property (nonatomic, strong) NSNumber *maxAge;
+@property (nonatomic, strong) Location *startLocation;
+@property (nonatomic, strong) Location *endLocation;
 
 @end

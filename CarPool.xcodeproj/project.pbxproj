@@ -65,6 +65,8 @@
 		923E94EA1930F6D3008411AA /* filter.png in Resources */ = {isa = PBXBuildFile; fileRef = 923E94E91930F6D3008411AA /* filter.png */; };
 		923E94EE1930F894008411AA /* SearchFilterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94ED1930F894008411AA /* SearchFilterViewController.m */; };
 		923E94F11931178B008411AA /* SearchFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94F01931178B008411AA /* SearchFilter.m */; };
+		923E94F5193165BF008411AA /* CreateReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94F4193165BF008411AA /* CreateReferenceViewController.m */; };
+		923E94F819316769008411AA /* ReferenceClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E94F719316769008411AA /* ReferenceClient.m */; };
 		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
 		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
 		927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */; };
@@ -192,6 +194,10 @@
 		923E94ED1930F894008411AA /* SearchFilterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFilterViewController.m; sourceTree = "<group>"; };
 		923E94EF1931178B008411AA /* SearchFilter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchFilter.h; sourceTree = "<group>"; };
 		923E94F01931178B008411AA /* SearchFilter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchFilter.m; sourceTree = "<group>"; };
+		923E94F3193165BF008411AA /* CreateReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateReferenceViewController.h; sourceTree = "<group>"; };
+		923E94F4193165BF008411AA /* CreateReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateReferenceViewController.m; sourceTree = "<group>"; };
+		923E94F619316769008411AA /* ReferenceClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceClient.h; sourceTree = "<group>"; };
+		923E94F719316769008411AA /* ReferenceClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceClient.m; sourceTree = "<group>"; };
 		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
@@ -520,6 +526,8 @@
 				9226EF15191695120014B319 /* AuthenticationClient.m */,
 				920918051927EF84009701FA /* CarPoolRequestEngine.h */,
 				920918061927EF84009701FA /* CarPoolRequestEngine.m */,
+				923E94F619316769008411AA /* ReferenceClient.h */,
+				923E94F719316769008411AA /* ReferenceClient.m */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -582,6 +590,7 @@
 		923E15E21929A84400AD1B5A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				923E94F2193165AC008411AA /* CreateReference */,
 				923E15E31929A85000AD1B5A /* ProfileViewController.h */,
 				923E15E41929A85000AD1B5A /* ProfileViewController.m */,
 			);
@@ -597,6 +606,15 @@
 				923E94F01931178B008411AA /* SearchFilter.m */,
 			);
 			path = "Search Filter";
+			sourceTree = "<group>";
+		};
+		923E94F2193165AC008411AA /* CreateReference */ = {
+			isa = PBXGroup;
+			children = (
+				923E94F3193165BF008411AA /* CreateReferenceViewController.h */,
+				923E94F4193165BF008411AA /* CreateReferenceViewController.m */,
+			);
+			path = CreateReference;
 			sourceTree = "<group>";
 		};
 		928266C8191E9B6B001AD534 /* Subclasses */ = {
@@ -779,6 +797,7 @@
 				920917F51927AD4B009701FA /* RequestDetailViewController.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				923E15E51929A85000AD1B5A /* ProfileViewController.m in Sources */,
+				923E94F819316769008411AA /* ReferenceClient.m in Sources */,
 				923E94F11931178B008411AA /* SearchFilter.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				9217A5A319245214005E3A36 /* main.js in Sources */,
@@ -804,6 +823,7 @@
 				923E15D81929215200AD1B5A /* MyActivitiesViewController.m in Sources */,
 				920918011927DE1E009701FA /* CommentCell.m in Sources */,
 				9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */,
+				923E94F5193165BF008411AA /* CreateReferenceViewController.m in Sources */,
 				928266D2191EFE05001AD534 /* CreateRequestViewController.m in Sources */,
 				920917F119270C63009701FA /* InboxCell.m in Sources */,
 				9226EF081915DCEB0014B319 /* SettingsViewController.m in Sources */,

@@ -12,6 +12,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "User.h"
 #import "SlideNavigationController.h"
+#import "ReferenceClient.h"
 
 @interface ProfileViewController : BaseViewController <SlideNavigationControllerDelegate>
 
@@ -20,7 +21,11 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblName;
 @property (nonatomic, strong) IBOutlet UILabel *lblAboutMe;
 @property (nonatomic, strong) IBOutlet UILabel *lblInterests;
+@property (nonatomic, strong) IBOutlet UILabel *lblPositiveReferenceCount;
+@property (nonatomic, strong) IBOutlet UILabel *lblNegativeReferenceCount;
 @property (nonatomic, strong) IBOutlet UILabel *lblMusicMoviesBooks;
+@property (nonatomic, strong) IBOutlet UIButton *btnCreateReference;
+@property (nonatomic, strong) ReferenceClient *referenceClient;
 
 - (IBAction)addFriendSelected:(id)sender;
 - (IBAction)blockUserSelected:(id)sender;

@@ -44,7 +44,7 @@
     [self fetchOffersWithquery:query andCompletion:completion];
 }
 
-- (void)searchWithinLocation:(CLLocationCoordinate2D)location withLimit:(NSInteger)limit andCompletion:(void (^)(NSArray *offers, NSError *error))completion
+- (void)searchLocation:(CLLocationCoordinate2D)location withLimit:(NSInteger)limit andCompletion:(void (^)(NSArray *offers, NSError *error))completion
 {
     //PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:location.latitude longitude:location.longitude];
     

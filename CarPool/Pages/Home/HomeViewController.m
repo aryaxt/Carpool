@@ -21,6 +21,7 @@
 {
     [super viewDidLoad];
     
+    self.searchFilter = [[SearchFilter alloc] init];
     self.mapView.delegate = self;
     
     [self performSearch];
@@ -104,6 +105,7 @@
 
 - (void)searchFilterViewControllerDidApplyFilter:(SearchFilter *)filter
 {
+    //TODO: hide detail at the bottom of screen until search is performed
     [self.navigationController popViewControllerAnimated:YES];
     self.searchFilter = filter;
     [self performSearch];
@@ -199,7 +201,7 @@
 {
     [UIView animateWithDuration:duration
                           delay:0
-                        options:UIViewAnimationOptionCurveEaseIn
+                        options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          CGRect rect = _offerDetailViewController.view.frame;
                          rect.origin.y = (expand) ? STATUS_BAR_HEIGHT : self.navigationController.view.frame.size.height-NAV_BAR_HEIGHT;
@@ -266,7 +268,7 @@
 
 - (void)performSearch
 {
-    [self.offerClient searchWithinLocation:CLLocationCoordinate2DMake(0, 0)
+    [self.offerClient searchLocation:CLLocationCoordinate2DMake(0, 0)
                                  withLimit:10
                              andCompletion:^(NSArray *offers, NSError *error) {
                                  
@@ -279,7 +281,7 @@
                                  }
                                  else
                                  {
-                                     self.title = [NSString stringWithFormat:@"Found %d Offers", offers.count];
+                                     self.title = [NSString stringWithFormat:@"Found %lu Offers", (unsigned long)offers.count];
                                      self.offers = [offers mutableCopy];
                                      
                                      if (offers.count)

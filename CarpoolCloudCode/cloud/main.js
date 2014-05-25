@@ -91,3 +91,60 @@ Parse.Cloud.beforeSave("Comment", function(request, response) {
 		}
 	}
 });
+
+Parse.Cloud.beforeSave("Reference", function(request, response) {
+	if (request.object.get("from") == null) {
+		response.error("from is required");
+	}
+	else if (request.object.get("to") == null) {
+		response.error("to is missing");
+	}
+	else if (request.object.get("text") == null) {
+		response.error("text is missing");
+	}
+	else if (request.object.get("type") == null) {
+		response.error("type is missing");
+	}
+	else {
+		response.success();
+	}
+});
+
+Parse.Cloud.define("ReferenceCount", function(request, response) {
+	var userQuery = new Parse.Query("User");
+	userQuery.get(request.params.id, {
+	  success: function(user) {
+	    var query = new Parse.Query("Reference");
+		query.equalTo("to", user);
+		
+		query.find({
+			success: function(results) {
+	      		var negativeCount = 0;
+				var positiveCount = 0;
+
+	      		for (var i=0 ; i<results.length ; i++) {
+	        		if (results[i].get("type") == "positive") {
+						positiveCount++;
+					}
+					else if (results[i].get("type") == "negative")  {
+						negativeCount++;
+					}
+	      		}
+
+	      		response.success({
+					positive : positiveCount,
+					negative : negativeCount
+				});
+	    	},
+	    	error: function(object, error) {
+				console.error(error);
+	 			response.error("Failed to read references");
+	    	}
+	  	});
+	  },
+	  error: function(object, error) {
+		console.error(error);
+	    response.error("Failed to read references");
+	  }
+	});
+});
