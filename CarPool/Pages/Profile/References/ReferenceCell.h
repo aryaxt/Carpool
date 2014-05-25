@@ -17,6 +17,6 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblUpdatedDate;
 @property (nonatomic, strong) IBOutlet UILabel *lblText;
 
-- (void)setReference:(Reference *)reference;
+- (void)setReference:(Reference *)reference isExpanded:(BOOL)expanded;
 
 @end

@@ -10,9 +10,11 @@
 #import "UIImageView+Additions.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
+#define COLLAPSED_NUMBER_OF_LINES 3
+
 @implementation ReferenceCell
 
-- (void)setReference:(Reference *)reference
+- (void)setReference:(Reference *)reference isExpanded:(BOOL)expanded
 {
     [self.imgFromPhoto setUserPhotoStyle];
     [self.imgFromPhoto setImageWithURL:[NSURL URLWithString:reference.from.photoUrl]
@@ -27,6 +29,14 @@
     self.lblCreatedDate.text = [dateFormatter stringFromDate:reference.createdAt];
     self.lblUpdatedDate.text = [dateFormatter stringFromDate:reference.updatedAt];
     self.lblUpdatedDate.hidden = ([reference.createdAt isEqualToDate:reference.updatedAt]) ? YES : NO;
+    
+    self.lblText.numberOfLines = (expanded) ? 0 : COLLAPSED_NUMBER_OF_LINES;
+    self.lblText.text = reference.text;
+    [self.lblText sizeToFit];
+    
+    CGRect rect = self.frame;
+    rect.size.height = self.lblText.frame.origin.y + self.lblText.frame.size.height + 5;
+    self.frame = rect;
 }
 
 @end

@@ -13,8 +13,9 @@
 #import "User.h"
 #import "SlideNavigationController.h"
 #import "ReferenceClient.h"
+#import "CreateReferenceViewController.h"
 
-@interface ProfileViewController : BaseViewController <SlideNavigationControllerDelegate>
+@interface ProfileViewController : BaseViewController <SlideNavigationControllerDelegate, CreateReferenceViewControllerDelegate>
 
 @property (nonatomic, strong) User *user;
 @property (nonatomic, strong) IBOutlet UIImageView *imgProfilePicture;

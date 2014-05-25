@@ -9,10 +9,12 @@
 #import "ReferencesViewController.h"
 #import "ReferenceCell.h"
 #import "UITableView+Additions.h"
+#import <SVPullToRefresh/UIScrollView+SVInfiniteScrolling.h>
 
 @implementation ReferencesViewController
 
 #define RESULT_PER_PAGE 25
+#define CELL_IDENTIFIER @"ReferenceCell"
 
 #pragma mark - UIViewController Methods -
 
@@ -20,11 +22,25 @@
 {
     [super viewDidLoad];
     
+    self.expandedRefernceIds = [NSMutableSet set];
     self.positiveReferences = [NSMutableArray array];
     self.negativeReferences = [NSMutableArray array];
     
     self.morePositiveToLoad = YES;
     self.moreNegativeToLoad = YES;
+    
+    __weak ReferencesViewController *weakRfeerence = self;
+    
+    [self.tableView addInfiniteScrollingWithActionHandler:^{
+        if (weakRfeerence.segmentedControl.selectedSegmentIndex == 0)
+        {
+            [weakRfeerence fetchAndPopulateReferenceByType:ReferenceTypePositive];
+        }
+        else
+        {
+            [weakRfeerence fetchAndPopulateReferenceByType:ReferenceTypeNegative];
+        }
+    }];
 
     [self fetchAndPopulateReferenceByType:ReferenceTypePositive];
     [self fetchAndPopulateReferenceByType:ReferenceTypeNegative];
@@ -98,6 +114,18 @@
     }
 }
 
+- (BOOL)isReferenceExpanded:(Reference *)reference
+{
+    return [self.expandedRefernceIds containsObject:reference.objectId];
+}
+
+- (Reference *)referenceAtIndexPath:(NSIndexPath *)indexPath
+{
+    return (self.segmentedControl.selectedSegmentIndex == 0)
+        ? [self.positiveReferences objectAtIndex:indexPath.row]
+        : [self.negativeReferences objectAtIndex:indexPath.row];;
+}
+
 #pragma mark - IBActions -
 
 - (IBAction)segmentedControlDidChange:(id)sender
@@ -108,7 +136,6 @@
     
     int insertAnimation = (self.segmentedControl.selectedSegmentIndex == 0) ? UITableViewRowAnimationLeft : UITableViewRowAnimationRight;
     int deleteAnimation = (self.segmentedControl.selectedSegmentIndex == 0) ? UITableViewRowAnimationRight : UITableViewRowAnimationLeft;
-    
     
     [self.tableView deleteRowsAndAnimateNewRows:count inSection:0 withDeleteAnimatiion:deleteAnimation andInsertAnimation:insertAnimation];
 }
@@ -124,19 +151,43 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"ReferenceCell";
-    ReferenceCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    Reference *reference = (self.segmentedControl.selectedSegmentIndex == 0)
-        ? [self.positiveReferences objectAtIndex:indexPath.row]
-        : [self.negativeReferences objectAtIndex:indexPath.row];
+    ReferenceCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
+    Reference *reference = [self referenceAtIndexPath:indexPath];
 
-    [cell setReference:reference];
+    [cell setReference:reference isExpanded:[self isReferenceExpanded:reference]];
     return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Reference *reference = [self referenceAtIndexPath:indexPath];
+    ReferenceCell *cell = [tableView dequeueReusableCellWithIdentifier:CELL_IDENTIFIER];
+    [cell setReference:reference isExpanded:[self isReferenceExpanded:reference]];
+    
+    return cell.frame.size.height;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    Reference *reference = [self referenceAtIndexPath:indexPath];
     
+    if ([self.expandedRefernceIds containsObject:reference.objectId])
+    {
+        [self.expandedRefernceIds removeObject:reference.objectId];
+    }
+    else
+    {
+        [self.expandedRefernceIds addObject:reference.objectId];
+    }
+    
+    ReferenceCell *cell = (ReferenceCell *) [self.tableView cellForRowAtIndexPath:indexPath];
+    [cell setReference:reference isExpanded:[self isReferenceExpanded:reference]];
+    
+    //[self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 
 #pragma mark - Setter & Getter -

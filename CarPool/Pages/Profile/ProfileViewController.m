@@ -7,7 +7,6 @@
 //
 
 #import "ProfileViewController.h"
-#import "CreateReferenceViewController.h"
 #import "ReferencesViewController.h"
 
 @implementation ProfileViewController
@@ -36,14 +35,14 @@
         self.btnCreateReference.hidden = YES;
     }
     
+    
+    self.lblPositiveReferenceCount.text = @"";
+    self.lblNegativeReferenceCount.text = @"";
     [self fetchAndPopulateReferenceCounts];
 }
 
 - (void)fetchAndPopulateReferenceCounts
 {
-    self.lblPositiveReferenceCount.text = @"";
-    self.lblNegativeReferenceCount.text = @"";
-    
     [self.referenceClient fetchReferenceCountsForUser:self.user withCompletion:^(NSNumber *poitive, NSNumber *negative, NSError *error) {
         if (!error)
         {
@@ -58,6 +57,7 @@
     if ([segue.identifier isEqualToString:@"CreateReferenceViewController"])
     {
         CreateReferenceViewController *vc = segue.destinationViewController;
+        vc.delegate = self;
         vc.user = self.user;
     }
     else if ([segue.identifier isEqualToString:@"ReferencesViewController"])
@@ -65,6 +65,13 @@
         ReferencesViewController *vc = segue.destinationViewController;
         vc.user = self.user;
     }
+}
+
+#pragma mark - CreateReferenceViewControllerDelegate -
+
+- (void)CreateReferenceViewControllerDidSubmitReference:(Reference *)reference
+{
+    [self fetchAndPopulateReferenceCounts];
 }
 
 #pragma mark - IBActions -
