@@ -198,6 +198,7 @@
 {
     Comment *comment = [[Comment alloc] init];
     comment.message = message;
+    comment.action = CommentActionMessage;
     comment.from = [User currentUser];
     comment.to = ([[User currentUser].objectId isEqualToString:self.request.from.objectId])
         ? self.request.to

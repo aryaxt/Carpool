@@ -11,10 +11,15 @@
 
 @implementation Comment
 @dynamic message;
+@dynamic action;
 @dynamic read;
 @dynamic from;
 @dynamic to;
 @dynamic request;
+
+NSString *CommentActionAccept = @"accept";
+NSString *CommentActionReject = @"reject";
+NSString *CommentActionMessage = @"message";
 
 + (NSString *)parseClassName
 {

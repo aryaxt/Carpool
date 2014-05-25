@@ -13,7 +13,12 @@
 
 @interface Comment : PFObject<PFSubclassing>
 
+extern NSString *CommentActionAccept;
+extern NSString *CommentActionReject;
+extern NSString *CommentActionMessage;
+
 @property (nonatomic, strong) NSString *message;
+@property (nonatomic, strong) NSString *action;
 @property (nonatomic, strong) NSNumber *read;
 @property (nonatomic, strong) CarPoolRequest *request;
 @property (nonatomic, strong) User *from;

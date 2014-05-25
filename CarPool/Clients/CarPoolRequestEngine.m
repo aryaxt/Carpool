@@ -84,6 +84,7 @@
             comment.request = refreshedRequest;
             comment.from = request.to;
             comment.to = request.from;
+            comment.action = (status) ? CommentActionAccept : CommentActionReject;
             comment.message = (status) ? @"Accepted your request" : @"Declined your request";
             
             [comment saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
