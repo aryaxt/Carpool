@@ -72,6 +72,9 @@
 		923E95021931B96E008411AA /* ApplicationVersion.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E95011931B96E008411AA /* ApplicationVersion.m */; };
 		923E95051931BA02008411AA /* ApplicationVersionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E95041931BA02008411AA /* ApplicationVersionManager.m */; };
 		923E95081931BA16008411AA /* ApplicationVersionClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E95071931BA16008411AA /* ApplicationVersionClient.m */; };
+		923E950C19325DB5008411AA /* MessageComposerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E950B19325DB5008411AA /* MessageComposerView.m */; };
+		923E950E19325DC6008411AA /* MessageComposerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923E950D19325DC6008411AA /* MessageComposerView.xib */; };
+		92677F6A1932975F008046DE /* InsetEnabledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F691932975F008046DE /* InsetEnabledLabel.m */; };
 		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
 		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
 		927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */; };
@@ -213,6 +216,11 @@
 		923E95041931BA02008411AA /* ApplicationVersionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationVersionManager.m; sourceTree = "<group>"; };
 		923E95061931BA16008411AA /* ApplicationVersionClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationVersionClient.h; sourceTree = "<group>"; };
 		923E95071931BA16008411AA /* ApplicationVersionClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationVersionClient.m; sourceTree = "<group>"; };
+		923E950A19325DB5008411AA /* MessageComposerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComposerView.h; sourceTree = "<group>"; };
+		923E950B19325DB5008411AA /* MessageComposerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageComposerView.m; sourceTree = "<group>"; };
+		923E950D19325DC6008411AA /* MessageComposerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageComposerView.xib; sourceTree = "<group>"; };
+		92677F681932975F008046DE /* InsetEnabledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetEnabledLabel.h; sourceTree = "<group>"; };
+		92677F691932975F008046DE /* InsetEnabledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsetEnabledLabel.m; sourceTree = "<group>"; };
 		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
@@ -358,6 +366,7 @@
 		9226EE9F191573530014B319 /* CarPool */ = {
 			isa = PBXGroup;
 			children = (
+				923E950919325D9E008411AA /* Views */,
 				9226EF341917041C0014B319 /* Images */,
 				9226EED619157A6F0014B319 /* Categories */,
 				928266C8191E9B6B001AD534 /* Subclasses */,
@@ -650,11 +659,23 @@
 			path = References;
 			sourceTree = "<group>";
 		};
+		923E950919325D9E008411AA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				923E950A19325DB5008411AA /* MessageComposerView.h */,
+				923E950B19325DB5008411AA /* MessageComposerView.m */,
+				923E950D19325DC6008411AA /* MessageComposerView.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		928266C8191E9B6B001AD534 /* Subclasses */ = {
 			isa = PBXGroup;
 			children = (
 				928266C9191E9B9C001AD534 /* PinEnabledMapView.h */,
 				928266CA191E9B9C001AD534 /* PinEnabledMapView.m */,
+				92677F681932975F008046DE /* InsetEnabledLabel.h */,
+				92677F691932975F008046DE /* InsetEnabledLabel.m */,
 			);
 			path = Subclasses;
 			sourceTree = "<group>";
@@ -755,6 +776,7 @@
 				9217A5A519245214005E3A36 /* index.html in Resources */,
 				92B568D619170E2900CEF58F /* calendar.png in Resources */,
 				92B568D719170E2900CEF58F /* startPoint.png in Resources */,
+				923E950E19325DC6008411AA /* MessageComposerView.xib in Resources */,
 				923E94EA1930F6D3008411AA /* filter.png in Resources */,
 				9226EEAD191573530014B319 /* Main_iPhone.storyboard in Resources */,
 				9226EEA4191573530014B319 /* InfoPlist.strings in Resources */,
@@ -831,6 +853,7 @@
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
 				920917F51927AD4B009701FA /* RequestDetailViewController.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
+				92677F6A1932975F008046DE /* InsetEnabledLabel.m in Sources */,
 				923E15E51929A85000AD1B5A /* ProfileViewController.m in Sources */,
 				923E94F819316769008411AA /* ReferenceClient.m in Sources */,
 				923E94F11931178B008411AA /* SearchFilter.m in Sources */,
@@ -844,6 +867,7 @@
 				923E94EE1930F894008411AA /* SearchFilterViewController.m in Sources */,
 				920918071927EF84009701FA /* CarPoolRequestEngine.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
+				923E950C19325DB5008411AA /* MessageComposerView.m in Sources */,
 				9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */,
 				920917FE1927B89F009701FA /* UIColor+Additions.m in Sources */,
 				9226EED919157A870014B319 /* UIViewController+Additions.m in Sources */,

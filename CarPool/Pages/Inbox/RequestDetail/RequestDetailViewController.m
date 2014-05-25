@@ -8,7 +8,13 @@
 
 #import "RequestDetailViewController.h"
 
+@interface RequestDetailViewController()
+@property (nonatomic, assign) CGFloat messageComposerHeight;
+@end
+
 @implementation RequestDetailViewController
+
+#define COMMENT_CELL_IDENTIFIER @"CommentCell"
 
 #pragma mark - UIViewController Methods -
 
@@ -17,16 +23,12 @@
     [super viewDidLoad];
     
     [self.headerView removeFromSuperview];
-    [self.commentHeaderView removeFromSuperview];
     
     self.mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.mapView.layer.borderWidth = 1;
     self.mapView.layer.cornerRadius = 3;
     
-    self.txtNewMessage.text = @"";
-    self.txtNewMessage.layer.borderWidth = .6;
-    self.txtNewMessage.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.txtNewMessage.layer.cornerRadius = 5;
+    self.messageComposerHeight = self.messageComposerView.frame.size.height;
     
     [self fetchRequestDetail];
     [self fetchCommentsAnimated:YES withCompletion:nil];
@@ -106,13 +108,11 @@
 
 - (void)fetchCommentsAnimated:(BOOL)animated withCompletion:(void (^)(void))completion
 {
-    [self.loadCommentIndicatorView startAnimating];
-    self.btnSendMessage.hidden = YES;
+    [self.messageComposerView setLoading:YES];
     
     [self.commentClient fetchCommentsForRequest:self.request withCompletion:^(NSArray *comments, NSError *error) {
         //TODO: Some error handling here?
-        self.btnSendMessage.hidden = NO;
-        [self.loadCommentIndicatorView stopAnimating];
+        [self.messageComposerView setLoading:NO];
         
         self.comments = (NSMutableArray *)comments;
         
@@ -192,12 +192,12 @@
     }];
 }
 
-#pragma mark - IBActions -
+#pragma mark - MessageComposerViewDelegate -
 
-- (IBAction)sendSelected:(id)sender
+- (void)messageComposerViewDidSelectSendWithMessage:(NSString *)message
 {
     Comment *comment = [[Comment alloc] init];
-    comment.message = self.txtNewMessage.text;
+    comment.message = message;
     comment.from = [User currentUser];
     comment.to = ([[User currentUser].objectId isEqualToString:self.request.from.objectId])
         ? self.request.to
@@ -205,15 +205,13 @@
     
     __weak RequestDetailViewController *weakSelf = self;
     
-    [self.loadCommentIndicatorView startAnimating];
-    self.btnSendMessage.hidden = YES;
-    [self.txtNewMessage resignFirstResponder];
-    
+    [self.messageComposerView resignFirstResponder];
+    [self.messageComposerView setLoading:YES];
+
     [self.commentClient addComment:comment
                          toRequest:self.request
                     withCompletion:^(NSError *error) {
-                        [weakSelf.loadCommentIndicatorView stopAnimating];
-                        weakSelf.btnSendMessage.hidden = NO;
+                        [weakSelf.messageComposerView setLoading:NO];
                         
                         if (error)
                         {
@@ -221,14 +219,42 @@
                         }
                         else
                         {
-                            weakSelf.txtNewMessage.text = @"";
+                            // Reset message composer size after message is sent
+                            [weakSelf.messageComposerView reset];
+                            weakSelf.messageComposerHeight = weakSelf.messageComposerView.frame.size.height;
+                            [weakSelf.tableView beginUpdates];
+                            [weakSelf.tableView endUpdates];
+                            [weakSelf.messageComposerView resizeView];
+                            
                             [weakSelf.comments addObject:comment];
                             NSIndexPath *indexPath = [NSIndexPath indexPathForRow:weakSelf.comments.count-1 inSection:1];
                             [weakSelf.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                             [weakSelf.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
                         }
-    }];
+                    }];
 }
+
+- (void)messageComposerViewDidBecomeFirstResponser
+{
+    //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
+}
+
+- (void)messageComposerViewDidResignFirstResponder
+{
+    
+}
+
+- (void)messageComposerViewDidChangeSize
+{
+    self.messageComposerHeight = self.messageComposerView.frame.size.height;
+    
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    
+    [self.messageComposerView resizeView];
+}
+
+#pragma mark - IBActions -
 
 - (IBAction)acceptSelected:(id)sender
 {
@@ -257,9 +283,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *cellIdentifier = @"CommentCell";
-    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    
+    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:COMMENT_CELL_IDENTIFIER];
     Comment *comment = [self.comments objectAtIndex:indexPath.row];
     BOOL isFromMe = ([comment.from.objectId isEqual:[User currentUser].objectId]) ? YES : NO;
     [cell setComment:comment isFromMe:isFromMe];
@@ -282,8 +306,18 @@
     }
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    CommentCell *cell = [tableView dequeueReusableCellWithIdentifier:COMMENT_CELL_IDENTIFIER];
+    Comment *comment = [self.comments objectAtIndex:indexPath.row];
+    BOOL isFromMe = ([comment.from.objectId isEqual:[User currentUser].objectId]) ? YES : NO;
+    [cell setComment:comment isFromMe:isFromMe];
+    return cell.frame.size.height;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -291,7 +325,7 @@
     if (section == 0)
         return self.headerView;
     else
-        return self.commentHeaderView;
+        return self.messageComposerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
@@ -299,7 +333,12 @@
     if (section == 0)
         return self.headerView.frame.size.height;
     else
-        return self.commentHeaderView.frame.size.height;
+        return self.messageComposerHeight;
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [self.messageComposerView resignFirstResponder];
 }
 
 #pragma mark - PushNotificationHandler -
@@ -369,6 +408,17 @@
     }
     
     return _commentClient;
+}
+
+- (MessageComposerView *)messageComposerView
+{
+    if (!_messageComposerView)
+    {
+        _messageComposerView = [[MessageComposerView alloc] init];
+        _messageComposerView.delegate = self;
+    }
+    
+    return _messageComposerView;
 }
 
 @end
