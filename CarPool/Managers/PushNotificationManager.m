@@ -35,11 +35,13 @@ NSString *PushNotificationTypeComment = @"comment";
     NSString *type = [data objectForKey:@"type"];
     
     BOOL canViewControllerHandleNotification = NO;
-    UIViewController *vc = [SlideNavigationController sharedInstance].topViewController;
     
-    if ([vc conformsToProtocol:@protocol(PushNotificationHandler)])
+    for (UIViewController *vc in [SlideNavigationController sharedInstance].viewControllers)
     {
-        canViewControllerHandleNotification = [(id <PushNotificationHandler>)vc canHandlePushNotificationWithType:type andData:data];
+        if ([vc conformsToProtocol:@protocol(PushNotificationHandler)])
+        {
+            canViewControllerHandleNotification = [(id <PushNotificationHandler>)vc canHandlePushNotificationWithType:type andData:data];
+        }
     }
     
     if (!canViewControllerHandleNotification)

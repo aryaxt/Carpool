@@ -195,6 +195,13 @@
     [self performSegueWithIdentifier:@"CreateRequestViewController" sender:offer];
 }
 
+- (void)offerDetailViewControllerDidSelectViewUserProfile:(User *)user
+{
+    ProfileViewController *vc = [ProfileViewController viewController];
+    vc.user = user;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - Private MEthods -
 
 - (void)setExpandOfferDetail:(BOOL)expand withDuration:(NSTimeInterval)duration

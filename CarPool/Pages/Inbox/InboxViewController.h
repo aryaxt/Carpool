@@ -13,11 +13,13 @@
 #import "SlideNavigationController.h"
 #import "RequestDetailViewController.h"
 #import "PushNotificationManager.h"
+#import "PersonalMessagesViewController.h"
 
 @interface InboxViewController : BaseViewController <SlideNavigationControllerDelegate, PushNotificationHandler>
 
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) CommentClient *commentClient;
 @property (nonatomic, strong) NSMutableArray *comments;
+@property (nonatomic, strong) NSMutableDictionary *numberOfUnreadsRelatedToCommentGroup;
 
 @end

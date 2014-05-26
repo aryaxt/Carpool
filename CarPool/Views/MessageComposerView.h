@@ -10,6 +10,8 @@
 
 @protocol MessageComposerViewDelegate <NSObject>
 - (void)messageComposerViewDidSelectSendWithMessage:(NSString *)message;
+
+@optional
 - (void)messageComposerViewDidBecomeFirstResponser;
 - (void)messageComposerViewDidResignFirstResponder;
 - (void)messageComposerViewDidChangeSize;

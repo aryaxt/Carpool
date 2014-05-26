@@ -10,11 +10,16 @@
 
 @implementation InboxViewController
 
+#define REQUEST_DETAIL_SEGUE_IDENTIFIER @"RequestDetailViewController"
+#define PERSONAL_MESSAGES_SEGUE_IDENTIFIER @"PersonalMessagesViewController"
+
 #pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.numberOfUnreadsRelatedToCommentGroup = [NSMutableDictionary dictionary];
     
     [self showLoader];
     [self fetchAndPopulateDataAnimated:YES withCompletion:nil];
@@ -29,12 +34,18 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqual:@"RequestDetailViewController"])
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    Comment *comment = [self.comments objectAtIndex:indexPath.row];
+    
+    if ([segue.identifier isEqual:REQUEST_DETAIL_SEGUE_IDENTIFIER])
     {
         RequestDetailViewController *vc = segue.destinationViewController;
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        Comment *comment = [self.comments objectAtIndex:indexPath.row];
         vc.request = comment.request;
+    }
+    else if ([segue.identifier isEqual:PERSONAL_MESSAGES_SEGUE_IDENTIFIER])
+    {
+        PersonalMessagesViewController *vc = segue.destinationViewController;
+        vc.user = comment.from;
     }
 }
 
@@ -156,11 +167,11 @@
     
     if (comment.request)
     {
-        [self performSegueWithIdentifier:@"RequestDetailViewController" sender:self];
+        [self performSegueWithIdentifier:REQUEST_DETAIL_SEGUE_IDENTIFIER sender:self];
     }
     else
     {
-        // TODO: Create a comments page and take the user there
+        [self performSegueWithIdentifier:PERSONAL_MESSAGES_SEGUE_IDENTIFIER sender:self];
     }
 }
 

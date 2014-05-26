@@ -14,10 +14,13 @@
 #import "SlideNavigationController.h"
 #import "ReferenceClient.h"
 #import "CreateReferenceViewController.h"
+#import "MessageComposerView.h"
+#import "CommentClient.h"
 
-@interface ProfileViewController : BaseViewController <SlideNavigationControllerDelegate, CreateReferenceViewControllerDelegate>
+@interface ProfileViewController : BaseViewController <SlideNavigationControllerDelegate, CreateReferenceViewControllerDelegate, MessageComposerViewDelegate, UIScrollViewDelegate>
 
 @property (nonatomic, strong) User *user;
+@property (nonatomic, strong) IBOutlet UIScrollView *contentScrollView;
 @property (nonatomic, strong) IBOutlet UIImageView *imgProfilePicture;
 @property (nonatomic, strong) IBOutlet UILabel *lblName;
 @property (nonatomic, strong) IBOutlet UILabel *lblAboutMe;
@@ -27,8 +30,9 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblMusicMoviesBooks;
 @property (nonatomic, strong) IBOutlet UIButton *btnCreateReference;
 @property (nonatomic, strong) ReferenceClient *referenceClient;
+@property (nonatomic, strong) MessageComposerView *messageComposerView;
+@property (nonatomic, strong) CommentClient *commentClient;
 
-- (IBAction)addFriendSelected:(id)sender;
 - (IBAction)blockUserSelected:(id)sender;
 
 @end

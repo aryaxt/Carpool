@@ -15,6 +15,7 @@
 - (void)offerDetailViewControllerDidSelectExpand;
 - (void)offerDetailViewControllerDidDetectPan:(UIPanGestureRecognizer *)pan;
 - (void)offerDetailViewControllerDidSelectRequestForOffer:(CarPoolOffer *)offer;
+- (void)offerDetailViewControllerDidSelectViewUserProfile:(User *)user;
 @end
 
 @interface OfferDetailViewController : BaseViewController
@@ -33,5 +34,6 @@
 - (IBAction)previousSelected:(id)sender;
 - (IBAction)titleSelected:(id)sender;
 - (IBAction)requestOfferSelected:(id)sender;
+- (IBAction)viewProfileSelected:(id)sender;
 
 @end

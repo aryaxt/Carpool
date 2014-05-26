@@ -69,7 +69,8 @@
     rect.size.height = self.txtMessage.frame.origin.y + self.txtMessage.contentSize.height + 5;
     self.frame = rect;
     
-    if (originalHeight != rect.size.height)
+    if (originalHeight != rect.size.height &&
+        [self.delegate respondsToSelector:@selector(messageComposerViewDidChangeSize)])
         [self.delegate messageComposerViewDidChangeSize];
 }
 
@@ -77,12 +78,14 @@
 
 - (void)textViewDidBeginEditing:(UITextView *)textView
 {
-    [self.delegate messageComposerViewDidBecomeFirstResponser];
+    if ([self.delegate respondsToSelector:@selector(messageComposerViewDidBecomeFirstResponser)])
+        [self.delegate messageComposerViewDidBecomeFirstResponser];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
-    [self.delegate messageComposerViewDidResignFirstResponder];
+    if ([self.delegate respondsToSelector:@selector(messageComposerViewDidResignFirstResponder)])
+        [self.delegate messageComposerViewDidResignFirstResponder];
 }
 
 - (void)textViewDidChange:(UITextView *)textView

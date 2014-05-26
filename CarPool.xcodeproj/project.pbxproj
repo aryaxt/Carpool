@@ -9,11 +9,9 @@
 /* Begin PBXBuildFile section */
 		7EDDE6976D904ED2B1399CB5 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2B9C8540FCBD4CDAAF57AC3E /* libPods.a */; };
 		920917F119270C63009701FA /* InboxCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917F019270C63009701FA /* InboxCell.m */; };
-		920917F51927AD4B009701FA /* RequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917F41927AD4B009701FA /* RequestDetailViewController.m */; };
 		920917F81927ADA3009701FA /* UIImageView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917F71927ADA3009701FA /* UIImageView+Additions.m */; };
 		920917FB1927B187009701FA /* MKMapView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917FA1927B187009701FA /* MKMapView+Additions.m */; };
 		920917FE1927B89F009701FA /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917FD1927B89F009701FA /* UIColor+Additions.m */; };
-		920918011927DE1E009701FA /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918001927DE1E009701FA /* CommentCell.m */; };
 		920918041927EDEA009701FA /* CommentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918031927EDEA009701FA /* CommentClient.m */; };
 		920918071927EF84009701FA /* CarPoolRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918061927EF84009701FA /* CarPoolRequestEngine.m */; };
 		9217A59819231698005E3A36 /* Installation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59719231698005E3A36 /* Installation.m */; };
@@ -75,6 +73,9 @@
 		923E950C19325DB5008411AA /* MessageComposerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E950B19325DB5008411AA /* MessageComposerView.m */; };
 		923E950E19325DC6008411AA /* MessageComposerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923E950D19325DC6008411AA /* MessageComposerView.xib */; };
 		92677F6A1932975F008046DE /* InsetEnabledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F691932975F008046DE /* InsetEnabledLabel.m */; };
+		92677F6E1933A002008046DE /* PersonalMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F6D1933A002008046DE /* PersonalMessagesViewController.m */; };
+		92677F741933A36B008046DE /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F711933A36B008046DE /* CommentCell.m */; };
+		92677F751933A36B008046DE /* RequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F731933A36B008046DE /* RequestDetailViewController.m */; };
 		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
 		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
 		927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */; };
@@ -106,16 +107,12 @@
 		715CC3CC364D4C49AB5B958E /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		920917EF19270C63009701FA /* InboxCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InboxCell.h; sourceTree = "<group>"; };
 		920917F019270C63009701FA /* InboxCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InboxCell.m; sourceTree = "<group>"; };
-		920917F31927AD4B009701FA /* RequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestDetailViewController.h; sourceTree = "<group>"; };
-		920917F41927AD4B009701FA /* RequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestDetailViewController.m; sourceTree = "<group>"; };
 		920917F61927ADA3009701FA /* UIImageView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImageView+Additions.h"; sourceTree = "<group>"; };
 		920917F71927ADA3009701FA /* UIImageView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImageView+Additions.m"; sourceTree = "<group>"; };
 		920917F91927B187009701FA /* MKMapView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKMapView+Additions.h"; sourceTree = "<group>"; };
 		920917FA1927B187009701FA /* MKMapView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKMapView+Additions.m"; sourceTree = "<group>"; };
 		920917FC1927B89F009701FA /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Additions.h"; sourceTree = "<group>"; };
 		920917FD1927B89F009701FA /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
-		920917FF1927DE1E009701FA /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
-		920918001927DE1E009701FA /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		920918021927EDEA009701FA /* CommentClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentClient.h; sourceTree = "<group>"; };
 		920918031927EDEA009701FA /* CommentClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentClient.m; sourceTree = "<group>"; };
 		920918051927EF84009701FA /* CarPoolRequestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolRequestEngine.h; sourceTree = "<group>"; };
@@ -221,6 +218,12 @@
 		923E950D19325DC6008411AA /* MessageComposerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageComposerView.xib; sourceTree = "<group>"; };
 		92677F681932975F008046DE /* InsetEnabledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetEnabledLabel.h; sourceTree = "<group>"; };
 		92677F691932975F008046DE /* InsetEnabledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsetEnabledLabel.m; sourceTree = "<group>"; };
+		92677F6C1933A002008046DE /* PersonalMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalMessagesViewController.h; sourceTree = "<group>"; };
+		92677F6D1933A002008046DE /* PersonalMessagesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalMessagesViewController.m; sourceTree = "<group>"; };
+		92677F701933A36B008046DE /* CommentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentCell.h; sourceTree = "<group>"; };
+		92677F711933A36B008046DE /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
+		92677F721933A36B008046DE /* RequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestDetailViewController.h; sourceTree = "<group>"; };
+		92677F731933A36B008046DE /* RequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestDetailViewController.m; sourceTree = "<group>"; };
 		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
@@ -271,17 +274,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		920917F21927AD36009701FA /* RequestDetail */ = {
-			isa = PBXGroup;
-			children = (
-				920917F31927AD4B009701FA /* RequestDetailViewController.h */,
-				920917F41927AD4B009701FA /* RequestDetailViewController.m */,
-				920917FF1927DE1E009701FA /* CommentCell.h */,
-				920918001927DE1E009701FA /* CommentCell.m */,
-			);
-			path = RequestDetail;
-			sourceTree = "<group>";
-		};
 		9217A59C19245214005E3A36 /* CarpoolCloudCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -319,7 +311,6 @@
 		9217A5A619245AB9005E3A36 /* Inbox */ = {
 			isa = PBXGroup;
 			children = (
-				920917F21927AD36009701FA /* RequestDetail */,
 				9217A5A719245AD9005E3A36 /* InboxViewController.h */,
 				9217A5A819245AD9005E3A36 /* InboxViewController.m */,
 				920917EF19270C63009701FA /* InboxCell.h */,
@@ -416,6 +407,8 @@
 		9226EED11915788D0014B319 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				92677F6F1933A36B008046DE /* RequestDetail */,
+				92677F6B19339FED008046DE /* PersonalMessages */,
 				923E15E21929A84400AD1B5A /* Profile */,
 				923E15D21929215200AD1B5A /* MyActivities */,
 				9217A5A619245AB9005E3A36 /* Inbox */,
@@ -669,6 +662,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		92677F6B19339FED008046DE /* PersonalMessages */ = {
+			isa = PBXGroup;
+			children = (
+				92677F6C1933A002008046DE /* PersonalMessagesViewController.h */,
+				92677F6D1933A002008046DE /* PersonalMessagesViewController.m */,
+			);
+			path = PersonalMessages;
+			sourceTree = "<group>";
+		};
+		92677F6F1933A36B008046DE /* RequestDetail */ = {
+			isa = PBXGroup;
+			children = (
+				92677F701933A36B008046DE /* CommentCell.h */,
+				92677F711933A36B008046DE /* CommentCell.m */,
+				92677F721933A36B008046DE /* RequestDetailViewController.h */,
+				92677F731933A36B008046DE /* RequestDetailViewController.m */,
+			);
+			path = RequestDetail;
+			sourceTree = "<group>";
+		};
 		928266C8191E9B6B001AD534 /* Subclasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -851,10 +864,10 @@
 				92881405191DD6BF00726DD8 /* User.m in Sources */,
 				9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */,
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
-				920917F51927AD4B009701FA /* RequestDetailViewController.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				92677F6A1932975F008046DE /* InsetEnabledLabel.m in Sources */,
 				923E15E51929A85000AD1B5A /* ProfileViewController.m in Sources */,
+				92677F6E1933A002008046DE /* PersonalMessagesViewController.m in Sources */,
 				923E94F819316769008411AA /* ReferenceClient.m in Sources */,
 				923E94F11931178B008411AA /* SearchFilter.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
@@ -867,6 +880,8 @@
 				923E94EE1930F894008411AA /* SearchFilterViewController.m in Sources */,
 				920918071927EF84009701FA /* CarPoolRequestEngine.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
+				92677F751933A36B008046DE /* RequestDetailViewController.m in Sources */,
+				92677F741933A36B008046DE /* CommentCell.m in Sources */,
 				923E950C19325DB5008411AA /* MessageComposerView.m in Sources */,
 				9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */,
 				920917FE1927B89F009701FA /* UIColor+Additions.m in Sources */,
@@ -883,7 +898,6 @@
 				9226EEA6191573530014B319 /* main.m in Sources */,
 				9217A59819231698005E3A36 /* Installation.m in Sources */,
 				923E15D81929215200AD1B5A /* MyActivitiesViewController.m in Sources */,
-				920918011927DE1E009701FA /* CommentCell.m in Sources */,
 				9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */,
 				923E94F5193165BF008411AA /* CreateReferenceViewController.m in Sources */,
 				928266D2191EFE05001AD534 /* CreateRequestViewController.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "CommentCell.h"
+#import "UIColor+additions.h"
 
 @implementation CommentCell
 
@@ -53,17 +54,17 @@
 {
     if ([comment.action isEqualToString:CommentActionAccept])
     {
-        return [UIColor colorWithRed:94.0/255.0 green:228.0/255.0 blue:67.0/255.0 alpha:1];
+        return [UIColor greenChatBubbleColor];
     }
     else if ([comment.action isEqualToString:CommentActionReject])
     {
-        return [UIColor colorWithRed:255.0/255.0 green:53.0/255.0 blue:36.0/255.0 alpha:1];
+        return [UIColor redChatBubbleColor];
     }
     else
     {
         return (isFromMe)
-            ? [UIColor colorWithRed:37.0/255.0 green:160.0/255.0 blue:254.0/255.0 alpha:1]
-            : [UIColor colorWithRed:229.0/255.0 green:229.0/255.0 blue:234.0/255.0 alpha:1];
+            ? [UIColor blueChatBubbleColor]
+            : [UIColor grayChatBubbleColor];
     }
     
     return nil;

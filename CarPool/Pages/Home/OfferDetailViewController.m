@@ -53,6 +53,11 @@
     [self.delegate offerDetailViewControllerDidSelectRequestForOffer:self.carPoolOffer];
 }
 
+- (IBAction)viewProfileSelected:(id)sender
+{
+    [self.delegate offerDetailViewControllerDidSelectViewUserProfile:self.carPoolOffer.from];
+}
+
 #pragma mark - Setter & Getter -
 
 - (void)setCarPoolOffer:(CarPoolOffer *)offer

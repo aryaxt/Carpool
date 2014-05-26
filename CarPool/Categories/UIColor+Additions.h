@@ -11,5 +11,9 @@
 @interface UIColor (Additions)
 
 + (UIColor *)randomColor;
++ (UIColor *)blueChatBubbleColor;
++ (UIColor *)greenChatBubbleColor;
++ (UIColor *)grayChatBubbleColor;
++ (UIColor *)redChatBubbleColor;
 
 @end

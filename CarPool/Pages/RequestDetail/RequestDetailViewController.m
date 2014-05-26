@@ -196,53 +196,39 @@
 
 - (void)messageComposerViewDidSelectSendWithMessage:(NSString *)message
 {
-    Comment *comment = [[Comment alloc] init];
-    comment.message = message;
-    comment.action = CommentActionMessage;
-    comment.from = [User currentUser];
-    comment.to = ([[User currentUser].objectId isEqualToString:self.request.from.objectId])
-        ? self.request.to
-        : self.request.from;
+    if (message.length == 0)
+    {
+        [self alertWithtitle:@"Error" andMessage:@"Message is empty"];
+        return;
+    }
     
     __weak RequestDetailViewController *weakSelf = self;
     
     [self.messageComposerView resignFirstResponder];
     [self.messageComposerView setLoading:YES];
 
-    [self.commentClient addComment:comment
-                         toRequest:self.request
-                    withCompletion:^(NSError *error) {
-                        [weakSelf.messageComposerView setLoading:NO];
-                        
-                        if (error)
-                        {
-                            [weakSelf alertWithtitle:@"Error" andMessage:@"Error sending comment"];
-                        }
-                        else
-                        {
-                            // Reset message composer size after message is sent
-                            [weakSelf.messageComposerView reset];
-                            weakSelf.messageComposerHeight = weakSelf.messageComposerView.frame.size.height;
-                            [weakSelf.tableView beginUpdates];
-                            [weakSelf.tableView endUpdates];
-                            [weakSelf.messageComposerView resizeView];
-                            
-                            [weakSelf.comments addObject:comment];
-                            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:weakSelf.comments.count-1 inSection:1];
-                            [weakSelf.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-                            [weakSelf.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-                        }
-                    }];
-}
-
-- (void)messageComposerViewDidBecomeFirstResponser
-{
-    //[self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:1] atScrollPosition:UITableViewScrollPositionTop animated:YES];
-}
-
-- (void)messageComposerViewDidResignFirstResponder
-{
-    
+    [self.commentClient addCommentWithMessage:message toRequest:self.request withCompletion:^(Comment *comment, NSError *error) {
+        [weakSelf.messageComposerView setLoading:NO];
+        
+        if (error)
+        {
+            [weakSelf alertWithtitle:@"Error" andMessage:@"Error sending comment"];
+        }
+        else
+        {
+            // Reset message composer size after message is sent
+            [weakSelf.messageComposerView reset];
+            weakSelf.messageComposerHeight = weakSelf.messageComposerView.frame.size.height;
+            [weakSelf.tableView beginUpdates];
+            [weakSelf.tableView endUpdates];
+            [weakSelf.messageComposerView resizeView];
+            
+            [weakSelf.comments addObject:comment];
+            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:weakSelf.comments.count-1 inSection:1];
+            [weakSelf.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+            [weakSelf.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        }
+    }];
 }
 
 - (void)messageComposerViewDidChangeSize
@@ -295,16 +281,7 @@
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     Comment *comment = [self.comments objectAtIndex:indexPath.row];
-    BOOL isToMe = ([comment.to.objectId isEqual:[User currentUser].objectId]) ? YES : NO;
-    
-    if (isToMe)
-    {
-        if (!comment.read.boolValue)
-        {
-            comment.read = @YES;
-            [comment saveEventually];
-        }
-    }
+    [self.commentClient markCommentAsRead:comment];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -314,11 +291,6 @@
     BOOL isFromMe = ([comment.from.objectId isEqual:[User currentUser].objectId]) ? YES : NO;
     [cell setComment:comment isFromMe:isFromMe];
     return cell.frame.size.height;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
