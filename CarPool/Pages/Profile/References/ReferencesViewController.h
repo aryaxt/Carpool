@@ -7,20 +7,15 @@
 //
 
 #import "BaseViewController.h"
-#import "ReferenceClient.h"
+#import "ReferenceViewController.h"
 #import "User.h"
 
-@interface ReferencesViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ReferencesViewController : BaseViewController
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
-@property (nonatomic, strong) NSMutableArray *positiveReferences;
-@property (nonatomic, strong) NSMutableArray *negativeReferences;
-@property (nonatomic, strong) ReferenceClient *referencesClient;
 @property (nonatomic, strong) User *user;
-@property (nonatomic, strong) NSMutableSet *expandedRefernceIds;
-@property (nonatomic, assign) BOOL morePositiveToLoad;
-@property (nonatomic, assign) BOOL moreNegativeToLoad;
+@property (nonatomic, strong) ReferenceViewController *positiveReferenceViewController;
+@property (nonatomic, strong) ReferenceViewController *negativeReferenceViewController;
 
 - (IBAction)segmentedControlDidChange:(id)sender;
 

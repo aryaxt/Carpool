@@ -29,6 +29,13 @@
     self.txtReference.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.txtReference.layer.borderWidth = .6;
     
+    [self fetchExistingComment];
+}
+
+#pragma mark - Private Methods -
+
+- (void)fetchExistingComment
+{
     [self showLoader];
     
     [self.referenceClient fetchReferenceFromUser:[User currentUser]
@@ -49,7 +56,7 @@
                                       {
                                           self.reference = (reference) ? reference : [[Reference alloc] init];
                                       }
-    }];
+                                  }];
 }
 
 #pragma mark - IBActions -

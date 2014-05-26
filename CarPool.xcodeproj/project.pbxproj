@@ -72,6 +72,7 @@
 		923E95081931BA16008411AA /* ApplicationVersionClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E95071931BA16008411AA /* ApplicationVersionClient.m */; };
 		923E950C19325DB5008411AA /* MessageComposerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E950B19325DB5008411AA /* MessageComposerView.m */; };
 		923E950E19325DC6008411AA /* MessageComposerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923E950D19325DC6008411AA /* MessageComposerView.xib */; };
+		925FB6281933E1FC00814B5A /* ReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB6271933E1FC00814B5A /* ReferenceViewController.m */; };
 		92677F6A1932975F008046DE /* InsetEnabledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F691932975F008046DE /* InsetEnabledLabel.m */; };
 		92677F6E1933A002008046DE /* PersonalMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F6D1933A002008046DE /* PersonalMessagesViewController.m */; };
 		92677F741933A36B008046DE /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F711933A36B008046DE /* CommentCell.m */; };
@@ -216,6 +217,8 @@
 		923E950A19325DB5008411AA /* MessageComposerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComposerView.h; sourceTree = "<group>"; };
 		923E950B19325DB5008411AA /* MessageComposerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageComposerView.m; sourceTree = "<group>"; };
 		923E950D19325DC6008411AA /* MessageComposerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageComposerView.xib; sourceTree = "<group>"; };
+		925FB6261933E1FC00814B5A /* ReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceViewController.h; sourceTree = "<group>"; };
+		925FB6271933E1FC00814B5A /* ReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceViewController.m; sourceTree = "<group>"; };
 		92677F681932975F008046DE /* InsetEnabledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetEnabledLabel.h; sourceTree = "<group>"; };
 		92677F691932975F008046DE /* InsetEnabledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsetEnabledLabel.m; sourceTree = "<group>"; };
 		92677F6C1933A002008046DE /* PersonalMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalMessagesViewController.h; sourceTree = "<group>"; };
@@ -648,6 +651,8 @@
 				923E94FB193198E0008411AA /* ReferencesViewController.m */,
 				923E94FD19319D6A008411AA /* ReferenceCell.h */,
 				923E94FE19319D6A008411AA /* ReferenceCell.m */,
+				925FB6261933E1FC00814B5A /* ReferenceViewController.h */,
+				925FB6271933E1FC00814B5A /* ReferenceViewController.m */,
 			);
 			path = References;
 			sourceTree = "<group>";
@@ -874,6 +879,7 @@
 				923E94FC193198E0008411AA /* ReferencesViewController.m in Sources */,
 				923E95051931BA02008411AA /* ApplicationVersionManager.m in Sources */,
 				9217A5A319245214005E3A36 /* main.js in Sources */,
+				925FB6281933E1FC00814B5A /* ReferenceViewController.m in Sources */,
 				9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */,
 				923E15DE1929A54800AD1B5A /* Profile.m in Sources */,
 				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
