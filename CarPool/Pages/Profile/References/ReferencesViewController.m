@@ -17,6 +17,9 @@
 {
     [super viewDidLoad];
     
+    // since referenceView could have a negative x, it shows up when back clicked
+    self.view.clipsToBounds = YES;
+    
     [self.view addSubview:self.negativeReferenceViewController.view];
     [self.view addSubview:self.positiveReferenceViewController.view];
 }

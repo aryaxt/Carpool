@@ -12,7 +12,7 @@
 
 - (void)fetchMyCommentsWithCompletion:(void (^)(NSArray *comments, NSError *error))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Comment class])];
+    PFQuery *query = [Comment query];
     [query whereKey:@"to" equalTo:[User currentUser]];
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"from"];
@@ -22,12 +22,12 @@
 
 - (void)fetchPersonalCommentsWithUser:(User *)user withCompletion:(void (^)(NSArray *comments, NSError *error))completion
 {
-    PFQuery *myCommentsQuery = [PFQuery queryWithClassName:NSStringFromClass([Comment class])];
+    PFQuery *myCommentsQuery = [Comment query];
     [myCommentsQuery whereKey:@"from" equalTo:[User currentUser]];
     [myCommentsQuery whereKey:@"to" equalTo:user];
     [myCommentsQuery whereKeyDoesNotExist:@"request"];
     
-    PFQuery *otherUserCommentsQuery = [PFQuery queryWithClassName:NSStringFromClass([Comment class])];
+    PFQuery *otherUserCommentsQuery = [Comment query];
     [otherUserCommentsQuery whereKey:@"to" equalTo:[User currentUser]];
     [otherUserCommentsQuery whereKey:@"from" equalTo:user];
     [otherUserCommentsQuery whereKeyDoesNotExist:@"request"];
@@ -40,7 +40,7 @@
 
 - (void)fetchCommentsForRequest:(CarPoolRequest *)request withCompletion:(void (^)(NSArray *comments, NSError *error))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Comment class])];
+    PFQuery *query = [Comment query];
     [query whereKey:@"request" equalTo:request];
     [query orderByAscending:@"createdAt"];
     
@@ -49,7 +49,7 @@
 
 - (void)fetchCommentById:(NSString *)commentId withCompletion:(void (^)(Comment *comment, NSError *error))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Comment class])];
+    PFQuery *query = [Comment query];
     
     [query getObjectInBackgroundWithId:commentId block:^(PFObject *object, NSError *error) {
         if (error)

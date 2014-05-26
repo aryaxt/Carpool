@@ -12,7 +12,7 @@
 
 - (void)fetchReferenceFromUser:(User *)from toUser:(User *)to withCompletion:(void (^)(Reference *, NSError *error))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Reference class])];
+    PFQuery *query = [Reference query];
     [query whereKey:@"from" equalTo:from];
     [query whereKey:@"to" equalTo:to];
     
@@ -59,7 +59,7 @@
                        skip:(NSInteger)skip
                  andCompletion:(void (^)(NSArray *references, NSError *error))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Reference class])];
+    PFQuery *query = [Reference query];
     [query whereKey:@"to" equalTo:user];
     [query includeKey:@"from"];
     [query setLimit:limit];

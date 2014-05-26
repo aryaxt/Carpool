@@ -12,7 +12,7 @@
 
 - (void)fetchLatestByPlatform:(NSString *)platform andCompletion:(void (^)(ApplicationVersion *applicationVersion, NSError *error))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([ApplicationVersion class])];
+    PFQuery *query = [ApplicationVersion query];
     [query whereKey:@"platform" equalTo:platform];
     [query orderByDescending:@"createdAt"];
     

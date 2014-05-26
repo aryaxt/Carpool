@@ -11,7 +11,7 @@
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
 #define COLLAPSED_NUMBER_OF_LINES 3
-#define REFEREENCE_TEXT_OFFSET 5
+#define REFEREENCE_TEXT_OFFSET 10
 
 @implementation ReferenceCell
 

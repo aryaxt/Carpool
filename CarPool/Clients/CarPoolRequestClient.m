@@ -15,7 +15,7 @@
                           includeTo:(BOOL)includeTo
                      withCompletion:(void (^)(NSArray *requests, NSError *error))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([CarPoolRequest class])];
+    PFQuery *query = [CarPoolRequest query];
     [query whereKey:@"from" equalTo:[User currentUser]];
     [query whereKey:@"time" greaterThanOrEqualTo:[NSDate date]];
     [query includeKey:@"startLocation"];
@@ -45,7 +45,7 @@
 
 - (void)fetchRequestById:(NSString *)objectId withCompletion:(void (^)(CarPoolRequest *request, NSError *error))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([CarPoolRequest class])];
+    PFQuery *query = [CarPoolRequest query];
     [query includeKey:@"from"];
     [query includeKey:@"to"];
     [query includeKey:@"startLocation"];

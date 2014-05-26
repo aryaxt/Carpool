@@ -12,7 +12,7 @@
 
 - (void)fetchCarpoolOffersForUser:(PFUser *)user includeLocations:(BOOL)includeLocations includeUser:(BOOL)includeUser withCompletion:(void (^)(NSArray *objects, NSError *error))completion
 {
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([CarPoolOffer class])];
+    PFQuery *query = [CarPoolOffer query];
     [query whereKey:@"from" equalTo:user];
     
     if (includeLocations)
@@ -34,7 +34,7 @@
     PFGeoPoint *southWestGeoPiint = [PFGeoPoint geoPointWithLatitude:southWest.latitude longitude:southWest.longitude];
     PFGeoPoint *northeastGeoPiint = [PFGeoPoint geoPointWithLatitude:northEast.latitude longitude:northEast.longitude];
     
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([CarPoolOffer class])];
+    PFQuery *query = [CarPoolOffer query];
     [query whereKey:@"startLocation" withinGeoBoxFromSouthwest:southWestGeoPiint toNortheast:northeastGeoPiint];
     [query whereKey:@"endLocation" withinGeoBoxFromSouthwest:southWestGeoPiint toNortheast:northeastGeoPiint];
     [query includeKey:@"startLocation"];
@@ -48,7 +48,7 @@
 {
     //PFGeoPoint *geoPoint = [PFGeoPoint geoPointWithLatitude:location.latitude longitude:location.longitude];
     
-    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([CarPoolOffer class])];
+    PFQuery *query = [CarPoolOffer query];
     //[query whereKey:@"startLocation" nearGeoPoint:geoPoint];
     //[query whereKey:@"endLocation" nearGeoPoint:geoPoint];
     [query setLimit:limit];

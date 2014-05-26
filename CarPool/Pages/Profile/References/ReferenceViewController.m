@@ -11,7 +11,7 @@
 #import "UITableView+Additions.h"
 #import <SVPullToRefresh/UIScrollView+SVInfiniteScrolling.h>
 
-#define RESULT_PER_PAGE 3
+#define RESULT_PER_PAGE 10
 #define CELL_IDENTIFIER @"ReferenceCell"
 
 @implementation ReferenceViewController
