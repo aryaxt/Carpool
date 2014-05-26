@@ -74,4 +74,21 @@
     }];
 }
 
+- (void)fetchUnreadCommentCountWithCompletion:(void (^)(NSNumber *unreadCommentCount, NSError *error))completion
+{
+    [PFCloud callFunctionInBackground:@"UnreadCommentCount"
+                       withParameters:@{}
+                                block:^(NSDictionary *object, NSError *error) {
+                                    if (error)
+                                    {
+                                        completion(nil, error);
+                                    }
+                                    else
+                                    {
+                                        NSNumber *unread = @([[object objectForKey:@"unreadCommentCount"] intValue]);
+                                        completion(unread, nil);
+                                    }
+                                }];
+}
+
 @end

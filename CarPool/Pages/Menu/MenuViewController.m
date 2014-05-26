@@ -16,6 +16,12 @@
 #import "MyActivitiesViewController.h"
 #import <Parse/Parse.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "CommentClient.h"
+
+@interface MenuViewController()
+@property (nonatomic, strong) CommentClient *commentClient;
+@property (nonatomic, strong) NSNumber *unreadCommentCount;
+@end
 
 @implementation MenuViewController
 
@@ -25,15 +31,39 @@
 {
     [super viewDidLoad];
     
-    /*self.view.layer.borderColor = [UIColor whiteColor].CGColor;
-    self.view.layer.borderWidth = 1;*/
-    
     self.topView.layer.borderWidth = .6;
     self.topView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     
     self.lblName.text = [User currentUser].name;
     [self.imgProfilePhoto setUserPhotoStyle];
     [self.imgProfilePhoto setImageWithURL:[NSURL URLWithString:[User currentUser].photoUrl]];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification
+                                                      object:nil
+                                                       queue:nil
+                                                  usingBlock:^(NSNotification *note) {
+        [self fetchAndPopulateUnreadCommentCount];
+    }];
+    
+    [self fetchAndPopulateUnreadCommentCount];
+}
+
+#pragma mark - Private Methods -
+
+- (void)fetchAndPopulateUnreadCommentCount
+{
+    [self.commentClient fetchUnreadCommentCountWithCompletion:^(NSNumber *unreadCommentCount, NSError *error) {
+        if (!error)
+        {
+            if (unreadCommentCount.intValue > self.unreadCommentCount.intValue && ![[SlideNavigationController sharedInstance] isMenuOpen])
+            {
+                [[SlideNavigationController sharedInstance] bounceMenu:MenuLeft withCompletion:nil];
+            }
+            
+            self.unreadCommentCount = unreadCommentCount;
+            [self.tableView reloadData];
+        }
+    }];
 }
 
 #pragma mark - UITableView Delegate & Datasource -
@@ -58,7 +88,9 @@
         break;
             
         case 2:
-            cell.textLabel.text = @"Inbox";
+            cell.textLabel.text = (self.unreadCommentCount.intValue)
+                ? [NSString stringWithFormat:@"Inbox (%@)", self.unreadCommentCount]
+                : @"Inbox";
             break;
         
         case 3:
@@ -122,5 +154,18 @@
     [[SlideNavigationController sharedInstance] popToRootAndSwitchToViewController:viewContorller
                                                                     withCompletion:nil];
 }
+
+#pragma mark - Setter & Gettr -
+
+- (CommentClient *)commentClient
+{
+    if (!_commentClient)
+    {
+        _commentClient = [[CommentClient alloc] init];
+    }
+    
+    return _commentClient;
+}
+    
 
 @end

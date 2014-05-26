@@ -15,5 +15,6 @@
 - (void)fetchMyCommentsWithCompletion:(void (^)(NSArray *comments, NSError *error))completion;
 - (void)fetchCommentsForRequest:(CarPoolRequest *)request withCompletion:(void (^)(NSArray *comments, NSError *error))completion;
 - (void)addComment:(Comment *)comment toRequest:(CarPoolRequest *)request withCompletion:(void (^)(NSError *error))completion;
+- (void)fetchUnreadCommentCountWithCompletion:(void (^)(NSNumber *unreadCommentCount, NSError *error))completion;
 
 @end

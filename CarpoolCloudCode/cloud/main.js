@@ -110,8 +110,49 @@ Parse.Cloud.beforeSave("Reference", function(request, response) {
 	}
 });
 
+Parse.Cloud.define("UnreadCommentCount", function(request, response) {
+	/*var userQuery = new Parse.Query("User");
+	
+	userQuery.get(request.params.id, {
+		success: function(user) {
+			var unreadCommentQuery = new Parse.Query("Comment");
+			unreadCommentQuery.notEqualTo("read", true);
+			unreadCommentQuery.equalTo("to", user);
+			
+			unreadCommentQuery.count({
+			  success: function(number) {
+			    response.success({ unreadComments : number });
+			  },
+			  error: function(error) {
+			    console.error(error);
+	 			response.error("Failed to read comment count");
+			  }
+			});
+		},
+		error : function(error) {
+			console.error(error);
+ 			response.error("Failed to read comment count");
+		}
+	});*/
+	
+	var unreadCommentQuery = new Parse.Query("Comment");
+	unreadCommentQuery.notEqualTo("read", true);
+	unreadCommentQuery.equalTo("to", Parse.User.current());
+	
+	unreadCommentQuery.count({
+	  success: function(number) {
+	    response.success({ unreadCommentCount : number });
+	  },
+	  error: function(error) {
+	    console.error(error);
+		response.error("Failed to read comment count");
+	  }
+	});
+});
+
 Parse.Cloud.define("ReferenceCount", function(request, response) {
 	var userQuery = new Parse.Query("User");
+	
 	userQuery.get(request.params.id, {
 	  success: function(user) {
 	    var query = new Parse.Query("Reference");
