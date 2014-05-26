@@ -14,6 +14,7 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblFromName;
 @property (nonatomic, strong) IBOutlet UILabel *lblMessage;
 @property (nonatomic, strong) IBOutlet UIImageView *imgFromPhoto;
+@property (nonatomic, strong) IBOutlet UIImageView *imgCarpoolrequestIndicator;
 
 - (void)setComment:(Comment *)comment;
 

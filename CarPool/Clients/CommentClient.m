@@ -47,6 +47,22 @@
     [self fetchCommentsFromQuery:query withCompletion:completion];
 }
 
+- (void)fetchCommentById:(NSString *)commentId withCompletion:(void (^)(Comment *comment, NSError *error))completion
+{
+    PFQuery *query = [PFQuery queryWithClassName:NSStringFromClass([Comment class])];
+    
+    [query getObjectInBackgroundWithId:commentId block:^(PFObject *object, NSError *error) {
+        if (error)
+        {
+            completion(nil, error);
+        }
+        else
+        {
+            completion((Comment *)object, nil);
+        }
+    }];
+}
+
 - (void)fetchUnreadCommentCountWithCompletion:(void (^)(NSNumber *unreadCommentCount, NSError *error))completion
 {
     [PFCloud callFunctionInBackground:@"UnreadCommentCount"

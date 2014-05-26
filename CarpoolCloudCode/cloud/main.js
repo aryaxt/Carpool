@@ -1,4 +1,5 @@
-
+var PushNotificationTypeComment = "comment";
+var PushNotificationTypeReference = "reference";
 
 Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {
 	if (request.object.get("time") == null) {
@@ -56,7 +57,15 @@ Parse.Cloud.beforeSave("Comment", function(request, response) {
 		response.error("message is missing");
 	}
 	else {
-		if (request.object.isNew()) {
+		response.success();
+	}
+});
+
+Parse.Cloud.afterSave("Comment", function(request){
+	Parse.Cloud.useMasterKey();
+	
+	if  (!request.object.existed()) {
+		request.object.get("from").fetch().then(function(user) {
 			var installationQuery = new Parse.Query("Installation");
 		    installationQuery.equalTo("user", request.object.get("to"));
 
@@ -68,7 +77,8 @@ Parse.Cloud.beforeSave("Comment", function(request, response) {
 					{
 						alert : "Message from " + user.name,
 						data : {
-							type : "comment",
+							type : PushNotificationTypeComment,
+							commentId : request.object.id,
 							fromId : request.object.get("from").id,
 							toId : request.object.get("to").id,
 							requestId : (request.object.get("request") == null) ? null : request.object.get("request").id
@@ -85,10 +95,7 @@ Parse.Cloud.beforeSave("Comment", function(request, response) {
 					}
 				});
 			});
-		}
-		else {
-			response.success();
-		}
+		});
 	}
 });
 
@@ -105,36 +112,52 @@ Parse.Cloud.beforeSave("Reference", function(request, response) {
 	else if (request.object.get("type") == null) {
 		response.error("type is missing");
 	}
+	else if (request.object.get("from").id == request.object.get("to").id) {
+		response.error("you can't leave yourself a reference");
+	}
 	else {
 		response.success();
 	}
 });
 
-Parse.Cloud.define("UnreadCommentCount", function(request, response) {
-	/*var userQuery = new Parse.Query("User");
+Parse.Cloud.afterSave("Reference", function(request) {
+	Parse.Cloud.useMasterKey();
 	
-	userQuery.get(request.params.id, {
-		success: function(user) {
-			var unreadCommentQuery = new Parse.Query("Comment");
-			unreadCommentQuery.notEqualTo("read", true);
-			unreadCommentQuery.equalTo("to", user);
-			
-			unreadCommentQuery.count({
-			  success: function(number) {
-			    response.success({ unreadComments : number });
-			  },
-			  error: function(error) {
-			    console.error(error);
-	 			response.error("Failed to read comment count");
-			  }
-			});
-		},
-		error : function(error) {
-			console.error(error);
- 			response.error("Failed to read comment count");
+	request.object.get("from").fetch().then(function(user) {
+		var installationQuery = new Parse.Query("Installation");
+	    installationQuery.equalTo("user", request.object.get("to"));
+
+		var message;
+		if  (request.object.existed()) {
+			message = user.name + " uptaded the reference he left you";
 		}
-	});*/
-	
+		else {
+			message = user.name + " left you a reference";
+		}
+
+		Parse.Push.send({
+			where : installationQuery,
+			data : 
+			{
+				alert : message,
+				data : {
+					type : PushNotificationTypeReference,
+					fromId : request.object.get("from").id,
+					toId : request.object.get("to").id
+				}
+			}
+		}, 
+		{
+			success : function(){
+			},
+			error : function(error) { 
+				console.error(error); 
+			}
+		});
+	});
+});
+
+Parse.Cloud.define("UnreadCommentCount", function(request, response) {
 	var unreadCommentQuery = new Parse.Query("Comment");
 	unreadCommentQuery.notEqualTo("read", true);
 	unreadCommentQuery.equalTo("to", Parse.User.current());

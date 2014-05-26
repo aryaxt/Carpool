@@ -60,6 +60,7 @@
 
 - (BOOL)canHandlePushNotificationWithType:(NSString *)type andData:(NSDictionary *)data
 {
+    //TODO: Don't reload the whole thing just get the new comment manually
     if ([type isEqualToString:PushNotificationTypeComment])
     {
         [self fetchAndPopulateDataAnimated:NO withCompletion:^{

@@ -92,6 +92,7 @@
                                                                                          action:^{
                                                                                              
                                                                                              [self.navigationController popViewControllerAnimated:YES];
+                                                                                             [self.delegate CreateReferenceViewControllerDidSubmitReference:self.reference];
                                                                                          }] otherButtonItems:nil];
             
             [alert show];

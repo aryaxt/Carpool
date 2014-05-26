@@ -31,7 +31,7 @@
     self.messageComposerHeight = self.messageComposerView.frame.size.height;
     
     [self fetchRequestDetail];
-    [self fetchCommentsAnimated:YES withCompletion:nil];
+    [self fetchComments];
 }
 
 #pragma mark - Private Methods -
@@ -106,23 +106,22 @@
     self.lblStatusInfo.hidden = YES;
 }
 
-- (void)fetchCommentsAnimated:(BOOL)animated withCompletion:(void (^)(void))completion
+- (void)fetchComments
 {
     [self.messageComposerView setLoading:YES];
     
     [self.commentClient fetchCommentsForRequest:self.request withCompletion:^(NSArray *comments, NSError *error) {
-        //TODO: Some error handling here?
-        [self.messageComposerView setLoading:NO];
-        
-        self.comments = (NSMutableArray *)comments;
-        
-        if (animated)
-            [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:1];
+        if (error)
+        {
+            [self alertWithtitle:@"Error" andMessage:@"Error loading messages"];
+        }
         else
-            [self.tableView reloadData];
+        {
+            [self.messageComposerView setLoading:NO];
         
-        if (completion)
-            completion();
+            self.comments = (NSMutableArray *)comments;
+            [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:1];
+        }
     }];
 }
 
@@ -321,12 +320,20 @@
     if ([type isEqualToString:PushNotificationTypeComment] &&
         [self.request.objectId isEqual:[data objectForKey:@"requestId"]])
     {
-        [self fetchCommentsAnimated:NO withCompletion:^{
-            NSIndexPath *indeexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:1];
-            [self.tableView scrollToRowAtIndexPath:indeexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-        }];
+        NSString *commentId = [data objectForKey:@"commentId"];
         
-        return YES;
+        [self.commentClient fetchCommentById:commentId withCompletion:^(Comment *comment, NSError *error) {
+            if (!error)
+            {
+                [self.tableView beginUpdates];
+                [self.comments addObject:comment];
+                NSIndexPath *indeexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:1];
+                [self.tableView insertRowsAtIndexPaths:@[indeexPath] withRowAnimation:UITableViewRowAnimationTop];
+                [self.tableView endUpdates];
+                
+                [self.tableView scrollToRowAtIndexPath:indeexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            }
+        }];
     }
     
     return NO;

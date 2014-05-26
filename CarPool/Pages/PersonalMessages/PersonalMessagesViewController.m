@@ -24,26 +24,26 @@
     self.messageComposerHeight = self.messageComposerView.frame.size.height;
     
     [self showLoader];
-    [self fetchCommentsAnimated:YES withCompletion:nil];
+    [self fetchComments];
 }
 
 #pragma mark - Private Methods -
 
-- (void)fetchCommentsAnimated:(BOOL)animated withCompletion:(void (^)(void))completion
+- (void)fetchComments
 {
     [self.commentClient fetchPersonalCommentsWithUser:self.user withCompletion:^(NSArray *comments, NSError *error) {
         
         [self hideLoader];
         
-        self.comments = [comments mutableCopy];
-        
-        if (animated)
-            [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:0];
+        if (error)
+        {
+            [self alertWithtitle:@"Error" andMessage:@"Error loading messages"];
+        }
         else
-            [self.tableView reloadData];
-        
-        if (completion)
-            completion();
+        {
+            self.comments = [comments mutableCopy];
+            [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:0];
+        }
     }];
 }
 
@@ -148,9 +148,18 @@
     if ([type isEqualToString:PushNotificationTypeComment] &&
         [self.user.objectId isEqual:[data objectForKey:@"fromId"]])
     {
-        [self fetchCommentsAnimated:NO withCompletion:^{
-            NSIndexPath *indeexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:0];
-            [self.tableView scrollToRowAtIndexPath:indeexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+        NSString *commentId = [data objectForKey:@"commentId"];
+        [self.commentClient fetchCommentById:commentId withCompletion:^(Comment *comment, NSError *error) {
+            if (!error)
+            {
+                [self.tableView beginUpdates];
+                [self.comments addObject:comment];
+                NSIndexPath *indeexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:0];
+                [self.tableView insertRowsAtIndexPaths:@[indeexPath] withRowAnimation:UITableViewRowAnimationTop];
+                [self.tableView endUpdates];
+                
+                [self.tableView scrollToRowAtIndexPath:indeexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+            }
         }];
         
         return YES;
