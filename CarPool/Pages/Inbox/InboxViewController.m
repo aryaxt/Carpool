@@ -60,11 +60,28 @@
 
 - (BOOL)canHandlePushNotificationWithType:(NSString *)type andData:(NSDictionary *)data
 {
-    //TODO: Don't reload the whole thing just get the new comment manually
     if ([type isEqualToString:PushNotificationTypeComment])
     {
-        [self fetchAndPopulateDataAnimated:NO withCompletion:^{
-            // Do some animation to tell the user they recieved a new message
+        NSString *commentId = [data objectForKey:@"commentId"];
+        
+        [self.commentClient fetchCommentById:commentId
+                              withCompletion:^(Comment *comment, NSError *error) {
+                                  NSInteger indexOfRelevantComment = [self indexOfRelevantComment:comment];
+                                  
+                                  [self.tableView beginUpdates];
+                                  if (indexOfRelevantComment == NSNotFound)
+                                  {
+                                      [self.comments insertObject:comment atIndex:0];
+                                      NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+                                      [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                                  }
+                                  else
+                                  {
+                                      [self.comments replaceObjectAtIndex:indexOfRelevantComment withObject:comment];
+                                      NSIndexPath *indexPath = [NSIndexPath indexPathForRow:indexOfRelevantComment inSection:0];
+                                      [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                                  }
+                                  [self.tableView endUpdates];
         }];
         
         return YES;
@@ -74,6 +91,32 @@
 }
 
 #pragma mark - Private Methods -
+
+- (NSInteger)indexOfRelevantComment:(Comment *)newComment
+{
+    NSString *otherUserId = ([[User currentUser].objectId isEqual:newComment.from.objectId])
+        ? newComment.to.objectId
+        : newComment.from.objectId;
+    
+    for (int i=0 ; i<self.comments.count ; i++)
+    {
+        Comment *comment = [self.comments objectAtIndex:i];
+        
+        if (comment.request)
+        {
+            if ([comment.request.objectId isEqual:newComment.request.objectId])
+                return i;
+        }
+        else
+        {
+            if ([comment.from.objectId isEqual:otherUserId] ||
+                [comment.to.objectId isEqual:otherUserId])
+                return i;
+        }
+    }
+    
+    return NSNotFound;
+}
 
 - (void)fetchAndPopulateDataAnimated:(BOOL)animated withCompletion:(void (^)(void))completion
 {

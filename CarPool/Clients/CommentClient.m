@@ -40,6 +40,7 @@
 - (void)fetchCommentById:(NSString *)commentId withCompletion:(void (^)(Comment *comment, NSError *error))completion
 {
     PFQuery *query = [Comment query];
+    [query includeKey:@"from"];
     
     [query getObjectInBackgroundWithId:commentId block:^(PFObject *object, NSError *error) {
         if (error)

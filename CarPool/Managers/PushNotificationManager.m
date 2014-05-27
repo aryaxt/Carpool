@@ -67,4 +67,14 @@ NSString *PushNotificationTypeComment = @"comment";
     }
 }
 
+#pragma mark - Setter & Getter -
+
+- (void)setDeviceToken:(NSData *)deviceToken
+{
+    _deviceToken = deviceToken;
+    
+    if (deviceToken && [User currentUser])
+        [self registerDeviceWithParse];
+}
+
 @end

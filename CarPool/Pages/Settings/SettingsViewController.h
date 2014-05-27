@@ -12,4 +12,6 @@
 
 @interface SettingsViewController : BaseViewController <SlideNavigationControllerDelegate>
 
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+
 @end

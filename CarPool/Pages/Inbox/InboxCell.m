@@ -14,11 +14,18 @@
 
 - (void)setComment:(Comment *)comment
 {
-    self.lblFromName.text = comment.from.username;
-    self.lblMessage.text = comment.message;
+    User *otherUser = ([comment.from.objectId isEqual:[User currentUser].objectId])
+        ? comment.to
+        :comment.from;
+    
+    self.lblMessage.text = ([comment.from.objectId isEqual:[User currentUser].objectId])
+        ? [NSString stringWithFormat:@"You: %@", comment.message]
+        : comment.message;
+    
+    self.lblFromName.text = otherUser.username;
     self.imgCarpoolrequestIndicator.hidden = (comment.request) ? NO : YES;
     [self.imgFromPhoto setUserPhotoStyle];
-    [self.imgFromPhoto setImageWithURL:[NSURL URLWithString:comment.from.photoUrl]
+    [self.imgFromPhoto setImageWithURL:[NSURL URLWithString:otherUser.photoUrl]
                            placeholderImage:[UIImage imageNamed:@"sfdfgdfg"]];
 }
 

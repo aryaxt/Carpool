@@ -216,13 +216,20 @@ Parse.Cloud.define("ReferenceCount", function(request, response) {
 });
 
 Parse.Cloud.define("InboxComments", function(request, response) {
-	var commentQuery = new Parse.Query("Comment");
-	commentQuery.equalTo("to", Parse.User.current());
-	commentQuery.include("from");
-	commentQuery.addDescending("createdAt");
+	var commentsToMeQuery = new Parse.Query("Comment");
+	commentsToMeQuery.equalTo("to", Parse.User.current());
 	
-	commentQuery.find({
+	var commentsFromMeQuery = new Parse.Query("Comment");
+	commentsFromMeQuery.equalTo("from", Parse.User.current());
+	
+	var mainQuery = Parse.Query.or(commentsToMeQuery, commentsFromMeQuery);
+	mainQuery.include("from");
+	mainQuery.include("to");
+	mainQuery.addDescending("createdAt");
+	
+	mainQuery.find({
 		success: function(results) {
+			var currentUserId = Parse.User.current().id;
 			var groupedComments = [];
 			var groupedCommentKeys = [];
 			
@@ -242,12 +249,16 @@ Parse.Cloud.define("InboxComments", function(request, response) {
 				}
 				// Group by user
 				else {
-					var fromId = comment.get("from").id;
-					var existingComment = comment[fromId];
+					// comment could
+					var otherUserId = (comment.get("from").id == currentUserId) 
+						? comment.get("to").id 
+						: comment.get("from").id;
+						
+					var existingComment = comment[otherUserId];
 					
-					if (groupedCommentKeys.indexOf(fromId) == -1) {
+					if (groupedCommentKeys.indexOf(otherUserId) == -1) {
 						groupedComments.push(comment);
-						groupedCommentKeys.push(fromId);
+						groupedCommentKeys.push(otherUserId);
 					}
 				}
 			}
@@ -258,5 +269,66 @@ Parse.Cloud.define("InboxComments", function(request, response) {
 			console.error(error);
 	    	response.error("Failed to read references");
 	  	}
+	});
+});
+
+Parse.Cloud.define("UserNotificationSetting", function(request, response) {
+	Parse.Cloud.useMasterKey();
+	var notificationSettingsQuery = new Parse.Query("NotificationSetting");
+	
+	notificationSettingsQuery.find({
+		success: function(notificationSettings) {
+			var userNotificationSettingsQuery = new Parse.Query("UserNotificationSetting");
+			userNotificationSettingsQuery.equalTo("user", Parse.User.current());
+			userNotificationSettingsQuery.include("notificationSetting");
+			
+			userNotificationSettingsQuery.find({
+				success: function(userSettings) {
+
+					var newUserSettings = [];
+					
+					for (var i=0 ; i<notificationSettings.length ; i++) {
+						var notificationSetting = notificationSettings[i];
+						var userSettingExists = false;
+						
+						for (var j=0 ; j<userSettings.length ; j++) {
+							var userSetting = userSettings[j];
+							if (userSetting.get("notificationSetting").id == notificationSetting.id) {
+								newUserSettings.push(userSetting);
+								userSettingExists = true;
+								break;
+							}
+						}
+						
+						if (userSettingExists == false) {
+							var UserNotificationSetting = Parse.Object.extend("UserNotificationSetting");
+							var userSetting = new UserNotificationSetting();
+							userSetting.set("user", Parse.User.current());
+							userSetting.set("notificationSetting", notificationSetting);
+							userSetting.set("enabled", notificationSetting.get("defaultValue"));
+							newUserSettings.push(userSetting);
+						}
+					}
+					
+					Parse.Object.saveAll(newUserSettings, {
+				    	success: function(list) {
+				      		response.success(newUserSettings);
+				    	},
+				    	error: function(error) {
+				      		console.error(error);
+					    	response.error("Failed to read notification settings");
+				    	}
+					});
+				},
+				error: function(object, error) {
+					console.error(error);
+			    	response.error("Failed to read notification settings");
+				}
+			});
+		},
+		error: function(object, error) {
+			console.error(error);
+	    	response.error("Failed to read notification settings");
+		}
 	});
 });

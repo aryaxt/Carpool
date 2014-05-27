@@ -128,7 +128,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%d", row + MIN_AGE];
+    return [NSString stringWithFormat:@"%ld", row + MIN_AGE];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component

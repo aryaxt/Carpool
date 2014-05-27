@@ -73,6 +73,11 @@
 		923E950C19325DB5008411AA /* MessageComposerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E950B19325DB5008411AA /* MessageComposerView.m */; };
 		923E950E19325DC6008411AA /* MessageComposerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923E950D19325DC6008411AA /* MessageComposerView.xib */; };
 		925FB6281933E1FC00814B5A /* ReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB6271933E1FC00814B5A /* ReferenceViewController.m */; };
+		925FB62C193452B800814B5A /* PushNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB62B193452B800814B5A /* PushNotificationSettingViewController.m */; };
+		925FB62F193453F500814B5A /* NotificationSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB62E193453F500814B5A /* NotificationSetting.m */; };
+		925FB63219345B9600814B5A /* UserNotificationSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB63119345B9600814B5A /* UserNotificationSetting.m */; };
+		925FB635193460FE00814B5A /* UserNotificationSettingClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB634193460FE00814B5A /* UserNotificationSettingClient.m */; };
+		925FB63819346D9E00814B5A /* UserNotificationSettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB63719346D9E00814B5A /* UserNotificationSettingCell.m */; };
 		92677F6A1932975F008046DE /* InsetEnabledLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F691932975F008046DE /* InsetEnabledLabel.m */; };
 		92677F6E1933A002008046DE /* PersonalMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F6D1933A002008046DE /* PersonalMessagesViewController.m */; };
 		92677F741933A36B008046DE /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F711933A36B008046DE /* CommentCell.m */; };
@@ -219,6 +224,16 @@
 		923E950D19325DC6008411AA /* MessageComposerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageComposerView.xib; sourceTree = "<group>"; };
 		925FB6261933E1FC00814B5A /* ReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceViewController.h; sourceTree = "<group>"; };
 		925FB6271933E1FC00814B5A /* ReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceViewController.m; sourceTree = "<group>"; };
+		925FB62A193452B800814B5A /* PushNotificationSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationSettingViewController.h; sourceTree = "<group>"; };
+		925FB62B193452B800814B5A /* PushNotificationSettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PushNotificationSettingViewController.m; sourceTree = "<group>"; };
+		925FB62D193453F500814B5A /* NotificationSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationSetting.h; sourceTree = "<group>"; };
+		925FB62E193453F500814B5A /* NotificationSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationSetting.m; sourceTree = "<group>"; };
+		925FB63019345B9600814B5A /* UserNotificationSetting.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationSetting.h; sourceTree = "<group>"; };
+		925FB63119345B9600814B5A /* UserNotificationSetting.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNotificationSetting.m; sourceTree = "<group>"; };
+		925FB633193460FE00814B5A /* UserNotificationSettingClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationSettingClient.h; sourceTree = "<group>"; };
+		925FB634193460FE00814B5A /* UserNotificationSettingClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNotificationSettingClient.m; sourceTree = "<group>"; };
+		925FB63619346D9E00814B5A /* UserNotificationSettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserNotificationSettingCell.h; sourceTree = "<group>"; };
+		925FB63719346D9E00814B5A /* UserNotificationSettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserNotificationSettingCell.m; sourceTree = "<group>"; };
 		92677F681932975F008046DE /* InsetEnabledLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InsetEnabledLabel.h; sourceTree = "<group>"; };
 		92677F691932975F008046DE /* InsetEnabledLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InsetEnabledLabel.m; sourceTree = "<group>"; };
 		92677F6C1933A002008046DE /* PersonalMessagesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalMessagesViewController.h; sourceTree = "<group>"; };
@@ -522,6 +537,10 @@
 				923E15E01929A67400AD1B5A /* Reference.m */,
 				923E95001931B96E008411AA /* ApplicationVersion.h */,
 				923E95011931B96E008411AA /* ApplicationVersion.m */,
+				925FB62D193453F500814B5A /* NotificationSetting.h */,
+				925FB62E193453F500814B5A /* NotificationSetting.m */,
+				925FB63019345B9600814B5A /* UserNotificationSetting.h */,
+				925FB63119345B9600814B5A /* UserNotificationSetting.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -529,6 +548,7 @@
 		9226EF021915DCD30014B319 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				925FB6291934529E00814B5A /* PushNotificationSetting */,
 				9226EF061915DCEB0014B319 /* SettingsViewController.h */,
 				9226EF071915DCEB0014B319 /* SettingsViewController.m */,
 			);
@@ -554,6 +574,8 @@
 				923E94F719316769008411AA /* ReferenceClient.m */,
 				923E95061931BA16008411AA /* ApplicationVersionClient.h */,
 				923E95071931BA16008411AA /* ApplicationVersionClient.m */,
+				925FB633193460FE00814B5A /* UserNotificationSettingClient.h */,
+				925FB634193460FE00814B5A /* UserNotificationSettingClient.m */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -665,6 +687,17 @@
 				923E950D19325DC6008411AA /* MessageComposerView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		925FB6291934529E00814B5A /* PushNotificationSetting */ = {
+			isa = PBXGroup;
+			children = (
+				925FB62A193452B800814B5A /* PushNotificationSettingViewController.h */,
+				925FB62B193452B800814B5A /* PushNotificationSettingViewController.m */,
+				925FB63619346D9E00814B5A /* UserNotificationSettingCell.h */,
+				925FB63719346D9E00814B5A /* UserNotificationSettingCell.m */,
+			);
+			path = PushNotificationSetting;
 			sourceTree = "<group>";
 		};
 		92677F6B19339FED008046DE /* PersonalMessages */ = {
@@ -852,6 +885,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9226EF16191695120014B319 /* AuthenticationClient.m in Sources */,
+				925FB63819346D9E00814B5A /* UserNotificationSettingCell.m in Sources */,
 				927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */,
 				9226EEAA191573530014B319 /* AppDelegate.m in Sources */,
 				9226EED51915789F0014B319 /* MenuViewController.m in Sources */,
@@ -860,6 +894,7 @@
 				9217A59B19231724005E3A36 /* PushNotificationManager.m in Sources */,
 				923E94FF19319D6A008411AA /* ReferenceCell.m in Sources */,
 				9217A5AC1924681E005E3A36 /* Comment.m in Sources */,
+				925FB62F193453F500814B5A /* NotificationSetting.m in Sources */,
 				923E15E11929A67400AD1B5A /* Reference.m in Sources */,
 				923E15D71929215200AD1B5A /* MyOfferCell.m in Sources */,
 				920917F81927ADA3009701FA /* UIImageView+Additions.m in Sources */,
@@ -877,6 +912,7 @@
 				923E94F11931178B008411AA /* SearchFilter.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				923E94FC193198E0008411AA /* ReferencesViewController.m in Sources */,
+				925FB63219345B9600814B5A /* UserNotificationSetting.m in Sources */,
 				923E95051931BA02008411AA /* ApplicationVersionManager.m in Sources */,
 				9217A5A319245214005E3A36 /* main.js in Sources */,
 				925FB6281933E1FC00814B5A /* ReferenceViewController.m in Sources */,
@@ -890,11 +926,13 @@
 				92677F741933A36B008046DE /* CommentCell.m in Sources */,
 				923E950C19325DB5008411AA /* MessageComposerView.m in Sources */,
 				9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */,
+				925FB635193460FE00814B5A /* UserNotificationSettingClient.m in Sources */,
 				920917FE1927B89F009701FA /* UIColor+Additions.m in Sources */,
 				9226EED919157A870014B319 /* UIViewController+Additions.m in Sources */,
 				9226EF201916A4190014B319 /* CarPoolRequestClient.m in Sources */,
 				9226EF13191694FC0014B319 /* CarPoolOfferClient.m in Sources */,
 				928266CB191E9B9C001AD534 /* PinEnabledMapView.m in Sources */,
+				925FB62C193452B800814B5A /* PushNotificationSettingViewController.m in Sources */,
 				927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */,
 				9217A5A919245AD9005E3A36 /* InboxViewController.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,

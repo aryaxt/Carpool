@@ -68,6 +68,8 @@
     comment.message = self.txtMessage.text;
     
     [self.requestEngine createRequest:self.request withInitialComment:comment andCompletion:^(NSError *error) {
+        [self hideLoader];
+        
         if (error)
         {
             [self alertWithtitle:@"Error" andMessage:@"There was a problem sending your offer"];
