@@ -38,7 +38,7 @@
 - (void)fetchReferenceCountsForUser:(User *)user withCompletion:(void (^) (NSNumber *poitive, NSNumber *negative, NSError *error))completion
 {
     [PFCloud callFunctionInBackground:@"ReferenceCount"
-                       withParameters:@{@"id" : user.objectId}
+                       withParameters:@{@"userId" : user.objectId}
                                 block:^(NSDictionary *object, NSError *error) {
                                     if (error)
                                     {

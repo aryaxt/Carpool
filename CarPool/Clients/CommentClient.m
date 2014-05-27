@@ -10,16 +10,6 @@
 
 @implementation CommentClient
 
-- (void)fetchMyCommentsWithCompletion:(void (^)(NSArray *comments, NSError *error))completion
-{
-    PFQuery *query = [Comment query];
-    [query whereKey:@"to" equalTo:[User currentUser]];
-    [query orderByDescending:@"createdAt"];
-    [query includeKey:@"from"];
-    
-    [self fetchCommentsFromQuery:query withCompletion:completion];
-}
-
 - (void)fetchPersonalCommentsWithUser:(User *)user withCompletion:(void (^)(NSArray *comments, NSError *error))completion
 {
     PFQuery *myCommentsQuery = [Comment query];
@@ -76,6 +66,22 @@
                                     {
                                         NSNumber *unread = @([[object objectForKey:@"unreadCommentCount"] intValue]);
                                         completion(unread, nil);
+                                    }
+                                }];
+}
+
+- (void)fetchInboxCommentsWithCompletion:(void (^)(NSArray *comments, NSError *error))completion
+{
+    [PFCloud callFunctionInBackground:@"InboxComments"
+                       withParameters:@{}
+                                block:^(id object, NSError *error) {
+                                    if (error)
+                                    {
+                                        completion(nil, error);
+                                    }
+                                    else
+                                    {
+                                        completion(object, nil);
                                     }
                                 }];
 }

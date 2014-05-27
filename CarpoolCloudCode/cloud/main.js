@@ -1,5 +1,7 @@
 var PushNotificationTypeComment = "comment";
 var PushNotificationTypeReference = "reference";
+var ReferenceTypePositive = "positive";
+var ReferenceTypeNegative = "negative";
 
 Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {
 	if (request.object.get("time") == null) {
@@ -176,7 +178,7 @@ Parse.Cloud.define("UnreadCommentCount", function(request, response) {
 Parse.Cloud.define("ReferenceCount", function(request, response) {
 	var userQuery = new Parse.Query("User");
 	
-	userQuery.get(request.params.id, {
+	userQuery.get(request.params.userId, {
 	  success: function(user) {
 	    var query = new Parse.Query("Reference");
 		query.equalTo("to", user);
@@ -187,10 +189,10 @@ Parse.Cloud.define("ReferenceCount", function(request, response) {
 				var positiveCount = 0;
 
 	      		for (var i=0 ; i<results.length ; i++) {
-	        		if (results[i].get("type") == "positive") {
+	        		if (results[i].get("type") == ReferenceTypePositive) {
 						positiveCount++;
 					}
-					else if (results[i].get("type") == "negative")  {
+					else if (results[i].get("type") == ReferenceTypeNegative)  {
 						negativeCount++;
 					}
 	      		}
@@ -210,5 +212,51 @@ Parse.Cloud.define("ReferenceCount", function(request, response) {
 		console.error(error);
 	    response.error("Failed to read references");
 	  }
+	});
+});
+
+Parse.Cloud.define("InboxComments", function(request, response) {
+	var commentQuery = new Parse.Query("Comment");
+	commentQuery.equalTo("to", Parse.User.current());
+	commentQuery.include("from");
+	commentQuery.addDescending("createdAt");
+	
+	commentQuery.find({
+		success: function(results) {
+			var groupedComments = [];
+			var groupedCommentKeys = [];
+			
+			// Loop through all comments, and then group them by either request or from, depending on wheter request field exists or not
+	    	for (var i=0 ; i<results.length ; i++) {
+				var comment = results[i];
+				
+				// Group by request
+				if (comment.get("request") != null) {
+					var requestId = comment.get("request").id;
+					var existingComment = comment[requestId];
+					
+					if (groupedCommentKeys.indexOf(requestId) == -1) {
+						groupedComments.push(comment);
+						groupedCommentKeys.push(requestId);
+					}
+				}
+				// Group by user
+				else {
+					var fromId = comment.get("from").id;
+					var existingComment = comment[fromId];
+					
+					if (groupedCommentKeys.indexOf(fromId) == -1) {
+						groupedComments.push(comment);
+						groupedCommentKeys.push(fromId);
+					}
+				}
+			}
+			
+			response.success(groupedComments);
+	  	},
+	  	error: function(error) {
+			console.error(error);
+	    	response.error("Failed to read references");
+	  	}
 	});
 });

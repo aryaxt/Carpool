@@ -77,7 +77,7 @@
 
 - (void)fetchAndPopulateDataAnimated:(BOOL)animated withCompletion:(void (^)(void))completion
 {
-    [self.commentClient fetchMyCommentsWithCompletion:^(NSArray *comments, NSError *error) {
+    [self.commentClient fetchInboxCommentsWithCompletion:^(NSArray *comments, NSError *error) {
         [self hideLoader];
         
         if (error)
