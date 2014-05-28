@@ -2,6 +2,9 @@ var PushNotificationTypeComment = "comment";
 var PushNotificationTypeReference = "reference";
 var ReferenceTypePositive = "positive";
 var ReferenceTypeNegative = "negative";
+var CarPoolRequestStatusAccepted = "accepted";
+var CarPoolRequestStatusRejected = "rejected";
+var CarPoolRequestStatusCanceled = "canceled";
 
 Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {
 	if (request.object.get("time") == null) {
@@ -28,6 +31,9 @@ Parse.Cloud.beforeSave("CarPoolRequest", function(request, response) {
 	else if (request.object.get("to") == null) {
 		response.error("to is missing");
 	} 
+	else if (request.object.get("to").id == request.object.get("from").id) {
+		response.error("Can't send a request to yourself");
+	}
 	else if (request.object.get("time") == null) {
 		response.error("time is missing");
 	}
@@ -46,6 +52,27 @@ Parse.Cloud.beforeSave("CarPoolRequest", function(request, response) {
 	else {
 		response.success();
   	}
+});
+
+Parse.Cloud.afterSave("CarPoolRequest", function(request) {
+	if  (!request.object.existed()) {
+		var Comment = Parse.Object.extend("Comment");
+		var comment = new Comment();
+		comment.set("from", request.object.get("from"));
+		comment.set("to", request.object.get("to"));
+		comment.set("request", request.object);
+		comment.set("action", "message"); /*  Don't hardcode message*/
+		comment.set("message", request.object.get("message"));
+		comment.save(null, {
+			success : function(comment) {
+				response.success(comment);
+			},
+			error :function(object, error) {
+				console.error(error);
+				response.error("There was a problem updating request status");
+			}
+		});
+	}
 });
 
 Parse.Cloud.beforeSave("Comment", function(request, response) {
@@ -332,3 +359,102 @@ Parse.Cloud.define("UserNotificationSetting", function(request, response) {
 		}
 	});
 });
+
+
+Parse.Cloud.define("UpdateRequestStatus", function(request, response) {
+	Parse.Cloud.useMasterKey();
+	
+	var currentUserId = Parse.User.current().id;
+	var requestId = request.params.requestId;
+	var status = request.params.status;
+	var commentMessage;
+	
+	if (status != CarPoolRequestStatusAccepted &&
+		status != CarPoolRequestStatusRejected && 
+		status != CarPoolRequestStatusCanceled) {
+			console.error("invalid status was recieved : " + status);
+			response.error("invalid status");
+	}
+		
+	if (status == CarPoolRequestStatusCanceled) {
+		commentMessage = "Request canceled";
+	} else if (status == CarPoolRequestStatusAccepted) {
+		commentMessage = "Request accepted";
+	} else if (status == CarPoolRequestStatusRejected) {
+		commentMessage = "Request rejected";
+	}
+		
+	var requestQuery = new Parse.Query("CarPoolRequest");
+	requestQuery.equalTo("objectId", requestId);
+	requestQuery.include("from");
+	requestQuery.include("to");
+	requestQuery.include("offer");
+	
+	requestQuery.find({
+		success : function(requests) {			
+			var carpoolRequest = requests[0];
+			console.log("size: " + requests.length);
+			
+			if (carpoolRequest.get("status") == status) {
+				console.error("New status values is the same as existing value");
+		    	response.error("New status values is the same as existing value");
+			}
+			
+			if (carpoolRequest.get("status") == CarPoolRequestStatusCanceled) {
+				console.error("Request has been canceled, no changes can be made");
+				response.error("Request has been canceled, no changes can be made");
+			}
+			
+			if (new Date(carpoolRequest.get("time")) < new Date()){
+				console.error("Request has been expired");
+		    	response.error("Request has been expired");
+			}
+			
+			if ((status == CarPoolRequestStatusAccepted || status == CarPoolRequestStatusRejected) && currentUserId != carpoolRequest.get("to").id) {
+				console.error("This request can only be rejected and accepted by whome the request was sent to");
+		    	response.error("This request can only be rejected and accepted by whome the request was sent to");
+			}
+			
+			if (status == CarPoolRequestStatusCanceled && currentUserId != carpoolRequest.get("from").id) {
+				console.error("This request can only be canceled by whome the request was created by");
+		    	response.error("This request can only be canceled by whome the request was created by");
+			}
+			
+			carpoolRequest.set("status", status);
+			
+			carpoolRequest.save(null, {
+				success : function(carpoolRequest) {
+					var otherUserToSendMessageTo = (Parse.User.current().id == carpoolRequest.get("from").id)
+						? carpoolRequest.get("to")
+						: carpoolRequest.get("from");
+					
+					var Comment = Parse.Object.extend("Comment");
+					var comment = new Comment();
+					comment.set("from", Parse.User.current());
+					comment.set("to", otherUserToSendMessageTo);
+					comment.set("request", carpoolRequest);
+					comment.set("action", status);
+					comment.set("message", commentMessage);
+					comment.save(null, {
+						success : function(comment) {
+							response.success(comment);
+						},
+						error :function(object, error) {
+							console.error(error);
+					    	response.error("There was a problem updating request status");
+						}
+					});
+				},
+				error : function(object, error) {
+					console.error(error);
+			    	response.error("There was a problem updating request status");
+				}
+			});
+		},
+		error :function(object, error) {
+			console.error(error);
+	    	response.error("There was a problem updating request status");
+		}
+	});
+});
+
