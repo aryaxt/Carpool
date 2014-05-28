@@ -96,6 +96,7 @@
 		92B568D719170E2900CEF58F /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D419170E2900CEF58F /* startPoint.png */; };
 		92B568DA1917147700CEF58F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B568D91917147700CEF58F /* Location.m */; };
 		92B568DF19172F5700CEF58F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B568DE19172F5700CEF58F /* MapKit.framework */; };
+		92FD32FC19357E6A0016B32D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FD32FB19357E6A0016B32D /* Crashlytics.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +264,7 @@
 		92B568D81917147700CEF58F /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		92B568D91917147700CEF58F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		92B568DE19172F5700CEF58F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		92FD32FB19357E6A0016B32D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,6 +278,7 @@
 				9226EE9E191573530014B319 /* UIKit.framework in Frameworks */,
 				9226EE9A191573530014B319 /* Foundation.framework in Frameworks */,
 				7EDDE6976D904ED2B1399CB5 /* libPods.a in Frameworks */,
+				92FD32FC19357E6A0016B32D /* Crashlytics.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -361,6 +364,7 @@
 		9226EE98191573530014B319 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92FD32FB19357E6A0016B32D /* Crashlytics.framework */,
 				92B568DE19172F5700CEF58F /* MapKit.framework */,
 				9226EEED1915B8E70014B319 /* CoreLocation.framework */,
 				9226EE99191573530014B319 /* Foundation.framework */,
@@ -752,6 +756,7 @@
 				9226EE93191573530014B319 /* Frameworks */,
 				9226EE94191573530014B319 /* Resources */,
 				A7BA388A58D44BEE9C80E5BA /* Copy Pods Resources */,
+				92FD32F919357DDA0016B32D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -769,6 +774,7 @@
 				9226EEB6191573530014B319 /* Sources */,
 				9226EEB7191573530014B319 /* Frameworks */,
 				9226EEB8191573530014B319 /* Resources */,
+				92FD32FA19357E320016B32D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -862,6 +868,32 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		92FD32F919357DDA0016B32D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
+		92FD32FA19357E320016B32D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "";
+		};
 		A7BA388A58D44BEE9C80E5BA /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -874,7 +906,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "./Crashlytics.framework/run e3c3cb40b7bc9d46e5fdbd97db29a7cc0e9c9db3 14bb53d3338214c93bc5b2e9339fb0b46f9f93e3360cc731833fc922ad73323e";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1084,6 +1116,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarPool/CarPool-Prefix.pch";
 				INFOPLIST_FILE = "CarPool/CarPool-Info.plist";
@@ -1099,6 +1135,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "CarPool/CarPool-Prefix.pch";
 				INFOPLIST_FILE = "CarPool/CarPool-Info.plist";

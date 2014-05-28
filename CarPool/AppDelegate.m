@@ -17,11 +17,14 @@
 #import <Parse/Parse.h>
 #import "PushNotificationManager.h"
 #import "ApplicationVersionManager.h"
+#import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Crashlytics startWithAPIKey:@"e3c3cb40b7bc9d46e5fdbd97db29a7cc0e9c9db3"];
+    
     [self setupSlideNavigationController];
     
     [self setupParse];
