@@ -13,7 +13,6 @@
 		920917FB1927B187009701FA /* MKMapView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917FA1927B187009701FA /* MKMapView+Additions.m */; };
 		920917FE1927B89F009701FA /* UIColor+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 920917FD1927B89F009701FA /* UIColor+Additions.m */; };
 		920918041927EDEA009701FA /* CommentClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918031927EDEA009701FA /* CommentClient.m */; };
-		920918071927EF84009701FA /* CarPoolRequestEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 920918061927EF84009701FA /* CarPoolRequestEngine.m */; };
 		9217A59819231698005E3A36 /* Installation.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59719231698005E3A36 /* Installation.m */; };
 		9217A59B19231724005E3A36 /* PushNotificationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59A19231724005E3A36 /* PushNotificationManager.m */; };
 		9217A5A319245214005E3A36 /* main.js in Sources */ = {isa = PBXBuildFile; fileRef = 9217A59E19245214005E3A36 /* main.js */; };
@@ -122,8 +121,6 @@
 		920917FD1927B89F009701FA /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
 		920918021927EDEA009701FA /* CommentClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentClient.h; sourceTree = "<group>"; };
 		920918031927EDEA009701FA /* CommentClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentClient.m; sourceTree = "<group>"; };
-		920918051927EF84009701FA /* CarPoolRequestEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolRequestEngine.h; sourceTree = "<group>"; };
-		920918061927EF84009701FA /* CarPoolRequestEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolRequestEngine.m; sourceTree = "<group>"; };
 		9217A59619231698005E3A36 /* Installation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Installation.h; sourceTree = "<group>"; };
 		9217A59719231698005E3A36 /* Installation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Installation.m; sourceTree = "<group>"; };
 		9217A59919231724005E3A36 /* PushNotificationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationManager.h; sourceTree = "<group>"; };
@@ -572,8 +569,6 @@
 				928266CD191EABF6001AD534 /* LocationSearchClient.m */,
 				9226EF14191695120014B319 /* AuthenticationClient.h */,
 				9226EF15191695120014B319 /* AuthenticationClient.m */,
-				920918051927EF84009701FA /* CarPoolRequestEngine.h */,
-				920918061927EF84009701FA /* CarPoolRequestEngine.m */,
 				923E94F619316769008411AA /* ReferenceClient.h */,
 				923E94F719316769008411AA /* ReferenceClient.m */,
 				923E95061931BA16008411AA /* ApplicationVersionClient.h */,
@@ -952,7 +947,6 @@
 				923E15DE1929A54800AD1B5A /* Profile.m in Sources */,
 				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
 				923E94EE1930F894008411AA /* SearchFilterViewController.m in Sources */,
-				920918071927EF84009701FA /* CarPoolRequestEngine.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
 				92677F751933A36B008046DE /* RequestDetailViewController.m in Sources */,
 				92677F741933A36B008046DE /* CommentCell.m in Sources */,

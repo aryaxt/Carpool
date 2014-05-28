@@ -17,7 +17,12 @@
 {
     [super viewDidLoad];
     
+    [self showLoader];
+    
     [self.userNotificationSettingClient fetchUserNotificationSettingsWithCompletion:^(NSArray *userNotificationSettings, NSError *error) {
+        
+        [self hideLoader];
+        
         if (error)
         {
             [self alertWithtitle:@"Error" andMessage:@"Error reading notification settings"];

@@ -12,6 +12,7 @@
 @interface NotificationSetting : PFObject<PFSubclassing>
 
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *detail;
 @property (nonatomic, strong) NSNumber *defaultValue;
 
 @end

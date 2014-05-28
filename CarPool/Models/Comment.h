@@ -13,8 +13,9 @@
 
 @interface Comment : PFObject<PFSubclassing>
 
-extern NSString *CommentActionAccept;
-extern NSString *CommentActionReject;
+extern NSString *CommentActionAccepted;
+extern NSString *CommentActionRejected;
+extern NSString *CommentActionCanceled;
 extern NSString *CommentActionMessage;
 
 @property (nonatomic, strong) NSString *message;

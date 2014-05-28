@@ -96,7 +96,7 @@
         if (succeeded)
         {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                            message:@"Your request was sent."
+                                                            message:@"Your offer was created."
                                                    cancelButtonItem:[RIButtonItem itemWithLabel:@"Ok"
                                                                                          action:^{
                                                                                              

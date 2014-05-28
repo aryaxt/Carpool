@@ -13,6 +13,8 @@
 @interface CarPoolRequestClient : NSObject
 
 - (void)fetchRequestById:(NSString *)objectId withCompletion:(void (^)(CarPoolRequest *request, NSError *error))completion;
+- (void)updateRequestWithId:(NSString *)requestId withStatus:(NSString *)status withCompletion:(void (^)(Comment *comment, NSError *error))completion;
+- (void)saveRequest:(CarPoolRequest *)request withCompletion:(void (^)(NSError *error))completion;
 - (void)fetchMyRequestsIncludeOffer:(BOOL)includeOffer
                         includeFrom:(BOOL)includeFrom
                           includeTo:(BOOL)includeTo

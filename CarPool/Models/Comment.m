@@ -17,8 +17,9 @@
 @dynamic to;
 @dynamic request;
 
-NSString *CommentActionAccept = @"accept";
-NSString *CommentActionReject = @"reject";
+NSString *CommentActionAccepted = @"accepted";
+NSString *CommentActionRejected = @"rejected";
+NSString *CommentActionCanceled = @"canceled";
 NSString *CommentActionMessage = @"message";
 
 + (NSString *)parseClassName

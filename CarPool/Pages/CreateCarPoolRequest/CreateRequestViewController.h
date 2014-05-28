@@ -8,8 +8,8 @@
 
 #import "BaseViewController.h"
 #import "CarPoolRequest.h"
-#import "CarPoolRequestEngine.h"
 #import "CarPoolOffer.h"
+#import "CarPoolRequestClient.h"
 #import "LocationSearchViewController.h"
 #import "Comment.h"
 
@@ -22,7 +22,7 @@
 @property (nonatomic, strong) IBOutlet UIButton *btnCloseMessage;
 @property (nonatomic, strong) CarPoolOffer *offer;
 @property (nonatomic, strong) CarPoolRequest *request;
-@property (nonatomic, strong) CarPoolRequestEngine *requestEngine;
+@property (nonatomic, strong) CarPoolRequestClient *requestCleint;
 @property (nonatomic, assign) CGRect messageViewOriginalFrame;
 
 - (IBAction)sendSelected:(id)sender;

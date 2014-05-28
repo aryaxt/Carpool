@@ -11,6 +11,7 @@
 
 @implementation NotificationSetting
 @dynamic name;
+@dynamic detail;
 @dynamic defaultValue;
 
 + (NSString *)parseClassName

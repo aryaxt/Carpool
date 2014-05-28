@@ -55,19 +55,21 @@
         return;
     }
     
+    if (self.txtMessage.text.length == 0)
+    {
+        [self alertWithtitle:@"Error" andMessage:@"Message is required"];
+        return;
+    }
+    
     [self showLoader];
     
     self.request.time = self.offer.time;
     self.request.from = [User currentUser];
     self.request.to = self.offer.from;
     self.request.offer = self.offer;
+    self.request.message = self.txtMessage.text;
     
-    Comment *comment = [[Comment alloc] init];
-    comment.from = [User currentUser];
-    comment.to = self.offer.from;
-    comment.message = self.txtMessage.text;
-    
-    [self.requestEngine createRequest:self.request withInitialComment:comment andCompletion:^(NSError *error) {
+    [self.requestCleint saveRequest:self.request withCompletion:^(NSError *error) {
         [self hideLoader];
         
         if (error)
@@ -80,13 +82,14 @@
                                                             message:@"Your request was sent."
                                                    cancelButtonItem:[RIButtonItem itemWithLabel:@"Ok"
                                                                                          action:^{
-                
-                [self.navigationController popViewControllerAnimated:YES];
-            }] otherButtonItems:nil];
+                                                                                             
+                                                                                             [self.navigationController popViewControllerAnimated:YES];
+                                                                                         }] otherButtonItems:nil];
             
             [alert show];
         }
     }];
+
 }
 
 - (IBAction)closeMessageSelected:(id)sender
@@ -171,16 +174,16 @@
     self.txtTo.text = self.request.endLocation.name;
 }
 
-#pragma mark - Setter & Gettr -
+#pragma mark - Setter & Getter -
 
-- (CarPoolRequestEngine *)requestEngine
+- (CarPoolRequestClient *)requestCleint
 {
-    if (!_requestEngine)
+    if (!_requestCleint)
     {
-        _requestEngine = [[CarPoolRequestEngine alloc] init];
+        _requestCleint = [[CarPoolRequestClient alloc] init];
     }
     
-    return _requestEngine;
+    return _requestCleint;
 }
 
 @end

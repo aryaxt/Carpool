@@ -59,4 +59,27 @@
     }];
 }
 
+- (void)updateRequestWithId:(NSString *)requestId withStatus:(NSString *)status withCompletion:(void (^)(Comment *comment, NSError *error))completion
+{
+    [PFCloud callFunctionInBackground:@"UpdateRequestStatus"
+                       withParameters:@{@"requestId" : requestId, @"status" : status}
+                                block:^(id object, NSError *error) {
+                                    if (error)
+                                    {
+                                        completion(nil, error);
+                                    }
+                                    else
+                                    {
+                                        completion(object, nil);
+                                    }
+                                }];
+}
+
+- (void)saveRequest:(CarPoolRequest *)request withCompletion:(void (^)(NSError *error))completion
+{
+    [request saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        completion(error);
+    }];
+}
+
 @end

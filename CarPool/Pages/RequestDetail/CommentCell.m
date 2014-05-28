@@ -52,11 +52,12 @@
 
 - (UIColor *)bubbleColorForComment:(Comment *)comment isFromMe:(BOOL)isFromMe
 {
-    if ([comment.action isEqualToString:CommentActionAccept])
+    if ([comment.action isEqualToString:CommentActionAccepted])
     {
         return [UIColor greenChatBubbleColor];
     }
-    else if ([comment.action isEqualToString:CommentActionReject])
+    else if ([comment.action isEqualToString:CommentActionRejected] ||
+             [comment.action isEqualToString:CommentActionCanceled])
     {
         return [UIColor redChatBubbleColor];
     }
@@ -72,8 +73,8 @@
 
 - (UIColor *)textColorForComment:(Comment *)comment isFromMe:(BOOL)isFromMe
 {
-    if ([comment.action isEqualToString:CommentActionAccept] ||
-        [comment.action isEqualToString:CommentActionReject])
+    if ([comment.action isEqualToString:CommentActionAccepted] ||
+        [comment.action isEqualToString:CommentActionRejected])
     {
         return [UIColor whiteColor];
     }

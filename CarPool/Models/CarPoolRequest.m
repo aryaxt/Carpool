@@ -13,11 +13,16 @@
 @dynamic time;
 @dynamic status;
 @dynamic comments;
+@dynamic message;
 @dynamic from;
 @dynamic to;
 @dynamic offer;
 @dynamic startLocation;
 @dynamic endLocation;
+
+NSString *CarPoolRequestStatusAccepted = @"accepted";
+NSString *CarPoolRequestStatusRejected = @"rejected";
+NSString *CarPoolRequestStatusCanceled = @"canceled";
 
 + (NSString *)parseClassName
 {

@@ -13,8 +13,13 @@
 
 @interface CarPoolRequest : PFObject <PFSubclassing>
 
+extern NSString *CarPoolRequestStatusAccepted;
+extern NSString *CarPoolRequestStatusRejected;
+extern NSString *CarPoolRequestStatusCanceled;
+
 @property (nonatomic, strong) NSDate *time;
-@property (nonatomic, strong) NSNumber *status;
+@property (nonatomic, strong) NSString *status;
+@property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) User *from;
 @property (nonatomic, strong) User *to;
 @property (nonatomic, strong) Location *startLocation;

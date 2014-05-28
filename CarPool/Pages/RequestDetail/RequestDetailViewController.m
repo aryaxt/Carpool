@@ -40,7 +40,7 @@
 {
     [self showLoader];
     
-    [self hideAcceptanceStatus];
+    [self hideRequestStatus];
     
     [self.requestClient fetchRequestById:self.request.objectId withCompletion:^(CarPoolRequest *request, NSError *error) {
         [self hideLoader];
@@ -58,52 +58,56 @@
             [self.imgRequesterPhoto setImageWithURL:[NSURL URLWithString:self.request.to.photoUrl]
                                    placeholderImage:[UIImage imageNamed:@"sfdfgdfg"]];
             
-            [self updateAcceptanceStatus];
+            self.lblStatusInfo.text = (self.request.status) ? self.request.status : @"Pending";
+            self.lblStatusInfo.textColor = ([self.request.status isEqual:CarPoolRequestStatusAccepted])
+            ? [UIColor greenColor]
+            : [UIColor redColor];
             
+            
+            [self updateActionButtonVisibility];
             [self addPolyline];
         }
     }];
 }
 
-- (void)updateAcceptanceStatus
+- (void)updateActionButtonVisibility
 {
     BOOL isRequestFromMe = [self.request.to.objectId isEqualToString:[User currentUser].objectId];
     
-    if (self.request.status && !isRequestFromMe)
+    if ([self.request.status isEqualToString:CarPoolRequestStatusCanceled])
     {
-        self.lblStatusInfo.hidden = NO;
-        self.lblStatusInfo.text = (self.request.status.boolValue) ? @"Accepted" : @"Declined";
-        self.lblStatusInfo.textColor = (self.request.status.boolValue) ? [UIColor greenColor] : [UIColor redColor];
+        self.btnAccept.hidden = YES;
+        self.btnDecline.hidden = YES;
+        self.btnCancel.hidden = YES;
+    }
+    else if (isRequestFromMe)
+    {
+        self.btnAccept.titleLabel.textColor = ([self.request.status isEqual:CarPoolRequestStatusAccepted])
+        ? [UIColor greenColor]
+        : [UIColor lightGrayColor];
+        self.btnDecline.titleLabel.textColor = ([self.request.status isEqual:CarPoolRequestStatusAccepted])
+        ? [UIColor lightGrayColor]
+        : [UIColor redColor];
+        
+        self.btnAccept.hidden = NO;
+        self.btnDecline.hidden = NO;
+        self.btnCancel.hidden = YES;
     }
     else
     {
-        if (isRequestFromMe)
-        {
-            self.btnAccept.titleLabel.textColor = (self.request.status.boolValue) ?
-                [UIColor greenColor] :
-                [UIColor lightGrayColor];
-            self.btnDecline.titleLabel.textColor = (self.request.status.boolValue) ?
-                [UIColor lightGrayColor] :
-                [UIColor redColor];
-
-            self.btnAccept.hidden = NO;
-            self.btnDecline.hidden = NO;
-        }
-        else
-        {
-            self.lblStatusInfo.hidden = NO;
-            self.lblStatusInfo.text = @"Request Pending";
-        }
+        self.btnAccept.hidden = YES;
+        self.btnDecline.hidden = YES;
+        self.btnCancel.hidden = NO;
     }
 }
 
-- (void)hideAcceptanceStatus
+- (void)hideRequestStatus
 {
     self.btnAccept.titleLabel.textColor = [UIColor lightGrayColor];
     self.btnDecline.titleLabel.textColor = [UIColor lightGrayColor];
     self.btnAccept.hidden = YES;
     self.btnDecline.hidden = YES;
-    self.lblStatusInfo.hidden = YES;
+    self.btnCancel.hidden = YES;
 }
 
 - (void)fetchComments
@@ -165,14 +169,15 @@
     }];
 }
 
-- (void)changeRequestStatus:(BOOL)status
+- (void)changeRequestStatus:(NSString *)status
 {
     self.btnAccept.enabled = NO;
     self.btnDecline.enabled = NO;
+    self.btnCancel.enabled = NO;
     
-    [self.requestEngine updateRequest:self.request
-                           withStatus:status
-                        andCompletion:^(Comment *comment, NSError *error) {
+    [self.requestClient updateRequestWithId:self.request.objectId
+                                 withStatus:status
+                             withCompletion:^(Comment *comment, NSError *error) {
         if (error)
         {
             self.btnAccept.enabled = YES;
@@ -186,7 +191,7 @@
             [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
             
-            [self updateAcceptanceStatus];
+            [self updateActionButtonVisibility];
         }
     }];
 }
@@ -244,12 +249,17 @@
 
 - (IBAction)acceptSelected:(id)sender
 {
-    [self changeRequestStatus:YES];
+    [self changeRequestStatus:CarPoolRequestStatusAccepted];
 }
 
 - (IBAction)declineSelected:(id)sender
 {
-    [self changeRequestStatus:NO];
+    [self changeRequestStatus:CarPoolRequestStatusRejected];
+}
+
+- (IBAction)cancelSelected:(id)sender
+{
+    [self changeRequestStatus:CarPoolRequestStatusCanceled];
 }
 
 #pragma mark - UITableView Delegate & Datasource -
@@ -334,6 +344,8 @@
                 [self.tableView scrollToRowAtIndexPath:indeexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
             }
         }];
+        
+        return YES;
     }
     
     return NO;
@@ -368,16 +380,6 @@
     }
     
     return _requestClient;
-}
-
-- (CarPoolRequestEngine *)requestEngine
-{
-    if (!_requestEngine)
-    {
-        _requestEngine = [[CarPoolRequestEngine alloc] init];
-    }
-    
-    return _requestEngine;
 }
 
 - (CommentClient *)commentClient

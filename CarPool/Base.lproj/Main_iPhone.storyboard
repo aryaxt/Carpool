@@ -452,7 +452,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserNotificationSettingCell" id="EOG-JX-hfg" customClass="UserNotificationSettingCell">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="UserNotificationSettingCell" id="EOG-JX-hfg" customClass="UserNotificationSettingCell">
                                         <rect key="frame" x="0.0" y="86" width="320" height="55"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EOG-JX-hfg" id="8g8-xZ-TDs">
@@ -1128,7 +1128,7 @@
                                         </connections>
                                     </mapView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UDf-zv-yhN">
-                                        <rect key="frame" x="109" y="53" width="49" height="30"/>
+                                        <rect key="frame" x="91" y="65" width="49" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Accept">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1138,7 +1138,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hvy-cm-cAo">
-                                        <rect key="frame" x="229" y="53" width="51" height="30"/>
+                                        <rect key="frame" x="237" y="65" width="51" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Decline">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -1148,12 +1148,22 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dgL-XE-Y8I">
-                                        <rect key="frame" x="96" y="56" width="197" height="21"/>
+                                        <rect key="frame" x="96" y="36" width="197" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Anp-vl-gFW">
+                                        <rect key="frame" x="161" y="66" width="48" height="30"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelSelected:" destination="0nB-fo-wFA" eventType="touchUpInside" id="RIb-xv-Le0"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.9490196704864502" green="0.9490196704864502" blue="0.9490196704864502" alpha="1" colorSpace="deviceRGB"/>
                             </view>
@@ -1163,6 +1173,7 @@
                     <navigationItem key="navigationItem" title="Request" id="wdO-6c-xyk"/>
                     <connections>
                         <outlet property="btnAccept" destination="UDf-zv-yhN" id="bd5-x0-lcH"/>
+                        <outlet property="btnCancel" destination="Anp-vl-gFW" id="5SA-Ht-XPX"/>
                         <outlet property="btnDecline" destination="Hvy-cm-cAo" id="7Kz-mj-2bB"/>
                         <outlet property="headerView" destination="R2Z-ki-sbo" id="8fR-ha-UHt"/>
                         <outlet property="imgRequesterPhoto" destination="GVT-ZV-mk8" id="p3z-nE-IoW"/>
