@@ -9,12 +9,8 @@
 #import <UIKit/UIKit.h>
 #import "CarPoolOffer.h"
 
-@protocol MyOfferCellDelegate
-@end
-
 @interface MyOfferCell : UITableViewCell
 
-@property (nonatomic, weak) id <MyOfferCellDelegate> delegate;
 @property (nonatomic, strong) IBOutlet UILabel *lblTime;
 @property (nonatomic, strong) IBOutlet UILabel *lblFrom;
 @property (nonatomic, strong) IBOutlet UILabel *lblTo;

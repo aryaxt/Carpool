@@ -74,7 +74,8 @@
 - (UIColor *)textColorForComment:(Comment *)comment isFromMe:(BOOL)isFromMe
 {
     if ([comment.action isEqualToString:CommentActionAccepted] ||
-        [comment.action isEqualToString:CommentActionRejected])
+        [comment.action isEqualToString:CommentActionRejected] ||
+        [comment.action isEqualToString:CommentActionCanceled])
     {
         return [UIColor whiteColor];
     }

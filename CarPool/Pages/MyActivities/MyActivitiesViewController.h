@@ -8,28 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
-#import "CarPoolOffer.h"
-#import "CarPoolOfferClient.h"
-#import "BaseViewController.h"
-#import "SVPullToRefresh.h"
-#import "UITableView+Additions.h"
-#import "MyOfferCell.h"
-#import "UIAlertView+Blocks.h"
 #import "CreateOfferViewController.h"
-#import "CarPoolRequestClient.h"
-#import "MyRequestCell.h"
-#import "RequestDetailViewController.h"
-#import "UIViewController+Additions.h"
+#import "MyOffersViewContorller.h"
+#import "MyRequestsViewController.h"
 
-@interface MyActivitiesViewController : BaseViewController <SlideNavigationControllerDelegate, MyOfferCellDelegate, CreateOfferViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface MyActivitiesViewController : BaseViewController <SlideNavigationControllerDelegate, CreateOfferViewControllerDelegate>
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *btnAddOffer;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
-@property (nonatomic, strong) NSMutableArray *offers;
-@property (nonatomic, strong) NSMutableArray *requests;
-@property (nonatomic, strong) CarPoolOfferClient *offerClient;
-@property (nonatomic, strong) CarPoolRequestClient *requestclient;
+@property (nonatomic, strong) MyOffersViewContorller *myOffersViewController;
+@property (nonatomic, strong) MyRequestsViewController *myRequestsViewController;
 
 - (IBAction)segmentedControlDidChange:(id)sender;
 

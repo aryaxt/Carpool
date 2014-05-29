@@ -96,6 +96,8 @@
 		92B568DA1917147700CEF58F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B568D91917147700CEF58F /* Location.m */; };
 		92B568DF19172F5700CEF58F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B568DE19172F5700CEF58F /* MapKit.framework */; };
 		92FD32FC19357E6A0016B32D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FD32FB19357E6A0016B32D /* Crashlytics.framework */; };
+		92FD32FF1936CA0C0016B32D /* MyOffersViewContorller.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FD32FE1936CA0C0016B32D /* MyOffersViewContorller.m */; };
+		92FD33021936CB310016B32D /* MyRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FD33011936CB310016B32D /* MyRequestsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -262,6 +264,10 @@
 		92B568D91917147700CEF58F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		92B568DE19172F5700CEF58F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		92FD32FB19357E6A0016B32D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		92FD32FD1936CA0C0016B32D /* MyOffersViewContorller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOffersViewContorller.h; sourceTree = "<group>"; };
+		92FD32FE1936CA0C0016B32D /* MyOffersViewContorller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOffersViewContorller.m; sourceTree = "<group>"; };
+		92FD33001936CB310016B32D /* MyRequestsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyRequestsViewController.h; sourceTree = "<group>"; };
+		92FD33011936CB310016B32D /* MyRequestsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyRequestsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -630,6 +636,10 @@
 				923E15DA19292F7700AD1B5A /* MyRequestCell.m */,
 				923E15D51929215200AD1B5A /* MyActivitiesViewController.h */,
 				923E15D61929215200AD1B5A /* MyActivitiesViewController.m */,
+				92FD32FD1936CA0C0016B32D /* MyOffersViewContorller.h */,
+				92FD32FE1936CA0C0016B32D /* MyOffersViewContorller.m */,
+				92FD33001936CB310016B32D /* MyRequestsViewController.h */,
+				92FD33011936CB310016B32D /* MyRequestsViewController.m */,
 			);
 			path = MyActivities;
 			sourceTree = "<group>";
@@ -914,6 +924,7 @@
 				9226EF16191695120014B319 /* AuthenticationClient.m in Sources */,
 				925FB63819346D9E00814B5A /* UserNotificationSettingCell.m in Sources */,
 				927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */,
+				92FD32FF1936CA0C0016B32D /* MyOffersViewContorller.m in Sources */,
 				9226EEAA191573530014B319 /* AppDelegate.m in Sources */,
 				9226EED51915789F0014B319 /* MenuViewController.m in Sources */,
 				928266CE191EABF7001AD534 /* LocationSearchClient.m in Sources */,
@@ -932,6 +943,7 @@
 				9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */,
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
+				92FD33021936CB310016B32D /* MyRequestsViewController.m in Sources */,
 				92677F6A1932975F008046DE /* InsetEnabledLabel.m in Sources */,
 				923E15E51929A85000AD1B5A /* ProfileViewController.m in Sources */,
 				92677F6E1933A002008046DE /* PersonalMessagesViewController.m in Sources */,
