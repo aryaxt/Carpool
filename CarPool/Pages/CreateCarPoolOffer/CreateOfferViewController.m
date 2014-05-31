@@ -30,7 +30,6 @@
     self.offer = [[CarPoolOffer alloc] init];
     
     [self.datePicker removeFromSuperview];
-    self.datePicker.minimumDate = [NSDate date];
     self.datePicker.date = [NSDate date];
     self.txtDate.inputView = self.datePicker;
     self.txtMessage.text = @"";
@@ -43,7 +42,10 @@
 - (void)populateData
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setDateFormat:([self.offer.period isEqual:CarPoolOfferPeriodOneTime])
+        ? @"yyyy-MM-dd hh:mm a"
+        : @"hh:mm a"];
+
     self.txtDate.text = [dateFormatter stringFromDate:self.offer.date];
     
     if (self.offer.startLocation)
@@ -105,12 +107,18 @@
 {
     if (self.periodSegmentedControl.selectedSegmentIndex == 0)
     {
+        self.datePicker.minimumDate = [NSDate date];
         self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        self.offer.period = CarPoolOfferPeriodOneTime;
     }
     else
     {
+        self.datePicker.minimumDate =  nil;
         self.datePicker.datePickerMode = UIDatePickerModeTime;
+        self.offer.period = CarPoolOfferPeriodWeekDays;
     }
+    
+    [self populateData];
 }
 
 - (IBAction)datePickerChangedValue:(id)sender
@@ -141,7 +149,17 @@
         vc.tag = (textField == self.txtStartLocation) ? LOCATION_SEARCH_START : LOCATION_SEARCH_END;
         [self presentViewController:nacVontroller animated:YES completion:nil];
         
-        return false;
+        return NO;
+    }
+    else if (textField == self.txtDate)
+    {
+        if (!self.offer.period)
+        {
+            [self alertWithtitle:@"Error" andMessage:@"Please select a period before seting a date"];
+            return NO;
+        }
+        
+        return YES;
     }
     
     return true;

@@ -51,6 +51,9 @@
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
+                                                      if (!self.isFirstResponder)
+                                                          return;
+                                                      
                                                       [self performShowAnimation:YES withKeyboardNotification:note.userInfo];
                                                   }];
     
@@ -58,6 +61,9 @@
                                                       object:nil
                                                        queue:nil
                                                   usingBlock:^(NSNotification *note) {
+                                                      if (!self.isFirstResponder)
+                                                          return;
+                                                      
                                                       [self performShowAnimation:NO withKeyboardNotification:note.userInfo];
                                                   }];
 }
@@ -115,13 +121,6 @@
         [sender removeFromSuperview];
         [self resignFirstResponder];
     }];
-}
-
-#pragma mark - IBAction -
-
-- (IBAction)closeButtonSelected:(id)sender
-{
-    
 }
 
 @end

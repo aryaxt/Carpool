@@ -72,6 +72,7 @@
 		923E950E19325DC6008411AA /* MessageComposerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923E950D19325DC6008411AA /* MessageComposerView.xib */; };
 		9255117D1939748E00132526 /* reference.png in Resources */ = {isa = PBXBuildFile; fileRef = 9255117C1939748E00132526 /* reference.png */; };
 		925511CB193A361500132526 /* AutoResizingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 925511CA193A361500132526 /* AutoResizingTextView.m */; };
+		925511D0193A503600132526 /* GooglaAnalyticsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 925511CF193A503600132526 /* GooglaAnalyticsManager.m */; };
 		925FB6281933E1FC00814B5A /* ReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB6271933E1FC00814B5A /* ReferenceViewController.m */; };
 		925FB62C193452B800814B5A /* PushNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB62B193452B800814B5A /* PushNotificationSettingViewController.m */; };
 		925FB62F193453F500814B5A /* NotificationSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB62E193453F500814B5A /* NotificationSetting.m */; };
@@ -224,6 +225,8 @@
 		9255117C1939748E00132526 /* reference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reference.png; sourceTree = "<group>"; };
 		925511C9193A361500132526 /* AutoResizingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingTextView.h; sourceTree = "<group>"; };
 		925511CA193A361500132526 /* AutoResizingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingTextView.m; sourceTree = "<group>"; };
+		925511CE193A503600132526 /* GooglaAnalyticsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GooglaAnalyticsManager.h; sourceTree = "<group>"; };
+		925511CF193A503600132526 /* GooglaAnalyticsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GooglaAnalyticsManager.m; sourceTree = "<group>"; };
 		925FB6261933E1FC00814B5A /* ReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceViewController.h; sourceTree = "<group>"; };
 		925FB6271933E1FC00814B5A /* ReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceViewController.m; sourceTree = "<group>"; };
 		925FB62A193452B800814B5A /* PushNotificationSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationSettingViewController.h; sourceTree = "<group>"; };
@@ -519,6 +522,8 @@
 				9217A59A19231724005E3A36 /* PushNotificationManager.m */,
 				923E95031931BA02008411AA /* ApplicationVersionManager.h */,
 				923E95041931BA02008411AA /* ApplicationVersionManager.m */,
+				925511CE193A503600132526 /* GooglaAnalyticsManager.h */,
+				925511CF193A503600132526 /* GooglaAnalyticsManager.m */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -979,6 +984,7 @@
 				9217A5A919245AD9005E3A36 /* InboxViewController.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,
 				923E95081931BA16008411AA /* ApplicationVersionClient.m in Sources */,
+				925511D0193A503600132526 /* GooglaAnalyticsManager.m in Sources */,
 				923E15DB19292F7700AD1B5A /* MyRequestCell.m in Sources */,
 				920918041927EDEA009701FA /* CommentClient.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,

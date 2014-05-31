@@ -24,9 +24,14 @@
 {
     [Crashlytics startWithAPIKey:@"e3c3cb40b7bc9d46e5fdbd97db29a7cc0e9c9db3"];
     
-    NSDictionary *userInfo = [launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
-    NSDictionary *pushInfo = [userInfo objectForKey:@"aps"];
-    [[PushNotificationManager sharedInstance] handlePushNotification:pushInfo];
+    if (launchOptions)
+    {
+        NSDictionary *userInfo = [launchOptions valueForKey:UIApplicationLaunchOptionsRemoteNotificationKey];
+        NSDictionary *pushInfo = [userInfo objectForKey:@"aps"];
+        
+        if (pushInfo)
+            [[PushNotificationManager sharedInstance] handlePushNotification:pushInfo];
+    }
     
     [self setupSlideNavigationController];
     

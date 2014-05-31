@@ -20,6 +20,9 @@
 @dynamic minAge;
 @dynamic maxage;
 
+NSNumber *CarPoolOfferPeriodOneTime;
+NSNumber *CarPoolOfferPeriodWeekDays;
+
 + (NSString *)parseClassName
 {
     return NSStringFromClass([self class]);
@@ -28,6 +31,9 @@
 + (void)load
 {
     [self registerSubclass];
+    
+    CarPoolOfferPeriodOneTime = @1;
+    CarPoolOfferPeriodWeekDays = @5;
 }
 
 @end

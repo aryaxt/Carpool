@@ -68,7 +68,9 @@
     [self.offerOwnerPhoto setImageWithURL:[NSURL URLWithString:offer.from.photoUrl]];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+    [dateFormatter setDateFormat:([offer.period isEqual:CarPoolOfferPeriodOneTime])
+        ? @"yyyy-MM-dd hh:mm a"
+        : @"hh:mm a"];
     
     self.lblDate.text = [dateFormatter stringFromDate:offer.date];
     self.lblStartLocation.text = offer.startLocation.name;

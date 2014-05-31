@@ -12,6 +12,9 @@
 
 @interface CarPoolOffer : PFObject<PFSubclassing>
 
+extern NSNumber *CarPoolOfferPeriodOneTime;
+extern NSNumber *CarPoolOfferPeriodWeekDays;
+
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) NSNumber *preferredGender;

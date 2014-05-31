@@ -5,6 +5,8 @@ var ReferenceTypeNegative = "negative";
 var CarPoolRequestStatusAccepted = "accepted";
 var CarPoolRequestStatusRejected = "rejected";
 var CarPoolRequestStatusCanceled = "canceled";
+var CarPoolRequestPeriodOnceTime = 1;
+var CarPoolRequestPeriodWeekDays = 5;
 
 Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {
 	if (request.object.get("date") == null) {
@@ -19,6 +21,9 @@ Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {
 	else if (request.object.get("from") == null) {
 		response.error("from is missing");
   	} 
+	else if (request.object.get("period") != CarPoolRequestPeriodOnceTime && request.object.get("period") != CarPoolRequestPeriodWeekDays) {
+		response.error("period is invalid");
+  	}
 	else {
     	response.success();
   	}
