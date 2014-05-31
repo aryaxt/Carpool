@@ -49,6 +49,14 @@
                                      }];
 }
 
+#pragma mark - Public Methods -
+
+- (void)addNewRequest:(CarPoolRequest *)request
+{
+    [self.requests insertObject:request atIndex:0];
+    [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
+                          withRowAnimation:UITableViewRowAnimationTop];
+}
 
 #pragma mark - UITableView Delegate & Datasource -
 

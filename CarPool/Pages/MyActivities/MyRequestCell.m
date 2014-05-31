@@ -19,7 +19,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     
-    self.lblTime.text = [dateFormatter stringFromDate:request.time];
+    self.lblTime.text = [dateFormatter stringFromDate:request.date];
     self.lblFrom.text = request.startLocation.name;
     self.lblTo.text = request.endLocation.name;
     self.lblFromName.text = request.to.name;

@@ -73,6 +73,13 @@
                                                 [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationTop];
                                             }
                                             [self.tableView endUpdates];
+                                            
+                                            if (oldCount > 0)
+                                            {
+                                                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:oldCount inSection:0];
+                                                
+                                                [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
+                                            }
                                         }
                                     }];
 }

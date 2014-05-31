@@ -11,6 +11,8 @@
 
 @interface ProfileViewController()
 @property (nonatomic, strong) NSDictionary *keyBoardInfo;
+@property (nonatomic, assign) CGRect originalReferenceViewRect;
+@property (nonatomic, assign) BOOL referencesFetched;
 @end
 
 @implementation ProfileViewController
@@ -33,11 +35,35 @@
         [self addMessageComposerView];
     }
     
+    self.originalReferenceViewRect = self.referencesView.frame;
+    self.referencesView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.referencesView.layer.borderWidth = .6;
+    self.referencesView.layer.cornerRadius = 20;
+    self.referencesView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    self.referencesView.layer.shadowRadius = 5;
+    self.referencesView.layer.shadowOpacity = .8;
+    self.referencesView.layer.shadowOffset = CGSizeMake(1, 1);
+    
+    UITapGestureRecognizer *tapREcognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(referencesSelected:)];
+    [self.referencesView addGestureRecognizer:tapREcognizer];
+    
+    
     self.lblPositiveReferenceCount.text = @"";
     self.lblNegativeReferenceCount.text = @"";
+    [self showReferences:NO animated:YES withCompletion:nil];
     [self fetchAndPopulateReferenceCounts];
     
     [self handleKeyboardNotifications];
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    if (self.referencesFetched)
+    {
+        [self showReferences:YES animated:YES withCompletion:nil];
+    }
 }
 
 - (void)handleKeyboardNotifications
@@ -109,12 +135,36 @@
 
 - (void)fetchAndPopulateReferenceCounts
 {
-    [self.referenceClient fetchReferenceCountsForUser:self.user withCompletion:^(NSNumber *poitive, NSNumber *negative, NSError *error) {
+    [self.referencesLoader startAnimating];
+    
+    CGRect originalRect = self.referencesView.frame;
+    CGRect newRect = originalRect;
+    newRect.origin.x = self.view.frame.size.width;
+    
+    [self.referenceClient fetchReferenceCountsForUser:self.user withCompletion:^(NSNumber *poitive, NSNumber *negative, NSError *error){
+        [self.referencesLoader stopAnimating];
+        
         if (!error)
         {
+            self.referencesFetched = YES;
             self.lblPositiveReferenceCount.text = poitive.stringValue;
             self.lblNegativeReferenceCount.text = negative.stringValue;
+            
+            [self showReferences:YES animated:YES withCompletion:nil];
         }
+    }];
+}
+
+- (void)showReferences:(BOOL)show animated:(BOOL)animated withCompletion:(void (^)(void))completion
+{
+    CGRect hideRect = self.referencesView.frame;
+    hideRect.origin.x =  self.view.frame.size.width;
+    
+    [UIView animateWithDuration:(animated) ? .25 : 0 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        self.referencesView.frame = (show) ? self.originalReferenceViewRect : hideRect;
+    } completion:^(BOOL finished) {
+        if (completion)
+            completion();
     }];
 }
 
@@ -147,6 +197,13 @@
     User *currentUser = [User currentUser];
     [currentUser.blockedUsers addObject:self.user];
     [currentUser saveEventually];
+}
+
+- (void)referencesSelected:(id)sender
+{
+    [self showReferences:NO animated:YES withCompletion:^{
+       [self performSegueWithIdentifier:@"ReferencesViewController" sender:self];
+    }];
 }
 
 #pragma mark - MessageComposerViewDelegate -

@@ -27,6 +27,8 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblInterests;
 @property (nonatomic, strong) IBOutlet UILabel *lblPositiveReferenceCount;
 @property (nonatomic, strong) IBOutlet UILabel *lblNegativeReferenceCount;
+@property (nonatomic, strong) IBOutlet UIView *referencesView;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *referencesLoader;
 @property (nonatomic, strong) IBOutlet UILabel *lblMusicMoviesBooks;
 @property (nonatomic, strong) IBOutlet UIButton *btnCreateReference;
 @property (nonatomic, strong) ReferenceClient *referenceClient;

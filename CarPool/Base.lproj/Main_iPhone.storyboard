@@ -340,34 +340,14 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" id="2Nt-Xn-cJT">
-                                <rect key="frame" x="0.0" y="223" width="320" height="95"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="E1A-et-iKI" customClass="AutoResizingTextView">
+                                <rect key="frame" x="10" y="252" width="299" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="4XM-wF-A8L">
-                                        <rect key="frame" x="5" y="27" width="309" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.98823535439999999" green="0.98823535439999999" blue="0.98823535439999999" alpha="1" colorSpace="deviceRGB"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="IWh-Sh-QDo" id="g7n-Lp-cA7"/>
-                                        </connections>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="C9w-vb-ybH">
-                                        <rect key="frame" x="284" y="-3" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="closeButton.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="closeMessageSelected:" destination="IWh-Sh-QDo" eventType="touchUpInside" id="0Vs-Mz-WtX"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.2078506883" green="0.30335258580000002" blue="0.84217900820000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -379,10 +359,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="btnCloseMessage" destination="C9w-vb-ybH" id="44y-wz-ZDa"/>
-                        <outlet property="messageView" destination="2Nt-Xn-cJT" id="Rmh-aa-lFe"/>
                         <outlet property="txtFrom" destination="tYR-LW-uxx" id="aRb-zT-qFU"/>
-                        <outlet property="txtMessage" destination="4XM-wF-A8L" id="5bM-eL-GWS"/>
+                        <outlet property="txtMessage" destination="E1A-et-iKI" id="Jdk-ck-BsR"/>
                         <outlet property="txtTo" destination="b4x-0z-slT" id="BRG-SD-fSb"/>
                     </connections>
                 </viewController>
@@ -511,7 +489,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <subviews>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="bxm-qs-eQV">
-                                        <rect key="frame" x="124" y="21" width="187" height="21"/>
+                                        <rect key="frame" x="124" y="9" width="187" height="21"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="highlightedColor"/>
@@ -548,40 +526,63 @@
                                             <action selector="blockUserSelected:" destination="lNv-P4-8RP" eventType="touchUpInside" id="pW8-av-gRq"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="hAE-Aw-QCN">
-                                        <rect key="frame" x="210" y="111" width="110" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Write Reference">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAE-Aw-QCN">
+                                        <rect key="frame" x="152" y="33" width="35" height="35"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="reference.png">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
                                             <segue destination="q5r-bo-02J" kind="push" identifier="CreateReferenceViewController" id="I1N-ot-6ML"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L9n-mg-Twf">
-                                        <rect key="frame" x="133" y="55" width="42" height="21"/>
+                                    <view contentMode="scaleToFill" id="fgL-S8-chc">
+                                        <rect key="frame" x="124" y="70" width="215" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <subviews>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="L9n-mg-Twf">
+                                                <rect key="frame" x="33" y="20" width="75" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mJC-2z-LIV">
+                                                <rect key="frame" x="116" y="20" width="67" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Positive" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="hey-ZG-kyX">
+                                                <rect key="frame" x="33" y="4" width="75" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <color key="textColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Negative" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Z6y-yo-waA">
+                                                <rect key="frame" x="116" y="4" width="67" height="21"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
+                                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                                    </view>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="References" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="dpL-xE-lrw">
+                                        <rect key="frame" x="181" y="38" width="87" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="mJC-2z-LIV">
-                                        <rect key="frame" x="228" y="55" width="42" height="21"/>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" id="6i7-UL-rDj">
+                                        <rect key="frame" x="278" y="39" width="20" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="DfM-p2-81w">
-                                        <rect key="frame" x="10" y="143" width="115" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Go to references">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <segue destination="hcL-rt-n7Q" kind="push" identifier="ReferencesViewController" id="uhu-Cv-W7G"/>
-                                        </connections>
-                                    </button>
+                                        <color key="color" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <connections>
                                     <outlet property="delegate" destination="lNv-P4-8RP" id="zZe-yf-Ep1"/>
@@ -601,6 +602,9 @@
                         <outlet property="lblName" destination="bxm-qs-eQV" id="0AM-Qf-gxQ"/>
                         <outlet property="lblNegativeReferenceCount" destination="mJC-2z-LIV" id="IHF-rv-TBT"/>
                         <outlet property="lblPositiveReferenceCount" destination="L9n-mg-Twf" id="A2a-oP-VJr"/>
+                        <outlet property="referencesLoader" destination="6i7-UL-rDj" id="dPZ-50-7at"/>
+                        <outlet property="referencesView" destination="fgL-S8-chc" id="5Tq-hF-cVu"/>
+                        <segue destination="hcL-rt-n7Q" kind="push" identifier="ReferencesViewController" id="EEU-6p-vdO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4m-c0-dxi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -795,7 +799,7 @@
                         </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="b0z-nY-yF6">
                             <connections>
-                                <segue destination="ilB-Po-NVU" kind="push" identifier="CreateOfferViewController" id="Tkw-P3-ymQ"/>
+                                <action selector="createSeelcted:" destination="e0Q-Mz-Jqy" id="wPz-Mu-fVk"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1067,7 +1071,7 @@
         <!--Create Offer View Controller - Create Offer-->
         <scene sceneID="Rbr-bn-DMQ">
             <objects>
-                <viewController id="ilB-Po-NVU" customClass="CreateOfferViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CreateOfferViewController" id="ilB-Po-NVU" customClass="CreateOfferViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="weQ-VH-Zzj">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -1078,17 +1082,6 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="qb3-lr-5bu">
-                                <rect key="frame" x="55" y="71" width="210" height="29"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="One Time"/>
-                                    <segment title="Week Days"/>
-                                </segments>
-                                <connections>
-                                    <action selector="segmentedControlChanged:" destination="ilB-Po-NVU" eventType="valueChanged" id="kpR-Is-FwV"/>
-                                </connections>
-                            </segmentedControl>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" id="NuE-QL-Kbj">
                                 <rect key="frame" x="0.0" y="406" width="320" height="162"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
@@ -1157,34 +1150,22 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" id="Fqg-ai-Vqw">
-                                <rect key="frame" x="0.0" y="259" width="320" height="95"/>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" id="Yb4-Nq-KX4">
+                                <rect key="frame" x="48" y="63" width="261" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="HDb-xm-fsV">
-                                        <rect key="frame" x="5" y="27" width="309" height="63"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                        <color key="backgroundColor" red="0.98823535442352295" green="0.98823535442352295" blue="0.98823535442352295" alpha="1" colorSpace="deviceRGB"/>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="ilB-Po-NVU" id="IQG-yg-G9S"/>
-                                        </connections>
-                                    </textView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="BOu-gz-ob7">
-                                        <rect key="frame" x="284" y="-3" width="30" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" backgroundImage="closeButton.png">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="closeMessageSelected:" destination="ilB-Po-NVU" eventType="touchUpInside" id="WWf-Ba-JJi"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" red="0.2078506883" green="0.30335258580000002" blue="0.84217900820000002" alpha="1" colorSpace="calibratedRGB"/>
-                            </view>
+                                <segments>
+                                    <segment title="One Time"/>
+                                    <segment title="Week Days"/>
+                                </segments>
+                            </segmentedControl>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="nxA-WV-ojX" customClass="AutoResizingTextView">
+                                <rect key="frame" x="10" y="288" width="299" height="81"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -1201,19 +1182,16 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="btnCloseMessage" destination="BOu-gz-ob7" id="PHd-VM-8sQ"/>
                         <outlet property="datePicker" destination="NuE-QL-Kbj" id="TIm-q5-CY0"/>
-                        <outlet property="messageView" destination="Fqg-ai-Vqw" id="leO-0a-4cb"/>
-                        <outlet property="periodSegmentedControl" destination="qb3-lr-5bu" id="Sj1-hU-d9s"/>
                         <outlet property="txtDate" destination="lef-KK-dNX" id="NyF-ms-r5r"/>
                         <outlet property="txtEndLocation" destination="lmr-eI-F43" id="xgT-5u-HNI"/>
-                        <outlet property="txtMessage" destination="HDb-xm-fsV" id="osN-ko-5hD"/>
+                        <outlet property="txtMessage" destination="nxA-WV-ojX" id="yfu-OQ-2ip"/>
                         <outlet property="txtStartLocation" destination="AV0-8r-qde" id="Cak-Om-Bug"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="I8m-0N-5Di" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1948" y="1529"/>
+            <point key="canvasLocation" x="2248" y="78"/>
         </scene>
         <!--My Offers View Contorller-->
         <scene sceneID="It7-J0-SVJ">
@@ -1493,7 +1471,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BBB-HF-5Ms" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2364" y="1549"/>
+            <point key="canvasLocation" x="2106" y="1575"/>
         </scene>
         <!--Search Filter View Controller - Search Filter-->
         <scene sceneID="Vyq-OQ-sHa">
@@ -1644,11 +1622,11 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
     </scenes>
     <resources>
         <image name="calendar.png" width="512" height="512"/>
-        <image name="closeButton.png" width="49" height="53"/>
         <image name="currntLocation.png" width="128" height="128"/>
         <image name="endPoint.png" width="420" height="640"/>
         <image name="filter.png" width="30" height="30"/>
         <image name="map.png" width="256" height="256"/>
+        <image name="reference.png" width="64" height="64"/>
         <image name="startPoint.png" width="420" height="640"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

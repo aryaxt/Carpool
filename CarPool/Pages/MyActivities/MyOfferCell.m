@@ -17,7 +17,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     
-    self.lblTime.text = [dateFormatter stringFromDate:offer.time];
+    self.lblTime.text = [dateFormatter stringFromDate:offer.date];
     self.lblFrom.text = offer.startLocation.name;
     self.lblTo.text = offer.endLocation.name;
 }

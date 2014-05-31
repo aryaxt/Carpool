@@ -20,4 +20,6 @@
 @property (nonatomic, strong) NSMutableArray *requests;
 @property (nonatomic, strong) CarPoolRequestClient *requestclient;
 
+- (void)addNewRequest:(CarPoolRequest *)request;
+
 @end

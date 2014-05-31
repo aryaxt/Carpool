@@ -26,15 +26,11 @@
 @property (nonatomic, strong) IBOutlet UITextField *txtStartLocation;
 @property (nonatomic, strong) IBOutlet UITextField *txtEndLocation;
 @property (nonatomic, strong) IBOutlet UITextView *txtMessage;
-@property (nonatomic, strong) IBOutlet UIView *messageView;
-@property (nonatomic, strong) IBOutlet UIButton *btnCloseMessage;
 @property (nonatomic, strong) CarPoolOffer *offer;
 @property (nonatomic, strong) CarPoolOfferClient *offerClient;
-@property (nonatomic, assign) CGRect messageViewOriginalFrame;
 
 - (IBAction)createSelected:(id)sender;
 - (IBAction)segmentedControlChanged:(id)sender;
 - (IBAction)datePickerChangedValue:(id)sender;
-- (IBAction)closeMessageSelected:(id)sender;
 
 @end

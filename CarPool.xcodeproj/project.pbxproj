@@ -43,7 +43,6 @@
 		9226EEEE1915B8E70014B319 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EEED1915B8E70014B319 /* CoreLocation.framework */; };
 		9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEF11915CBE90014B319 /* CarPoolOffer.m */; };
 		9226EF081915DCEB0014B319 /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF071915DCEB0014B319 /* SettingsViewController.m */; };
-		9226EF0B1915E18A0014B319 /* Period.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF0A1915E18A0014B319 /* Period.m */; };
 		9226EF13191694FC0014B319 /* CarPoolOfferClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF12191694FC0014B319 /* CarPoolOfferClient.m */; };
 		9226EF16191695120014B319 /* AuthenticationClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF15191695120014B319 /* AuthenticationClient.m */; };
 		9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EF1919169CF00014B319 /* BaseViewController.m */; };
@@ -71,6 +70,8 @@
 		923E95081931BA16008411AA /* ApplicationVersionClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E95071931BA16008411AA /* ApplicationVersionClient.m */; };
 		923E950C19325DB5008411AA /* MessageComposerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 923E950B19325DB5008411AA /* MessageComposerView.m */; };
 		923E950E19325DC6008411AA /* MessageComposerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923E950D19325DC6008411AA /* MessageComposerView.xib */; };
+		9255117D1939748E00132526 /* reference.png in Resources */ = {isa = PBXBuildFile; fileRef = 9255117C1939748E00132526 /* reference.png */; };
+		925511CB193A361500132526 /* AutoResizingTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 925511CA193A361500132526 /* AutoResizingTextView.m */; };
 		925FB6281933E1FC00814B5A /* ReferenceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB6271933E1FC00814B5A /* ReferenceViewController.m */; };
 		925FB62C193452B800814B5A /* PushNotificationSettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB62B193452B800814B5A /* PushNotificationSettingViewController.m */; };
 		925FB62F193453F500814B5A /* NotificationSetting.m in Sources */ = {isa = PBXBuildFile; fileRef = 925FB62E193453F500814B5A /* NotificationSetting.m */; };
@@ -169,8 +170,6 @@
 		9226EEF11915CBE90014B319 /* CarPoolOffer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolOffer.m; sourceTree = "<group>"; };
 		9226EF061915DCEB0014B319 /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		9226EF071915DCEB0014B319 /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
-		9226EF091915E18A0014B319 /* Period.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Period.h; sourceTree = "<group>"; };
-		9226EF0A1915E18A0014B319 /* Period.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Period.m; sourceTree = "<group>"; };
 		9226EF11191694FC0014B319 /* CarPoolOfferClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CarPoolOfferClient.h; sourceTree = "<group>"; };
 		9226EF12191694FC0014B319 /* CarPoolOfferClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CarPoolOfferClient.m; sourceTree = "<group>"; };
 		9226EF14191695120014B319 /* AuthenticationClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AuthenticationClient.h; sourceTree = "<group>"; };
@@ -222,6 +221,9 @@
 		923E950A19325DB5008411AA /* MessageComposerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageComposerView.h; sourceTree = "<group>"; };
 		923E950B19325DB5008411AA /* MessageComposerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageComposerView.m; sourceTree = "<group>"; };
 		923E950D19325DC6008411AA /* MessageComposerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MessageComposerView.xib; sourceTree = "<group>"; };
+		9255117C1939748E00132526 /* reference.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reference.png; sourceTree = "<group>"; };
+		925511C9193A361500132526 /* AutoResizingTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingTextView.h; sourceTree = "<group>"; };
+		925511CA193A361500132526 /* AutoResizingTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingTextView.m; sourceTree = "<group>"; };
 		925FB6261933E1FC00814B5A /* ReferenceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReferenceViewController.h; sourceTree = "<group>"; };
 		925FB6271933E1FC00814B5A /* ReferenceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReferenceViewController.m; sourceTree = "<group>"; };
 		925FB62A193452B800814B5A /* PushNotificationSettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PushNotificationSettingViewController.h; sourceTree = "<group>"; };
@@ -382,8 +384,8 @@
 		9226EE9F191573530014B319 /* CarPool */ = {
 			isa = PBXGroup;
 			children = (
-				923E950919325D9E008411AA /* Views */,
 				9226EF341917041C0014B319 /* Images */,
+				923E950919325D9E008411AA /* Views */,
 				9226EED619157A6F0014B319 /* Categories */,
 				928266C8191E9B6B001AD534 /* Subclasses */,
 				9226EF10191694EC0014B319 /* Clients */,
@@ -528,8 +530,6 @@
 				9226EEF11915CBE90014B319 /* CarPoolOffer.m */,
 				9226EF211916A4370014B319 /* CarPoolRequest.h */,
 				9226EF221916A4370014B319 /* CarPoolRequest.m */,
-				9226EF091915E18A0014B319 /* Period.h */,
-				9226EF0A1915E18A0014B319 /* Period.m */,
 				92B568D81917147700CEF58F /* Location.h */,
 				92B568D91917147700CEF58F /* Location.m */,
 				92881403191DD6BF00726DD8 /* User.h */,
@@ -615,6 +615,7 @@
 		9226EF341917041C0014B319 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				9255117C1939748E00132526 /* reference.png */,
 				923E94E91930F6D3008411AA /* filter.png */,
 				928266C6191E9195001AD534 /* map.png */,
 				928266C2191E904F001AD534 /* currntLocation.png */,
@@ -694,6 +695,8 @@
 				923E950A19325DB5008411AA /* MessageComposerView.h */,
 				923E950B19325DB5008411AA /* MessageComposerView.m */,
 				923E950D19325DC6008411AA /* MessageComposerView.xib */,
+				925511C9193A361500132526 /* AutoResizingTextView.h */,
+				925511CA193A361500132526 /* AutoResizingTextView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -844,6 +847,7 @@
 				9226EEA4191573530014B319 /* InfoPlist.strings in Resources */,
 				927ABFB9191A170300CC3A2B /* closeButton.png in Resources */,
 				9226EF38191707F10014B319 /* poweredByGoogle.png in Resources */,
+				9255117D1939748E00132526 /* reference.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -942,6 +946,7 @@
 				92881405191DD6BF00726DD8 /* User.m in Sources */,
 				9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */,
 				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
+				925511CB193A361500132526 /* AutoResizingTextView.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				92FD33021936CB310016B32D /* MyRequestsViewController.m in Sources */,
 				92677F6A1932975F008046DE /* InsetEnabledLabel.m in Sources */,
@@ -957,7 +962,6 @@
 				925FB6281933E1FC00814B5A /* ReferenceViewController.m in Sources */,
 				9226EF2E1916E31F0014B319 /* LocationSearchViewController.m in Sources */,
 				923E15DE1929A54800AD1B5A /* Profile.m in Sources */,
-				9226EF0B1915E18A0014B319 /* Period.m in Sources */,
 				923E94EE1930F894008411AA /* SearchFilterViewController.m in Sources */,
 				9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */,
 				92677F751933A36B008046DE /* RequestDetailViewController.m in Sources */,

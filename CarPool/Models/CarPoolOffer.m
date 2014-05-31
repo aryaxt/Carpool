@@ -10,9 +10,9 @@
 #import <Parse/PFObject+Subclass.h>
 
 @implementation CarPoolOffer
-@dynamic time;
-@dynamic from;
+@dynamic date;
 @dynamic period;
+@dynamic from;
 @dynamic preferredGender;
 @dynamic startLocation;
 @dynamic endLocation;

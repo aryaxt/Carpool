@@ -17,7 +17,7 @@ extern NSString *CarPoolRequestStatusAccepted;
 extern NSString *CarPoolRequestStatusRejected;
 extern NSString *CarPoolRequestStatusCanceled;
 
-@property (nonatomic, strong) NSDate *time;
+@property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSString *message;
 @property (nonatomic, strong) User *from;

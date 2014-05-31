@@ -10,7 +10,7 @@
 #import <Parse/PFObject+Subclass.h>
 
 @implementation CarPoolRequest
-@dynamic time;
+@dynamic date;
 @dynamic status;
 @dynamic comments;
 @dynamic message;

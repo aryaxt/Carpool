@@ -70,7 +70,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterLongStyle];
     
-    self.lblDate.text = [dateFormatter stringFromDate:offer.time];
+    self.lblDate.text = [dateFormatter stringFromDate:offer.date];
     self.lblStartLocation.text = offer.startLocation.name;
     self.lblEndLocation.text = offer.endLocation.name;
     self.lblMessage.text = offer.message;

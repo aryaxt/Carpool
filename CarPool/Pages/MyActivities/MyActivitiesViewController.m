@@ -23,14 +23,6 @@
     [super viewDidLoad];
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqual:@"CreateOfferViewController"])
-    {
-        CreateOfferViewController *vc = segue.destinationViewController;
-        vc.delegate = self;
-    }
-}
 #pragma mark - IBActions -
 
 - (IBAction)segmentedControlDidChange:(id)sender
@@ -50,11 +42,37 @@
                      } completion:nil];
 }
 
+- (IBAction)createSeelcted:(id)sender
+{
+    UIViewController *vc;
+    
+    if(self.segmentedControl.selectedSegmentIndex == 0)
+    {
+        vc = [CreateOfferViewController viewController];
+        [(CreateOfferViewController *)vc setDelegate:self];
+    }
+    else
+    {
+        vc = [CreateRequestViewController viewController];
+        [(CreateRequestViewController *)vc setDelegate:self];
+    }
+    
+    [self.navigationController pushViewController:vc
+                                         animated:YES];
+}
+
 #pragma mark - CreateOfferViewControllerDelegate -
 
 - (void)createOfferViewControllerDidCreateOffer:(CarPoolOffer *)offer
 {
     [self.myOffersViewController addNewOffer:offer];
+}
+
+#pragma mark - CreateRequestViewControllerDelegate -
+
+- (void)createRequestViewControllerDidCreateRequest:(CarPoolRequest *)request
+{
+    [self.myRequestsViewController addNewRequest:request];
 }
 
 #pragma mark - SlideNavigationController Methods -

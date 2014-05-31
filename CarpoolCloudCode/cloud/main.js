@@ -7,8 +7,8 @@ var CarPoolRequestStatusRejected = "rejected";
 var CarPoolRequestStatusCanceled = "canceled";
 
 Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {
-	if (request.object.get("time") == null) {
-		response.error("time is missing");
+	if (request.object.get("date") == null) {
+		response.error("date is missing");
 	} 
 	else if (request.object.get("startLocation") == null) {
     	response.error("startLocation is missing");
@@ -34,11 +34,8 @@ Parse.Cloud.beforeSave("CarPoolRequest", function(request, response) {
 	else if (request.object.get("to").id == request.object.get("from").id) {
 		response.error("Can't send a request to yourself");
 	}
-	else if (request.object.get("time") == null) {
-		response.error("time is missing");
-	}
-	else if (request.object.get("offer") == null) {
-		response.error("offer is missing");
+	else if (request.object.get("date") == null) {
+		response.error("date is missing");
 	}
 	else if (request.object.get("startLocation") == null) {
     	response.error("startLocation is missing");
@@ -405,7 +402,7 @@ Parse.Cloud.define("UpdateRequestStatus", function(request, response) {
 				response.error("Request has been canceled, no changes can be made");
 			}
 			
-			if (new Date(carpoolRequest.get("time")) < new Date()){
+			if (new Date(carpoolRequest.get("date")) < new Date()){
 				console.error("Request has been expired");
 		    	response.error("Request has been expired");
 			}
