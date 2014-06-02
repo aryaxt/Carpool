@@ -17,8 +17,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
     self.view.backgroundColor = [UIColor clearColor];
+    
+    self.topView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.topView.layer.borderWidth = .6;
+    self.topView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
+    self.topView.layer.shadowRadius = 2;
+    self.topView.layer.shadowOpacity = .4;
+    self.topView.layer.shadowOffset = CGSizeMake(1, 1);
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(topBarSelected:)];
+    [self.lblUserName addGestureRecognizer:tapRecognizer];
     
     UIPanGestureRecognizer *panRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(panDetected:)];
     [self.view addGestureRecognizer:panRecognizer];
@@ -43,7 +53,7 @@
     [self.delegate offerDetailViewControllerDidSelectPrevious];
 }
 
-- (IBAction)titleSelected:(id)sender
+- (IBAction)topBarSelected:(id)sender
 {
     [self.delegate offerDetailViewControllerDidSelectExpand];
 }
@@ -64,7 +74,7 @@
 {
     _carPoolOffer = offer;
     
-    self.btnTitle.title = offer.from.name;
+    self.lblUserName.text = offer.from.name;
     [self.offerOwnerPhoto setImageWithURL:[NSURL URLWithString:offer.from.photoUrl]];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

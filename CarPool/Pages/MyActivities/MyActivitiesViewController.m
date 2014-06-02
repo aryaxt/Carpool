@@ -7,6 +7,7 @@
 //
 
 #import "MyActivitiesViewController.h"
+#import "CreateOfferStepsViewController.h"
 
 @implementation MyActivitiesViewController
 
@@ -48,8 +49,8 @@
     
     if(self.segmentedControl.selectedSegmentIndex == 0)
     {
-        vc = [CreateOfferViewController viewController];
-        [(CreateOfferViewController *)vc setDelegate:self];
+        vc = [CreateOfferStepsViewController viewController];
+        [(CreateOfferStepsViewController *)vc setDelegate:self];
     }
     else
     {
@@ -61,9 +62,9 @@
                                          animated:YES];
 }
 
-#pragma mark - CreateOfferViewControllerDelegate -
+#pragma mark - CreateOfferStepsViewControllerDelegate -
 
-- (void)createOfferViewControllerDidCreateOffer:(CarPoolOffer *)offer
+- (void)createOfferStepsViewControllerDidCreateOffer:(CarPoolOffer *)offer
 {
     [self.myOffersViewController addNewOffer:offer];
 }

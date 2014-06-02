@@ -9,10 +9,11 @@
 #import "InboxCell.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "UIImageView+Additions.h"
+#import "NSDate+TimeAgo.h"
 
 @implementation InboxCell
 
-- (void)setComment:(Comment *)comment
+- (void)setComment:(Comment *)comment withUnreadCount:(NSNumber *)unreadCount
 {
     User *otherUser = ([comment.from.objectId isEqual:[User currentUser].objectId])
         ? comment.to
@@ -22,6 +23,8 @@
         ? [NSString stringWithFormat:@"You: %@", comment.message]
         : comment.message;
     
+    self.lblUnreadCount.text = (unreadCount && unreadCount.intValue > 0) ? unreadCount.stringValue : @"";
+    self.lblTimeAgo.text = [comment.createdAt timeAgo];
     self.lblFromName.text = otherUser.username;
     self.imgCarpoolrequestIndicator.hidden = (comment.request) ? NO : YES;
     [self.imgFromPhoto setUserPhotoStyle];

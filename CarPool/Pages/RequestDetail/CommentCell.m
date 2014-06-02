@@ -8,6 +8,7 @@
 
 #import "CommentCell.h"
 #import "UIColor+additions.h"
+#import "NSDate+TimeAgo.h"
 
 @implementation CommentCell
 
@@ -17,9 +18,7 @@
 
 - (void)setComment:(Comment *)comment isFromMe:(BOOL)isFromMe
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-    self.lblDate.text = [dateFormatter stringFromDate:comment.createdAt];
+    self.lblDate.text = [comment.createdAt timeAgo];
     self.lblDate.textAlignment = (isFromMe) ? NSTextAlignmentLeft : NSTextAlignmentRight;
     CGRect dateLabelRect = self.lblDate.frame;
     dateLabelRect.size.width = self.frame.size.width - (MESSAGE_MARGIN*2);

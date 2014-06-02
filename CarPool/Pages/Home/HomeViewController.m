@@ -199,6 +199,7 @@
 {
     ProfileViewController *vc = [ProfileViewController viewController];
     vc.user = user;
+    vc.shouldEnableSlideMenu = NO;
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -340,7 +341,6 @@
     {
         _offerDetailViewController = (OfferDetailViewController *)[OfferDetailViewController viewController];
         _offerDetailViewController.delegate = self;
-        _offerDetailViewController.view.alpha = .9;
     }
     
     return _offerDetailViewController;

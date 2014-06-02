@@ -29,8 +29,6 @@
     __weak ReferenceViewController *weakReference = self;
     
     [self.tableView addInfiniteScrollingWithActionHandler:^{
-        NSLog(@"wtf");
-        
         if (weakReference.moreDataToLaod)
             [weakReference fetchAndPopulateReferences];
     }];
@@ -129,8 +127,6 @@
     
     ReferenceCell *cell = (ReferenceCell *) [self.tableView cellForRowAtIndexPath:indexPath];
     [cell setReference:reference isExpanded:[self isReferenceExpanded:reference]];
-    
-    //[self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
     
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.tableView beginUpdates];

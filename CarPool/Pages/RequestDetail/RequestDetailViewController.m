@@ -10,6 +10,8 @@
 
 @interface RequestDetailViewController()
 @property (nonatomic, assign) CGFloat messageComposerHeight;
+@property (nonatomic, assign) CGRect mapViewOriginalRect;
+@property (nonatomic, strong) UITapGestureRecognizer *mapTapRecognizer;
 @end
 
 @implementation RequestDetailViewController
@@ -27,11 +29,64 @@
     self.mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.mapView.layer.borderWidth = 1;
     self.mapView.layer.cornerRadius = 3;
+    self.mapView.scrollEnabled = NO;
+    self.mapView.zoomEnabled = NO;
+    self.mapViewOriginalRect = self.mapView.frame;
+    
+    self.mapTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.init action:@selector(tapDetectedOnMap:)];
+    [self.mapView addGestureRecognizer:self.mapTapRecognizer];
     
     self.messageComposerHeight = self.messageComposerView.frame.size.height;
     
     [self fetchRequestDetail];
     [self fetchComments];
+}
+
+- (void)tapDetectedOnMap:(id)sender
+{
+    [self setExpandMapView:YES];
+}
+
+- (void)setExpandMapView:(BOOL)expand
+{
+    if (expand)
+    {
+        self.mapView.scrollEnabled = YES;
+        self.mapView.zoomEnabled = YES;
+        
+        CGRect rectInMainView = [self.tableView convertRect:self.mapView.frame toView:nil];
+        [self.mapView removeFromSuperview];
+        [self.mapView setFrame:rectInMainView];
+        [self.view addSubview:self.mapView];
+        
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.mapView.frame = self.view.bounds;
+        } completion:^(BOOL finished) {
+            UIBarButtonItem *item = [[UIBarButtonItem alloc] initWithTitle:@"Close Map" style:UIBarButtonItemStyleBordered target:self action:@selector(closeMapSelected)];
+            self.navigationItem.rightBarButtonItem = item;
+        }];
+    }
+    else
+    {
+        self.mapView.scrollEnabled = NO;
+        self.mapView.zoomEnabled = NO;
+        self.navigationItem.rightBarButtonItem = nil;
+        
+        CGRect rectInMainView = [self.tableView convertRect:self.mapViewOriginalRect toView:nil];
+        
+        [UIView animateWithDuration:.3 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+            self.mapView.frame = rectInMainView;
+        } completion:^(BOOL finished) {
+            [self.mapView removeFromSuperview];
+            [self.headerView addSubview:self.mapView];
+            self.mapView.frame = self.mapViewOriginalRect;
+        }];
+    }
+}
+
+- (void)closeMapSelected
+{
+    [self setExpandMapView:NO];
 }
 
 #pragma mark - Private Methods -
@@ -83,11 +138,12 @@
     else if (isRequestFromMe)
     {
         self.btnAccept.titleLabel.textColor = ([self.request.status isEqual:CarPoolRequestStatusAccepted])
-        ? [UIColor greenColor]
-        : [UIColor lightGrayColor];
-        self.btnDecline.titleLabel.textColor = ([self.request.status isEqual:CarPoolRequestStatusAccepted])
-        ? [UIColor lightGrayColor]
-        : [UIColor redColor];
+            ? [UIColor greenColor]
+            : [UIColor lightGrayColor];
+        
+        self.btnDecline.titleLabel.textColor = ([self.request.status isEqual:CarPoolRequestStatusRejected])
+            ? [UIColor redColor]
+            : [UIColor lightGrayColor];
         
         self.btnAccept.hidden = NO;
         self.btnDecline.hidden = NO;

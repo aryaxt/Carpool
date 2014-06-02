@@ -8,6 +8,26 @@ var CarPoolRequestStatusCanceled = "canceled";
 var CarPoolRequestPeriodOnceTime = 1;
 var CarPoolRequestPeriodWeekDays = 5;
 
+Parse.Cloud.beforeSave(Parse.User, function(request, response) {
+	if (request.object.isNew()) {
+		var Profile = Parse.Object.extend("Profile");
+		var profile = new Profile();
+		
+		profile.save(null, {
+			success: function(newProfile) {
+				request.object.set("profile", newProfile);
+				response.success();
+			},
+			error : function(object, error){
+				console.error(error);
+				response.error("There was a problem creating your account");
+			}
+		});
+	}
+	
+	response.success();
+});
+
 Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {
 	if (request.object.get("date") == null) {
 		response.error("date is missing");
@@ -185,22 +205,6 @@ Parse.Cloud.afterSave("Reference", function(request) {
 				console.error(error); 
 			}
 		});
-	});
-});
-
-Parse.Cloud.define("UnreadCommentCount", function(request, response) {
-	var unreadCommentQuery = new Parse.Query("Comment");
-	unreadCommentQuery.notEqualTo("read", true);
-	unreadCommentQuery.equalTo("to", Parse.User.current());
-	
-	unreadCommentQuery.count({
-	  success: function(number) {
-	    response.success({ unreadCommentCount : number });
-	  },
-	  error: function(error) {
-	    console.error(error);
-		response.error("Failed to read comment count");
-	  }
 	});
 });
 

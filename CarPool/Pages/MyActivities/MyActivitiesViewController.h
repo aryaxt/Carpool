@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 #import "SlideNavigationController.h"
-#import "CreateOfferViewController.h"
 #import "CreateRequestViewController.h"
 #import "MyOffersViewContorller.h"
 #import "MyRequestsViewController.h"
 #import "UIViewController+Additions.h"
+#import "CreateOfferStepsViewController.h"
 
-@interface MyActivitiesViewController : BaseViewController <SlideNavigationControllerDelegate, CreateOfferViewControllerDelegate, CreateRequestViewControllerDelegate>
+@interface MyActivitiesViewController : BaseViewController <SlideNavigationControllerDelegate, CreateOfferStepsViewControllerDelegate, CreateRequestViewControllerDelegate>
 
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *btnAddOffer;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;

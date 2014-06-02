@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Comment.h"
+#import "User.h"
 #import "CarPoolRequest.h"
 
 @interface CommentClient : NSObject
@@ -20,5 +21,7 @@
 - (void)fetchPersonalCommentsWithUser:(User *)user withCompletion:(void (^)(NSArray *comments, NSError *error))completion;
 - (void)markCommentAsRead:(Comment *)comment;
 - (void)fetchInboxCommentsWithCompletion:(void (^)(NSArray *comments, NSError *error))completion;
+- (void)fetchUnredCommentCountForConversationWithUser:(User *)user withCompletion:(void (^)(NSNumber *count, NSError *error))completion;
+- (void)fetchUnredCommentCountForRequest:(CarPoolRequest *)request withCompletion:(void (^)(NSNumber *count, NSError *error))completion;
 
 @end

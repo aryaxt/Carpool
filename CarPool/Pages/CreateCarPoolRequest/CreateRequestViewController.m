@@ -24,10 +24,52 @@
     
     self.request = [[CarPoolRequest alloc] init];
     
+    [self.datePicker removeFromSuperview];
+    self.datePicker.date = [NSDate date];
+    self.txtDate.inputView = self.datePicker;
+    
     self.txtMessage.text = @"";
+    
+    if (self.offer)
+    {
+        if ([self.offer.period isEqual:CarPoolOfferPeriodOneTime])
+        {
+            self.request.date = self.offer.date;
+            self.txtDate.enabled = NO;
+        }
+        else
+        {
+            self.request.date = [NSDate date];
+            self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
+        }
+    }
+    
+    [self populateData];
+}
+
+#pragma mark - Private Methods -
+
+- (void)populateData
+{
+    self.txtFrom.text = self.request.startLocation.name;
+    self.txtTo.text = self.request.endLocation.name;
+    
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:([self.offer.period isEqual:CarPoolOfferPeriodOneTime])
+        ? @"yyyy-MM-dd hh:mm a"
+        : @"hh:mm a"];
+    
+    self.txtDate.text = [dateFormatter stringFromDate:self.request.date];
 }
 
 #pragma mark - IBActions -
+
+- (IBAction)datePickerChangedValue:(id)sender
+{
+    self.request.date = self.datePicker.date;
+    
+    [self populateData];
+}
 
 - (IBAction)sendSelected:(id)sender
 {
@@ -122,12 +164,13 @@
     [self populateData];
 }
 
-#pragma mark - Private Methods -
+#pragma mark - Touch Detection -
 
-- (void)populateData
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
 {
-    self.txtFrom.text = self.request.startLocation.name;
-    self.txtTo.text = self.request.endLocation.name;
+    [super touchesEnded:touches withEvent:event];
+    
+    [self.txtDate resignFirstResponder];
 }
 
 #pragma mark - Setter & Getter -

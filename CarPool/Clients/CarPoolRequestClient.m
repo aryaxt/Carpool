@@ -17,7 +17,7 @@
 {
     PFQuery *query = [CarPoolRequest query];
     [query whereKey:@"from" equalTo:[User currentUser]];
-    [query whereKey:@"time" greaterThanOrEqualTo:[NSDate date]];
+    [query whereKey:@"date" greaterThanOrEqualTo:[NSDate date]];
     [query includeKey:@"startLocation"];
     [query includeKey:@"endLocation"];
     

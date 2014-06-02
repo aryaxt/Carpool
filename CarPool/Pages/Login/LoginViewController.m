@@ -84,11 +84,11 @@
                 NSDate *birthDay = [dateFormatter dateFromString:userData[@"birthday"]];
                 NSNumber *gender = [userData[@"gender"] isEqualToString:@"male"] ? @1 : @2;
                 
-                PFUser *user = [PFUser currentUser];
-                [user setValue:userData[@"name"] forKey:@"name"];
-                [user setValue:birthDay forKey:@"birthday"];
-                [user setValue:gender forKey:@"gender"];
-                [user setValue:photoUrl forKey:@"photoUrl"];
+                User *user = [User currentUser];
+                user.name = userData[@"name"];
+                user.dateOfBirth = birthDay;
+                user.gender = gender;
+                user.photoUrl = photoUrl;
                 
                 [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
                     [self loginSucceeded];

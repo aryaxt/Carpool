@@ -10,37 +10,58 @@
 #import "ReferencesViewController.h"
 
 @interface ProfileViewController()
-@property (nonatomic, strong) NSDictionary *keyBoardInfo;
-@property (nonatomic, assign) CGRect originalReferenceViewRect;
 @property (nonatomic, assign) BOOL referencesFetched;
+@property (nonatomic, assign) CGFloat messageComposerHeight;
 @end
 
 @implementation ProfileViewController
+
+#define REFERENCE_VIEW_RIGHT_OFFSET 20
+
+#pragma mark - UIViewController MEthods -
+
+- (id)initWithCoder:(NSCoder *)aDecoder
+{
+    if (self = [super initWithCoder:aDecoder])
+    {
+        self.shouldEnableSlideMenu = YES;
+    }
+    
+    return self;
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    
+    self.messageComposerHeight = self.messageComposerView.frame.size.height;
+    
+    self.lblMemberSince.text = [dateFormatter stringFromDate:self.user.createdAt];
+    self.lblAge.text = self.user.age.stringValue;
     self.lblName.text = self.user.name;
     [self.imgProfilePicture setUserPhotoStyle];
     [self.imgProfilePicture setImageWithURL:[NSURL URLWithString:self.user.photoUrl]
                            placeholderImage:[UIImage imageNamed:@"adfsdf"]];
     
-    if ([[User currentUser].objectId isEqualToString:self.user.objectId])
+    if ([self userIsCurrentUser])
     {
         self.btnCreateReference.hidden = YES;
     }
-    else
-    {
-        [self addMessageComposerView];
-    }
-    
-    self.originalReferenceViewRect = self.referencesView.frame;
+
+    self.mediaView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.mediaView.layer.borderWidth = .6;
+    self.interestesView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.interestesView.layer.borderWidth = .6;
+    self.aboutMeView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.aboutMeView.layer.borderWidth = .6;
     self.referencesView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.referencesView.layer.borderWidth = .6;
     self.referencesView.layer.cornerRadius = 20;
     self.referencesView.layer.shadowColor = [UIColor lightGrayColor].CGColor;
-    self.referencesView.layer.shadowRadius = 5;
+    self.referencesView.layer.shadowRadius = 2;
     self.referencesView.layer.shadowOpacity = .8;
     self.referencesView.layer.shadowOffset = CGSizeMake(1, 1);
     
@@ -50,10 +71,9 @@
     
     self.lblPositiveReferenceCount.text = @"";
     self.lblNegativeReferenceCount.text = @"";
-    [self showReferences:NO animated:YES withCompletion:nil];
-    [self fetchAndPopulateReferenceCounts];
     
-    [self handleKeyboardNotifications];
+    [self fetchAndPopulateReferenceCounts];
+    [self fetchAndPopulateProfile];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -66,71 +86,18 @@
     }
 }
 
-- (void)handleKeyboardNotifications
-{
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillShowNotification
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note) {
-                                                      self.keyBoardInfo = note.userInfo;
-                                                      [self animateMessageComposerLocation:NO];
-    }];
-    
-    [[NSNotificationCenter defaultCenter] addObserverForName:UIKeyboardWillHideNotification
-                                                      object:nil
-                                                       queue:nil
-                                                  usingBlock:^(NSNotification *note) {
-                                                      self.keyBoardInfo = note.userInfo;
-                                                      [self animateMessageComposerLocation:YES];
-                                                  }];
-}
+#pragma mark - Private Methods -
 
-- (void)animateMessageComposerLocation:(BOOL)hide
+- (BOOL)userIsCurrentUser
 {
-    CGFloat animationDuration = [[self.keyBoardInfo objectForKey:UIKeyboardAnimationDurationUserInfoKey] floatValue];
-    CGRect messageRect = self.messageComposerView.frame;
-    
-    if (!hide)
-    {
-        
-        NSValue *keyboardFrameBegin = [self.keyBoardInfo valueForKey:UIKeyboardFrameBeginUserInfoKey];
-        CGRect keyboardFrameBeginRect = [keyboardFrameBegin CGRectValue];
-        messageRect.origin.y = messageRect.origin.y - keyboardFrameBeginRect.size.height;
-    }
-    else
-    {
-        CGRect messageRect = self.messageComposerView.frame;
-        messageRect.origin.y = self.contentScrollView.frame.size.height + self.contentScrollView.frame.origin.y;
-    }
-    
-    [UIView animateWithDuration:animationDuration animations:^{
-        self.messageComposerView.frame = messageRect;
-    }];
-}
-
-- (void)addMessageComposerView
-{
-    CGRect contentScrollViewFrame = self.contentScrollView.frame;
-    contentScrollViewFrame.size.height = contentScrollViewFrame.size.height - self.messageComposerView.frame.size.height;
-    self.contentScrollView.frame = contentScrollViewFrame;
-    
-    [self.view addSubview:self.messageComposerView];
-    
-    CGRect messageRect = self.messageComposerView.frame;
-    messageRect.origin.y = contentScrollViewFrame.size.height + contentScrollViewFrame.origin.y;
-    self.messageComposerView.frame = messageRect;
+    return ([[User currentUser].objectId isEqualToString:self.user.objectId]);
 }
 
 - (void)fetchAndPopulateProfile
 {
-    if (self.user.profile != nil)
-    {
-        [self.user.profile fetchIfNeededInBackgroundWithBlock:^(PFObject *object, NSError *error) {
-            self.lblAboutMe.text = self.user.profile.aboutMe;
-            self.lblInterests.text = self.user.profile.interests;
-            self.lblMusicMoviesBooks.text = self.user.profile.musicMoviesBooks;
-        }];
-    }
+    [self.user.profile fetchInBackgroundWithBlock:^(PFObject *object, NSError *error) {
+        [self.tableView reloadData];
+    }];
 }
 
 - (void)fetchAndPopulateReferenceCounts
@@ -157,11 +124,13 @@
 
 - (void)showReferences:(BOOL)show animated:(BOOL)animated withCompletion:(void (^)(void))completion
 {
-    CGRect hideRect = self.referencesView.frame;
-    hideRect.origin.x =  self.view.frame.size.width;
+    CGRect newRect = self.referencesView.frame;
+    newRect.origin.x =  (show)
+        ? self.view.frame.size.width - newRect.size.width + REFERENCE_VIEW_RIGHT_OFFSET
+        : self.view.frame.size.width;
     
-    [UIView animateWithDuration:(animated) ? .25 : 0 delay:0 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        self.referencesView.frame = (show) ? self.originalReferenceViewRect : hideRect;
+    [UIView animateWithDuration:(animated) ? .25 : 0 delay:0 options:UIViewAnimationOptionCurveEaseOut animations:^{
+        self.referencesView.frame = newRect;
     } completion:^(BOOL finished) {
         if (completion)
             completion();
@@ -235,14 +204,142 @@
    }];
 }
 
+- (void)messageComposerViewDidChangeSize
+{
+    self.messageComposerHeight = self.messageComposerView.frame.size.height;
+    
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+    
+    [self.messageComposerView resizeView];
+}
+
 #pragma mark - SlideNavigationControllerDelegate -
 
 - (BOOL)slideNavigationControllerShouldDisplayLeftMenu
 {
-    return YES;
+    return self.shouldEnableSlideMenu;
 }
 
-#pragma mark - UIScrollViewDelegate -
+#pragma mark - UITableView Delegate & Datasource -
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 5;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    if (section == 2 ||
+        section == 3 ||
+        section == 4)
+    {
+        return 1;
+    }
+    
+    return 0;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self cellForRowAtIndexPath:indexPath];
+}
+
+- (UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSInteger OFFSET = 10;
+    NSString *text = nil;
+    
+    if (indexPath.section == 2)
+    {
+        text = self.user.profile.aboutMe;
+    }
+    else if (indexPath.section == 3)
+    {
+        text = self.user.profile.interests;
+    }
+    else if (indexPath.section == 4)
+    {
+        text = self.user.profile.media;
+    }
+    else
+    {
+        return nil;
+    }
+    
+    UITextView *textView = [[UITextView alloc] init];
+    textView.editable = NO;
+    textView.text = (text) ? text : @"Nothihg here yet";
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ProfileInfoCell"];
+    [cell.contentView addSubview:textView];
+    textView.frame = CGRectInset(cell.frame, OFFSET, OFFSET);
+    [textView sizeToFit];
+    
+    CGRect rect = cell.frame;
+    rect.size.height = textView.frame.size.height + textView.frame.origin.y + OFFSET;
+    cell.frame = rect;
+    
+    return cell;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [self cellForRowAtIndexPath:indexPath];
+    return cell.frame.size.height;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        return self.userInfoView;
+    }
+    else if (section == 1)
+    {
+        return ([self userIsCurrentUser]) ? nil : self.messageComposerView;
+    }
+    else if (section == 2)
+    {
+        return self.aboutMeView;
+    }
+    else if (section == 3)
+    {
+        return self.interestesView;
+    }
+    else
+    {
+        return self.mediaView;
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    if (section == 0)
+    {
+        return self.userInfoView.frame.size.height;
+    }
+    else if (section == 1)
+    {
+        return ([self userIsCurrentUser]) ? 0 : self.messageComposerHeight;
+    }
+    else if (section == 2)
+    {
+        return self.aboutMeView.frame.size.height;
+    }
+    else if (section == 3)
+    {
+        return self.interestesView.frame.size.height;
+    }
+    else
+    {
+        return self.mediaView.frame.size.height;
+    }
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
+}
 
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {

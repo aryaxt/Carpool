@@ -56,19 +56,20 @@
 
 - (void)fetchUnreadCommentCountWithCompletion:(void (^)(NSNumber *unreadCommentCount, NSError *error))completion
 {
-    [PFCloud callFunctionInBackground:@"UnreadCommentCount"
-                       withParameters:@{}
-                                block:^(NSDictionary *object, NSError *error) {
-                                    if (error)
-                                    {
-                                        completion(nil, error);
-                                    }
-                                    else
-                                    {
-                                        NSNumber *unread = @([[object objectForKey:@"unreadCommentCount"] intValue]);
-                                        completion(unread, nil);
-                                    }
-                                }];
+    PFQuery *query = [Comment query];
+    [query whereKey:@"read" notEqualTo:@YES];
+    [query whereKey:@"to" equalTo:[User currentUser]];
+    
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if (error)
+        {
+            completion(nil, error);
+        }
+        else
+        {
+            completion(@(number), nil);
+        }
+    }];
 }
 
 - (void)fetchInboxCommentsWithCompletion:(void (^)(NSArray *comments, NSError *error))completion
@@ -150,6 +151,45 @@
     
     comment.read = @YES;
     [comment saveEventually];
+}
+
+- (void)fetchUnredCommentCountForConversationWithUser:(User *)user withCompletion:(void (^)(NSNumber *count, NSError *error))completion
+{
+    PFQuery *query = [Comment query];
+    [query whereKey:@"to" equalTo:[User currentUser]];
+    [query whereKey:@"from" equalTo:user];
+    [query whereKey:@"read" notEqualTo:@YES];
+    [query whereKeyDoesNotExist:@"request"];
+    
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if (error)
+        {
+            completion(nil, error);
+        }
+        else
+        {
+            completion(@(number) ,nil);
+        }
+    }];
+}
+
+- (void)fetchUnredCommentCountForRequest:(CarPoolRequest *)request withCompletion:(void (^)(NSNumber *count, NSError *error))completion
+{
+    PFQuery *query = [Comment query];
+    [query whereKey:@"to" equalTo:[User currentUser]];
+    [query whereKey:@"request" equalTo:request];
+    [query whereKey:@"read" notEqualTo:@YES];
+    
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+        if (error)
+        {
+            completion(nil, error);
+        }
+        else
+        {
+            completion(@(number) ,nil);
+        }
+    }];
 }
 
 #pragma mark - Private Methods -

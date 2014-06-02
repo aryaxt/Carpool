@@ -13,6 +13,6 @@
 
 @property (nonatomic, strong) NSString *aboutMe;
 @property (nonatomic, strong) NSString *interests;
-@property (nonatomic, strong) NSString *musicMoviesBooks;
+@property (nonatomic, strong) NSString *media;
 
 @end

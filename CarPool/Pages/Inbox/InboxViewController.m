@@ -19,7 +19,8 @@
 {
     [super viewDidLoad];
     
-    self.numberOfUnreadsRelatedToCommentGroup = [NSMutableDictionary dictionary];
+    self.commentCountDictionary = [NSMutableDictionary dictionary];
+    self.loadingCommentCounts = [NSMutableArray array];
     
     [self showLoader];
     [self fetchAndPopulateDataAnimated:YES withCompletion:nil];
@@ -44,8 +45,12 @@
     }
     else if ([segue.identifier isEqual:PERSONAL_MESSAGES_SEGUE_IDENTIFIER])
     {
+        User *otherUser = ([[User currentUser].objectId isEqual:comment.from.objectId])
+            ? comment.to
+            : comment.from;
+        
         PersonalMessagesViewController *vc = segue.destinationViewController;
-        vc.user = comment.from;
+        vc.user = otherUser;
     }
 }
 
@@ -200,7 +205,7 @@
     InboxCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
     Comment *comment = [self.comments objectAtIndex:indexPath.row];
-    [cell setComment:comment];
+    [cell setComment:comment withUnreadCount:[self.commentCountDictionary objectForKey:comment.objectId]];
     
     return cell;
 }
@@ -216,6 +221,52 @@
     else
     {
         [self performSegueWithIdentifier:PERSONAL_MESSAGES_SEGUE_IDENTIFIER sender:self];
+    }
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    Comment *comment = [self.comments objectAtIndex:indexPath.row];
+    
+    if (![self.commentCountDictionary objectForKey:comment.objectId] &&
+        ![self.loadingCommentCounts containsObject:comment.objectId])
+    {
+        [self fetchUnreadCountForComment:comment];
+    }
+}
+
+- (void)fetchUnreadCountForComment:(Comment *)comment
+{
+    [self.loadingCommentCounts addObject:comment.objectId];
+    
+    void(^commentCountCompletion)(NSNumber *) = ^(NSNumber *commentCount) {
+        [self.commentCountDictionary setObject:commentCount forKey:comment.objectId];
+        [self.loadingCommentCounts removeObject:comment.objectId];
+        
+        NSInteger index = [self.comments indexOfObject:comment];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    };
+    
+    if (comment.request)
+    {
+        [self.commentClient fetchUnredCommentCountForRequest:comment.request withCompletion:^(NSNumber *count, NSError *error) {
+            if (!error)
+            {
+                commentCountCompletion(count);
+            }
+        }];
+    }
+    else
+    {
+        User *otherUser = ([comment.from.objectId isEqual:[User currentUser].objectId]) ? comment.to : comment.from;
+        
+        [self.commentClient fetchUnredCommentCountForConversationWithUser:otherUser withCompletion:^(NSNumber *count, NSError *error) {
+            if (!error)
+            {
+                commentCountCompletion(count);
+            }
+        }];
     }
 }
 

@@ -12,7 +12,7 @@
 @implementation Profile
 @dynamic aboutMe;
 @dynamic interests;
-@dynamic musicMoviesBooks;
+@dynamic media;
 
 + (NSString *)parseClassName
 {

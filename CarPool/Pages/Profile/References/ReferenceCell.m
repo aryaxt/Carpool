@@ -30,6 +30,7 @@
     self.lblCreatedDate.text = [dateFormatter stringFromDate:reference.createdAt];
     self.lblUpdatedDate.text = [dateFormatter stringFromDate:reference.updatedAt];
     self.lblUpdatedDate.hidden = ([reference.createdAt isEqualToDate:reference.updatedAt]) ? YES : NO;
+    self.lblUpdatedDateLabel.hidden = ([reference.createdAt isEqualToDate:reference.updatedAt]) ? YES : NO;
     
     CGRect textRect = self.lblText.frame;
     textRect.origin.x = REFEREENCE_TEXT_OFFSET;

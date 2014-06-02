@@ -14,13 +14,27 @@
 @dynamic name;
 @dynamic gender;
 @dynamic photoUrl;
+@dynamic dateOfBirth;
 @dynamic profile;
 @dynamic friends;
 @dynamic blockedUsers;
+@synthesize age;
 
 + (void)load
 {
     [self registerSubclass];
+}
+
+- (NSNumber *)age
+{
+    NSDate *now = [NSDate date];
+    NSDateComponents* ageComponents = [[NSCalendar currentCalendar]
+                                       components:NSYearCalendarUnit
+                                       fromDate:self.dateOfBirth
+                                       toDate:now
+                                       options:0];
+    
+    return @([ageComponents year]);
 }
 
 @end
