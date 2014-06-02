@@ -208,46 +208,6 @@ Parse.Cloud.afterSave("Reference", function(request) {
 	});
 });
 
-Parse.Cloud.define("ReferenceCount", function(request, response) {
-	var userQuery = new Parse.Query("User");
-	
-	userQuery.get(request.params.userId, {
-	  success: function(user) {
-	    var query = new Parse.Query("Reference");
-		query.equalTo("to", user);
-		
-		query.find({
-			success: function(results) {
-	      		var negativeCount = 0;
-				var positiveCount = 0;
-
-	      		for (var i=0 ; i<results.length ; i++) {
-	        		if (results[i].get("type") == ReferenceTypePositive) {
-						positiveCount++;
-					}
-					else if (results[i].get("type") == ReferenceTypeNegative)  {
-						negativeCount++;
-					}
-	      		}
-
-	      		response.success({
-					positive : positiveCount,
-					negative : negativeCount
-				});
-	    	},
-	    	error: function(object, error) {
-				console.error(error);
-	 			response.error("Failed to read references");
-	    	}
-	  	});
-	  },
-	  error: function(object, error) {
-		console.error(error);
-	    response.error("Failed to read references");
-	  }
-	});
-});
-
 Parse.Cloud.define("InboxComments", function(request, response) {
 	var commentsToMeQuery = new Parse.Query("Comment");
 	commentsToMeQuery.equalTo("to", Parse.User.current());

@@ -30,7 +30,15 @@
 {
     [super viewWillAppear:animated];
     
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    
+    if (indexPath)
+    {
+        // Update comemnt count when we come back, and then deselect row
+        Comment *comment = [self.comments objectAtIndex:indexPath.row];
+        [self fetchUnreadCountForComment:comment];
+        [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -192,6 +200,41 @@
     self.comments = [sortedInbox mutableCopy];
 }
 
+- (void)fetchUnreadCountForComment:(Comment *)comment
+{
+    [self.loadingCommentCounts addObject:comment.objectId];
+    
+    void(^commentCountCompletion)(NSNumber *) = ^(NSNumber *commentCount) {
+        [self.commentCountDictionary setObject:commentCount forKey:comment.objectId];
+        [self.loadingCommentCounts removeObject:comment.objectId];
+        
+        NSInteger index = [self.comments indexOfObject:comment];
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    };
+    
+    if (comment.request)
+    {
+        [self.commentClient fetchUnredCommentCountForRequest:comment.request withCompletion:^(NSNumber *count, NSError *error) {
+            if (!error)
+            {
+                commentCountCompletion(count);
+            }
+        }];
+    }
+    else
+    {
+        User *otherUser = ([comment.from.objectId isEqual:[User currentUser].objectId]) ? comment.to : comment.from;
+        
+        [self.commentClient fetchUnredCommentCountForConversationWithUser:otherUser withCompletion:^(NSNumber *count, NSError *error) {
+            if (!error)
+            {
+                commentCountCompletion(count);
+            }
+        }];
+    }
+}
+
 #pragma mark - UITableView Delegate & Datasource -
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -232,41 +275,6 @@
         ![self.loadingCommentCounts containsObject:comment.objectId])
     {
         [self fetchUnreadCountForComment:comment];
-    }
-}
-
-- (void)fetchUnreadCountForComment:(Comment *)comment
-{
-    [self.loadingCommentCounts addObject:comment.objectId];
-    
-    void(^commentCountCompletion)(NSNumber *) = ^(NSNumber *commentCount) {
-        [self.commentCountDictionary setObject:commentCount forKey:comment.objectId];
-        [self.loadingCommentCounts removeObject:comment.objectId];
-        
-        NSInteger index = [self.comments indexOfObject:comment];
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
-        [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    };
-    
-    if (comment.request)
-    {
-        [self.commentClient fetchUnredCommentCountForRequest:comment.request withCompletion:^(NSNumber *count, NSError *error) {
-            if (!error)
-            {
-                commentCountCompletion(count);
-            }
-        }];
-    }
-    else
-    {
-        User *otherUser = ([comment.from.objectId isEqual:[User currentUser].objectId]) ? comment.to : comment.from;
-        
-        [self.commentClient fetchUnredCommentCountForConversationWithUser:otherUser withCompletion:^(NSNumber *count, NSError *error) {
-            if (!error)
-            {
-                commentCountCompletion(count);
-            }
-        }];
     }
 }
 

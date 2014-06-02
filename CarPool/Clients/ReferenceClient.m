@@ -37,19 +37,51 @@
 
 - (void)fetchReferenceCountsForUser:(User *)user withCompletion:(void (^) (NSNumber *poitive, NSNumber *negative, NSError *error))completion
 {
-    [PFCloud callFunctionInBackground:@"ReferenceCount"
-                       withParameters:@{@"userId" : user.objectId}
-                                block:^(NSDictionary *object, NSError *error) {
-                                    if (error)
-                                    {
-                                        completion(nil, nil, error);
-                                    }
-                                    else
-                                    {
-                                        NSNumber *positive = @([[object objectForKey:@"positive"] intValue]);
-                                        NSNumber *negative = @([[object objectForKey:@"negative"] intValue]);
-                                        completion(positive, negative, nil);
-                                    }
+    __block NSError *error;
+    __block NSInteger count = 0;
+    __block NSNumber *positive;
+    __block NSNumber *negative;
+    
+    void(^referenceCompletion)(NSError *) = ^(NSError *newError) {
+        count++;
+        
+        if (!error)
+            error = newError;
+        
+        if (count == 2)
+            completion(positive, negative, error);
+    };
+    
+    [self fetchReferenceCountForUser:user withReferenceType:ReferenceTypePositive andCompletion:^(NSNumber *count, NSError *error) {
+        positive = count;
+        referenceCompletion(error);
+    }];
+    
+    [self fetchReferenceCountForUser:user withReferenceType:ReferenceTypeNegative andCompletion:^(NSNumber *count, NSError *error) {
+        negative =  count;
+        referenceCompletion(error);
+    }];
+}
+
+- (void)fetchReferenceCountForUser:(User *)user withReferenceType:(NSString *)type andCompletion:(void (^)(NSNumber *count, NSError *error))completion
+{
+    PFQuery *query = [Reference query];
+    [query whereKey:@"to" equalTo:user];
+    
+    if (type)
+    {
+        [query whereKey:@"type" equalTo:type];
+    }
+    
+    [query countObjectsInBackgroundWithBlock:^(int number, NSError *error) {
+       if (error)
+       {
+           completion(nil, error);
+       }
+       else
+       {
+           completion(@(number), nil);
+       }
     }];
 }
 
