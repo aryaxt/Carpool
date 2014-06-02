@@ -34,6 +34,7 @@
     [super viewDidLoad];
     
     [PFFacebookUtils initializeFacebook];
+    [PFTwitterUtils initializeWithConsumerKey:@"MR6F0dYtUhcbhxry4ruQQJhiF" consumerSecret:@"oVtsA7BhAk2Iyt4x1we01euDKZ0Nip5MZ4HwfFUg9wmvi4qvGQ"];
     
     if ([PFUser currentUser] //&& // Check if a user is cached
         /*[PFFacebookUtils isLinkedWithUser:[PFUser currentUser]]*/) // Check if user is linked to Facebook
@@ -95,6 +96,11 @@
                 }];
             }
         }];
+    }
+    else if ([PFTwitterUtils isLinkedWithUser:[PFUser currentUser]])
+    {
+        User *user = [User currentUser];
+        user.name = [PFTwitterUtils twitter].screenName;
     }
     else
     {

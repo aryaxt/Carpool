@@ -34,6 +34,8 @@
     
     if (indexPath)
     {
+        //TODO: post notification when comment mark as read, don't update count unless notificationr ecieved
+        
         // Update comemnt count when we come back, and then deselect row
         Comment *comment = [self.comments objectAtIndex:indexPath.row];
         [self fetchUnreadCountForComment:comment];

@@ -23,9 +23,12 @@
         ? [NSString stringWithFormat:@"You: %@", comment.message]
         : comment.message;
     
-    self.lblUnreadCount.text = (unreadCount && unreadCount.intValue > 0) ? unreadCount.stringValue : @"";
+    BOOL unread = (unreadCount && unreadCount.intValue > 0) ? YES : NO;
+    
+    self.lblUnreadCount.text = (unread) ? unreadCount.stringValue : @"";
     self.lblTimeAgo.text = [comment.createdAt timeAgo];
     self.lblFromName.text = otherUser.username;
+    self.lblFromName.font = (unread) ?[UIFont boldSystemFontOfSize:14] : [UIFont systemFontOfSize:14];
     self.imgCarpoolrequestIndicator.hidden = (comment.request) ? NO : YES;
     [self.imgFromPhoto setUserPhotoStyle];
     [self.imgFromPhoto setImageWithURL:[NSURL URLWithString:otherUser.photoUrl]
