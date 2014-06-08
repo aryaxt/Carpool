@@ -8,6 +8,14 @@
 
 #import "ReferencesViewController.h"
 #import "UIViewController+Additions.h"
+#import "ReferenceViewController.h"
+#import "Reference.h"
+
+@interface ReferencesViewController()
+@property (nonatomic, strong) ReferenceViewController *positiveReferenceViewController;
+@property (nonatomic, strong) ReferenceViewController *negativeReferenceViewController;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
+@end
 
 @implementation ReferencesViewController
 

@@ -8,11 +8,27 @@
 
 #import "LocationSearchViewController.h"
 #import "UIView+Additions.h"
+#import <MapKit/MapKit.h>
+#import "UITableView+Additions.h"
+#import "BaseViewController.h"
+#import "LocationManager.h"
+#import "LocationSearchClient.h"
+#import "PinEnabledMapView.h"
 
 typedef enum {
     SearchTypeMap,
     SearchTypeText
 }SearchType;
+
+@interface LocationSearchViewController()  <UISearchBarDelegate, UITableViewDataSource, UITableViewDelegate, PinEnabledMapViewDelegate>
+@property (nonatomic, strong) IBOutlet UISearchBar *searchBar;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet PinEnabledMapView *mapView;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *indicatorView;
+@property (nonatomic, strong) IBOutlet UIView *locationSearchHeaderView;
+@property (nonatomic, strong) NSArray *locations;
+@property (nonatomic, strong) LocationSearchClient *locationSearchClient;
+@end
 
 @implementation LocationSearchViewController
 
@@ -108,7 +124,7 @@ typedef enum {
 
 - (IBAction)cancelSelected:(id)sender
 {
-    [self.delegate locationSearchViewControllerDidSelectCance];
+    [self.delegate locationSearchViewControllerDidSelectCancel];
 }
 
 - (IBAction)searchTypeSelected:(id)sender

@@ -9,6 +9,12 @@
 #import "CommentCell.h"
 #import "UIColor+additions.h"
 #import "NSDate+TimeAgo.h"
+#import "InsetEnabledLabel.h"
+
+@interface CommentCell()
+@property (nonatomic, strong) IBOutlet UILabel *lblDate;
+@property (nonatomic, strong) IBOutlet InsetEnabledLabel *lblMessage;
+@end
 
 @implementation CommentCell
 

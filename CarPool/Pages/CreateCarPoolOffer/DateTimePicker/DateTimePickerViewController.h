@@ -21,6 +21,5 @@
 
 @property (nonatomic, weak) id <DateTimePickerViewControllerDelegate> delegate;
 @property (nonatomic, weak) id <DateTimePickerViewControllerDataSource> dataSource;
-@property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
 
 @end

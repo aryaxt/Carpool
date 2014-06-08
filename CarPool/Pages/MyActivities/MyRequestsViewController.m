@@ -7,6 +7,18 @@
 //
 
 #import "MyRequestsViewController.h"
+#import "CarPoolRequestClient.h"
+#import "MyRequestCell.h"
+#import "UITableView+Additions.h"
+#import <SVPullToRefresh/SVPullToRefresh.h>
+#import "RequestDetailViewController.h"
+#import "UIViewController+Additions.h"
+
+@interface MyRequestsViewController()
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *requests;
+@property (nonatomic, strong) CarPoolRequestClient *requestclient;
+@end
 
 @implementation MyRequestsViewController
 
@@ -78,9 +90,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CarPoolRequest *request = [self.requests objectAtIndex:indexPath.row];
-    RequestDetailViewController *vc = [RequestDetailViewController viewController];
-    vc.request = request;
-    [self.navigationController pushViewController:vc animated:YES];
+    [self.delegate myRequestsViewControllerDidSelectRequest:request];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath

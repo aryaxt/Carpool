@@ -7,6 +7,7 @@
 //
 
 #import "CarPoolRequestClient.h"
+#import "NSDate+Additions.h"
 
 @implementation CarPoolRequestClient
 
@@ -17,7 +18,7 @@
 {
     PFQuery *query = [CarPoolRequest query];
     [query whereKey:@"from" equalTo:[User currentUser]];
-    [query whereKey:@"date" greaterThanOrEqualTo:[NSDate date]];
+    [query whereKey:@"date" greaterThanOrEqualTo:[NSDate dateWithoutTimeComponents]];
     [query includeKey:@"startLocation"];
     [query includeKey:@"endLocation"];
     

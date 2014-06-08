@@ -11,13 +11,6 @@
 
 @interface InboxCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UILabel *lblFromName;
-@property (nonatomic, strong) IBOutlet UILabel *lblMessage;
-@property (nonatomic, strong) IBOutlet UILabel *lblTimeAgo;
-@property (nonatomic, strong) IBOutlet UILabel *lblUnreadCount;
-@property (nonatomic, strong) IBOutlet UIImageView *imgFromPhoto;
-@property (nonatomic, strong) IBOutlet UIImageView *imgCarpoolrequestIndicator;
-
 - (void)setComment:(Comment *)comment withUnreadCount:(NSNumber *)unreadCount;
 
 @end

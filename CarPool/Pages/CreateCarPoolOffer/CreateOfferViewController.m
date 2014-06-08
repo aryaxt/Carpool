@@ -167,7 +167,7 @@
 
 #pragma mark - LocationSearchViewControllerDelegate -
 
-- (void)locationSearchViewControllerDidSelectCance
+- (void)locationSearchViewControllerDidSelectCancel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

@@ -8,6 +8,11 @@
 
 #import "SettingsViewController.h"
 #import "PushNotificationSettingViewController.h"
+#import "SlideNavigationController.h"
+
+@interface SettingsViewController() <SlideNavigationControllerDelegate>
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@end
 
 @implementation SettingsViewController
 

@@ -16,11 +16,8 @@
 
 @interface UserNotificationSettingCell : UITableViewCell
 
-@property (nonatomic, weak) id <UserNotificationSettingCellDelegate> delegate;
-@property (nonatomic, strong) IBOutlet UILabel *lblTitle;
-@property (nonatomic, strong) IBOutlet UISwitch *notificationSwitch;
-
 - (void)setUserNotificationSetting:(UserNotificationSetting *)setting;
-- (IBAction)switchDidChange:(id)sender;
+
+@property (nonatomic, weak) id <UserNotificationSettingCellDelegate> delegate;
 
 @end

@@ -8,9 +8,16 @@
 
 #import "PersonalMessagesViewController.h"
 #import "UITableView+Additions.h"
+#import "CommentClient.h"
+#import "CommentCell.h"
+#import "MessageComposerView.h"
 
-@interface PersonalMessagesViewController()
+@interface PersonalMessagesViewController() <MessageComposerViewDelegate>
 @property (nonatomic, assign) CGFloat messageComposerHeight;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *comments;
+@property (nonatomic, strong) CommentClient *commentClient;
+@property (nonatomic, strong) MessageComposerView *messageComposerView;
 @end
 
 @implementation PersonalMessagesViewController

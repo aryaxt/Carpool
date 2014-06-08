@@ -16,7 +16,6 @@
 @interface MessagePickerViewController : BaseViewController <StepViewController>
 
 @property (nonatomic, weak) id <MessagePickerViewControllerDelegate> delegate;
-@property (nonatomic, strong) IBOutlet UITextView *txtMessage;
 
 - (IBAction)createSelected:(id)sender;
 

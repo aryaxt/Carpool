@@ -8,7 +8,7 @@
 
 #import "BaseViewController.h"
 #import "StepsViewController.h"
-#import "LocationSearchViewController.h"
+#import "Location.h"
 
 @protocol LocationPickerViewControllerDelegate <NSObject>
 - (void)locationPickerViewControllerDidSelectStartLocation:(Location *)location;
@@ -23,7 +23,5 @@
 
 @property (nonatomic, weak) id <LocationPickerViewControllerDelegate> delegate;
 @property (nonatomic, weak) id <LocationPickerViewControllerDataSource> dataSource;
-@property (nonatomic, strong) IBOutlet UITextField *txtStartLocation;
-@property (nonatomic, strong) IBOutlet UITextField *txtEndLocaton;
 
 @end

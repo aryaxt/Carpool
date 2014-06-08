@@ -22,17 +22,5 @@
 
 @property (nonatomic, weak) id <OfferDetailViewControllerDelegate> delegate;
 @property (nonatomic, strong) CarPoolOffer *carPoolOffer;
-@property (nonatomic, strong) IBOutlet UILabel *lblDate;
-@property (nonatomic, strong) IBOutlet UILabel *lblStartLocation;
-@property (nonatomic, strong) IBOutlet UILabel *lblEndLocation;
-@property (nonatomic, strong) IBOutlet UILabel *lblUserName;
-@property (nonatomic, strong) IBOutlet UITextView *lblMessage;
-@property (nonatomic, strong) IBOutlet UIImageView *offerOwnerPhoto;
-@property (nonatomic, strong) IBOutlet UIView *topView;
-
-- (IBAction)nextSelected:(id)sender;
-- (IBAction)previousSelected:(id)sender;
-- (IBAction)requestOfferSelected:(id)sender;
-- (IBAction)viewProfileSelected:(id)sender;
 
 @end

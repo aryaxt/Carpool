@@ -7,18 +7,16 @@
 //
 
 #import "BaseViewController.h"
-#import "CarPoolRequestClient.h"
-#import "MyRequestCell.h"
-#import "UITableView+Additions.h"
-#import <SVPullToRefresh/SVPullToRefresh.h>
-#import "RequestDetailViewController.h"
-#import "UIViewController+Additions.h"
+#import "BaseViewController.h"
+#import "CarPoolRequest.h"
+
+@protocol MyRequestsViewControllerDelegate <NSObject>
+- (void)myRequestsViewControllerDidSelectRequest:(CarPoolRequest *)request;
+@end
 
 @interface MyRequestsViewController : BaseViewController
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *requests;
-@property (nonatomic, strong) CarPoolRequestClient *requestclient;
+@property (nonatomic, weak) id <MyRequestsViewControllerDelegate> delegate;
 
 - (void)addNewRequest:(CarPoolRequest *)request;
 

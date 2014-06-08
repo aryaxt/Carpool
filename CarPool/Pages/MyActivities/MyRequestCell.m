@@ -10,6 +10,14 @@
 #import "UIImageView+Additions.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 
+@interface MyRequestCell()
+@property (nonatomic, strong) IBOutlet UIImageView *imgFromPhoto;
+@property (nonatomic, strong) IBOutlet UILabel *lblFromName;
+@property (nonatomic, strong) IBOutlet UILabel *lblTime;
+@property (nonatomic, strong) IBOutlet UILabel *lblFrom;
+@property (nonatomic, strong) IBOutlet UILabel *lblTo;
+@end
+
 @implementation MyRequestCell
 
 #pragma mark - Public Methods -

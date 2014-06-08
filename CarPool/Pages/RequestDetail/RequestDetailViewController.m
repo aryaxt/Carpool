@@ -7,11 +7,33 @@
 //
 
 #import "RequestDetailViewController.h"
+#import "UIImageView+Additions.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import <MapKit/MapKit.h>
+#import "UIColor+Additions.h"
+#import "CarPoolRequestClient.h"
+#import "UITableView+Additions.h"
+#import "CommentCell.h"
+#import "CommentClient.h"
+#import "MessageComposerView.h"
 
-@interface RequestDetailViewController()
+@interface RequestDetailViewController() <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, MessageComposerViewDelegate>
 @property (nonatomic, assign) CGFloat messageComposerHeight;
 @property (nonatomic, assign) CGRect mapViewOriginalRect;
 @property (nonatomic, strong) UITapGestureRecognizer *mapTapRecognizer;
+@property (nonatomic, strong) CarPoolRequestClient *requestClient;
+@property (nonatomic, strong) CommentClient *commentClient;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UIView *headerView;
+@property (nonatomic, strong) IBOutlet MessageComposerView *messageComposerView;
+@property (nonatomic, strong) IBOutlet UILabel *lblRequesterName;
+@property (nonatomic, strong) IBOutlet UILabel *lblStatusInfo;
+@property (nonatomic, strong) IBOutlet UIButton *btnAccept;
+@property (nonatomic, strong) IBOutlet UIButton *btnDecline;
+@property (nonatomic, strong) IBOutlet UIButton *btnCancel;
+@property (nonatomic, strong) IBOutlet UIImageView *imgRequesterPhoto;
+@property (nonatomic, strong) IBOutlet MKMapView *mapView;
+@property (nonatomic, strong) NSMutableArray *comments;
 @end
 
 @implementation RequestDetailViewController
@@ -231,24 +253,29 @@
     self.btnDecline.enabled = NO;
     self.btnCancel.enabled = NO;
     
+    [self showLoader];
+    
     [self.requestClient updateRequestWithId:self.request.objectId
                                  withStatus:status
                              withCompletion:^(Comment *comment, NSError *error) {
-        if (error)
-        {
-            self.btnAccept.enabled = YES;
-            self.btnDecline.enabled = YES;
-            [self alertWithtitle:@"Error" andMessage:@"There was a problem responding to this request"];
-        }
-        else
-        {
-            [self.comments addObject:comment];
-            NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:1];
-            [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
-            
-            [self updateActionButtonVisibility];
-        }
+                                 
+                                 [self hideLoader];
+                                 
+                                 if (error)
+                                 {
+                                     self.btnAccept.enabled = YES;
+                                     self.btnDecline.enabled = YES;
+                                     [self alertWithtitle:@"Error" andMessage:@"There was a problem responding to this request"];
+                                 }
+                                 else
+                                 {
+                                     [self.comments addObject:comment];
+                                     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:1];
+                                     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+                                     [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+                                     
+                                     [self updateActionButtonVisibility];
+                                 }
     }];
 }
 

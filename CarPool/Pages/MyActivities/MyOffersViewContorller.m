@@ -7,6 +7,16 @@
 //
 
 #import "MyOffersViewContorller.h"
+#import "CarPoolOfferClient.h"
+#import "MyOfferCell.h"
+#import "UITableView+Additions.h"
+#import <SVPullToRefresh/SVPullToRefresh.h>
+
+@interface MyOffersViewContorller()
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *offers;
+@property (nonatomic, strong) CarPoolOfferClient *offerClient;
+@end
 
 @implementation MyOffersViewContorller
 
@@ -82,7 +92,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-
+    CarPoolOffer *offer = [self.offers objectAtIndex:indexPath.row];
+    [self.delegate MyOffersViewContorllerDidSelectOffer:offer];
 }
 
 #pragma mark - Setter & Getter -

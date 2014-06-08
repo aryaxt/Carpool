@@ -10,7 +10,7 @@
 #import "CarPoolOffer.h"
 
 @interface DateTimePickerViewController ()
-
+@property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
 @end
 
 @implementation DateTimePickerViewController

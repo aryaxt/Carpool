@@ -8,9 +8,11 @@
 
 #import "LocationPickerViewController.h"
 #import "UIViewController+Additions.h"
+#import "LocationSearchViewController.h"
 
 @interface LocationPickerViewController() <LocationSearchViewControllerDelegate>
-
+@property (nonatomic, strong) IBOutlet UITextField *txtStartLocation;
+@property (nonatomic, strong) IBOutlet UITextField *txtEndLocaton;
 @end
 
 @implementation LocationPickerViewController
@@ -42,9 +44,10 @@
 
 #pragma mark - LocationSearchViewControllerDelegate -
 
-- (void)locationSearchViewControllerDidSelectCance
+- (void)locationSearchViewControllerDidSelectCancel
 {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    UIViewController *modalPresenter = [self.dataSource modalPresenterForLocationPickerViewController];
+    [modalPresenter dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)locationSearchViewControllerDidSelectLocation:(Location *)location withTag:(NSString *)tag

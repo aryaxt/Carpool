@@ -7,16 +7,15 @@
 //
 
 #import "BaseViewController.h"
-#import "CarPoolOfferClient.h"
-#import "MyOfferCell.h"
-#import "UITableView+Additions.h"
-#import <SVPullToRefresh/SVPullToRefresh.h>
+#import "CarPoolOffer.h"
+
+@protocol MyOffersViewContorllerDelegate <NSObject>
+- (void)MyOffersViewContorllerDidSelectOffer:(CarPoolOffer *)offer;
+@end
 
 @interface MyOffersViewContorller : BaseViewController <UITableViewDataSource, UITableViewDelegate>
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *offers;
-@property (nonatomic, strong) CarPoolOfferClient *offerClient;
+@property (nonatomic, weak) id <MyOffersViewContorllerDelegate> delegate;
 
 - (void)addNewOffer:(CarPoolOffer *)offer;
 

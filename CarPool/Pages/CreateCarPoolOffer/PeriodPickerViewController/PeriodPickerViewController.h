@@ -16,10 +16,5 @@
 @interface PeriodPickerViewController : BaseViewController <StepViewController>
 
 @property (nonatomic, weak) id <PeriodPickerViewControllerDelegate> delegate;
-@property (nonatomic, weak) IBOutlet UIButton *btnOneTime;
-@property (nonatomic, weak) IBOutlet UIButton *btnWeekDay;
-
-- (IBAction)oneTimePeriodSelected:(id)sender;
-- (IBAction)weekDaysPeriodSelected:(id)sender;
 
 @end

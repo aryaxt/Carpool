@@ -109,6 +109,7 @@
 		92B568D719170E2900CEF58F /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D419170E2900CEF58F /* startPoint.png */; };
 		92B568DA1917147700CEF58F /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 92B568D91917147700CEF58F /* Location.m */; };
 		92B568DF19172F5700CEF58F /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92B568DE19172F5700CEF58F /* MapKit.framework */; };
+		92ED7AC31944DC960095F77E /* NSDate+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 92ED7AC21944DC960095F77E /* NSDate+Additions.m */; };
 		92FD32FC19357E6A0016B32D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92FD32FB19357E6A0016B32D /* Crashlytics.framework */; };
 		92FD32FF1936CA0C0016B32D /* MyOffersViewContorller.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FD32FE1936CA0C0016B32D /* MyOffersViewContorller.m */; };
 		92FD33021936CB310016B32D /* MyRequestsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92FD33011936CB310016B32D /* MyRequestsViewController.m */; };
@@ -299,6 +300,8 @@
 		92B568D81917147700CEF58F /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		92B568D91917147700CEF58F /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		92B568DE19172F5700CEF58F /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		92ED7AC11944DC960095F77E /* NSDate+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+Additions.h"; sourceTree = "<group>"; };
+		92ED7AC21944DC960095F77E /* NSDate+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Additions.m"; sourceTree = "<group>"; };
 		92FD32FB19357E6A0016B32D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		92FD32FD1936CA0C0016B32D /* MyOffersViewContorller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOffersViewContorller.h; sourceTree = "<group>"; };
 		92FD32FE1936CA0C0016B32D /* MyOffersViewContorller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOffersViewContorller.m; sourceTree = "<group>"; };
@@ -512,6 +515,8 @@
 				920917FA1927B187009701FA /* MKMapView+Additions.m */,
 				920917FC1927B89F009701FA /* UIColor+Additions.h */,
 				920917FD1927B89F009701FA /* UIColor+Additions.m */,
+				92ED7AC11944DC960095F77E /* NSDate+Additions.h */,
+				92ED7AC21944DC960095F77E /* NSDate+Additions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -1099,6 +1104,7 @@
 				9255123E193BA61B00132526 /* DateTimePickerViewController.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,
 				9217A59819231698005E3A36 /* Installation.m in Sources */,
+				92ED7AC31944DC960095F77E /* NSDate+Additions.m in Sources */,
 				923E15D81929215200AD1B5A /* MyActivitiesViewController.m in Sources */,
 				9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */,
 				923E94F5193165BF008411AA /* CreateReferenceViewController.m in Sources */,

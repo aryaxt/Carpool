@@ -9,6 +9,18 @@
 #import "SearchFilterViewController.h"
 #import "LocationSearchViewController.h"
 #import "UIViewController+Additions.h"
+#import "LocationSearchViewController.h"
+
+@interface SearchFilterViewController() <LocationSearchViewControllerDelegate, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate>
+@property (nonatomic, strong) IBOutlet UISegmentedControl *genderSegmentedControl;
+@property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
+@property (nonatomic, strong) IBOutlet UIPickerView *agePicker;
+@property (nonatomic, strong) IBOutlet UITextField *txtFromLocation;
+@property (nonatomic, strong) IBOutlet UITextField *txtToLocation;
+@property (nonatomic, strong) IBOutlet UITextField *txtDate;
+@property (nonatomic, strong) IBOutlet UITextField *txtAge;
+@property (nonatomic, strong) NSArray *ageRanges;
+@end
 
 @implementation SearchFilterViewController
 
@@ -93,7 +105,7 @@
 
 #pragma mark - LocationSearchViewControllerDelegate -
 
-- (void)locationSearchViewControllerDidSelectCance
+- (void)locationSearchViewControllerDidSelectCancel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -128,7 +140,7 @@
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
-    return [NSString stringWithFormat:@"%ld", row + MIN_AGE];
+    return [NSString stringWithFormat:@"%d", row + MIN_AGE];
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component

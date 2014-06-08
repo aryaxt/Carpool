@@ -7,13 +7,7 @@
 //
 
 #import "BaseViewController.h"
-#import "UserNotificationSettingClient.h"
-#import "UserNotificationSettingCell.h"
 
-@interface PushNotificationSettingViewController : BaseViewController <UserNotificationSettingCellDelegate>
-
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) UserNotificationSettingClient *userNotificationSettingClient;
-@property (nonatomic, strong) NSArray *userNotificationSettings;
+@interface PushNotificationSettingViewController : BaseViewController
 
 @end

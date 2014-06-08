@@ -19,16 +19,7 @@
 
 @interface StepsViewController : BaseViewController
 
-@property (nonatomic, strong) IBOutlet UIView *topView;
-@property (nonatomic, strong) IBOutlet UIView *contentView;
-@property (nonatomic, strong) IBOutlet UILabel *lblTitle;
-@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
-@property (nonatomic, strong) IBOutlet UIButton *btnNext;
-@property (nonatomic, strong) IBOutlet UIButton *btnPrevious;
-
 - (void)setStepViewControllers:(NSArray *)stepViewController;
-- (IBAction)nextSelected:(id)sender;
-- (IBAction)previousSelected:(id)sender;
 - (void)moveToPreviousStep;
 - (void)moveToNextStep;
 

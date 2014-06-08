@@ -8,6 +8,19 @@
 
 #import "MyActivitiesViewController.h"
 #import "CreateOfferStepsViewController.h"
+#import "SlideNavigationController.h"
+#import "CreateRequestViewController.h"
+#import "MyOffersViewContorller.h"
+#import "MyRequestsViewController.h"
+#import "UIViewController+Additions.h"
+#import "CreateOfferStepsViewController.h"
+#import "RequestDetailViewController.h"
+
+@interface MyActivitiesViewController() <SlideNavigationControllerDelegate, CreateOfferStepsViewControllerDelegate, CreateRequestViewControllerDelegate, MyRequestsViewControllerDelegate, MyOffersViewContorllerDelegate>
+@property (nonatomic, strong) IBOutlet UIBarButtonItem *btnAddOffer;
+@property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
+@property (nonatomic, strong) MyOffersViewContorller *myOffersViewController;
+@property (nonatomic, strong) MyRequestsViewController *myRequestsViewController;@end
 
 @implementation MyActivitiesViewController
 
@@ -83,6 +96,22 @@
     return YES;
 }
 
+#pragma mark - MyRequestsViewControllerDelegate -
+
+- (void)myRequestsViewControllerDidSelectRequest:(CarPoolRequest *)request
+{
+    RequestDetailViewController *vc = [RequestDetailViewController viewController];
+    vc.request = request;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - MyOffersViewContorllerDelegate -
+
+- (void)MyOffersViewContorllerDidSelectOffer:(CarPoolOffer *)offer
+{
+    // Go to offer detail page (Page doesn't exist yet)
+}
+
 #pragma mark - Setter & Getter -
 
 - (MyOffersViewContorller *)myOffersViewController
@@ -101,6 +130,7 @@
     if (!_myRequestsViewController)
     {
         _myRequestsViewController = [MyRequestsViewController viewController];
+        _myRequestsViewController.delegate = self;
         _myRequestsViewController.view.frame = CGRectMake(self.view.frame.size.width, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
     }
     

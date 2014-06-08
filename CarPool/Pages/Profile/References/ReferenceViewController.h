@@ -8,16 +8,10 @@
 
 #import "BaseViewController.h"
 #import "User.h"
-#import "ReferenceClient.h"
 
-@interface ReferenceViewController : BaseViewController <UITableViewDataSource, UITableViewDelegate>
+@interface ReferenceViewController : BaseViewController
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSString *referenceType;
-@property (nonatomic, strong) NSMutableArray *references;
-@property (nonatomic, strong) ReferenceClient *referencesClient;
 @property (nonatomic, strong) User *user;
-@property (nonatomic, strong) NSMutableSet *expandedRefernceIds;
-@property (nonatomic, assign) BOOL moreDataToLaod;
 
 @end

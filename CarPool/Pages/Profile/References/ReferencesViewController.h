@@ -7,16 +7,10 @@
 //
 
 #import "BaseViewController.h"
-#import "ReferenceViewController.h"
 #import "User.h"
 
 @interface ReferencesViewController : BaseViewController
 
-@property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) User *user;
-@property (nonatomic, strong) ReferenceViewController *positiveReferenceViewController;
-@property (nonatomic, strong) ReferenceViewController *negativeReferenceViewController;
-
-- (IBAction)segmentedControlDidChange:(id)sender;
 
 @end

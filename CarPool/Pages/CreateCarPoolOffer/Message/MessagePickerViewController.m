@@ -8,6 +8,10 @@
 
 #import "MessagePickerViewController.h"
 
+@interface MessagePickerViewController()
+@property (nonatomic, strong) IBOutlet UITextView *txtMessage;
+@end
+
 @implementation MessagePickerViewController
 
 #pragma mark - UIViewController Methods -

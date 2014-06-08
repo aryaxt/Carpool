@@ -7,17 +7,10 @@
 //
 
 #import "BaseViewController.h"
-#import "CommentClient.h"
-#import "CommentCell.h"
-#import "MessageComposerView.h"
 #import "PushNotificationManager.h"
 
-@interface PersonalMessagesViewController : BaseViewController <MessageComposerViewDelegate, PushNotificationHandler>
+@interface PersonalMessagesViewController : BaseViewController <PushNotificationHandler>
 
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
-@property (nonatomic, strong) NSMutableArray *comments;
-@property (nonatomic, strong) CommentClient *commentClient;
-@property (nonatomic, strong) MessageComposerView *messageComposerView;
 @property (nonatomic, strong) User *user;
 
 @end

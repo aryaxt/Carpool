@@ -7,11 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "SlideNavigationController.h"
 #import "BaseViewController.h"
 
-@interface SettingsViewController : BaseViewController <SlideNavigationControllerDelegate>
-
-@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@interface SettingsViewController : BaseViewController
 
 @end

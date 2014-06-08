@@ -10,6 +10,20 @@
 #import "UIViewController+Additions.h"
 #import "UIView+Additions.h"
 #import "UIAlertView+Blocks.h"
+#import "CarPoolOffer.h"
+#import "CarPoolRequestClient.h"
+#import "LocationSearchViewController.h"
+#import "Comment.h"
+
+@interface CreateRequestViewController() <LocationSearchViewControllerDelegate>
+@property (nonatomic, strong) IBOutlet UITextView *txtMessage;
+@property (nonatomic, strong) IBOutlet UITextField *txtFrom;
+@property (nonatomic, strong) IBOutlet UITextField *txtTo;
+@property (nonatomic, strong) IBOutlet UITextField *txtDate;
+@property (nonatomic, strong) IBOutlet UIDatePicker *datePicker;
+@property (nonatomic, strong) CarPoolRequest *request;
+@property (nonatomic, strong) CarPoolRequestClient *requestCleint;
+@end
 
 @implementation CreateRequestViewController
 
@@ -143,7 +157,7 @@
 
 #pragma mark - LocationSearchViewControllerDelegate -
 
-- (void)locationSearchViewControllerDidSelectCance
+- (void)locationSearchViewControllerDidSelectCancel
 {
     [self dismissViewControllerAnimated:YES completion:nil];
 }

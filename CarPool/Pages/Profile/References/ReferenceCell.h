@@ -11,13 +11,6 @@
 
 @interface ReferenceCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UIImageView *imgFromPhoto;
-@property (nonatomic, strong) IBOutlet UILabel *lblFromName;
-@property (nonatomic, strong) IBOutlet UILabel *lblCreatedDate;
-@property (nonatomic, strong) IBOutlet UILabel *lblUpdatedDate;
-@property (nonatomic, strong) IBOutlet UILabel *lblUpdatedDateLabel;
-@property (nonatomic, strong) IBOutlet UILabel *lblText;
-
 - (CGRect)setReference:(Reference *)reference isExpanded:(BOOL)expanded;
 
 @end

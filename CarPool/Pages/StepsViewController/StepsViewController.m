@@ -12,6 +12,12 @@
 @property (nonatomic, assign) NSInteger currentStep;
 @property (nonatomic, strong) NSArray *viewControllers;
 @property (nonatomic, strong) UILabel *lblError;
+@property (nonatomic, strong) IBOutlet UIView *topView;
+@property (nonatomic, strong) IBOutlet UIView *contentView;
+@property (nonatomic, strong) IBOutlet UILabel *lblTitle;
+@property (nonatomic, strong) IBOutlet UIPageControl *pageControl;
+@property (nonatomic, strong) IBOutlet UIButton *btnNext;
+@property (nonatomic, strong) IBOutlet UIButton *btnPrevious;
 @end
 
 @implementation StepsViewController

@@ -8,12 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "Comment.h"
-#import "InsetEnabledLabel.h"
 
 @interface CommentCell : UITableViewCell
-
-@property (nonatomic, strong) IBOutlet UILabel *lblDate;
-@property (nonatomic, strong) IBOutlet InsetEnabledLabel *lblMessage;
 
 - (void)setComment:(Comment *)comment isFromMe:(BOOL)isFromMe;
 

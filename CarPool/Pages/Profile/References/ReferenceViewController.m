@@ -10,9 +10,18 @@
 #import "ReferenceCell.h"
 #import "UITableView+Additions.h"
 #import <SVPullToRefresh/UIScrollView+SVInfiniteScrolling.h>
+#import "ReferenceClient.h"
 
 #define RESULT_PER_PAGE 10
 #define CELL_IDENTIFIER @"ReferenceCell"
+
+@interface ReferenceViewController()
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) NSMutableArray *references;
+@property (nonatomic, strong) ReferenceClient *referencesClient;
+@property (nonatomic, strong) NSMutableSet *expandedRefernceIds;
+@property (nonatomic, assign) BOOL moreDataToLaod;
+@end
 
 @implementation ReferenceViewController
 

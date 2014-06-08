@@ -8,6 +8,11 @@
 
 #import "UserNotificationSettingCell.h"
 
+@interface UserNotificationSettingCell()
+@property (nonatomic, strong) IBOutlet UILabel *lblTitle;
+@property (nonatomic, strong) IBOutlet UISwitch *notificationSwitch;
+@end
+
 @implementation UserNotificationSettingCell
 
 #pragma mark - Public MEthods -

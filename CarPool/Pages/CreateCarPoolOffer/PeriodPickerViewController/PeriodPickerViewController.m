@@ -11,6 +11,8 @@
 
 @interface PeriodPickerViewController()
 @property (nonatomic, strong) NSNumber *selectedPeriod;
+@property (nonatomic, weak) IBOutlet UIButton *btnOneTime;
+@property (nonatomic, weak) IBOutlet UIButton *btnWeekDay;
 @end
 
 @implementation PeriodPickerViewController

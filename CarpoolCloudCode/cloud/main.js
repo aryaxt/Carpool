@@ -364,26 +364,34 @@ Parse.Cloud.define("UpdateRequestStatus", function(request, response) {
 			if (carpoolRequest.get("status") == status) {
 				console.error("New status values is the same as existing value");
 		    	response.error("New status values is the same as existing value");
+                return;
 			}
 			
 			if (carpoolRequest.get("status") == CarPoolRequestStatusCanceled) {
 				console.error("Request has been canceled, no changes can be made");
 				response.error("Request has been canceled, no changes can be made");
+                return;
 			}
 			
-			if (new Date(carpoolRequest.get("date")) < new Date()){
+            var today = new Date();
+            today.setHours(0, 0, 0, 0);
+                      
+			if (carpoolRequest.get("period") == CarPoolRequestPeriodOnceTime && new Date(carpoolRequest.get("date")) < new Date()){
 				console.error("Request has been expired");
 		    	response.error("Request has been expired");
+                return;
 			}
 			
 			if ((status == CarPoolRequestStatusAccepted || status == CarPoolRequestStatusRejected) && currentUserId != carpoolRequest.get("to").id) {
 				console.error("This request can only be rejected and accepted by whome the request was sent to");
 		    	response.error("This request can only be rejected and accepted by whome the request was sent to");
+                return;
 			}
 			
 			if (status == CarPoolRequestStatusCanceled && currentUserId != carpoolRequest.get("from").id) {
 				console.error("This request can only be canceled by whome the request was created by");
 		    	response.error("This request can only be canceled by whome the request was created by");
+                return;
 			}
 			
 			carpoolRequest.set("status", status);

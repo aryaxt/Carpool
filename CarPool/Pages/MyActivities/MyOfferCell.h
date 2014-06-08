@@ -11,10 +11,6 @@
 
 @interface MyOfferCell : UITableViewCell
 
-@property (nonatomic, strong) IBOutlet UILabel *lblTime;
-@property (nonatomic, strong) IBOutlet UILabel *lblFrom;
-@property (nonatomic, strong) IBOutlet UILabel *lblTo;
-
 - (void)setOffer:(CarPoolOffer *)offer;
 
 @end
