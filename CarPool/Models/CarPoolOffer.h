@@ -21,6 +21,7 @@ extern NSNumber *CarPoolOfferPeriodWeekDays;
 @property (nonatomic, strong) NSNumber *minAge;
 @property (nonatomic, strong) NSNumber *maxage;
 @property (nonatomic, strong) NSNumber *period;
+@property (nonatomic, strong) NSNumber *isActive;
 @property (nonatomic, strong) Location *startLocation;
 @property (nonatomic, strong) Location *endLocation;
 @property (nonatomic, strong) User *from;

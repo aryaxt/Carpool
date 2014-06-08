@@ -19,6 +19,7 @@
 @dynamic message;
 @dynamic minAge;
 @dynamic maxage;
+@dynamic isActive;
 
 NSNumber *CarPoolOfferPeriodOneTime;
 NSNumber *CarPoolOfferPeriodWeekDays;

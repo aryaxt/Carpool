@@ -26,7 +26,6 @@
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UIView *headerView;
 @property (nonatomic, strong) IBOutlet MessageComposerView *messageComposerView;
-@property (nonatomic, strong) IBOutlet UILabel *lblRequesterName;
 @property (nonatomic, strong) IBOutlet UILabel *lblStatusInfo;
 @property (nonatomic, strong) IBOutlet UIButton *btnAccept;
 @property (nonatomic, strong) IBOutlet UIButton *btnDecline;
@@ -55,6 +54,10 @@
     self.mapView.zoomEnabled = NO;
     self.mapViewOriginalRect = self.mapView.frame;
     
+    self.btnAccept.layer.cornerRadius = 5;
+    self.btnDecline.layer.cornerRadius = 5;
+    self.btnCancel.layer.cornerRadius = 5;
+    
     self.mapTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self.init action:@selector(tapDetectedOnMap:)];
     [self.mapView addGestureRecognizer:self.mapTapRecognizer];
     
@@ -64,10 +67,7 @@
     [self fetchComments];
 }
 
-- (void)tapDetectedOnMap:(id)sender
-{
-    [self setExpandMapView:YES];
-}
+#pragma mark - Private Methods -
 
 - (void)setExpandMapView:(BOOL)expand
 {
@@ -106,13 +106,6 @@
     }
 }
 
-- (void)closeMapSelected
-{
-    [self setExpandMapView:NO];
-}
-
-#pragma mark - Private Methods -
-
 - (void)fetchRequestDetail
 {
     [self showLoader];
@@ -130,17 +123,11 @@
         {
             self.request = request;
             
-            self.lblRequesterName.text = self.request.to.name;
             [self.imgRequesterPhoto setUserPhotoStyle];
             [self.imgRequesterPhoto setImageWithURL:[NSURL URLWithString:self.request.to.photoUrl]
                                    placeholderImage:[UIImage imageNamed:@"sfdfgdfg"]];
             
-            self.lblStatusInfo.text = (self.request.status) ? self.request.status : @"Pending";
-            self.lblStatusInfo.textColor = ([self.request.status isEqual:CarPoolRequestStatusAccepted])
-            ? [UIColor greenColor]
-            : [UIColor redColor];
-            
-            
+            [self updateStatusInfo];
             [self updateActionButtonVisibility];
             [self addPolyline];
         }
@@ -159,13 +146,8 @@
     }
     else if (isRequestFromMe)
     {
-        self.btnAccept.titleLabel.textColor = ([self.request.status isEqual:CarPoolRequestStatusAccepted])
-            ? [UIColor greenColor]
-            : [UIColor lightGrayColor];
-        
-        self.btnDecline.titleLabel.textColor = ([self.request.status isEqual:CarPoolRequestStatusRejected])
-            ? [UIColor redColor]
-            : [UIColor lightGrayColor];
+        self.btnAccept.enabled = ([self.request.status isEqual:CarPoolRequestStatusAccepted]) ? NO : YES;
+        self.btnDecline.enabled = ([self.request.status isEqual:CarPoolRequestStatusRejected])  ? NO : YES;
         
         self.btnAccept.hidden = NO;
         self.btnDecline.hidden = NO;
@@ -175,14 +157,43 @@
     {
         self.btnAccept.hidden = YES;
         self.btnDecline.hidden = YES;
-        self.btnCancel.hidden = NO;
+        self.btnCancel.hidden = ([self.request.status isEqualToString:CarPoolRequestStatusAccepted]) ? NO : YES;
     }
+}
+
+- (void)updateStatusInfo
+{
+    NSString *status;
+    UIColor *color;
+    User *otherUser = ([self isRequestMine]) ? self.request.to : self.request.from;
+    
+    if (self.request.status)
+    {
+        color = ([self.request.status isEqual:CarPoolRequestStatusAccepted]) ? [UIColor greenColor] : [UIColor redColor];
+        status = (([self isRequestMine] && ![self.request.status isEqual:CarPoolRequestStatusCanceled]) ||
+                  (![self isRequestMine] && [self.request.status isEqual:CarPoolRequestStatusCanceled]))
+            ? [NSString stringWithFormat:@"%@ has %@ this request", otherUser.name, self.request.status]
+            : [NSString stringWithFormat:@"You have %@ this request", self.request.status];
+    }
+    else
+    {
+        color = [UIColor darkGrayColor];
+        status = ([self isRequestMine])
+            ? [NSString stringWithFormat:@"%@ hasn't responded to your request yet", otherUser.name]
+            : [NSString stringWithFormat:@"%@ is waiting for your response", otherUser.name];
+    }
+    
+    self.lblStatusInfo.text = status;
+    self.lblStatusInfo.textColor = color;
+}
+
+- (BOOL)isRequestMine
+{
+    return ([self.request.from.objectId isEqual:[User currentUser].objectId]) ? YES: NO;
 }
 
 - (void)hideRequestStatus
 {
-    self.btnAccept.titleLabel.textColor = [UIColor lightGrayColor];
-    self.btnDecline.titleLabel.textColor = [UIColor lightGrayColor];
     self.btnAccept.hidden = YES;
     self.btnDecline.hidden = YES;
     self.btnCancel.hidden = YES;
@@ -275,6 +286,7 @@
                                      [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
                                      
                                      [self updateActionButtonVisibility];
+                                     [self updateStatusInfo];
                                  }
     }];
 }
@@ -329,6 +341,16 @@
 }
 
 #pragma mark - IBActions -
+
+- (IBAction)tapDetectedOnMap:(id)sender
+{
+    [self setExpandMapView:YES];
+}
+
+- (IBAction)closeMapSelected
+{
+    [self setExpandMapView:NO];
+}
 
 - (IBAction)acceptSelected:(id)sender
 {

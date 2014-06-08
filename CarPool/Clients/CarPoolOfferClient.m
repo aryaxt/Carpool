@@ -10,10 +10,11 @@
 
 @implementation CarPoolOfferClient
 
-- (void)fetchCarpoolOffersForUser:(PFUser *)user includeLocations:(BOOL)includeLocations includeUser:(BOOL)includeUser withCompletion:(void (^)(NSArray *objects, NSError *error))completion
+- (void)fetchMyOffersIncludeLocations:(BOOL)includeLocations includeUser:(BOOL)includeUser withCompletion:(void (^)(NSArray *objects, NSError *error))completion
 {
     PFQuery *query = [CarPoolOffer query];
-    [query whereKey:@"from" equalTo:user];
+    [query whereKey:@"from" equalTo:[User currentUser]];
+    [query whereKey:@"isActive" equalTo:@YES];
     
     if (includeLocations)
     {

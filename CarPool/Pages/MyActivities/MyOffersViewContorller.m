@@ -40,22 +40,22 @@
 
 - (void)fetchAndPopulateMyOffers
 {
-    [self.offerClient fetchCarpoolOffersForUser:[PFUser currentUser]
-                               includeLocations:YES
-                                    includeUser:NO
-                                 withCompletion:^(NSArray *offers, NSError *error) {
-                                     [self hideLoader];
-                                     [self.tableView.pullToRefreshView stopAnimating];
-                                     
-                                     if (error)
-                                     {
-                                         [self alertWithtitle:@"Error" andMessage:@"Error getting offers"];
-                                     }
-                                     else
-                                     {
-                                         self.offers = [offers mutableCopy];
-                                         [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:offers.count];
-                                     }
+    [self.offerClient fetchMyOffersIncludeLocations:YES
+                                        includeUser:NO
+                                     withCompletion:^(NSArray *offers, NSError *error) {
+                                                         
+                                         [self hideLoader];
+                                         [self.tableView.pullToRefreshView stopAnimating];
+                                         
+                                         if (error)
+                                         {
+                                             [self alertWithtitle:@"Error" andMessage:@"Error getting offers"];
+                                         }
+                                         else
+                                         {
+                                             self.offers = [offers mutableCopy];
+                                             [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:offers.count];
+                                         }
                                  }];
 }
 

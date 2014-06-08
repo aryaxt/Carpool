@@ -47,9 +47,9 @@
     myOffersRect.origin.x = (self.segmentedControl.selectedSegmentIndex == 0) ? 0 : self.view.frame.size.width*-1;
     myRequestsRect.origin.x = (self.segmentedControl.selectedSegmentIndex == 1) ? 0 : self.view.frame.size.width;
     
-    [UIView animateWithDuration:.25
+    [UIView animateWithDuration:.2
                           delay:
-     0 options:UIViewAnimationOptionCurveEaseIn
+     0 options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
                          self.myOffersViewController.view.frame = myOffersRect;
                          self.myRequestsViewController.view.frame = myRequestsRect;

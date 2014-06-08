@@ -98,6 +98,7 @@
 {
     self.offer.message = message;
     self.offer.from = [User currentUser];
+    self.offer.isActive = @YES;
     
     if (!self.offer.startLocation)
     {
