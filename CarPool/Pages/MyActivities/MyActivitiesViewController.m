@@ -9,14 +9,14 @@
 #import "MyActivitiesViewController.h"
 #import "CreateOfferStepsViewController.h"
 #import "SlideNavigationController.h"
-#import "CreateRequestViewController.h"
+#import "CreateRequestStepsViewController.h"
 #import "MyOffersViewContorller.h"
 #import "MyRequestsViewController.h"
 #import "UIViewController+Additions.h"
 #import "CreateOfferStepsViewController.h"
 #import "RequestDetailViewController.h"
 
-@interface MyActivitiesViewController() <SlideNavigationControllerDelegate, CreateOfferStepsViewControllerDelegate, CreateRequestViewControllerDelegate, MyRequestsViewControllerDelegate, MyOffersViewContorllerDelegate>
+@interface MyActivitiesViewController() <SlideNavigationControllerDelegate, CreateOfferStepsViewControllerDelegate, CreateRequestStepsViewControllerDelegate, MyRequestsViewControllerDelegate, MyOffersViewContorllerDelegate>
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *btnAddOffer;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) MyOffersViewContorller *myOffersViewController;
@@ -67,8 +67,8 @@
     }
     else
     {
-        vc = [CreateRequestViewController viewController];
-        [(CreateRequestViewController *)vc setDelegate:self];
+        vc = [CreateRequestStepsViewController viewController];
+        [(CreateRequestStepsViewController *)vc setDelegate:self];
     }
     
     [self.navigationController pushViewController:vc
@@ -82,9 +82,9 @@
     [self.myOffersViewController addNewOffer:offer];
 }
 
-#pragma mark - CreateRequestViewControllerDelegate -
+#pragma mark - CreateRequestStepsViewController -
 
-- (void)createRequestViewControllerDidCreateRequest:(CarPoolRequest *)request
+- (void)createRequestStepsViewControllerDidCreateRequest:(CarPoolRequest *)request
 {
     [self.myRequestsViewController addNewRequest:request];
 }

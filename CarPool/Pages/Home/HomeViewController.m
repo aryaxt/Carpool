@@ -11,15 +11,14 @@
 #import "SlideNavigationController.h"
 #import "CarPoolOfferClient.h"
 #import "OfferDetailViewController.h"
-#import "CreateRequestViewController.h"
 #import "UIColor+Additions.h"
 #import "CarPoolOffer.h"
 #import "CarPoolRequest.h"
 #import "LocationManager.h"
 #import "UIViewController+Additions.h"
-#import "CreateRequestViewController.h"
 #import "SearchFilterViewController.h"
 #import "SearchFilter.h"
+#import "CreateRequestStepsViewController.h"
 #import "ProfileViewController.h"
 
 @interface HomeViewController() <SlideNavigationControllerDelegate, MKMapViewDelegate, OfferDetailViewControllerDelegate, SearchFilterViewControllerDelegate>
@@ -68,12 +67,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"CreateRequestViewController"])
-    {
-        CreateRequestViewController *vc = segue.destinationViewController;
-        vc.offer = sender;
-    }
-    else if ([segue.identifier isEqualToString:@"SearchFilterViewController"])
+    if ([segue.identifier isEqualToString:@"SearchFilterViewController"])
     {
         SearchFilterViewController *vc = segue.destinationViewController;
         vc.searchFilter = self.searchFilter;
@@ -216,7 +210,9 @@
 
 - (void)offerDetailViewControllerDidSelectRequestForOffer:(CarPoolOffer *)offer
 {
-    [self performSegueWithIdentifier:@"CreateRequestViewController" sender:offer];
+    CreateRequestStepsViewController *vc = [CreateRequestStepsViewController viewController];
+    vc.offer = offer;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)offerDetailViewControllerDidSelectViewUserProfile:(User *)user

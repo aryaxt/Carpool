@@ -14,7 +14,7 @@
 @end
 
 @protocol DateTimePickerViewControllerDataSource <NSObject>
-- (NSNumber *)periodForDateTimePickerViewController;
+- (UIDatePickerMode)datePickerModeForDateTimePickerViewController;
 @end
 
 @interface DateTimePickerViewController : BaseViewController <StepViewController>

@@ -8,7 +8,7 @@
 
 #import "OfferDetailViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
-#import "CreateRequestViewController.h"
+#import "CreateRequestStepsViewController.h"
 
 @interface OfferDetailViewController()
 @property (nonatomic, strong) IBOutlet UILabel *lblDate;

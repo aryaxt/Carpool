@@ -38,7 +38,6 @@
 		9226EED919157A870014B319 /* UIViewController+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EED819157A870014B319 /* UIViewController+Additions.m */; };
 		9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEDC19157BEA0014B319 /* HomeViewController.m */; };
 		9226EEE119157D1A0014B319 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEE019157D1A0014B319 /* LoginViewController.m */; };
-		9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEE71915B77B0014B319 /* CreateOfferViewController.m */; };
 		9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEEB1915B82B0014B319 /* LocationManager.m */; };
 		9226EEEE1915B8E70014B319 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9226EEED1915B8E70014B319 /* CoreLocation.framework */; };
 		9226EEF21915CBE90014B319 /* CarPoolOffer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9226EEF11915CBE90014B319 /* CarPoolOffer.m */; };
@@ -102,8 +101,8 @@
 		928266C7191E9195001AD534 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 928266C6191E9195001AD534 /* map.png */; };
 		928266CB191E9B9C001AD534 /* PinEnabledMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928266CA191E9B9C001AD534 /* PinEnabledMapView.m */; };
 		928266CE191EABF7001AD534 /* LocationSearchClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 928266CD191EABF6001AD534 /* LocationSearchClient.m */; };
-		928266D2191EFE05001AD534 /* CreateRequestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 928266D1191EFE05001AD534 /* CreateRequestViewController.m */; };
 		92881405191DD6BF00726DD8 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 92881404191DD6BF00726DD8 /* User.m */; };
+		9298BF39194B6E0C00157E42 /* CreateRequestStepsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9298BF38194B6E0C00157E42 /* CreateRequestStepsViewController.m */; };
 		92B568D519170E2900CEF58F /* endPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D219170E2900CEF58F /* endPoint.png */; };
 		92B568D619170E2900CEF58F /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D319170E2900CEF58F /* calendar.png */; };
 		92B568D719170E2900CEF58F /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D419170E2900CEF58F /* startPoint.png */; };
@@ -175,8 +174,6 @@
 		9226EEDC19157BEA0014B319 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
 		9226EEDF19157D1A0014B319 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		9226EEE019157D1A0014B319 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
-		9226EEE61915B77B0014B319 /* CreateOfferViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateOfferViewController.h; sourceTree = "<group>"; };
-		9226EEE71915B77B0014B319 /* CreateOfferViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateOfferViewController.m; sourceTree = "<group>"; };
 		9226EEEA1915B82B0014B319 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		9226EEEB1915B82B0014B319 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		9226EEED1915B8E70014B319 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -290,10 +287,10 @@
 		928266CA191E9B9C001AD534 /* PinEnabledMapView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PinEnabledMapView.m; sourceTree = "<group>"; };
 		928266CC191EABF6001AD534 /* LocationSearchClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationSearchClient.h; sourceTree = "<group>"; };
 		928266CD191EABF6001AD534 /* LocationSearchClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationSearchClient.m; sourceTree = "<group>"; };
-		928266D0191EFE05001AD534 /* CreateRequestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRequestViewController.h; sourceTree = "<group>"; };
-		928266D1191EFE05001AD534 /* CreateRequestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRequestViewController.m; sourceTree = "<group>"; };
 		92881403191DD6BF00726DD8 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		92881404191DD6BF00726DD8 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		9298BF37194B6E0C00157E42 /* CreateRequestStepsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreateRequestStepsViewController.h; sourceTree = "<group>"; };
+		9298BF38194B6E0C00157E42 /* CreateRequestStepsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreateRequestStepsViewController.m; sourceTree = "<group>"; };
 		92B568D219170E2900CEF58F /* endPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endPoint.png; sourceTree = "<group>"; };
 		92B568D319170E2900CEF58F /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		92B568D419170E2900CEF58F /* startPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startPoint.png; sourceTree = "<group>"; };
@@ -549,8 +546,6 @@
 				9255123F193BB95800132526 /* LocationPicker */,
 				9255123B193BA60F00132526 /* DateTimePicker */,
 				92551234193B9A5E00132526 /* PeriodPickerViewController */,
-				9226EEE61915B77B0014B319 /* CreateOfferViewController.h */,
-				9226EEE71915B77B0014B319 /* CreateOfferViewController.m */,
 				92551238193B9C6F00132526 /* CreateOfferStepsViewController.h */,
 				92551239193B9C6F00132526 /* CreateOfferStepsViewController.m */,
 			);
@@ -854,8 +849,8 @@
 		928266CF191EFDF4001AD534 /* CreateCarPoolRequest */ = {
 			isa = PBXGroup;
 			children = (
-				928266D0191EFE05001AD534 /* CreateRequestViewController.h */,
-				928266D1191EFE05001AD534 /* CreateRequestViewController.m */,
+				9298BF37194B6E0C00157E42 /* CreateRequestStepsViewController.h */,
+				9298BF38194B6E0C00157E42 /* CreateRequestStepsViewController.m */,
 			);
 			path = CreateCarPoolRequest;
 			sourceTree = "<group>";
@@ -1062,7 +1057,6 @@
 				920917FB1927B187009701FA /* MKMapView+Additions.m in Sources */,
 				92881405191DD6BF00726DD8 /* User.m in Sources */,
 				9226EEEC1915B82B0014B319 /* LocationManager.m in Sources */,
-				9226EEE81915B77B0014B319 /* CreateOfferViewController.m in Sources */,
 				925511CB193A361500132526 /* AutoResizingTextView.m in Sources */,
 				92B568DA1917147700CEF58F /* Location.m in Sources */,
 				92FD33021936CB310016B32D /* MyRequestsViewController.m in Sources */,
@@ -1105,10 +1099,10 @@
 				9226EEA6191573530014B319 /* main.m in Sources */,
 				9217A59819231698005E3A36 /* Installation.m in Sources */,
 				92ED7AC31944DC960095F77E /* NSDate+Additions.m in Sources */,
+				9298BF39194B6E0C00157E42 /* CreateRequestStepsViewController.m in Sources */,
 				923E15D81929215200AD1B5A /* MyActivitiesViewController.m in Sources */,
 				9226EF2A1916DAA80014B319 /* SignUpViewController.m in Sources */,
 				923E94F5193165BF008411AA /* CreateReferenceViewController.m in Sources */,
-				928266D2191EFE05001AD534 /* CreateRequestViewController.m in Sources */,
 				920917F119270C63009701FA /* InboxCell.m in Sources */,
 				9226EF081915DCEB0014B319 /* SettingsViewController.m in Sources */,
 			);

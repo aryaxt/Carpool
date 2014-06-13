@@ -70,9 +70,12 @@
     self.offer.date = date;
 }
 
-- (NSNumber *)periodForDateTimePickerViewController
+- (UIDatePickerMode)datePickerModeForDateTimePickerViewController
 {
-    return self.offer.period;
+    if ([self.offer.period isEqual:CarPoolOfferPeriodOneTime])
+        return UIDatePickerModeDateAndTime;
+    else
+        return UIDatePickerModeTime;
 }
 
 #pragma mark - LocationPickerViewControllerDelegate & LocationPickerViewControllerDataSource -

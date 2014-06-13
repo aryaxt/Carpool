@@ -10,6 +10,7 @@
 
 @interface NSDate (Additions)
 
+- (NSDate *)dateByCopyingTimeComponentsFromDate:(NSDate *)dat;
 - (NSDate *)dateWithoutTimeComponents;
 + (NSDate *)dateWithoutTimeComponents;
 

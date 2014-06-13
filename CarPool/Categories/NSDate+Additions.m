@@ -23,4 +23,19 @@
     return [[NSDate date] dateWithoutTimeComponents];
 }
 
+- (NSDate *)dateByCopyingTimeComponentsFromDate:(NSDate *)date
+{
+    NSCalendar *cal = [NSCalendar currentCalendar];
+    
+    NSDateComponents *priorComponents = [cal components:NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:date];
+    
+    NSDateComponents *newComponents = [cal components:NSWeekdayCalendarUnit | NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit fromDate:self];
+    
+    [newComponents setSecond:[priorComponents second]];
+    [newComponents setMinute:[priorComponents minute]];
+    [newComponents setHour:[priorComponents hour]];
+    
+    return [cal dateFromComponents:newComponents];
+}
+
 @end

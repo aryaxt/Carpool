@@ -36,12 +36,7 @@
 
 - (void)stepWillAppear
 {
-    NSNumber *selectedPeriod = [self.dataSource periodForDateTimePickerViewController];
-    
-    if ([selectedPeriod isEqual:CarPoolOfferPeriodOneTime])
-        self.datePicker.datePickerMode = UIDatePickerModeDateAndTime;
-    else
-        self.datePicker.datePickerMode = UIDatePickerModeTime;
+    self.datePicker.datePickerMode = [self.dataSource datePickerModeForDateTimePickerViewController];
 }
 
 - (void)stepWillDisappear
