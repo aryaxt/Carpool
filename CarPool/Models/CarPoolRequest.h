@@ -13,6 +13,9 @@
 
 @interface CarPoolRequest : PFObject <PFSubclassing>
 
+
+extern NSNumber *CarPoolRequestPeriodOneTime;
+extern NSNumber *CarPoolRequestPeriodWeekDays;
 extern NSString *CarPoolRequestStatusAccepted;
 extern NSString *CarPoolRequestStatusRejected;
 extern NSString *CarPoolRequestStatusCanceled;
@@ -20,6 +23,7 @@ extern NSString *CarPoolRequestStatusCanceled;
 @property (nonatomic, strong) NSDate *date;
 @property (nonatomic, strong) NSString *status;
 @property (nonatomic, strong) NSString *message;
+@property (nonatomic, strong) NSNumber *period; /* Used for open requests */
 @property (nonatomic, strong) User *from;
 @property (nonatomic, strong) User *to;
 @property (nonatomic, strong) Location *startLocation;

@@ -8,7 +8,7 @@
 
 #import "MessagePickerViewController.h"
 
-@interface MessagePickerViewController()
+@interface MessagePickerViewController() <UITextViewDelegate>
 @property (nonatomic, strong) IBOutlet UITextView *txtMessage;
 @end
 
@@ -45,12 +45,11 @@
     [self.txtMessage becomeFirstResponder];
 }
 
-#pragma mark - IBActions -
+#pragma mark - UITextViewDelegate -
 
-- (IBAction)createSelected:(id)sender
+- (void)textViewDidChange:(UITextView *)textView
 {
-    [self.txtMessage resignFirstResponder];
-    [self.delegate messagePickerViewControllerDidSelectSendWithMessage:self.txtMessage.text];
+    [self.delegate messagePickerViewControllerDidEnterMessage:textView.text];
 }
 
 @end

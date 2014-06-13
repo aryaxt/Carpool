@@ -53,6 +53,58 @@
                                    self.dateTimePickerViewController,
                                    self.locationPickerViewController,
                                    self.messagePickerViewController]];
+    
+    UIBarButtonItem *cancelItem = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                  action:@selector(cancelSelected:)];
+    self.navigationItem.leftBarButtonItem = cancelItem;
+    
+    UIBarButtonItem *sendItem = [[UIBarButtonItem alloc] initWithTitle:@"Send"
+                                                                   style:UIBarButtonItemStyleBordered
+                                                                  target:self
+                                                                action:@selector(sendSelected:)];
+    self.navigationItem.rightBarButtonItem = sendItem;
+}
+
+#pragma mark - IBActions -
+
+- (void)cancelSelected:(id)sender
+{
+    [self.delegate createOfferStepsViewControllerDidSelectCancel];
+}
+
+- (void)sendSelected:(id)sender
+{
+    self.offer.from = [User currentUser];
+    self.offer.isActive = @YES;
+    
+    if (!self.offer.startLocation)
+    {
+        [self alertWithtitle:@"Error" andMessage:@"Starting location is required"];
+        return;
+    }
+    
+    if (!self.offer.endLocation)
+    {
+        [self alertWithtitle:@"Error" andMessage:@"Ending location is required"];
+        return;
+    }
+    
+    [self showLoader];
+    
+    [self.offerClient createOffer:self.offer withCompletion:^(BOOL succeeded, NSError *error) {
+        [self hideLoader];
+        
+        if (succeeded)
+        {
+           [self.delegate createOfferStepsViewControllerDidCreateOffer:self.offer];
+        }
+        else
+        {
+            [self alertWithtitle:@"Error" andMessage:@"There was a problem creating this offer"];
+        }
+    }];
 }
 
 #pragma mark - PeriodPickerViewControllerDelegate -
@@ -97,48 +149,9 @@
 
 #pragma mark - MessagePickerViewControllerDelegate -
 
-- (void)messagePickerViewControllerDidSelectSendWithMessage:(NSString *)message
+- (void)messagePickerViewControllerDidEnterMessage:(NSString *)message
 {
     self.offer.message = message;
-    self.offer.from = [User currentUser];
-    self.offer.isActive = @YES;
-    
-    if (!self.offer.startLocation)
-    {
-        [self alertWithtitle:@"Error" andMessage:@"Starting location is required"];
-        return;
-    }
-    
-    if (!self.offer.endLocation)
-    {
-        [self alertWithtitle:@"Error" andMessage:@"Ending location is required"];
-        return;
-    }
-    
-    [self showLoader];
-    
-    [self.offerClient createOffer:self.offer withCompletion:^(BOOL succeeded, NSError *error) {
-        [self hideLoader];
-        
-        if (succeeded)
-        {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                            message:@"Your offer was created."
-                                                   cancelButtonItem:[RIButtonItem itemWithLabel:@"Ok"
-                                                                                         action:^{
-                                                                                             
-                                                                                             [self.navigationController popViewControllerAnimated:YES];
-                                                                                             [self.delegate createOfferStepsViewControllerDidCreateOffer:self.offer];
-                                                                                         }] otherButtonItems:nil];
-            
-            [alert show];
-        }
-        else
-        {
-            [self alertWithtitle:@"Error" andMessage:@"There was a problem creating this offer"];
-        }
-    }];
-
 }
 
 #pragma mark - Setter & Getter -

@@ -71,22 +71,36 @@
         [(CreateRequestStepsViewController *)vc setDelegate:self];
     }
     
-    [self.navigationController pushViewController:vc
-                                         animated:YES];
+    UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+    [self presentViewController:navController animated:YES completion:nil];
 }
 
 #pragma mark - CreateOfferStepsViewControllerDelegate -
 
 - (void)createOfferStepsViewControllerDidCreateOffer:(CarPoolOffer *)offer
 {
-    [self.myOffersViewController addNewOffer:offer];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.myOffersViewController addNewOffer:offer];
+    }];
+}
+
+- (void)createRequestStepsViewControllerDidSelectCancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - CreateRequestStepsViewController -
 
 - (void)createRequestStepsViewControllerDidCreateRequest:(CarPoolRequest *)request
 {
-    [self.myRequestsViewController addNewRequest:request];
+    [self dismissViewControllerAnimated:YES completion:^{
+        [self.myRequestsViewController addNewRequest:request];
+    }];
+}
+
+- (void)createOfferStepsViewControllerDidSelectCancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - SlideNavigationController Methods -

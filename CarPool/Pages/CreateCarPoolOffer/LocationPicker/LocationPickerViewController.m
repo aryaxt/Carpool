@@ -35,6 +35,7 @@
     UINavigationController *nacVontroller = [[UINavigationController alloc] initWithRootViewController:vc];
     vc.delegate = self;
     vc.tag = (textField == self.txtStartLocation) ? LOCATION_SEARCH_START : LOCATION_SEARCH_END;
+    vc.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
     
     UIViewController *modalPresenter = [self.dataSource modalPresenterForLocationPickerViewController];
     [modalPresenter presentViewController:nacVontroller animated:YES completion:nil];

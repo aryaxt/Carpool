@@ -52,11 +52,8 @@ Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {
 Parse.Cloud.beforeSave("CarPoolRequest", function(request, response) {
 	if (request.object.get("from") == null) {
 		response.error("from is required");
-	} 
-	else if (request.object.get("to") == null) {
-		response.error("to is missing");
-	} 
-	else if (request.object.get("to").id == request.object.get("from").id) {
+	}
+	else if (request.object.get("to") != null && request.object.get("to").id == request.object.get("from").id) {
 		response.error("Can't send a request to yourself");
 	}
 	else if (request.object.get("date") == null) {

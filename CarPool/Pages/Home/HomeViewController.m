@@ -21,7 +21,7 @@
 #import "CreateRequestStepsViewController.h"
 #import "ProfileViewController.h"
 
-@interface HomeViewController() <SlideNavigationControllerDelegate, MKMapViewDelegate, OfferDetailViewControllerDelegate, SearchFilterViewControllerDelegate>
+@interface HomeViewController() <SlideNavigationControllerDelegate, MKMapViewDelegate, OfferDetailViewControllerDelegate, SearchFilterViewControllerDelegate, CreateRequestStepsViewControllerDelegate>
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) CarPoolOfferClient *offerClient;
@@ -55,7 +55,7 @@
     [super viewWillAppear:animated];
     
     [self.navigationController.view addSubview:self.offerDetailViewController.view];
-    [self setHideOfferDetail:(self.offers.count) ? NO : YES animated:NO];
+    [self setHideOfferDetail:(self.offers.count) ? NO : YES animated:NO withCompletion:nil];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -210,17 +210,27 @@
 
 - (void)offerDetailViewControllerDidSelectRequestForOffer:(CarPoolOffer *)offer
 {
-    CreateRequestStepsViewController *vc = [CreateRequestStepsViewController viewController];
-    vc.offer = offer;
-    [self.navigationController pushViewController:vc animated:YES];
+    __weak HomeViewController *selfReference = self;
+    
+    [self setHideOfferDetail:YES animated:YES withCompletion:^{
+        CreateRequestStepsViewController *vc = [CreateRequestStepsViewController viewController];
+        vc.delegate = selfReference;
+        vc.offer = offer;
+        UINavigationController *navController = [[UINavigationController alloc] initWithRootViewController:vc];
+        [selfReference presentViewController:navController animated:YES completion:nil];
+    }];
 }
 
 - (void)offerDetailViewControllerDidSelectViewUserProfile:(User *)user
 {
-    ProfileViewController *vc = [ProfileViewController viewController];
-    vc.user = user;
-    vc.shouldEnableSlideMenu = NO;
-    [self.navigationController pushViewController:vc animated:YES];
+    __weak HomeViewController *selfReference = self;
+    
+    [self setHideOfferDetail:YES animated:YES withCompletion:^{
+        ProfileViewController *vc = [ProfileViewController viewController];
+        vc.user = user;
+        vc.shouldEnableSlideMenu = NO;
+        [selfReference.navigationController pushViewController:vc animated:YES];
+    }];
 }
 
 #pragma mark - Private MEthods -
@@ -237,7 +247,7 @@
                      } completion:nil];
 }
 
-- (void)setHideOfferDetail:(BOOL)hide animated:(BOOL)animated
+- (void)setHideOfferDetail:(BOOL)hide animated:(BOOL)animated withCompletion:(void (^)())completion
 {
     [UIView animateWithDuration:(animated) ? .3 : 0
                           delay:0
@@ -246,7 +256,10 @@
                          CGRect rect = _offerDetailViewController.view.frame;
                          rect.origin.y = (hide) ? self.navigationController.view.frame.size.height : self.navigationController.view.frame.size.height-NAV_BAR_HEIGHT;
                          _offerDetailViewController.view.frame = rect;
-                     } completion:nil];
+                     } completion:^(BOOL finished) {
+                         if (completion)
+                             completion();
+                     }];
 }
 
 - (void)addPinsFrom:(CLLocationCoordinate2D)from to:(CLLocationCoordinate2D)to
@@ -300,7 +313,7 @@
                                  withLimit:10
                              andCompletion:^(NSArray *offers, NSError *error) {
                                  
-                                 [self setHideOfferDetail:(offers.count) ? NO : YES animated:YES];
+                                 [self setHideOfferDetail:(offers.count) ? NO : YES animated:YES withCompletion:nil];
                                  
                                  if (error)
                                  {
@@ -322,6 +335,18 @@
                                      }
                                  }
                              }];
+}
+
+#pragma mark - CreateRequestStepsViewControllerDelegate -
+
+- (void)createRequestStepsViewControllerDidSelectCancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)createRequestStepsViewControllerDidCreateRequest:(CarPoolRequest *)request
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - Setter & Getter -

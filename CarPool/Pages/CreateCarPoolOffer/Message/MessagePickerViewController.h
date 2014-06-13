@@ -10,13 +10,11 @@
 #import "StepsViewController.h"
 
 @protocol MessagePickerViewControllerDelegate <NSObject>
-- (void)messagePickerViewControllerDidSelectSendWithMessage:(NSString *)message;
+- (void)messagePickerViewControllerDidEnterMessage:(NSString *)message;
 @end
 
 @interface MessagePickerViewController : BaseViewController <StepViewController>
 
 @property (nonatomic, weak) id <MessagePickerViewControllerDelegate> delegate;
-
-- (IBAction)createSelected:(id)sender;
 
 @end

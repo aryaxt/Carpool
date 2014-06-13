@@ -14,12 +14,15 @@
 @dynamic status;
 @dynamic comments;
 @dynamic message;
+@dynamic period;
 @dynamic from;
 @dynamic to;
 @dynamic offer;
 @dynamic startLocation;
 @dynamic endLocation;
 
+NSNumber *CarPoolRequestPeriodOneTime;
+NSNumber *CarPoolRequestPeriodWeekDays;
 NSString *CarPoolRequestStatusAccepted = @"accepted";
 NSString *CarPoolRequestStatusRejected = @"rejected";
 NSString *CarPoolRequestStatusCanceled = @"canceled";
@@ -32,6 +35,9 @@ NSString *CarPoolRequestStatusCanceled = @"canceled";
 + (void)load
 {
     [self registerSubclass];
+    
+    CarPoolRequestPeriodOneTime = @1;
+    CarPoolRequestPeriodWeekDays = @5;
 }
 
 @end

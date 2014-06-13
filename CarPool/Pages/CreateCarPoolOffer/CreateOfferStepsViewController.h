@@ -11,6 +11,7 @@
 
 @protocol CreateOfferStepsViewControllerDelegate
 - (void)createOfferStepsViewControllerDidCreateOffer:(CarPoolOffer *)offer;
+- (void)createOfferStepsViewControllerDidSelectCancel;
 @end
 
 @interface CreateOfferStepsViewController : StepsViewController

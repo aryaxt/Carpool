@@ -12,6 +12,7 @@
 
 @protocol CreateRequestStepsViewControllerDelegate <NSObject>
 - (void)createRequestStepsViewControllerDidCreateRequest:(CarPoolRequest *)request;
+- (void)createRequestStepsViewControllerDidSelectCancel;
 @end
 
 @interface CreateRequestStepsViewController : StepsViewController
