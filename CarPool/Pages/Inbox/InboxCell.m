@@ -26,7 +26,7 @@
 {
     User *otherUser = ([comment.from.objectId isEqual:[User currentUser].objectId])
         ? comment.to
-        :comment.from;
+        : comment.from;
     
     self.lblMessage.text = ([comment.from.objectId isEqual:[User currentUser].objectId])
         ? [NSString stringWithFormat:@"You: %@", comment.message]
@@ -41,7 +41,7 @@
     self.imgCarpoolrequestIndicator.hidden = (comment.request) ? NO : YES;
     [self.imgFromPhoto setUserPhotoStyle];
     [self.imgFromPhoto setImageWithURL:[NSURL URLWithString:otherUser.photoUrl]
-                           placeholderImage:[UIImage imageNamed:@"sfdfgdfg"]];
+                           placeholderImage:[UIImage imageNamed:USER_PHOTO_PLACEHOLDER]];
 }
 
 @end

@@ -14,7 +14,7 @@
 #import "RequestDetailViewController.h"
 #import "UIViewController+Additions.h"
 
-@interface MyRequestsViewController()
+@interface MyRequestsViewController() <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *requests;
 @property (nonatomic, strong) CarPoolRequestClient *requestclient;
@@ -79,10 +79,10 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *requestCellIdentifier = @"MyRequestCell";
+    CarPoolRequest *request = [self.requests objectAtIndex:indexPath.row];
+    NSString *requestCellIdentifier = ([request isOpenRequest]) ? @"MyOpenRequestCell" : @"MyRequestCell";
     MyRequestCell *cell = [tableView dequeueReusableCellWithIdentifier:requestCellIdentifier];
     
-    CarPoolRequest *request = [self.requests objectAtIndex:indexPath.row];
     [cell setRequest:request];
     return cell;
 }
@@ -95,7 +95,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 150;
+    CarPoolRequest *request = [self.requests objectAtIndex:indexPath.row];
+    return [request isOpenRequest] ? 120 : 155;
 }
 
 #pragma mark - Setter & Getter -

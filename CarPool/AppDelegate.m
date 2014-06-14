@@ -16,6 +16,7 @@
 #import <Parse/Parse.h>
 #import "PushNotificationManager.h"
 #import "ApplicationVersionManager.h"
+#import "GoogleAnalyticsManager.h"
 #import <Crashlytics/Crashlytics.h>
 
 @implementation AppDelegate
@@ -42,6 +43,9 @@
     
     // Start application version
     [ApplicationVersionManager sharedInstance];
+    
+    // Startiong google analytics
+    [GoogleAnalyticsManager sharedInstance];
     
     [application registerForRemoteNotificationTypes:
      UIRemoteNotificationTypeBadge |

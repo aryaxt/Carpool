@@ -33,7 +33,7 @@
     self.lblFromName.text = request.to.name;
     [self.imgFromPhoto setUserPhotoStyle];
     [self.imgFromPhoto setImageWithURL:[NSURL URLWithString:request.to.photoUrl]
-                      placeholderImage:[UIImage imageNamed:@"sdfsdf"]];
+                      placeholderImage:[UIImage imageNamed:USER_PHOTO_PLACEHOLDER]];
 }
 
 @end

@@ -37,6 +37,7 @@
     self.contentView.backgroundColor = [UIColor whiteColor];
     self.topView.layer.borderWidth = .6;
     self.topView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.pageControl.userInteractionEnabled = NO;
 }
 
 #pragma mark - Public Methods -
@@ -60,6 +61,17 @@
     self.pageControl.numberOfPages = stepViewController.count;
     self.currentStep = -1;
     [self moveToStep:0 animated:NO];
+}
+
+- (BOOL)areStepsValid
+{
+    for (id<StepViewController> step in self.viewControllers)
+    {
+        if (![step isStepValid])
+            return NO;
+    }
+    
+    return YES;
 }
 
 - (void)moveToStep:(NSInteger)step animated:(BOOL)animated

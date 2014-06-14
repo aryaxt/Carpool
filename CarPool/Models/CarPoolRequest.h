@@ -31,4 +31,6 @@ extern NSString *CarPoolRequestStatusCanceled;
 @property (nonatomic, strong) CarPoolOffer *offer;
 @property (nonatomic, strong, readonly) PFRelation *comments;
 
+- (BOOL)isOpenRequest;
+
 @end

@@ -16,8 +16,10 @@
 #import "CreateReferenceViewController.h"
 #import "MessageComposerView.h"
 #import "CommentClient.h"
+#import "ProfileEditableHeader.h"
+#import "ProfileEditableCell.h"
 
-@interface ProfileViewController() <SlideNavigationControllerDelegate, CreateReferenceViewControllerDelegate, MessageComposerViewDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface ProfileViewController() <SlideNavigationControllerDelegate, CreateReferenceViewControllerDelegate, MessageComposerViewDelegate, UITableViewDataSource, UITableViewDelegate, ProfileEditableHeaderDelegate, ProfileEditableCellDelegate>
 @property (nonatomic, assign) BOOL referencesFetched;
 @property (nonatomic, assign) CGFloat messageComposerHeight;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
@@ -29,14 +31,17 @@
 @property (nonatomic, strong) IBOutlet UILabel *lblAge;
 @property (nonatomic, strong) IBOutlet UIView *referencesView;
 @property (nonatomic, strong) IBOutlet UIView *userInfoView;
-@property (nonatomic, strong) IBOutlet UIView *aboutMeView;
-@property (nonatomic, strong) IBOutlet UIView *mediaView;
-@property (nonatomic, strong) IBOutlet UIView *interestesView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *referencesLoader;
 @property (nonatomic, strong) IBOutlet UIButton *btnCreateReference;
 @property (nonatomic, strong) ReferenceClient *referenceClient;
 @property (nonatomic, strong) MessageComposerView *messageComposerView;
 @property (nonatomic, strong) CommentClient *commentClient;
+@property (nonatomic, strong) ProfileEditableHeader *aboutMeHeader;
+@property (nonatomic, strong) ProfileEditableHeader *interestsHeader;
+@property (nonatomic, strong) ProfileEditableHeader *mediaHeader;
+@property (nonatomic, strong) ProfileEditableCell *aboutMeCell;
+@property (nonatomic, strong) ProfileEditableCell *interestsCell;
+@property (nonatomic, strong) ProfileEditableCell *mediaCell;
 @end
 
 @implementation ProfileViewController
@@ -69,19 +74,13 @@
     self.lblName.text = self.user.name;
     [self.imgProfilePicture setUserPhotoStyle];
     [self.imgProfilePicture setImageWithURL:[NSURL URLWithString:self.user.photoUrl]
-                           placeholderImage:[UIImage imageNamed:@"adfsdf"]];
+                           placeholderImage:[UIImage imageNamed:USER_PHOTO_PLACEHOLDER]];
     
     if ([self userIsCurrentUser])
     {
         self.btnCreateReference.hidden = YES;
     }
 
-    self.mediaView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.mediaView.layer.borderWidth = .6;
-    self.interestesView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.interestesView.layer.borderWidth = .6;
-    self.aboutMeView.layer.borderColor = [UIColor lightGrayColor].CGColor;
-    self.aboutMeView.layer.borderWidth = .6;
     self.referencesView.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.referencesView.layer.borderWidth = .6;
     self.referencesView.layer.cornerRadius = 20;
@@ -175,6 +174,18 @@
         ReferencesViewController *vc = segue.destinationViewController;
         vc.user = self.user;
     }
+}
+
+- (ProfileEditableCell *)profileEditableCellRelatedToProfileEditableHeader:(ProfileEditableHeader *)header
+{
+    if (header == self.aboutMeHeader)
+        return self.aboutMeCell;
+    else if (header == self.interestsHeader)
+        return self.interestsCell;
+    else if (header == self.mediaHeader)
+        return self.mediaCell;
+    else
+        return nil;
 }
 
 #pragma mark - CreateReferenceViewControllerDelegate -
@@ -272,37 +283,32 @@
 
 - (UITableViewCell *)cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSInteger OFFSET = 10;
+    ProfileEditableCell *cell;
     NSString *text = nil;
     
     if (indexPath.section == 2)
     {
-        text = self.user.profile.aboutMe;
+        cell = self.aboutMeCell;
+        
+        if ([self.user.profile isDataAvailable])
+            text = self.user.profile.aboutMe;
     }
     else if (indexPath.section == 3)
     {
-        text = self.user.profile.interests;
+        cell = self.interestsCell;
+        
+        if ([self.user.profile isDataAvailable])
+            text = self.user.profile.interests;
     }
     else if (indexPath.section == 4)
     {
-        text = self.user.profile.media;
-    }
-    else
-    {
-        return nil;
+        cell = self.mediaCell;
+        
+        if ([self.user.profile isDataAvailable])
+            text = self.user.profile.media;
     }
     
-    UITextView *textView = [[UITextView alloc] init];
-    textView.editable = NO;
-    textView.text = (text) ? text : @"Nothihg here yet";
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"ProfileInfoCell"];
-    [cell.contentView addSubview:textView];
-    textView.frame = CGRectInset(cell.frame, OFFSET, OFFSET);
-    [textView sizeToFit];
-    
-    CGRect rect = cell.frame;
-    rect.size.height = textView.frame.size.height + textView.frame.origin.y + OFFSET;
-    cell.frame = rect;
+    [cell setText:(text) ? text : @"Nothihg here yet"];
     
     return cell;
 }
@@ -325,15 +331,15 @@
     }
     else if (section == 2)
     {
-        return self.aboutMeView;
+        return self.aboutMeHeader;
     }
     else if (section == 3)
     {
-        return self.interestesView;
+        return self.interestsHeader;
     }
     else
     {
-        return self.mediaView;
+        return self.mediaHeader;
     }
 }
 
@@ -349,15 +355,15 @@
     }
     else if (section == 2)
     {
-        return self.aboutMeView.frame.size.height;
+        return self.aboutMeHeader.frame.size.height;
     }
     else if (section == 3)
     {
-        return self.interestesView.frame.size.height;
+        return self.interestsHeader.frame.size.height;
     }
     else
     {
-        return self.mediaView.frame.size.height;
+        return self.mediaHeader.frame.size.height;
     }
 }
 
@@ -369,6 +375,72 @@
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
     [self.messageComposerView resignFirstResponder];
+}
+
+#pragma mark - ProfileEditableHeaderDelegate -
+
+- (void)profileEditableHeaderDidSelectEdit:(ProfileEditableHeader *)header
+{
+    ProfileEditableCell *cell = [self profileEditableCellRelatedToProfileEditableHeader:header];
+    
+    [header setMode:ProfileEditableHeaderModeEditing];
+    [cell setIsInEditMode:YES];
+    
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
+- (void)profileEditableHeaderDidSelectSave:(ProfileEditableHeader *)header
+{
+    ProfileEditableCell *cell = [self profileEditableCellRelatedToProfileEditableHeader:header];
+    NSString *editedText = [cell editedText];
+    User *user = [User currentUser];
+    
+    if (header == self.aboutMeHeader)
+        user.profile.aboutMe = editedText;
+    else if (header == self.interestsHeader)
+        user.profile.interests = editedText;
+    else if (header == self.mediaHeader)
+        user.profile.media = editedText;
+    
+    [cell setIsInEditMode:NO];
+    [self.view endEditing:YES];
+    [header setMode:ProfileEditableHeaderModeSaving];
+    
+    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        if (error)
+        {
+            [self alertWithtitle:@"Error" andMessage:@"There was a problem updating your profile try again"];
+            [cell setIsInEditMode:YES];
+            [header setMode:ProfileEditableHeaderModeEditing];
+        }
+        else
+        {
+            NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+            [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+            [header setMode:ProfileEditableHeaderModeNormal];
+        }
+    }];
+}
+
+- (void)profileEditableHeaderDidSelectCancel:(ProfileEditableHeader *)header
+{
+    ProfileEditableCell *cell = [self profileEditableCellRelatedToProfileEditableHeader:header];
+    
+    [header setMode:ProfileEditableHeaderModeNormal];
+    [cell setIsInEditMode:NO];
+    [self.view endEditing:YES];
+    
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
+}
+
+#pragma mark - ProfileEditableCellDelegate -
+
+- (void)profileEditableCellDidChangeSize:(ProfileEditableCell *)cell
+{
+    [self.tableView beginUpdates];
+    [self.tableView endUpdates];
 }
 
 #pragma mark - Setter & Getter -
@@ -402,6 +474,76 @@
     }
     
     return _commentClient;
+}
+
+- (ProfileEditableHeader *)aboutMeHeader
+{
+    if (!_aboutMeHeader)
+    {
+        _aboutMeHeader = [[ProfileEditableHeader alloc] initWithTitle:@"About Me"
+                                                       editingEnabled:[self userIsCurrentUser]];
+        _aboutMeHeader.delegate = self;
+    }
+    
+    return _aboutMeHeader;
+}
+
+- (ProfileEditableHeader *)interestsHeader
+{
+    if (!_interestsHeader)
+    {
+        _interestsHeader = [[ProfileEditableHeader alloc] initWithTitle:@"Interests"
+                                                       editingEnabled:[self userIsCurrentUser]];
+        _interestsHeader.delegate = self;
+    }
+    
+    return _interestsHeader;
+}
+
+- (ProfileEditableHeader *)mediaHeader
+{
+    if (!_mediaHeader)
+    {
+        _mediaHeader = [[ProfileEditableHeader alloc] initWithTitle:@"Music, Movies, Books"
+                                                       editingEnabled:[self userIsCurrentUser]];
+        _mediaHeader.delegate = self;
+    }
+    
+    return _mediaHeader;
+}
+
+- (ProfileEditableCell *)aboutMeCell
+{
+    if (!_aboutMeCell)
+    {
+        _aboutMeCell = [[ProfileEditableCell alloc] init];
+        _aboutMeCell.delegate = self;
+    }
+    
+    return _aboutMeCell;
+}
+
+
+- (ProfileEditableCell *)interestsCell
+{
+    if (!_interestsCell)
+    {
+        _interestsCell = [[ProfileEditableCell alloc] init];
+        _interestsCell.delegate = self;
+    }
+    
+    return _interestsCell;
+}
+
+- (ProfileEditableCell *)mediaCell
+{
+    if (!_mediaCell)
+    {
+        _mediaCell = [[ProfileEditableCell alloc] init];
+        _mediaCell.delegate = self;
+    }
+    
+    return _mediaCell;
 }
 
 @end

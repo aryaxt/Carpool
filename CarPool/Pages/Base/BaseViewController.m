@@ -8,6 +8,7 @@
 
 #import "BaseViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "GoogleAnalyticsManager.h"
 
 @interface BaseViewController()
 @property (nonatomic, strong) MBProgressHUD *progressHud;
@@ -20,6 +21,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    if (self.title)
+        [self trackPage:self.title];
 }
 
 #pragma mark - Public Methods -
@@ -42,6 +46,18 @@
 - (void)hideLoader
 {
     [self.progressHud hide:YES];
+}
+
+#pragma mark - Google Analytics Helper -
+
+- (void)trackPage:(NSString *)page
+{
+    [[GoogleAnalyticsManager sharedInstance] trackPage:page];
+}
+
+- (void)trackEventWithCategory:(NSString *)category action:(NSString *)action label:(NSString *)label andValue:(NSNumber *)value
+{
+    [[GoogleAnalyticsManager sharedInstance] trackEventWithCategory:category action:action label:label andValue:value];
 }
 
 #pragma mark - Setter & Getter -

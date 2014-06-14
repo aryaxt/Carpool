@@ -36,7 +36,7 @@
     
     self.lblName.text = [User currentUser].name;
     [self.imgProfilePhoto setUserPhotoStyle];
-    [self.imgProfilePhoto setImageWithURL:[NSURL URLWithString:[User currentUser].photoUrl]];
+    [self.imgProfilePhoto setImageWithURL:[NSURL URLWithString:[User currentUser].photoUrl] placeholderImage:[UIImage imageNamed:USER_PHOTO_PLACEHOLDER]];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:UIApplicationWillEnterForegroundNotification
                                                       object:nil

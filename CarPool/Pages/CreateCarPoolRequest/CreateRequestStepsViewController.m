@@ -58,9 +58,13 @@
     
     if (!self.offer || [self.offer.period isEqualToNumber:CarPoolOfferPeriodWeekDays])
         [steps addObject:self.dateTimePickerViewController];
+    else
+        self.request.date = self.offer.date;
     
     [steps addObject:self.locationPickerViewController];
-    [steps addObject:self.messagePickerViewController];
+    
+    if (self.offer)
+        [steps addObject:self.messagePickerViewController];
     
     [self setStepViewControllers:steps];
     
@@ -99,7 +103,7 @@
         return;
     }
     
-    if (self.request.message.length == 0)
+    if (self.offer && self.request.message.length == 0)
     {
         [self alertWithtitle:@"Error" andMessage:@"Message is required"];
         return;

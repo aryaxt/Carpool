@@ -9,6 +9,7 @@
 #import "RequestDetailViewController.h"
 #import "UIImageView+Additions.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import "UIViewController+Additions.h"
 #import <MapKit/MapKit.h>
 #import "UIColor+Additions.h"
 #import "CarPoolRequestClient.h"
@@ -16,6 +17,7 @@
 #import "CommentCell.h"
 #import "CommentClient.h"
 #import "MessageComposerView.h"
+#import "ProfileViewController.h"
 
 @interface RequestDetailViewController() <MKMapViewDelegate, UITableViewDataSource, UITableViewDelegate, UITextViewDelegate, MessageComposerViewDelegate>
 @property (nonatomic, assign) CGFloat messageComposerHeight;
@@ -124,8 +126,8 @@
             self.request = request;
             
             [self.imgRequesterPhoto setUserPhotoStyle];
-            [self.imgRequesterPhoto setImageWithURL:[NSURL URLWithString:self.request.to.photoUrl]
-                                   placeholderImage:[UIImage imageNamed:@"sfdfgdfg"]];
+            [self.imgRequesterPhoto setImageWithURL:[NSURL URLWithString:[self otherUser].photoUrl]
+                                   placeholderImage:[UIImage imageNamed:USER_PHOTO_PLACEHOLDER]];
             
             [self updateStatusInfo];
             [self updateActionButtonVisibility];
@@ -216,6 +218,11 @@
             [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:1];
         }
     }];
+}
+
+- (User *)otherUser
+{
+    return ([self.request.from.objectId isEqual:[User currentUser].objectId]) ? self.request.to : self.request.from;
 }
 
 - (void)addPolyline
@@ -365,6 +372,14 @@
 - (IBAction)cancelSelected:(id)sender
 {
     [self changeRequestStatus:CarPoolRequestStatusCanceled];
+}
+
+- (IBAction)profilePhotoSelected:(id)sender
+{
+    ProfileViewController *vc = [ProfileViewController viewController];
+    vc.user = [self otherUser];
+    vc.shouldEnableSlideMenu = NO;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - UITableView Delegate & Datasource -

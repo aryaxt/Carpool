@@ -28,7 +28,7 @@
 {
     [self.imgFromPhoto setUserPhotoStyle];
     [self.imgFromPhoto setImageWithURL:[NSURL URLWithString:reference.from.photoUrl]
-                           placeholderImage:[UIImage imageNamed:@"adfsdf"]];
+                           placeholderImage:[UIImage imageNamed:USER_PHOTO_PLACEHOLDER]];
     
     self.lblFromName.text = reference.from.name;
     self.lblText.text = reference.text;

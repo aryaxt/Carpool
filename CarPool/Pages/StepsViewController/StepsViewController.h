@@ -22,5 +22,6 @@
 - (void)setStepViewControllers:(NSArray *)stepViewController;
 - (void)moveToPreviousStep;
 - (void)moveToNextStep;
+- (BOOL)areStepsValid;
 
 @end

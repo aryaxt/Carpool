@@ -24,8 +24,9 @@ Parse.Cloud.beforeSave(Parse.User, function(request, response) {
 			}
 		});
 	}
-	
-	response.success();
+    else {
+        response.success();
+    }
 });
 
 Parse.Cloud.beforeSave("CarPoolOffer", function(request, response) {

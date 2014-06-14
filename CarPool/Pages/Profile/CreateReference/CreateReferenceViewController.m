@@ -34,7 +34,7 @@
     self.lblUserName.text = self.user.name;
     [self.imgUserPhoto setUserPhotoStyle];
     [self.imgUserPhoto setImageWithURL:[NSURL URLWithString:self.user.photoUrl]
-                      placeholderImage:[UIImage imageNamed:@"sdfsdf"]];
+                      placeholderImage:[UIImage imageNamed:USER_PHOTO_PLACEHOLDER]];
     
     self.txtReference.layer.borderColor = [UIColor lightGrayColor].CGColor;
     self.txtReference.layer.borderWidth = .6;

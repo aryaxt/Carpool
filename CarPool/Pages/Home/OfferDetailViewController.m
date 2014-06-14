@@ -85,7 +85,7 @@
     _carPoolOffer = offer;
     
     self.lblUserName.text = offer.from.name;
-    [self.offerOwnerPhoto setImageWithURL:[NSURL URLWithString:offer.from.photoUrl]];
+    [self.offerOwnerPhoto setImageWithURL:[NSURL URLWithString:offer.from.photoUrl] placeholderImage:[UIImage imageNamed:USER_PHOTO_PLACEHOLDER]];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateFormat:([offer.period isEqual:CarPoolOfferPeriodOneTime])

@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GAI.h"
 
 @interface BaseViewController : UIViewController
 
+- (void)trackPage:(NSString *)page;
+- (void)trackEventWithCategory:(NSString *)category action:(NSString *)action label:(NSString *)label andValue:(NSNumber *)value;
 - (void)alertWithtitle:(NSString *)title andMessage:(NSString *)message;
 - (void)showLoader;
 - (void)hideLoader;

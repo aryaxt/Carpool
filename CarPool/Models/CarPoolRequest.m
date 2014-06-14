@@ -40,4 +40,9 @@ NSString *CarPoolRequestStatusCanceled = @"canceled";
     CarPoolRequestPeriodWeekDays = @5;
 }
 
+- (BOOL)isOpenRequest
+{
+    return (self.offer) ? NO : YES;
+}
+
 @end
