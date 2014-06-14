@@ -89,10 +89,6 @@
     self.referencesView.layer.shadowOpacity = .8;
     self.referencesView.layer.shadowOffset = CGSizeMake(1, 1);
     
-    UITapGestureRecognizer *tapREcognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(referencesSelected:)];
-    [self.referencesView addGestureRecognizer:tapREcognizer];
-    
-    
     self.lblPositiveReferenceCount.text = @"";
     self.lblNegativeReferenceCount.text = @"";
     
@@ -165,7 +161,7 @@
 {
     if ([segue.identifier isEqualToString:@"CreateReferenceViewController"])
     {
-        CreateReferenceViewController *vc = segue.destinationViewController;
+        CreateReferenceViewController *vc = (CreateReferenceViewController *)[(UINavigationController *)segue.destinationViewController topViewController];
         vc.delegate = self;
         vc.user = self.user;
     }
@@ -190,9 +186,15 @@
 
 #pragma mark - CreateReferenceViewControllerDelegate -
 
-- (void)CreateReferenceViewControllerDidSubmitReference:(Reference *)reference
+- (void)createReferenceViewControllerDidSubmitReference:(Reference *)reference
 {
+    [self dismissViewControllerAnimated:YES completion:nil];
     [self fetchAndPopulateReferenceCounts];
+}
+
+- (void)createReferenceViewControllerDidCancel
+{
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - IBActions -
@@ -204,7 +206,7 @@
     [currentUser saveEventually];
 }
 
-- (void)referencesSelected:(id)sender
+- (IBAction)referencesSelected:(id)sender
 {
     [self showReferences:NO animated:YES withCompletion:^{
        [self performSegueWithIdentifier:@"ReferencesViewController" sender:self];
@@ -407,6 +409,7 @@
     [self.view endEditing:YES];
     [header setMode:ProfileEditableHeaderModeSaving];
     
+    //TODO: Move this to it's own client, don't do it in ViewController
     [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (error)
         {

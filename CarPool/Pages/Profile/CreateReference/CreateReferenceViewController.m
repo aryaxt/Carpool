@@ -103,18 +103,14 @@
         }
         else
         {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success"
-                                                            message:@"Your Reference was sent."
-                                                   cancelButtonItem:[RIButtonItem itemWithLabel:@"Ok"
-                                                                                         action:^{
-                                                                                             
-                                                                                             [self.navigationController popViewControllerAnimated:YES];
-                                                                                             [self.delegate CreateReferenceViewControllerDidSubmitReference:self.reference];
-                                                                                         }] otherButtonItems:nil];
-            
-            [alert show];
+            [self.delegate createReferenceViewControllerDidSubmitReference:self.reference];
         }
     }];
+}
+
+- (IBAction)cancelSelected
+{
+    [self.delegate createReferenceViewControllerDidCancel];
 }
 
 #pragma mark - Setter & Getter -

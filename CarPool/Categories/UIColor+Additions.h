@@ -15,5 +15,7 @@
 + (UIColor *)greenChatBubbleColor;
 + (UIColor *)grayChatBubbleColor;
 + (UIColor *)redChatBubbleColor;
++ (UIColor *)lightBackgroundColor;
++ (UIColor *)borderColor;
 
 @end

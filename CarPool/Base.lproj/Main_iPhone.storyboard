@@ -309,7 +309,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ur1-ot-Epk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466" y="-302"/>
+            <point key="canvasLocation" x="1536" y="-288"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="llL-cr-jXy">
@@ -358,7 +358,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="V0F-Uz-2XG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1046" y="-1301"/>
+            <point key="canvasLocation" x="1036" y="-1095"/>
         </scene>
         <!--Push Notification Setting View Controller - Push Notifications-->
         <scene sceneID="Ofj-CB-esB">
@@ -417,7 +417,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Aag-zp-EME" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1487" y="-1301"/>
+            <point key="canvasLocation" x="1536" y="-1095"/>
         </scene>
         <!--Profile View Controller - Account-->
         <scene sceneID="KoL-GR-dLp">
@@ -510,6 +510,10 @@
                                             </activityIndicatorView>
                                         </subviews>
                                         <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="13i-ur-BjX" appends="YES" id="iKh-hf-txT"/>
+                                        </connections>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="hAE-Aw-QCN">
                                         <rect key="frame" x="95" y="87" width="35" height="35"/>
@@ -518,7 +522,7 @@
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="q5r-bo-02J" kind="push" identifier="CreateReferenceViewController" id="I1N-ot-6ML"/>
+                                            <segue destination="KHK-jd-1gf" kind="modal" identifier="CreateReferenceViewController" id="q7J-Ru-Cat"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Member Since:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="SUd-2b-XyS">
@@ -570,8 +574,13 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e4m-c0-dxi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="13i-ur-BjX">
+                    <connections>
+                        <action selector="referencesSelected:" destination="lNv-P4-8RP" id="fg9-ek-3nX"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1058" y="-2490"/>
+            <point key="canvasLocation" x="1060" y="-2210"/>
         </scene>
         <!--References View Controller-->
         <scene sceneID="i5T-58-QDH">
@@ -602,7 +611,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ht0-ju-z00" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1624" y="-2236"/>
+            <point key="canvasLocation" x="1604" y="-1956"/>
         </scene>
         <!--Reference View Controller-->
         <scene sceneID="5DU-Ax-4aC">
@@ -693,7 +702,22 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="djS-z6-zk7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1984" y="-2236"/>
+            <point key="canvasLocation" x="2010" y="-1956"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Mpl-5T-ZlQ">
+            <objects>
+                <navigationController definesPresentationContext="YES" id="KHK-jd-1gf" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="XwS-pO-vbQ">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="q5r-bo-02J" kind="relationship" relationship="rootViewController" id="3PA-83-g6h"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fL1-mE-Hz3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1604" y="-2633"/>
         </scene>
         <!--Create Reference View Controller - Write Reference-->
         <scene sceneID="rZJ-Jx-zQF">
@@ -733,6 +757,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Write Reference" id="61i-8M-6Zi">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="d0C-Sr-tD5">
+                            <connections>
+                                <action selector="cancelSelected" destination="q5r-bo-02J" id="E1t-4P-ROV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Send" id="x7z-xY-OcS">
                             <connections>
                                 <action selector="sendSelected:" destination="q5r-bo-02J" id="IHm-aw-1f3"/>
@@ -748,7 +777,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pYR-jV-0xJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1624" y="-2907"/>
+            <point key="canvasLocation" x="2010" y="-2633"/>
         </scene>
         <!--My Activities View Controller - Offers-->
         <scene sceneID="pXw-DO-ENC">
@@ -845,7 +874,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieR-EA-u0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1578" y="3551"/>
+            <point key="canvasLocation" x="1536" y="3317"/>
         </scene>
         <!--Inbox View Controller - Inbox-->
         <scene sceneID="4xe-Ui-fp6">
@@ -932,7 +961,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ucp-F6-HmS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1036" y="3169"/>
+            <point key="canvasLocation" x="994" y="2935"/>
         </scene>
         <!--Request Detail View Controller - Request-->
         <scene sceneID="fBJ-si-2me">
@@ -985,7 +1014,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="GVT-ZV-mk8">
-                                        <rect key="frame" x="8" y="10" width="80" height="86"/>
+                                        <rect key="frame" x="8" y="10" width="85" height="85"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <gestureRecognizers/>
                                         <connections>
@@ -1000,7 +1029,7 @@
                                         </connections>
                                     </mapView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="UDf-zv-yhN">
-                                        <rect key="frame" x="91" y="61" width="100" height="35"/>
+                                        <rect key="frame" x="100" y="60" width="100" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.25098040700000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Accept">
@@ -1015,7 +1044,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Hvy-cm-cAo">
-                                        <rect key="frame" x="214" y="61" width="100" height="35"/>
+                                        <rect key="frame" x="214" y="60" width="100" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.83938536352040816" green="0.0" blue="0.0091081758988776837" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Decline">
@@ -1037,7 +1066,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Anp-vl-gFW">
-                                        <rect key="frame" x="145" y="61" width="100" height="35"/>
+                                        <rect key="frame" x="145" y="60" width="100" height="35"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.83938536352040816" green="0.0" blue="0.0091081758988776837" alpha="1" colorSpace="calibratedRGB"/>
                                         <state key="normal" title="Cancel">
@@ -1076,7 +1105,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1578" y="2873"/>
+            <point key="canvasLocation" x="1536" y="2639"/>
         </scene>
         <!--My Offers View Contorller-->
         <scene sceneID="It7-J0-SVJ">
@@ -1552,7 +1581,7 @@ AQABAAEAAQAB//+dkAEA//+PgAAE//+dkAEI//+dkAEMUERUAFBTVABQV1QAUFBUAAAAAAEAAAABA
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="deJ-TK-Qy0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1466" y="392"/>
+            <point key="canvasLocation" x="1536" y="406"/>
         </scene>
         <!--Create Offer Steps View Controller - Create Offer-->
         <scene sceneID="vd5-A3-447">

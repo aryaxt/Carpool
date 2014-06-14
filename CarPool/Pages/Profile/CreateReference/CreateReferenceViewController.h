@@ -11,7 +11,8 @@
 #import "Reference.h"
 
 @protocol CreateReferenceViewControllerDelegate <NSObject>
-- (void)CreateReferenceViewControllerDidSubmitReference:(Reference *)reference;
+- (void)createReferenceViewControllerDidSubmitReference:(Reference *)reference;
+- (void)createReferenceViewControllerDidCancel;
 @end
 
 @interface CreateReferenceViewController : BaseViewController
