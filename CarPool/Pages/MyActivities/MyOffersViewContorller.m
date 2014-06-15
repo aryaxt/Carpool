@@ -64,6 +64,7 @@
 
 - (void)addNewOffer:(CarPoolOffer *)offer
 {
+    [self showNoContent:NO];
     [self.offers insertObject:offer atIndex:0];
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
                           withRowAnimation:UITableViewRowAnimationTop];

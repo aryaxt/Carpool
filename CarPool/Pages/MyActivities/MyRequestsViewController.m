@@ -66,6 +66,7 @@
 
 - (void)addNewRequest:(CarPoolRequest *)request
 {
+    [self showNoContent:NO];
     [self.requests insertObject:request atIndex:0];
     [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:0 inSection:0]]
                           withRowAnimation:UITableViewRowAnimationTop];
