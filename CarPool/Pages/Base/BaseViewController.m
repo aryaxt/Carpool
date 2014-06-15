@@ -8,7 +8,6 @@
 
 #import "BaseViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
-#import "GoogleAnalyticsManager.h"
 
 @interface BaseViewController()
 @property (nonatomic, strong) MBProgressHUD *progressHud;
@@ -21,9 +20,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    if (self.title)
-        [self trackPage:self.title];
 }
 
 #pragma mark - Public Methods -

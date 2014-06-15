@@ -26,6 +26,8 @@
 {
     [super viewDidLoad];
     
+    [self trackPage:GoogleAnalyticsManagerPageNotificationSettings];
+    
     [self showLoader];
     
     [self.userNotificationSettingClient fetchUserNotificationSettingsWithCompletion:^(NSArray *userNotificationSettings, NSError *error) {

@@ -33,6 +33,8 @@
 {
     [super viewDidLoad];
     
+    [self trackPage:GoogleAnalyticsManagerPageCreateOffer];
+    
     self.offer = [[CarPoolOffer alloc] init];
     
     self.periodPickerViewController = [PeriodPickerViewController viewController];

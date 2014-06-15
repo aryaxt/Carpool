@@ -29,6 +29,8 @@
 {
     [super viewDidLoad];
     
+    [self trackPage:GoogleAnalyticsManagerPageCreateReference];
+    
     self.txtReference.text = @"";
     
     self.lblUserName.text = self.user.name;

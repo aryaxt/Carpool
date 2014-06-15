@@ -18,6 +18,10 @@
 #import "CommentClient.h"
 #import "ProfileEditableHeader.h"
 #import "ProfileEditableCell.h"
+#import "UserClient.h"
+
+#define BLOCK_TEXT @"Block"
+#define UNBLOCK_TEXT @"Unblock"
 
 @interface ProfileViewController() <SlideNavigationControllerDelegate, CreateReferenceViewControllerDelegate, MessageComposerViewDelegate, UITableViewDataSource, UITableViewDelegate, ProfileEditableHeaderDelegate, ProfileEditableCellDelegate>
 @property (nonatomic, assign) BOOL referencesFetched;
@@ -33,6 +37,8 @@
 @property (nonatomic, strong) IBOutlet UIView *userInfoView;
 @property (nonatomic, strong) IBOutlet UIActivityIndicatorView *referencesLoader;
 @property (nonatomic, strong) IBOutlet UIButton *btnCreateReference;
+@property (nonatomic, strong) IBOutlet UIButton *btnBlockUnblock;
+@property (nonatomic, strong) IBOutlet UIActivityIndicatorView *blockUnblockLoader;
 @property (nonatomic, strong) ReferenceClient *referenceClient;
 @property (nonatomic, strong) MessageComposerView *messageComposerView;
 @property (nonatomic, strong) CommentClient *commentClient;
@@ -42,6 +48,7 @@
 @property (nonatomic, strong) ProfileEditableCell *aboutMeCell;
 @property (nonatomic, strong) ProfileEditableCell *interestsCell;
 @property (nonatomic, strong) ProfileEditableCell *mediaCell;
+@property (nonatomic, strong) UserClient *userClient;
 @end
 
 @implementation ProfileViewController
@@ -63,6 +70,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self trackPage:GoogleAnalyticsManagerPageProfile];
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -94,6 +103,12 @@
     
     [self fetchAndPopulateReferenceCounts];
     [self fetchAndPopulateProfile];
+    
+    [self.btnBlockUnblock setTitle:@"" forState:UIControlStateNormal];
+    self.btnBlockUnblock.hidden = YES;
+    
+    if (![self userIsCurrentUser])
+        [self fetchToDetermineIfUserIsBlockedByMe];
 }
 
 - (void)viewDidAppear:(BOOL)animated
@@ -111,6 +126,17 @@
 - (BOOL)userIsCurrentUser
 {
     return ([[User currentUser].objectId isEqualToString:self.user.objectId]);
+}
+
+- (void)fetchToDetermineIfUserIsBlockedByMe
+{
+    [self.userClient checkIsUserInMyBlockList:self.user withCompletion:^(NSNumber *blocked, NSError *error) {
+        if (!error)
+        {
+            [self.btnBlockUnblock setTitle:blocked.boolValue ? UNBLOCK_TEXT : BLOCK_TEXT forState:UIControlStateNormal];
+            self.btnBlockUnblock.hidden = NO;
+        }
+    }];
 }
 
 - (void)fetchAndPopulateProfile
@@ -199,11 +225,33 @@
 
 #pragma mark - IBActions -
 
-- (IBAction)blockUserSelected:(id)sender
+- (IBAction)blockUnblockUserSelected:(id)sender
 {
-    User *currentUser = [User currentUser];
-    [currentUser.blockedUsers addObject:self.user];
-    [currentUser saveEventually];
+     BOOL isBlocking = [BLOCK_TEXT isEqualToString:[self.btnBlockUnblock titleForState:UIControlStateNormal]];
+    self.btnBlockUnblock.hidden = YES;
+    [self.blockUnblockLoader startAnimating];
+    
+    void(^completionBlock)(NSError *) = ^(NSError *error) {
+        if (error)
+        {
+            [self alertWithtitle:@"Error" andMessage:@"There was a problem blocking/unblocking user"];
+        }
+        else
+        {
+            [self.blockUnblockLoader stopAnimating];
+            [self.btnBlockUnblock setTitle:isBlocking ? UNBLOCK_TEXT : BLOCK_TEXT forState:UIControlStateNormal];
+            self.btnBlockUnblock.hidden = NO;
+        }
+    };
+    
+    if (isBlocking)
+    {
+        [self.userClient blockUser:self.user withCompletion:completionBlock];
+    }
+    else
+    {
+        [self.userClient unblockUser:self.user withCompletion:completionBlock];
+    }
 }
 
 - (IBAction)referencesSelected:(id)sender
@@ -409,8 +457,7 @@
     [self.view endEditing:YES];
     [header setMode:ProfileEditableHeaderModeSaving];
     
-    //TODO: Move this to it's own client, don't do it in ViewController
-    [user saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+    [self.userClient saveUser:user withCompletion:^(NSError *error) {
         if (error)
         {
             [self alertWithtitle:@"Error" andMessage:@"There was a problem updating your profile try again"];
@@ -547,6 +594,16 @@
     }
     
     return _mediaCell;
+}
+
+- (UserClient *)userClient
+{
+    if (!_userClient)
+    {
+        _userClient = [[UserClient alloc] init];
+    }
+    
+    return _userClient;
 }
 
 @end

@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GAI.h"
+#import "GoogleAnalyticsManager.h"
 
 @interface BaseViewController : UIViewController
 

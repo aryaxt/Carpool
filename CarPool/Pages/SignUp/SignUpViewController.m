@@ -7,12 +7,15 @@
 //
 
 #import "SignUpViewController.h"
+#import "GoogleAnalyticsManager.h"
 
 @implementation SignUpViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[GoogleAnalyticsManager sharedInstance] trackPage:GoogleAnalyticsManagerPageSignup];
     
     self.signUpView.logo = nil;
 }

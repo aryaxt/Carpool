@@ -47,6 +47,8 @@
 {
     [super viewDidLoad];
     
+    [self trackPage:GoogleAnalyticsManagerPageRequestDetail];
+    
     [self.headerView removeFromSuperview];
     
     self.mapView.layer.borderColor = [UIColor lightGrayColor].CGColor;
@@ -169,7 +171,12 @@
     UIColor *color;
     User *otherUser = ([self isRequestMine]) ? self.request.to : self.request.from;
     
-    if (self.request.status)
+    if ([self.request isOpenRequest])
+    {
+        color = [UIColor darkGrayColor];
+        status = @"Your open request";
+    }
+    else if (self.request.status)
     {
         color = ([self.request.status isEqual:CarPoolRequestStatusAccepted]) ? [UIColor greenColor] : [UIColor redColor];
         status = (([self isRequestMine] && ![self.request.status isEqual:CarPoolRequestStatusCanceled]) ||
@@ -435,7 +442,7 @@
     if (section == 0)
         return self.headerView.frame.size.height;
     else
-        return self.messageComposerHeight;
+        return ([self.request isOpenRequest]) ? 0 : self.messageComposerHeight;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView

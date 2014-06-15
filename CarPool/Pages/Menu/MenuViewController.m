@@ -61,7 +61,8 @@
             }
             
             self.unreadCommentCount = unreadCommentCount;
-            [self.tableView reloadData];
+            // TODO: Don't hardcode the row number, find a better way
+            [self.tableView reloadRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:2 inSection:0]] withRowAnimation:UITableViewRowAnimationNone];
         }
     }];
 }

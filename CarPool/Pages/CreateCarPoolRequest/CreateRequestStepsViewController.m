@@ -34,6 +34,8 @@
 {
     [super viewDidLoad];
     
+    [self trackPage:GoogleAnalyticsManagerPageCreateRequest];
+    
     self.request = [[CarPoolRequest alloc] init];
     
     self.periodPickerViewController = [PeriodPickerViewController viewController];

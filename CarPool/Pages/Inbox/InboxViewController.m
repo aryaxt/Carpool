@@ -33,6 +33,8 @@
 {
     [super viewDidLoad];
     
+    [self trackPage:GoogleAnalyticsManagerPageInbox];
+    
     self.commentCountDictionary = [NSMutableDictionary dictionary];
     self.loadingCommentCounts = [NSMutableArray array];
     

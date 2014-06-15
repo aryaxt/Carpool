@@ -11,10 +11,25 @@
 #import "GAIFields.h"
 #import "GAI.h"
 
-NSString *GoogleAnalyticsManagerCategoryRequest = @"Request";
-NSString *GoogleAnalyticsManagerCategoryOffer = @"Offer";
-NSString *GoogleAnalyticsManagerCategoryReference = @"Reference";
-NSString *GoogleAnalyticsManagerActionCreate = @"Create";
+NSString *const GoogleAnalyticsManagerPageLogin = @"Login";
+NSString *const GoogleAnalyticsManagerPageSignup = @"Signup";
+NSString *const GoogleAnalyticsManagerPageHome = @"Home";
+NSString *const GoogleAnalyticsManagerPageHomeSearchFilter = @"Home Search Filter";
+NSString *const GoogleAnalyticsManagerPageInbox = @"Inbox";
+NSString *const GoogleAnalyticsManagerPageMyActivities = @"My Activities";
+NSString *const GoogleAnalyticsManagerPageRequestDetail = @"Request Detail";
+NSString *const GoogleAnalyticsManagerPagePersonalMessage = @"Personal Message";
+NSString *const GoogleAnalyticsManagerPageProfile = @"Profile";
+NSString *const GoogleAnalyticsManagerPageReferences = @"References";
+NSString *const GoogleAnalyticsManagerPageCreateReference = @"Create Reference";
+NSString *const GoogleAnalyticsManagerPageCreateRequest = @"Create Request";
+NSString *const GoogleAnalyticsManagerPageCreateOffer = @"Create Offer";
+NSString *const GoogleAnalyticsManagerPageSettings = @"Settings";
+NSString *const GoogleAnalyticsManagerPageNotificationSettings = @"Notification Settings";
+NSString *const GoogleAnalyticsManagerCategoryRequest = @"Request";
+NSString *const GoogleAnalyticsManagerCategoryOffer = @"Offer";
+NSString *const GoogleAnalyticsManagerCategoryReference = @"Reference";
+NSString *const GoogleAnalyticsManagerActionCreate = @"Create";
 
 @implementation GoogleAnalyticsManager
 

@@ -21,6 +21,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [self trackPage:GoogleAnalyticsManagerPageSettings];
 }
 
 - (void)viewWillAppear:(BOOL)animated

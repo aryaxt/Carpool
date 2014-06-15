@@ -109,6 +109,7 @@
 		9298BF4A194CB14D00157E42 /* ProfileEditableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9298BF49194CB14D00157E42 /* ProfileEditableHeader.xib */; };
 		9298BF4D194CC23E00157E42 /* ProfileEditableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9298BF4C194CC23E00157E42 /* ProfileEditableCell.m */; };
 		9298BF4F194CC4A300157E42 /* ProfileEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9298BF4E194CC4A300157E42 /* ProfileEditableCell.xib */; };
+		9298BF52194D301B00157E42 /* UserClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9298BF51194D301B00157E42 /* UserClient.m */; };
 		92B568D519170E2900CEF58F /* endPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D219170E2900CEF58F /* endPoint.png */; };
 		92B568D619170E2900CEF58F /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D319170E2900CEF58F /* calendar.png */; };
 		92B568D719170E2900CEF58F /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D419170E2900CEF58F /* startPoint.png */; };
@@ -307,6 +308,8 @@
 		9298BF4B194CC23E00157E42 /* ProfileEditableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileEditableCell.h; sourceTree = "<group>"; };
 		9298BF4C194CC23E00157E42 /* ProfileEditableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileEditableCell.m; sourceTree = "<group>"; };
 		9298BF4E194CC4A300157E42 /* ProfileEditableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileEditableCell.xib; sourceTree = "<group>"; };
+		9298BF50194D301B00157E42 /* UserClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserClient.h; sourceTree = "<group>"; };
+		9298BF51194D301B00157E42 /* UserClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserClient.m; sourceTree = "<group>"; };
 		92B568D219170E2900CEF58F /* endPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endPoint.png; sourceTree = "<group>"; };
 		92B568D319170E2900CEF58F /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		92B568D419170E2900CEF58F /* startPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startPoint.png; sourceTree = "<group>"; };
@@ -642,6 +645,8 @@
 				923E95071931BA16008411AA /* ApplicationVersionClient.m */,
 				925FB633193460FE00814B5A /* UserNotificationSettingClient.h */,
 				925FB634193460FE00814B5A /* UserNotificationSettingClient.m */,
+				9298BF50194D301B00157E42 /* UserClient.h */,
+				9298BF51194D301B00157E42 /* UserClient.m */,
 			);
 			path = Clients;
 			sourceTree = "<group>";
@@ -1119,6 +1124,7 @@
 				928266CB191E9B9C001AD534 /* PinEnabledMapView.m in Sources */,
 				925FB62C193452B800814B5A /* PushNotificationSettingViewController.m in Sources */,
 				92551237193B9A7100132526 /* PeriodPickerViewController.m in Sources */,
+				9298BF52194D301B00157E42 /* UserClient.m in Sources */,
 				927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */,
 				9217A5A919245AD9005E3A36 /* InboxViewController.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,

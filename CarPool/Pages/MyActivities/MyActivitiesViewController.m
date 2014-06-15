@@ -28,13 +28,15 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
+    
+    [self trackPage:GoogleAnalyticsManagerPageMyActivities];
+    
     // since referenceView could have a negative x, it shows up when back clicked
     self.view.clipsToBounds = YES;
     
     [self.view addSubview:self.myOffersViewController.view];
     [self.view addSubview:self.myRequestsViewController.view];
-    
-    [super viewDidLoad];
 }
 
 #pragma mark - IBActions -

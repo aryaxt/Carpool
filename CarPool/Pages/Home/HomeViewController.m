@@ -44,6 +44,8 @@
 {
     [super viewDidLoad];
     
+    [self trackPage:GoogleAnalyticsManagerPageHome];
+    
     self.searchFilter = [[SearchFilter alloc] init];
     self.mapView.delegate = self;
     

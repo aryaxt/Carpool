@@ -28,6 +28,8 @@
 {
     [super viewDidLoad];
     
+    [self trackPage:GoogleAnalyticsManagerPagePersonalMessage];
+    
     self.messageComposerHeight = self.messageComposerView.frame.size.height;
     
     [self showLoader];

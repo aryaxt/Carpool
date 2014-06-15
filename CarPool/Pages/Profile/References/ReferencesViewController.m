@@ -25,6 +25,8 @@
 {
     [super viewDidLoad];
     
+    [self trackPage:GoogleAnalyticsManagerPageReferences];
+    
     // since referenceView could have a negative x, it shows up when back clicked
     self.view.clipsToBounds = YES;
     

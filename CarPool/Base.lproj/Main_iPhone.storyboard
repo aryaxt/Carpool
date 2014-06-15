@@ -461,14 +461,14 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="eyo-Ir-vsz">
-                                        <rect key="frame" x="25" y="83" width="39" height="30"/>
+                                        <rect key="frame" x="9" y="83" width="70" height="30"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <state key="normal" title="Block">
                                             <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <action selector="blockUserSelected:" destination="lNv-P4-8RP" eventType="touchUpInside" id="pW8-av-gRq"/>
+                                            <action selector="blockUnblockUserSelected:" destination="lNv-P4-8RP" eventType="touchUpInside" id="9yg-YA-GAO"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" id="fgL-S8-chc">
@@ -551,6 +551,11 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" id="w5P-Oi-AJ1">
+                                        <rect key="frame" x="34" y="90" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="color" red="0.43529415129999999" green="0.74117648599999997" blue="0.82745105029999999" alpha="1" colorSpace="deviceRGB"/>
+                                    </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="deviceRGB"/>
                             </view>
@@ -559,6 +564,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="9ZN-fp-tFJ"/>
                     <connections>
+                        <outlet property="blockUnblockLoader" destination="w5P-Oi-AJ1" id="O2E-WS-Gg3"/>
+                        <outlet property="btnBlockUnblock" destination="eyo-Ir-vsz" id="X8r-ar-EPR"/>
                         <outlet property="btnCreateReference" destination="hAE-Aw-QCN" id="5Do-fw-VBM"/>
                         <outlet property="imgProfilePicture" destination="VHl-zy-2gV" id="LRO-XN-nTg"/>
                         <outlet property="lblAge" destination="KrU-7Q-kvJ" id="Npf-Yc-Sec"/>

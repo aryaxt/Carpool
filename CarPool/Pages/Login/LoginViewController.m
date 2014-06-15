@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 #import "PushNotificationManager.h"
+#import "GoogleAnalyticsManager.h"
 
 @implementation LoginViewController
 
@@ -32,6 +33,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    [[GoogleAnalyticsManager sharedInstance] trackPage:GoogleAnalyticsManagerPageLogin];
     
     [PFFacebookUtils initializeFacebook];
     [PFTwitterUtils initializeWithConsumerKey:@"MR6F0dYtUhcbhxry4ruQQJhiF" consumerSecret:@"oVtsA7BhAk2Iyt4x1we01euDKZ0Nip5MZ4HwfFUg9wmvi4qvGQ"];
