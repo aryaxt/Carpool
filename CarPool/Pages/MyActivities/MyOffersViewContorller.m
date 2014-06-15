@@ -55,6 +55,7 @@
                                          {
                                              self.offers = [offers mutableCopy];
                                              [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:offers.count];
+                                             [self showNoContent:offers.count ? NO : YES];
                                          }
                                  }];
 }

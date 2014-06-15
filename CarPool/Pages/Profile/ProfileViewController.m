@@ -49,6 +49,8 @@
 @property (nonatomic, strong) ProfileEditableCell *interestsCell;
 @property (nonatomic, strong) ProfileEditableCell *mediaCell;
 @property (nonatomic, strong) UserClient *userClient;
+@property (nonatomic, strong) NSNumber *positiveReferenceCount;
+@property (nonatomic, strong) NSNumber *negativeReferenceCount;
 @end
 
 @implementation ProfileViewController
@@ -159,6 +161,8 @@
         
         if (!error)
         {
+            self.positiveReferenceCount = poitive;
+            self.negativeReferenceCount = negative;
             self.referencesFetched = YES;
             self.lblPositiveReferenceCount.text = poitive.stringValue;
             self.lblNegativeReferenceCount.text = negative.stringValue;
@@ -194,6 +198,8 @@
     else if ([segue.identifier isEqualToString:@"ReferencesViewController"])
     {
         ReferencesViewController *vc = segue.destinationViewController;
+        vc.positiveReferenceCount = self.positiveReferenceCount;
+        vc.negativeReferenceCount = self.negativeReferenceCount;
         vc.user = self.user;
     }
 }

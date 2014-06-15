@@ -8,6 +8,9 @@
 
 #import "BaseViewController.h"
 #import <MBProgressHUD/MBProgressHUD.h>
+#import "NoContentView.h"
+
+#define NO_CONTENT_FADE_ANIMATION_DURATION .3
 
 @interface BaseViewController()
 @property (nonatomic, strong) MBProgressHUD *progressHud;
@@ -20,6 +23,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    self.noContentView = [[NoContentView alloc] init];
 }
 
 #pragma mark - Public Methods -
@@ -42,6 +47,21 @@
 - (void)hideLoader
 {
     [self.progressHud hide:YES];
+}
+
+- (void)showNoContent:(BOOL)show
+{
+    if (show)
+        [self.view addSubview:self.noContentView];
+    
+    self.noContentView.frame = self.view.bounds;
+    
+    [UIView animateWithDuration:NO_CONTENT_FADE_ANIMATION_DURATION animations:^{
+        self.noContentView.alpha = (show) ? 1 : 0;
+    } completion:^(BOOL finished) {
+        if (!show)
+            [self.noContentView removeFromSuperview];
+    }];
 }
 
 #pragma mark - Google Analytics Helper -

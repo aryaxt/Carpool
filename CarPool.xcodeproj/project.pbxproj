@@ -110,6 +110,8 @@
 		9298BF4D194CC23E00157E42 /* ProfileEditableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9298BF4C194CC23E00157E42 /* ProfileEditableCell.m */; };
 		9298BF4F194CC4A300157E42 /* ProfileEditableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9298BF4E194CC4A300157E42 /* ProfileEditableCell.xib */; };
 		9298BF52194D301B00157E42 /* UserClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9298BF51194D301B00157E42 /* UserClient.m */; };
+		9298BF55194D463E00157E42 /* NoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9298BF54194D463E00157E42 /* NoContentView.m */; };
+		9298BF57194D467400157E42 /* NoContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9298BF56194D467400157E42 /* NoContentView.xib */; };
 		92B568D519170E2900CEF58F /* endPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D219170E2900CEF58F /* endPoint.png */; };
 		92B568D619170E2900CEF58F /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D319170E2900CEF58F /* calendar.png */; };
 		92B568D719170E2900CEF58F /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D419170E2900CEF58F /* startPoint.png */; };
@@ -310,6 +312,9 @@
 		9298BF4E194CC4A300157E42 /* ProfileEditableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileEditableCell.xib; sourceTree = "<group>"; };
 		9298BF50194D301B00157E42 /* UserClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserClient.h; sourceTree = "<group>"; };
 		9298BF51194D301B00157E42 /* UserClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserClient.m; sourceTree = "<group>"; };
+		9298BF53194D463E00157E42 /* NoContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoContentView.h; sourceTree = "<group>"; };
+		9298BF54194D463E00157E42 /* NoContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoContentView.m; sourceTree = "<group>"; };
+		9298BF56194D467400157E42 /* NoContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoContentView.xib; sourceTree = "<group>"; };
 		92B568D219170E2900CEF58F /* endPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endPoint.png; sourceTree = "<group>"; };
 		92B568D319170E2900CEF58F /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		92B568D419170E2900CEF58F /* startPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startPoint.png; sourceTree = "<group>"; };
@@ -772,6 +777,9 @@
 				923E950D19325DC6008411AA /* MessageComposerView.xib */,
 				925511C9193A361500132526 /* AutoResizingTextView.h */,
 				925511CA193A361500132526 /* AutoResizingTextView.m */,
+				9298BF53194D463E00157E42 /* NoContentView.h */,
+				9298BF54194D463E00157E42 /* NoContentView.m */,
+				9298BF56194D467400157E42 /* NoContentView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -972,6 +980,7 @@
 				9226EEB5191573530014B319 /* Images.xcassets in Resources */,
 				9217A5A419245214005E3A36 /* global.json in Resources */,
 				928266C4191E904F001AD534 /* currntLocation.png in Resources */,
+				9298BF57194D467400157E42 /* NoContentView.xib in Resources */,
 				9298BF45194CAE0300157E42 /* userPlaceholder.png in Resources */,
 				92551249193BD1F000132526 /* next.png in Resources */,
 				9217A5A519245214005E3A36 /* index.html in Resources */,
@@ -1102,6 +1111,7 @@
 				92677F6E1933A002008046DE /* PersonalMessagesViewController.m in Sources */,
 				923E94F819316769008411AA /* ReferenceClient.m in Sources */,
 				923E94F11931178B008411AA /* SearchFilter.m in Sources */,
+				9298BF55194D463E00157E42 /* NoContentView.m in Sources */,
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				923E94FC193198E0008411AA /* ReferencesViewController.m in Sources */,
 				925FB63219345B9600814B5A /* UserNotificationSetting.m in Sources */,

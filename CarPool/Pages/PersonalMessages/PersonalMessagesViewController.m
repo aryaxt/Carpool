@@ -52,6 +52,7 @@
         {
             self.comments = [comments mutableCopy];
             [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:0];
+            [self showNoContent:comments.count ? NO : YES];
         }
     }];
 }

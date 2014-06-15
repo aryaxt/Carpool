@@ -12,5 +12,7 @@
 @interface ReferencesViewController : BaseViewController
 
 @property (nonatomic, strong) User *user;
+@property (nonatomic, strong) NSNumber *positiveReferenceCount;
+@property (nonatomic, strong) NSNumber *negativeReferenceCount;
 
 @end

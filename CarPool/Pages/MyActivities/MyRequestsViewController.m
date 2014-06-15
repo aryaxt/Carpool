@@ -57,6 +57,7 @@
                                          {
                                              self.requests = [requests mutableCopy];
                                              [self.tableView deleteRowsAndAnimateNewRowsInSectionZero:requests.count];
+                                             [self showNoContent:requests.count ? NO : YES];
                                          }
                                      }];
 }

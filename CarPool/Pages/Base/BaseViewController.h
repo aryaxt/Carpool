@@ -11,10 +11,13 @@
 
 @interface BaseViewController : UIViewController
 
+@property (nonatomic, strong) UIView *noContentView;
+
 - (void)trackPage:(NSString *)page;
 - (void)trackEventWithCategory:(NSString *)category action:(NSString *)action label:(NSString *)label andValue:(NSNumber *)value;
 - (void)alertWithtitle:(NSString *)title andMessage:(NSString *)message;
 - (void)showLoader;
 - (void)hideLoader;
+- (void)showNoContent:(BOOL)show;
 
 @end

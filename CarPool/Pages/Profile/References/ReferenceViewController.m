@@ -87,6 +87,8 @@
                                                 
                                                 [self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionBottom animated:NO];
                                             }
+                                            
+                                            [self showNoContent:self.references.count ? NO : YES];
                                         }
                                     }];
 }

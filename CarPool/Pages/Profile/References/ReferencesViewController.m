@@ -27,6 +27,12 @@
     
     [self trackPage:GoogleAnalyticsManagerPageReferences];
     
+    if (self.positiveReferenceCount && self.negativeReferenceCount)
+    {
+        [self.segmentedControl setTitle:[NSString stringWithFormat:@"Positive (%@)", self.positiveReferenceCount] forSegmentAtIndex:0];
+        [self.segmentedControl setTitle:[NSString stringWithFormat:@"Negative (%@)", self.negativeReferenceCount] forSegmentAtIndex:1];
+    }
+    
     // since referenceView could have a negative x, it shows up when back clicked
     self.view.clipsToBounds = YES;
     

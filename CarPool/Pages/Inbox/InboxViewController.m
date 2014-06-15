@@ -113,6 +113,8 @@
                                       [self.tableView reloadRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
                                   }
                                   [self.tableView endUpdates];
+                                  
+                                  [self showNoContent:self.comments.count ? NO : YES];
         }];
         
         return YES;
