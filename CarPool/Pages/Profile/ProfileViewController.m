@@ -277,23 +277,24 @@
         return;
     }
     
+    [self.messageComposerView resignFirstResponder];
     [self.messageComposerView setLoading:YES];
     
-   [self.commentClient sendCommentWithMessage:message
-                                       toUser:self.user
-                               withCompletion:^(Comment *comment, NSError *error) {
-       
-                                   [self.messageComposerView setLoading:NO];
-                                   
-                                   if (error)
-                                   {
-                                       [self alertWithtitle:@"Error" andMessage:@"There was a problem saving the comment"];
-                                   }
-                                   else
-                                   {
+    [self.commentClient sendCommentWithMessage:message
+                                        toUser:self.user
+                                withCompletion:^(Comment *comment, NSError *error) {
+                                    
+                                    [self.messageComposerView setLoading:NO];
+                                    
+                                    if (error)
+                                    {
+                                        [self alertWithtitle:@"Error" andMessage:@"There was a problem saving the comment"];
+                                    }
+                                    else
+                                    {
                                         [self.messageComposerView reset];
-                                   }
-   }];
+                                    }
+                                }];
 }
 
 - (void)messageComposerViewDidChangeSize

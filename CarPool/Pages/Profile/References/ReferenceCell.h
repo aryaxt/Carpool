@@ -9,7 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "Reference.h"
 
+@class ReferenceCell;
+@protocol ReferenceCellDelegate <NSObject>
+- (void)referenceCellDidSelectUserProfile:(ReferenceCell *)cell;
+@end
+
 @interface ReferenceCell : UITableViewCell
+
+@property (nonatomic, weak) id <ReferenceCellDelegate> delegate;
 
 - (CGRect)setReference:(Reference *)reference isExpanded:(BOOL)expanded;
 

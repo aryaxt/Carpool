@@ -24,6 +24,14 @@
 
 @implementation ReferenceCell
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    UITapGestureRecognizer *tapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(profilePictureSelected:)];
+    [self.imgFromPhoto addGestureRecognizer:tapRecognizer];
+}
+
 - (CGRect)setReference:(Reference *)reference isExpanded:(BOOL)expanded
 {
     [self.imgFromPhoto setUserPhotoStyle];
@@ -53,6 +61,13 @@
     CGRect rect = self.frame;
     rect.size.height = self.lblText.frame.origin.y + self.lblText.frame.size.height + 5;
     return rect;
+}
+
+#pragma mark - IBActions -
+
+- (IBAction)profilePictureSelected:(id)sender
+{
+    [self.delegate referenceCellDidSelectUserProfile:self];
 }
 
 @end

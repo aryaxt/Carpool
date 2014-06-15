@@ -15,7 +15,7 @@
 #define RESULT_PER_PAGE 10
 #define CELL_IDENTIFIER @"ReferenceCell"
 
-@interface ReferenceViewController()
+@interface ReferenceViewController() <ReferenceCellDelegate>
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) NSMutableArray *references;
 @property (nonatomic, strong) ReferenceClient *referencesClient;
@@ -111,6 +111,7 @@
     Reference *reference = [self.references objectAtIndex:indexPath.row];
     
     [cell setReference:reference isExpanded:[self isReferenceExpanded:reference]];
+    [cell setDelegate:self];
     return cell;
 }
 
@@ -142,6 +143,15 @@
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
     [self.tableView beginUpdates];
     [self.tableView endUpdates];
+}
+
+#pragma mark - ReferenceCellDelegate -
+
+- (void)referenceCellDidSelectUserProfile:(ReferenceCell *)cell
+{
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    Reference *reference = [self.references objectAtIndex:indexPath.row];
+    [self.delegate referenceViewControllerDidSelectUserProfile:reference.from];
 }
 
 #pragma mark - Setter & Getter -

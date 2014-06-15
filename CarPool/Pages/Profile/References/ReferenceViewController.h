@@ -9,8 +9,13 @@
 #import "BaseViewController.h"
 #import "User.h"
 
+@protocol ReferenceViewControllerDelegate <NSObject>
+- (void)referenceViewControllerDidSelectUserProfile:(User *)user;
+@end
+
 @interface ReferenceViewController : BaseViewController
 
+@property (nonatomic, weak) id <ReferenceViewControllerDelegate> delegate;
 @property (nonatomic, strong) NSString *referenceType;
 @property (nonatomic, strong) User *user;
 
