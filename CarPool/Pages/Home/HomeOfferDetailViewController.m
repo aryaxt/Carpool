@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 aryaxt. All rights reserved.
 //
 
-#import "OfferDetailViewController.h"
+#import "HomeOfferDetailViewController.h"
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "CreateRequestStepsViewController.h"
 
-@interface OfferDetailViewController()
+@interface HomeOfferDetailViewController()
 @property (nonatomic, strong) IBOutlet UILabel *lblDate;
 @property (nonatomic, strong) IBOutlet UILabel *lblStartLocation;
 @property (nonatomic, strong) IBOutlet UILabel *lblEndLocation;
@@ -20,7 +20,7 @@
 @property (nonatomic, strong) IBOutlet UIView *topView;
 @end
 
-@implementation OfferDetailViewController
+@implementation HomeOfferDetailViewController
 
 #pragma mark - UIViewController Methods -
 
@@ -48,34 +48,34 @@
 
 - (void)panDetected:(UIPanGestureRecognizer *)panRecognizer
 {
-    [self.delegate offerDetailViewControllerDidDetectPan:panRecognizer];
+    [self.delegate homeOfferDetailViewControllerDidDetectPan:panRecognizer];
 }
 
 #pragma mark - IBActions -
 
 - (IBAction)nextSelected:(id)sender
 {
-    [self.delegate offerDetailViewControllerDidSelectNext];
+    [self.delegate homeOfferDetailViewControllerDidSelectNext];
 }
 
 - (IBAction)previousSelected:(id)sender
 {
-    [self.delegate offerDetailViewControllerDidSelectPrevious];
+    [self.delegate homeOfferDetailViewControllerDidSelectPrevious];
 }
 
 - (IBAction)topBarSelected:(id)sender
 {
-    [self.delegate offerDetailViewControllerDidSelectExpand];
+    [self.delegate homeOfferDetailViewControllerDidSelectExpand];
 }
 
 - (IBAction)requestOfferSelected:(id)sender
 {
-    [self.delegate offerDetailViewControllerDidSelectRequestForOffer:self.carPoolOffer];
+    [self.delegate homeOfferDetailViewControllerDidSelectRequestForOffer:self.carPoolOffer];
 }
 
 - (IBAction)viewProfileSelected:(id)sender
 {
-    [self.delegate offerDetailViewControllerDidSelectViewUserProfile:self.carPoolOffer.from];
+    [self.delegate homeOfferDetailViewControllerDidSelectViewUserProfile:self.carPoolOffer.from];
 }
 
 #pragma mark - Setter & Getter -

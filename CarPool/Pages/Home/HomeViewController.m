@@ -10,7 +10,7 @@
 #import <MapKit/MapKit.h>
 #import "SlideNavigationController.h"
 #import "CarPoolOfferClient.h"
-#import "OfferDetailViewController.h"
+#import "HomeOfferDetailViewController.h"
 #import "UIColor+Additions.h"
 #import "CarPoolOffer.h"
 #import "CarPoolRequest.h"
@@ -21,11 +21,11 @@
 #import "CreateRequestStepsViewController.h"
 #import "ProfileViewController.h"
 
-@interface HomeViewController() <SlideNavigationControllerDelegate, MKMapViewDelegate, OfferDetailViewControllerDelegate, SearchFilterViewControllerDelegate, CreateRequestStepsViewControllerDelegate>
+@interface HomeViewController() <SlideNavigationControllerDelegate, MKMapViewDelegate, HomeOfferDetailViewControllerDelegate, SearchFilterViewControllerDelegate, CreateRequestStepsViewControllerDelegate>
 @property (nonatomic, strong) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) CarPoolOfferClient *offerClient;
-@property (nonatomic, strong) OfferDetailViewController *offerDetailViewController;
+@property (nonatomic, strong) HomeOfferDetailViewController *offerDetailViewController;
 @property (nonatomic, strong) CarPoolOffer *currentOffer;
 @property (nonatomic, strong) NSMutableArray *offers;
 @property (nonatomic, strong) SearchFilter *searchFilter;
@@ -157,26 +157,26 @@
 
 #pragma mark - OfferDetailViewControllerDelegate -
 
-- (void)offerDetailViewControllerDidSelectNext
+- (void)homeOfferDetailViewControllerDidSelectNext
 {
     NSInteger index = [self.offers indexOfObject:self.currentOffer];
     [self setCurrentOffer:[self.offers objectAtIndex:index+1]];
 }
 
-- (void)offerDetailViewControllerDidSelectPrevious
+- (void)homeOfferDetailViewControllerDidSelectPrevious
 {
     NSInteger index = [self.offers indexOfObject:self.currentOffer];
     [self setCurrentOffer:[self.offers objectAtIndex:index-1]];
 }
 
-- (void)offerDetailViewControllerDidSelectExpand
+- (void)homeOfferDetailViewControllerDidSelectExpand
 {
     CGRect rect = self.offerDetailViewController.view.frame;
     [self setExpandOfferDetail:(rect.origin.y > self.view.frame.size.height/2) ? YES : NO
                 withDuration:DETAIL_VIEW_ANIMATION];
 }
 
-- (void)offerDetailViewControllerDidDetectPan:(UIPanGestureRecognizer *)pan
+- (void)homeOfferDetailViewControllerDidDetectPan:(UIPanGestureRecognizer *)pan
 {
     static CGPoint previousPoint;
     
@@ -210,7 +210,7 @@
     }
 }
 
-- (void)offerDetailViewControllerDidSelectRequestForOffer:(CarPoolOffer *)offer
+- (void)homeOfferDetailViewControllerDidSelectRequestForOffer:(CarPoolOffer *)offer
 {
     __weak HomeViewController *selfReference = self;
     
@@ -223,7 +223,7 @@
     }];
 }
 
-- (void)offerDetailViewControllerDidSelectViewUserProfile:(User *)user
+- (void)homeOfferDetailViewControllerDidSelectViewUserProfile:(User *)user
 {
     __weak HomeViewController *selfReference = self;
     
@@ -382,11 +382,11 @@
     return _offerClient;
 }
 
-- (OfferDetailViewController *)offerDetailViewController
+- (HomeOfferDetailViewController *)offerDetailViewController
 {
     if (!_offerDetailViewController)
     {
-        _offerDetailViewController = (OfferDetailViewController *)[OfferDetailViewController viewController];
+        _offerDetailViewController = (HomeOfferDetailViewController *)[HomeOfferDetailViewController viewController];
         _offerDetailViewController.delegate = self;
     }
     

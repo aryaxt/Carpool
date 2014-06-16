@@ -183,10 +183,10 @@
             </objects>
             <point key="canvasLocation" x="1036" y="78"/>
         </scene>
-        <!--Offer Detail View Controller-->
+        <!--Home Offer Detail View Controller-->
         <scene sceneID="MFw-UH-ntL">
             <objects>
-                <viewController storyboardIdentifier="OfferDetailViewController" id="gyc-uE-Tqn" customClass="OfferDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeOfferDetailViewController" id="gyc-uE-Tqn" customClass="HomeOfferDetailViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SEL-sN-FXc" customClass="UIToolbar">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -872,15 +872,45 @@
                                     <outlet property="delegate" destination="qaH-or-w5b" id="e4s-hR-hic"/>
                                 </connections>
                             </tableView>
+                            <view contentMode="scaleToFill" id="8wG-Cv-L16">
+                                <rect key="frame" x="0.0" y="334" width="320" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="KPe-jJ-K1o">
+                                        <rect key="frame" x="8" y="10" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="gBT-4a-kpA" appends="YES" id="7eS-g0-efO"/>
+                                        </connections>
+                                    </imageView>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HhW-G7-bVS">
+                                        <rect key="frame" x="66" y="24" width="234" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.94901967050000002" green="0.94901967050000002" blue="0.94901967050000002" alpha="1" colorSpace="deviceRGB"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="Messages" id="OXs-a0-lwh"/>
                     <connections>
+                        <outlet property="imgProfilePgoto" destination="KPe-jJ-K1o" id="4Eq-PQ-Vrp"/>
+                        <outlet property="lblFromName" destination="HhW-G7-bVS" id="YqK-qg-OTb"/>
                         <outlet property="tableView" destination="KJr-ou-wDm" id="c4j-VL-6o1"/>
+                        <outlet property="userHeaderView" destination="8wG-Cv-L16" id="gBD-i6-CGv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieR-EA-u0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="gBT-4a-kpA">
+                    <connections>
+                        <action selector="userProfileSelected:" destination="qaH-or-w5b" id="Ynx-g6-aUC"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1536" y="3317"/>
         </scene>

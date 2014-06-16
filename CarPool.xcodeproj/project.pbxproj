@@ -96,7 +96,7 @@
 		92677F751933A36B008046DE /* RequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F731933A36B008046DE /* RequestDetailViewController.m */; };
 		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
 		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
-		927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */; };
+		927ABFC4191DC14B00CC3A2B /* HomeOfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* HomeOfferDetailViewController.m */; };
 		928266C4191E904F001AD534 /* currntLocation.png in Resources */ = {isa = PBXBuildFile; fileRef = 928266C2191E904F001AD534 /* currntLocation.png */; };
 		928266C7191E9195001AD534 /* map.png in Resources */ = {isa = PBXBuildFile; fileRef = 928266C6191E9195001AD534 /* map.png */; };
 		928266CB191E9B9C001AD534 /* PinEnabledMapView.m in Sources */ = {isa = PBXBuildFile; fileRef = 928266CA191E9B9C001AD534 /* PinEnabledMapView.m */; };
@@ -112,6 +112,7 @@
 		9298BF52194D301B00157E42 /* UserClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 9298BF51194D301B00157E42 /* UserClient.m */; };
 		9298BF55194D463E00157E42 /* NoContentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9298BF54194D463E00157E42 /* NoContentView.m */; };
 		9298BF57194D467400157E42 /* NoContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9298BF56194D467400157E42 /* NoContentView.xib */; };
+		9298BF5B194E960500157E42 /* OfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9298BF5A194E960500157E42 /* OfferDetailViewController.m */; };
 		92B568D519170E2900CEF58F /* endPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D219170E2900CEF58F /* endPoint.png */; };
 		92B568D619170E2900CEF58F /* calendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D319170E2900CEF58F /* calendar.png */; };
 		92B568D719170E2900CEF58F /* startPoint.png in Resources */ = {isa = PBXBuildFile; fileRef = 92B568D419170E2900CEF58F /* startPoint.png */; };
@@ -288,8 +289,8 @@
 		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
-		927ABFC2191DC14B00CC3A2B /* OfferDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailViewController.h; sourceTree = "<group>"; };
-		927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailViewController.m; sourceTree = "<group>"; };
+		927ABFC2191DC14B00CC3A2B /* HomeOfferDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeOfferDetailViewController.h; sourceTree = "<group>"; };
+		927ABFC3191DC14B00CC3A2B /* HomeOfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeOfferDetailViewController.m; sourceTree = "<group>"; };
 		928266C2191E904F001AD534 /* currntLocation.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = currntLocation.png; sourceTree = "<group>"; };
 		928266C6191E9195001AD534 /* map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = map.png; sourceTree = "<group>"; };
 		928266C9191E9B9C001AD534 /* PinEnabledMapView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PinEnabledMapView.h; sourceTree = "<group>"; };
@@ -315,6 +316,8 @@
 		9298BF53194D463E00157E42 /* NoContentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NoContentView.h; sourceTree = "<group>"; };
 		9298BF54194D463E00157E42 /* NoContentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NoContentView.m; sourceTree = "<group>"; };
 		9298BF56194D467400157E42 /* NoContentView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoContentView.xib; sourceTree = "<group>"; };
+		9298BF59194E960500157E42 /* OfferDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OfferDetailViewController.h; sourceTree = "<group>"; };
+		9298BF5A194E960500157E42 /* OfferDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OfferDetailViewController.m; sourceTree = "<group>"; };
 		92B568D219170E2900CEF58F /* endPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = endPoint.png; sourceTree = "<group>"; };
 		92B568D319170E2900CEF58F /* calendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calendar.png; sourceTree = "<group>"; };
 		92B568D419170E2900CEF58F /* startPoint.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = startPoint.png; sourceTree = "<group>"; };
@@ -493,6 +496,7 @@
 		9226EED11915788D0014B319 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				9298BF58194E95F000157E42 /* OfferDetail */,
 				9255122C193B8E9400132526 /* StepsViewController */,
 				92677F6F1933A36B008046DE /* RequestDetail */,
 				92677F6B19339FED008046DE /* PersonalMessages */,
@@ -549,8 +553,8 @@
 				923E94EB1930F887008411AA /* Search Filter */,
 				9226EEDB19157BEA0014B319 /* HomeViewController.h */,
 				9226EEDC19157BEA0014B319 /* HomeViewController.m */,
-				927ABFC2191DC14B00CC3A2B /* OfferDetailViewController.h */,
-				927ABFC3191DC14B00CC3A2B /* OfferDetailViewController.m */,
+				927ABFC2191DC14B00CC3A2B /* HomeOfferDetailViewController.h */,
+				927ABFC3191DC14B00CC3A2B /* HomeOfferDetailViewController.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -894,6 +898,15 @@
 			path = CreateCarPoolRequest;
 			sourceTree = "<group>";
 		};
+		9298BF58194E95F000157E42 /* OfferDetail */ = {
+			isa = PBXGroup;
+			children = (
+				9298BF59194E960500157E42 /* OfferDetailViewController.h */,
+				9298BF5A194E960500157E42 /* OfferDetailViewController.m */,
+			);
+			path = OfferDetail;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1078,7 +1091,7 @@
 			files = (
 				9226EF16191695120014B319 /* AuthenticationClient.m in Sources */,
 				925FB63819346D9E00814B5A /* UserNotificationSettingCell.m in Sources */,
-				927ABFC4191DC14B00CC3A2B /* OfferDetailViewController.m in Sources */,
+				927ABFC4191DC14B00CC3A2B /* HomeOfferDetailViewController.m in Sources */,
 				92FD32FF1936CA0C0016B32D /* MyOffersViewContorller.m in Sources */,
 				9226EEAA191573530014B319 /* AppDelegate.m in Sources */,
 				9226EED51915789F0014B319 /* MenuViewController.m in Sources */,
@@ -1142,6 +1155,7 @@
 				923E95081931BA16008411AA /* ApplicationVersionClient.m in Sources */,
 				925511D0193A503600132526 /* GoogleAnalyticsManager.m in Sources */,
 				923E15DB19292F7700AD1B5A /* MyRequestCell.m in Sources */,
+				9298BF5B194E960500157E42 /* OfferDetailViewController.m in Sources */,
 				920918041927EDEA009701FA /* CommentClient.m in Sources */,
 				9255123E193BA61B00132526 /* DateTimePickerViewController.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,

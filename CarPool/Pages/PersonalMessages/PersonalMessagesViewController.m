@@ -11,10 +11,18 @@
 #import "CommentClient.h"
 #import "CommentCell.h"
 #import "MessageComposerView.h"
+#import "UIImageView+Additions.h"
+#import <AFNetworking/UIImageView+AFNetworking.h>
+#import "UIColor+Additions.h"
+#import "ProfileViewController.h"
+#import "UIViewController+Additions.h"
 
-@interface PersonalMessagesViewController() <MessageComposerViewDelegate>
+@interface PersonalMessagesViewController() <MessageComposerViewDelegate, UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, assign) CGFloat messageComposerHeight;
 @property (nonatomic, strong) IBOutlet UITableView *tableView;
+@property (nonatomic, strong) IBOutlet UIView *userHeaderView;
+@property (nonatomic, strong) IBOutlet UIImageView *imgProfilePgoto;
+@property (nonatomic, strong) IBOutlet UILabel *lblFromName;
 @property (nonatomic, strong) NSMutableArray *comments;
 @property (nonatomic, strong) CommentClient *commentClient;
 @property (nonatomic, strong) MessageComposerView *messageComposerView;
@@ -31,6 +39,15 @@
     [self trackPage:GoogleAnalyticsManagerPagePersonalMessage];
     
     self.messageComposerHeight = self.messageComposerView.frame.size.height;
+    
+    self.userHeaderView.layer.borderWidth = .6;
+    self.userHeaderView.layer.borderColor = [UIColor lightGrayColor].CGColor;
+    self.userHeaderView.backgroundColor = [UIColor lightBackgroundColor];
+    
+    [self.lblFromName setText:self.user.name];
+    [self.imgProfilePgoto setUserPhotoStyle];
+    [self.imgProfilePgoto setImageWithURL:[NSURL URLWithString:self.user.photoUrl]
+                           placeholderImage:[UIImage imageNamed:USER_PHOTO_PLACEHOLDER]];
     
     [self showLoader];
     [self fetchComments];
@@ -51,17 +68,35 @@
         else
         {
             self.comments = [comments mutableCopy];
-            [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:0];
+            [self.tableView deleteRowsAndAnimateNewRows:comments.count inSection:1];
             [self showNoContent:comments.count ? NO : YES];
         }
     }];
 }
 
+#pragma mark - IBActions -
+
+- (IBAction)userProfileSelected:(id)sender
+{
+    ProfileViewController *vc = [ProfileViewController viewController];
+    vc.user = self.user;
+    vc.shouldEnableSlideMenu = NO;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
 #pragma mark - UITableView Methods -
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 2;
+}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return self.comments.count;
+    if (section == 0)
+        return 0;
+    else
+        return self.comments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -91,12 +126,18 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return self.messageComposerView;
+    if (section == 0)
+        return self.userHeaderView;
+    else
+        return self.messageComposerView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return self.messageComposerHeight;
+    if (section == 0)
+        return self.userHeaderView.frame.size.height;
+    else
+        return  self.messageComposerHeight;
 }
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
@@ -164,7 +205,7 @@
             {
                 [self.tableView beginUpdates];
                 [self.comments addObject:comment];
-                NSIndexPath *indeexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:0];
+                NSIndexPath *indeexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:1];
                 [self.tableView insertRowsAtIndexPaths:@[indeexPath] withRowAnimation:UITableViewRowAnimationTop];
                 [self.tableView endUpdates];
                 
