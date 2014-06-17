@@ -15,8 +15,9 @@
 #import "UIViewController+Additions.h"
 #import "CreateOfferStepsViewController.h"
 #import "RequestDetailViewController.h"
+#import "OfferDetailViewController.h"
 
-@interface MyActivitiesViewController() <SlideNavigationControllerDelegate, CreateOfferStepsViewControllerDelegate, CreateRequestStepsViewControllerDelegate, MyRequestsViewControllerDelegate, MyOffersViewContorllerDelegate>
+@interface MyActivitiesViewController() <SlideNavigationControllerDelegate, CreateOfferStepsViewControllerDelegate, CreateRequestStepsViewControllerDelegate, MyRequestsViewControllerDelegate, MyOffersViewContorllerDelegate, OfferDetailViewControllerDelegate>
 @property (nonatomic, strong) IBOutlet UIBarButtonItem *btnAddOffer;
 @property (nonatomic, strong) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic, strong) MyOffersViewContorller *myOffersViewController;
@@ -37,6 +38,14 @@
     
     [self.view addSubview:self.myOffersViewController.view];
     [self.view addSubview:self.myRequestsViewController.view];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.myOffersViewController deselectSelectedRow];
+    [self.myRequestsViewController deselectSelectedRow];
 }
 
 #pragma mark - IBActions -
@@ -123,9 +132,19 @@
 
 #pragma mark - MyOffersViewContorllerDelegate -
 
-- (void)MyOffersViewContorllerDidSelectOffer:(CarPoolOffer *)offer
+- (void)myOffersViewContorllerDidSelectOffer:(CarPoolOffer *)offer
 {
-    // Go to offer detail page (Page doesn't exist yet)
+    OfferDetailViewController *vc = [OfferDetailViewController viewController];
+    vc.delegate = self;
+    vc.offer = offer;
+    [self.navigationController pushViewController:vc animated:YES];
+}
+
+#pragma mark - OfferDetailViewControllerDelegate -
+
+- (void)offerDetailViewControllerDidDeactivateOffer:(CarPoolOffer *)offer
+{
+    [self.myOffersViewController deleteOffer:offer];
 }
 
 #pragma mark - Setter & Getter -
@@ -135,6 +154,7 @@
     if (!_myOffersViewController)
     {
         _myOffersViewController = [MyOffersViewContorller viewController];
+        _myOffersViewController.delegate = self;
         _myOffersViewController.view.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
     }
                                    

@@ -49,7 +49,12 @@
 
 + (UIColor *)redChatBubbleColor
 {
-    return [UIColor colorWithRed:255.0/255.0 green:53.0/255.0 blue:36.0/255.0 alpha:1];;
+    return [UIColor colorWithRed:255.0/255.0 green:53.0/255.0 blue:36.0/255.0 alpha:1];
+}
+
++ (UIColor *)darkGreenColor
+{
+    return [UIColor colorWithRed:0/255.0 green:153.0/255.0 blue:76.0/255.0 alpha:1];
 }
 
 @end

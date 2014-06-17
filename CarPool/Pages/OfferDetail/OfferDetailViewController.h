@@ -9,8 +9,13 @@
 #import "BaseViewController.h"
 #import "CarPoolOffer.h"
 
+@protocol OfferDetailViewControllerDelegate <NSObject>
+- (void)offerDetailViewControllerDidDeactivateOffer:(CarPoolOffer *)offer;
+@end
+
 @interface OfferDetailViewController : BaseViewController
 
+@property (nonatomic, weak) id <OfferDetailViewControllerDelegate> delegate;
 @property (nonatomic, strong) CarPoolOffer *offer;
 
 @end

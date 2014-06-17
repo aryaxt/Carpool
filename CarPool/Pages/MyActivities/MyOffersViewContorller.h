@@ -10,7 +10,7 @@
 #import "CarPoolOffer.h"
 
 @protocol MyOffersViewContorllerDelegate <NSObject>
-- (void)MyOffersViewContorllerDidSelectOffer:(CarPoolOffer *)offer;
+- (void)myOffersViewContorllerDidSelectOffer:(CarPoolOffer *)offer;
 @end
 
 @interface MyOffersViewContorller : BaseViewController <UITableViewDataSource, UITableViewDelegate>
@@ -18,5 +18,7 @@
 @property (nonatomic, weak) id <MyOffersViewContorllerDelegate> delegate;
 
 - (void)addNewOffer:(CarPoolOffer *)offer;
+- (void)deleteOffer:(CarPoolOffer *)offer;
+- (void)deselectSelectedRow;
 
 @end

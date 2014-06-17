@@ -72,6 +72,11 @@
                           withRowAnimation:UITableViewRowAnimationTop];
 }
 
+- (void)deselectSelectedRow
+{
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
 #pragma mark - UITableView Delegate & Datasource -
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section

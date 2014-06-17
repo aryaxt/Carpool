@@ -141,6 +141,7 @@
 - (void)updateActionButtonVisibility
 {
     BOOL isRequestFromMe = [self.request.to.objectId isEqualToString:[User currentUser].objectId];
+    [self setButton:self.btnCancel enable:YES withColor:[UIColor redColor]];
     
     if ([self.request.status isEqualToString:CarPoolRequestStatusCanceled])
     {
@@ -150,8 +151,8 @@
     }
     else if (isRequestFromMe)
     {
-        self.btnAccept.enabled = ([self.request.status isEqual:CarPoolRequestStatusAccepted]) ? NO : YES;
-        self.btnDecline.enabled = ([self.request.status isEqual:CarPoolRequestStatusRejected])  ? NO : YES;
+        [self setButton:self.btnAccept enable:([self.request.status isEqual:CarPoolRequestStatusAccepted]) ? NO : YES withColor:[UIColor darkGreenColor]];
+        [self setButton:self.btnDecline enable:([self.request.status isEqual:CarPoolRequestStatusRejected])  ? NO : YES withColor:[UIColor redColor]];
         
         self.btnAccept.hidden = NO;
         self.btnDecline.hidden = NO;
@@ -162,6 +163,27 @@
         self.btnAccept.hidden = YES;
         self.btnDecline.hidden = YES;
         self.btnCancel.hidden = ([self.request.status isEqualToString:CarPoolRequestStatusAccepted]) ? NO : YES;
+    }
+}
+
+- (void)setButton:(UIButton *)button enable:(BOOL)enabled withColor:(UIColor *)color
+{
+    button.enabled = enabled;
+    button.layer.cornerRadius = 4;
+    button.layer.borderWidth = .6;
+    button.titleLabel.font = [UIFont boldSystemFontOfSize:14];
+    
+    if (enabled)
+    {
+        button.backgroundColor = [UIColor clearColor];
+        button.layer.borderColor = color.CGColor;
+        [button setTitleColor:color forState:UIControlStateNormal];
+    }
+    else
+    {
+        button.backgroundColor = color;
+        button.layer.borderColor = color.CGColor;
+        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
 }
 
@@ -294,6 +316,8 @@
                                  }
                                  else
                                  {
+                                     self.request.status = status;
+                                     
                                      [self.comments addObject:comment];
                                      NSIndexPath *indexPath = [NSIndexPath indexPathForRow:self.comments.count-1 inSection:1];
                                      [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];

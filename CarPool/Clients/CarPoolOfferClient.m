@@ -15,6 +15,7 @@
     PFQuery *query = [CarPoolOffer query];
     [query whereKey:@"from" equalTo:[User currentUser]];
     [query whereKey:@"isActive" equalTo:@YES];
+    [query whereKey:@"isActive" equalTo:@YES];
     
     if (includeLocations)
     {
@@ -38,6 +39,7 @@
     PFQuery *query = [CarPoolOffer query];
     [query whereKey:@"startLocation" withinGeoBoxFromSouthwest:southWestGeoPiint toNortheast:northeastGeoPiint];
     [query whereKey:@"endLocation" withinGeoBoxFromSouthwest:southWestGeoPiint toNortheast:northeastGeoPiint];
+    [query whereKey:@"isActive" equalTo:@YES];
     [query includeKey:@"startLocation"];
     [query includeKey:@"endLocation"];
     [query includeKey:@"from"];
@@ -52,6 +54,7 @@
     PFQuery *query = [CarPoolOffer query];
     //[query whereKey:@"startLocation" nearGeoPoint:geoPoint];
     //[query whereKey:@"endLocation" nearGeoPoint:geoPoint];
+    [query whereKey:@"isActive" equalTo:@YES];
     [query setLimit:limit];
     [query includeKey:@"startLocation"];
     [query includeKey:@"endLocation"];
@@ -83,6 +86,16 @@
         }
         
         completion(offers, error);
+    }];
+}
+
+- (void)deactivateOffer:(CarPoolOffer *)offer withCompletion:(void (^)(NSError *))completion
+{
+    //TODO: should We allow activating?
+    offer.isActive = NO;
+    
+    [offer saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        completion(error);
     }];
 }
 

@@ -19,5 +19,6 @@
 @property (nonatomic, weak) id <MyRequestsViewControllerDelegate> delegate;
 
 - (void)addNewRequest:(CarPoolRequest *)request;
+- (void)deselectSelectedRow;
 
 @end

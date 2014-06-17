@@ -70,6 +70,23 @@
                           withRowAnimation:UITableViewRowAnimationTop];
 }
 
+- (void)deleteOffer:(CarPoolOffer *)offer
+{
+    NSInteger index = [self.offers indexOfObject:offer];
+    
+    if (index != NSNotFound)
+    {
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:index inSection:0];
+        [self.offers removeObject:offer];
+        [self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    }
+}
+
+- (void)deselectSelectedRow
+{
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+}
+
 #pragma mark - UITableView Delegate & Datasource -
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -95,7 +112,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     CarPoolOffer *offer = [self.offers objectAtIndex:indexPath.row];
-    [self.delegate MyOffersViewContorllerDidSelectOffer:offer];
+    [self.delegate myOffersViewContorllerDidSelectOffer:offer];
 }
 
 #pragma mark - Setter & Getter -
