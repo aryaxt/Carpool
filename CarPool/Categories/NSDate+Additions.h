@@ -10,8 +10,18 @@
 
 @interface NSDate (Additions)
 
-- (NSDate *)dateByCopyingTimeComponentsFromDate:(NSDate *)dat;
-- (NSDate *)dateWithoutTimeComponents;
 + (NSDate *)dateWithoutTimeComponents;
+- (NSDate *)dateWithoutTimeComponents;
+- (NSDate *)dateByCopyingTimeComponentsFromDate:(NSDate *)dat;
+- (NSInteger)day;
+- (NSInteger)month;
+- (NSInteger)year;
+- (NSInteger)weekDay;
+- (NSInteger)numberOfDaysInMonth;
+- (NSDate *)firstDayInMonth;
+- (NSDate *)firstDayOfNextMonth;
+- (NSDate *)firstDayOfLastMonth;
+- (NSDate *)dateByAddingDays:(NSInteger)days;
+- (BOOL)isTheSameDayAs:(NSDate *)date;
 
 @end

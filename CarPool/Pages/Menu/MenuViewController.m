@@ -14,6 +14,7 @@
 #import "SettingsViewController.h"
 #import "InboxViewController.h"
 #import "MyActivitiesViewController.h"
+#import "CalendarViewController.h"
 #import <Parse/Parse.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
 #import "CommentClient.h"
@@ -71,7 +72,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 6;
+    return 7;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -93,16 +94,21 @@
                 ? [NSString stringWithFormat:@"Inbox (%@)", self.unreadCommentCount]
                 : @"Inbox";
             break;
-        
+
+            
         case 3:
+            cell.textLabel.text = @"Calendar";
+            break;
+            
+        case 4:
         cell.textLabel.text = @"Profile";
         break;
         
-        case 4:
+        case 5:
         cell.textLabel.text = @"Settings";
         break;
         
-        case 5:
+        case 6:
         cell.textLabel.text = @"Sign Out";
         break;
         
@@ -130,8 +136,12 @@
         case 2:
             viewContorller = [InboxViewController viewController];
             break;
-        
+            
         case 3:
+            viewContorller = [CalendarViewController viewController];
+            break;
+        
+        case 4:
         {
             ProfileViewController *vc = [ProfileViewController viewController];
             vc.user = [User currentUser];
@@ -139,11 +149,11 @@
         }
         break;
         
-        case 4:
+        case 5:
         viewContorller = [SettingsViewController viewController];
         break;
         
-        case 5:
+        case 6:
         [PFUser logOut];
         [[PFFacebookUtils session] closeAndClearTokenInformation];
             

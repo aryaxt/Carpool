@@ -94,6 +94,10 @@
 		92677F6E1933A002008046DE /* PersonalMessagesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F6D1933A002008046DE /* PersonalMessagesViewController.m */; };
 		92677F741933A36B008046DE /* CommentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F711933A36B008046DE /* CommentCell.m */; };
 		92677F751933A36B008046DE /* RequestDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92677F731933A36B008046DE /* RequestDetailViewController.m */; };
+		926EF4F119533633001BEC5B /* CalendarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 926EF4F019533633001BEC5B /* CalendarViewController.m */; };
+		9277BA5019568C90009C01FF /* CalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9277BA4F19568C90009C01FF /* CalendarCell.m */; };
+		9277BA531957403D009C01FF /* CalendarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9277BA521957403D009C01FF /* CalendarHeader.m */; };
+		9277BA5919577A6A009C01FF /* NSArray+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9277BA5819577A6A009C01FF /* NSArray+Additions.m */; };
 		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
 		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
 		927ABFC4191DC14B00CC3A2B /* HomeOfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* HomeOfferDetailViewController.m */; };
@@ -286,6 +290,14 @@
 		92677F711933A36B008046DE /* CommentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentCell.m; sourceTree = "<group>"; };
 		92677F721933A36B008046DE /* RequestDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestDetailViewController.h; sourceTree = "<group>"; };
 		92677F731933A36B008046DE /* RequestDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestDetailViewController.m; sourceTree = "<group>"; };
+		926EF4EF19533633001BEC5B /* CalendarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarViewController.h; sourceTree = "<group>"; };
+		926EF4F019533633001BEC5B /* CalendarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarViewController.m; sourceTree = "<group>"; };
+		9277BA4E19568C90009C01FF /* CalendarCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarCell.h; sourceTree = "<group>"; };
+		9277BA4F19568C90009C01FF /* CalendarCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarCell.m; sourceTree = "<group>"; };
+		9277BA511957403D009C01FF /* CalendarHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarHeader.h; sourceTree = "<group>"; };
+		9277BA521957403D009C01FF /* CalendarHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarHeader.m; sourceTree = "<group>"; };
+		9277BA5719577A6A009C01FF /* NSArray+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Additions.h"; sourceTree = "<group>"; };
+		9277BA5819577A6A009C01FF /* NSArray+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Additions.m"; sourceTree = "<group>"; };
 		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
@@ -496,6 +508,7 @@
 		9226EED11915788D0014B319 /* Pages */ = {
 			isa = PBXGroup;
 			children = (
+				926EF4EE19533621001BEC5B /* Calendar */,
 				9298BF58194E95F000157E42 /* OfferDetail */,
 				9255122C193B8E9400132526 /* StepsViewController */,
 				92677F6F1933A36B008046DE /* RequestDetail */,
@@ -543,6 +556,8 @@
 				920917FD1927B89F009701FA /* UIColor+Additions.m */,
 				92ED7AC11944DC960095F77E /* NSDate+Additions.h */,
 				92ED7AC21944DC960095F77E /* NSDate+Additions.m */,
+				9277BA5719577A6A009C01FF /* NSArray+Additions.h */,
+				9277BA5819577A6A009C01FF /* NSArray+Additions.m */,
 			);
 			path = Categories;
 			sourceTree = "<group>";
@@ -876,6 +891,19 @@
 			path = RequestDetail;
 			sourceTree = "<group>";
 		};
+		926EF4EE19533621001BEC5B /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				926EF4EF19533633001BEC5B /* CalendarViewController.h */,
+				926EF4F019533633001BEC5B /* CalendarViewController.m */,
+				9277BA4E19568C90009C01FF /* CalendarCell.h */,
+				9277BA4F19568C90009C01FF /* CalendarCell.m */,
+				9277BA511957403D009C01FF /* CalendarHeader.h */,
+				9277BA521957403D009C01FF /* CalendarHeader.m */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
 		928266C8191E9B6B001AD534 /* Subclasses */ = {
 			isa = PBXGroup;
 			children = (
@@ -1108,6 +1136,7 @@
 				925FB62F193453F500814B5A /* NotificationSetting.m in Sources */,
 				92551242193BB96800132526 /* LocationPickerViewController.m in Sources */,
 				923E15E11929A67400AD1B5A /* Reference.m in Sources */,
+				9277BA5019568C90009C01FF /* CalendarCell.m in Sources */,
 				923E15D71929215200AD1B5A /* MyOfferCell.m in Sources */,
 				920917F81927ADA3009701FA /* UIImageView+Additions.m in Sources */,
 				9298BF48194CB13600157E42 /* ProfileEditableHeader.m in Sources */,
@@ -1128,6 +1157,7 @@
 				9226EF1A19169CF00014B319 /* BaseViewController.m in Sources */,
 				923E94FC193198E0008411AA /* ReferencesViewController.m in Sources */,
 				925FB63219345B9600814B5A /* UserNotificationSetting.m in Sources */,
+				926EF4F119533633001BEC5B /* CalendarViewController.m in Sources */,
 				923E95051931BA02008411AA /* ApplicationVersionManager.m in Sources */,
 				9217A5A319245214005E3A36 /* main.js in Sources */,
 				925FB6281933E1FC00814B5A /* ReferenceViewController.m in Sources */,
@@ -1151,6 +1181,7 @@
 				927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */,
 				9217A5A919245AD9005E3A36 /* InboxViewController.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,
+				9277BA5919577A6A009C01FF /* NSArray+Additions.m in Sources */,
 				925511DB193AB50400132526 /* NSDate+TimeAgo.m in Sources */,
 				923E95081931BA16008411AA /* ApplicationVersionClient.m in Sources */,
 				925511D0193A503600132526 /* GoogleAnalyticsManager.m in Sources */,
@@ -1159,6 +1190,7 @@
 				920918041927EDEA009701FA /* CommentClient.m in Sources */,
 				9255123E193BA61B00132526 /* DateTimePickerViewController.m in Sources */,
 				9226EEA6191573530014B319 /* main.m in Sources */,
+				9277BA531957403D009C01FF /* CalendarHeader.m in Sources */,
 				9217A59819231698005E3A36 /* Installation.m in Sources */,
 				92ED7AC31944DC960095F77E /* NSDate+Additions.m in Sources */,
 				9298BF39194B6E0C00157E42 /* CreateRequestStepsViewController.m in Sources */,

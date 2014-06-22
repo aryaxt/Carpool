@@ -22,6 +22,11 @@
                            alpha:1.0];
 }
 
++ (UIColor *)primaryColor
+{
+    return [UIColor colorWithRed:93.0/255.0 green:175/255.0 blue:200.0/255.0 alpha:1];
+}
+
 + (UIColor *)borderColor
 {
     return [UIColor lightGrayColor];
