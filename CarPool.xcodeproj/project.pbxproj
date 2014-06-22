@@ -98,6 +98,7 @@
 		9277BA5019568C90009C01FF /* CalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9277BA4F19568C90009C01FF /* CalendarCell.m */; };
 		9277BA531957403D009C01FF /* CalendarHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 9277BA521957403D009C01FF /* CalendarHeader.m */; };
 		9277BA5919577A6A009C01FF /* NSArray+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 9277BA5819577A6A009C01FF /* NSArray+Additions.m */; };
+		9277BA5C19579767009C01FF /* RequestOrOfferCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9277BA5B19579767009C01FF /* RequestOrOfferCell.m */; };
 		927ABFB9191A170300CC3A2B /* closeButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 927ABFB8191A170300CC3A2B /* closeButton.png */; };
 		927ABFBC191A19F000CC3A2B /* UIView+Additions.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFBB191A19F000CC3A2B /* UIView+Additions.m */; };
 		927ABFC4191DC14B00CC3A2B /* HomeOfferDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 927ABFC3191DC14B00CC3A2B /* HomeOfferDetailViewController.m */; };
@@ -298,6 +299,8 @@
 		9277BA521957403D009C01FF /* CalendarHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarHeader.m; sourceTree = "<group>"; };
 		9277BA5719577A6A009C01FF /* NSArray+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+Additions.h"; sourceTree = "<group>"; };
 		9277BA5819577A6A009C01FF /* NSArray+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+Additions.m"; sourceTree = "<group>"; };
+		9277BA5A19579767009C01FF /* RequestOrOfferCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RequestOrOfferCell.h; sourceTree = "<group>"; };
+		9277BA5B19579767009C01FF /* RequestOrOfferCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RequestOrOfferCell.m; sourceTree = "<group>"; };
 		927ABFB8191A170300CC3A2B /* closeButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = closeButton.png; sourceTree = "<group>"; };
 		927ABFBA191A19F000CC3A2B /* UIView+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Additions.h"; sourceTree = "<group>"; };
 		927ABFBB191A19F000CC3A2B /* UIView+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Additions.m"; sourceTree = "<group>"; };
@@ -900,6 +903,8 @@
 				9277BA4F19568C90009C01FF /* CalendarCell.m */,
 				9277BA511957403D009C01FF /* CalendarHeader.h */,
 				9277BA521957403D009C01FF /* CalendarHeader.m */,
+				9277BA5A19579767009C01FF /* RequestOrOfferCell.h */,
+				9277BA5B19579767009C01FF /* RequestOrOfferCell.m */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -1182,6 +1187,7 @@
 				9217A5A919245AD9005E3A36 /* InboxViewController.m in Sources */,
 				9226EEDD19157BEA0014B319 /* HomeViewController.m in Sources */,
 				9277BA5919577A6A009C01FF /* NSArray+Additions.m in Sources */,
+				9277BA5C19579767009C01FF /* RequestOrOfferCell.m in Sources */,
 				925511DB193AB50400132526 /* NSDate+TimeAgo.m in Sources */,
 				923E95081931BA16008411AA /* ApplicationVersionClient.m in Sources */,
 				925511D0193A503600132526 /* GoogleAnalyticsManager.m in Sources */,

@@ -9,6 +9,7 @@
 #import "CalendarViewController.h"
 #import "NSDate+Additions.h"
 #import "CalendarCell.h"
+#import "RequestOrOfferCell.h"
 #import "CalendarHeader.h"
 #import "CarPoolOfferClient.h"
 #import "CarPoolRequestClient.h"
@@ -53,49 +54,92 @@
 
 - (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
 {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    return self.datesInMonth.count;
+    if (section == 0)
+        return self.datesInMonth.count;
+    else
+        return self.requestsAndOffersForSelectedDate.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CalendarCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CalendarCell" forIndexPath:indexPath];
-    
-    NSDate *date = [self.datesInMonth objectAtIndex:indexPath.row];
-    BOOL isCurrentMonth = (date.month == self.currentCalendarDate.month);
-    BOOL isSelected = [self.selectedDate isTheSameDayAs:date];
-    
-    NSArray *offers = [self.offers where:^BOOL(CarPoolOffer *offer) {
-        return [offer.date isTheSameDayAs:date];
-    }];
-    
-    NSArray *requests = [self.offers where:^BOOL(CarPoolRequest *request) {
-        return [request.date isTheSameDayAs:date];
-    }];
-    
-    #warning do we want to pass offers and reuquests to cell?
-    [cell setDate:date isInCurrentMonth:isCurrentMonth isSelected:isSelected withOffers:offers andRequests:requests];
-    
-    return cell;
+    if (indexPath.section == 0)
+    {
+        CalendarCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CalendarCell" forIndexPath:indexPath];
+        
+        NSDate *date = [self.datesInMonth objectAtIndex:indexPath.row];
+        BOOL isCurrentMonth = (date.month == self.currentCalendarDate.month);
+        BOOL isSelected = [self.selectedDate isTheSameDayAs:date];
+        
+        NSArray *offers = [self.offers where:^BOOL(CarPoolOffer *offer) {
+            return [offer.date isTheSameDayAs:date];
+        }];
+        
+        NSArray *requests = [self.requests where:^BOOL(CarPoolRequest *request) {
+            return [request.date isTheSameDayAs:date];
+        }];
+        
+        #warning do we want to pass offers and reuquests to cell?
+        [cell setDate:date isInCurrentMonth:isCurrentMonth isSelected:isSelected withOffers:offers andRequests:requests];
+        
+        return cell;
+    }
+    else
+    {
+        RequestOrOfferCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"RequestOrOfferCell" forIndexPath:indexPath];
+        
+        id offerOrRequest = [self.requestsAndOffersForSelectedDate objectAtIndex:indexPath.row];
+        
+        if ([offerOrRequest isKindOfClass:[CarPoolOffer class]])
+        {
+            [cell setOffer:offerOrRequest];
+        }
+        if ([offerOrRequest isKindOfClass:[CarPoolRequest class]])
+        {
+            [cell setRequest:offerOrRequest];
+        }
+        
+        return cell;
+    }
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     CalendarHeader *header =  [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"CalendarHeader" forIndexPath:indexPath];
-    [header setDate:self.currentCalendarDate];
-    [header setDelegate:self];
+    
+    if (indexPath.section == 0)
+    {
+        [header setDate:self.currentCalendarDate];
+        [header setDelegate:self];
+    }
+    else
+    {
+        header.frame = CGRectZero;
+    }
     
     return header;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CGFloat size = self.view.frame.size.width/7.0;
-    return CGSizeMake(size, 70);
+    if (indexPath.section == 0)
+    {
+        CGFloat size = self.view.frame.size.width/7.0;
+        return CGSizeMake(size, 70);
+    }
+    else
+    {
+        return CGSizeMake(self.view.frame.size.width, 70);
+    }
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
+{
+    return CGSizeMake(self.collectionView.frame.size.width, (section == 0) ? 64 : 0);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -118,7 +162,7 @@
     self.selectedDate = [self.datesInMonth objectAtIndex:indexPath.row];
     [self.collectionView reloadData];
     
-    //[self populateOffersAndRequestsInSelectedDay];
+    [self populateOffersAndRequestsInSelectedDay];
 }
 
 #pragma mark - Private MEthods -
@@ -134,6 +178,7 @@
         {
             [self hideLoader];
             [self.collectionView reloadData];
+            [self populateOffersAndRequestsInSelectedDay];
         }
     };
     
@@ -196,7 +241,7 @@
             return [offer.date isTheSameDayAs:self.selectedDate];
         }]];
         
-        [self.requestsAndOffersForSelectedDate addObjectsFromArray:[self.offers where:^BOOL(CarPoolRequest *request) {
+        [self.requestsAndOffersForSelectedDate addObjectsFromArray:[self.requests where:^BOOL(CarPoolRequest *request) {
             return [request.date isTheSameDayAs:self.selectedDate];
         }]];
         
