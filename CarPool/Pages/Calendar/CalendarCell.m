@@ -26,6 +26,7 @@
 
 - (void)setDate:(NSDate *)date isInCurrentMonth:(BOOL)isCurrentMonth isSelected:(BOOL)isSelected withOffers:(NSArray *)offers andRequests:(NSArray *)requests
 {
+    self.lblDate.textColor = ([date isWeekend]) ? [UIColor lightGrayColor] : [UIColor blackColor];
     self.lblDate.text = [NSString stringWithFormat:@"%ld", (long)date.day];
     self.hidden = (isCurrentMonth) ? NO : YES;
     self.selectedIndicatorView.hidden = isSelected ? NO : YES;

@@ -23,5 +23,6 @@
 - (NSDate *)firstDayOfLastMonth;
 - (NSDate *)dateByAddingDays:(NSInteger)days;
 - (BOOL)isTheSameDayAs:(NSDate *)date;
+- (BOOL)isWeekend;
 
 @end

@@ -99,7 +99,12 @@
 
 - (BOOL)isTheSameDayAs:(NSDate *)date
 {
-    return (self.day == date.day && self.month == date.month && self.year == date.year);
+    return (self.day == date.day && self.month == date.month && self.year == date.year) ? YES : NO;
+}
+
+- (BOOL)isWeekend
+{
+    return (self.weekDay == 7 || self.weekDay == 1) ? YES : NO;
 }
 
 #pragma mark - Private -

@@ -17,6 +17,7 @@
 
 @interface CalendarViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, CalendarHeaderDelegate>
 @property (nonatomic, strong) IBOutlet UICollectionView *collectionView;
+@property (nonatomic, strong) IBOutlet UITableView *tableView;
 @property (nonatomic, strong) IBOutlet UILabel *lblMonth;
 @property (nonatomic, strong) NSDate *currentCalendarDate;
 @property (nonatomic, strong) NSDate *selectedDate;
@@ -30,6 +31,9 @@
 
 @implementation CalendarViewController
 
+#define HEADER_HEIGHT 52.0
+#define NAV_AND_STATUS_BAR_HEIGHT 64.0
+
 #pragma mark - UIViewController Methods -
 
 - (void)viewDidLoad
@@ -39,6 +43,8 @@
     self.requestsAndOffersForSelectedDate = [NSMutableArray array];
     self.currentCalendarDate = [NSDate date];
     self.selectedDate = [NSDate date];
+    
+    self.collectionView.scrollEnabled = NO;
     
     [self showLoader];
     [self populateCurrentMonthCalendar];
@@ -52,94 +58,50 @@
 
 #pragma mark - UICollectionView -
 
-- (NSInteger)numberOfSectionsInCollectionView: (UICollectionView *)collectionView
-{
-    return 2;
-}
-
 - (NSInteger)collectionView:(UICollectionView *)view numberOfItemsInSection:(NSInteger)section
 {
-    if (section == 0)
-        return self.datesInMonth.count;
-    else
-        return self.requestsAndOffersForSelectedDate.count;
+    return self.datesInMonth.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        CalendarCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CalendarCell" forIndexPath:indexPath];
-        
-        NSDate *date = [self.datesInMonth objectAtIndex:indexPath.row];
-        BOOL isCurrentMonth = (date.month == self.currentCalendarDate.month);
-        BOOL isSelected = [self.selectedDate isTheSameDayAs:date];
-        
-        NSArray *offers = [self.offers where:^BOOL(CarPoolOffer *offer) {
-            return [offer.date isTheSameDayAs:date];
-        }];
-        
-        NSArray *requests = [self.requests where:^BOOL(CarPoolRequest *request) {
-            return [request.date isTheSameDayAs:date];
-        }];
-        
-        #warning do we want to pass offers and reuquests to cell?
-        [cell setDate:date isInCurrentMonth:isCurrentMonth isSelected:isSelected withOffers:offers andRequests:requests];
-        
-        return cell;
-    }
-    else
-    {
-        RequestOrOfferCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"RequestOrOfferCell" forIndexPath:indexPath];
-        
-        id offerOrRequest = [self.requestsAndOffersForSelectedDate objectAtIndex:indexPath.row];
-        
-        if ([offerOrRequest isKindOfClass:[CarPoolOffer class]])
-        {
-            [cell setOffer:offerOrRequest];
-        }
-        if ([offerOrRequest isKindOfClass:[CarPoolRequest class]])
-        {
-            [cell setRequest:offerOrRequest];
-        }
-        
-        return cell;
-    }
+    CalendarCell *cell = [self.collectionView dequeueReusableCellWithReuseIdentifier:@"CalendarCell" forIndexPath:indexPath];
+    
+    NSDate *date = [self.datesInMonth objectAtIndex:indexPath.row];
+    BOOL isCurrentMonth = (date.month == self.currentCalendarDate.month);
+    BOOL isSelected = [self.selectedDate isTheSameDayAs:date];
+    
+    NSArray *offers = [self.offers where:^BOOL(CarPoolOffer *offer) {
+        return [offer.date isTheSameDayAs:date];
+    }];
+    
+    NSArray *requests = [self.requests where:^BOOL(CarPoolRequest *request) {
+        return [request.date isTheSameDayAs:date];
+    }];
+    
+    [cell setDate:date isInCurrentMonth:isCurrentMonth isSelected:isSelected withOffers:offers andRequests:requests];
+    
+    return cell;
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
 {
     CalendarHeader *header =  [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:@"CalendarHeader" forIndexPath:indexPath];
-    
-    if (indexPath.section == 0)
-    {
-        [header setDate:self.currentCalendarDate];
-        [header setDelegate:self];
-    }
-    else
-    {
-        header.frame = CGRectZero;
-    }
+    [header setDate:self.currentCalendarDate];
+    [header setDelegate:self];
     
     return header;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.section == 0)
-    {
-        CGFloat size = self.view.frame.size.width/7.0;
-        return CGSizeMake(size, 70);
-    }
-    else
-    {
-        return CGSizeMake(self.view.frame.size.width, 70);
-    }
+    CGFloat size = self.view.frame.size.width/7.0;
+    return CGSizeMake(size, 50);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
-    return CGSizeMake(self.collectionView.frame.size.width, (section == 0) ? 64 : 0);
+    return CGSizeMake(self.collectionView.frame.size.width, HEADER_HEIGHT);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section
@@ -163,6 +125,37 @@
     [self.collectionView reloadData];
     
     [self populateOffersAndRequestsInSelectedDay];
+}
+
+#pragma mark - UITableView Delegate & Datasource -
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.requestsAndOffersForSelectedDate.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *cellIdentifier = @"RequestOrOfferCell";
+    RequestOrOfferCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    
+    id offerOrRequest = [self.requestsAndOffersForSelectedDate objectAtIndex:indexPath.row];
+    
+    if ([offerOrRequest isKindOfClass:[CarPoolOffer class]])
+    {
+        [cell setOffer:offerOrRequest];
+    }
+    if ([offerOrRequest isKindOfClass:[CarPoolRequest class]])
+    {
+        [cell setRequest:offerOrRequest];
+    }
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    
 }
 
 #pragma mark - Private MEthods -
@@ -201,6 +194,8 @@
             [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]]];
         }
         
+        [self populateOffersAndRequestsInSelectedDay];
+        
         [self.datesInMonth removeAllObjects];
     } completion:^(BOOL finished) {
         NSDate *firstDayOfMonth = [self.currentCalendarDate firstDayInMonth];
@@ -217,6 +212,22 @@
             [self.datesInMonth addObject:date];
         }
         
+        // Resize collectionView
+        CGRect collectionRect = self.collectionView.frame;
+        CGFloat heightOfCell = [self collectionView:nil layout:nil sizeForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]].height;
+        NSInteger numberOfRows = self.datesInMonth.count/7;
+        if (self.datesInMonth.count%7 != 0)
+            numberOfRows++;
+            
+        collectionRect.size.height = HEADER_HEIGHT + NAV_AND_STATUS_BAR_HEIGHT + (numberOfRows*heightOfCell);
+        self.collectionView.frame = collectionRect;
+        
+        CGRect tableRect = self.tableView.frame;
+        tableRect.origin.y = collectionRect.size.height;
+        tableRect.size.height = self.view.frame.size.height - collectionRect.size.height;
+        self.tableView.frame = tableRect;
+        
+        
         [self.collectionView performBatchUpdates:^{
             for (int i=0 ; i<self.datesInMonth.count ; i++)
             {
@@ -228,30 +239,35 @@
 
 - (void)populateOffersAndRequestsInSelectedDay
 {
-    [self.collectionView performBatchUpdates:^{
-        for (int i=0 ; i<self.requestsAndOffersForSelectedDate.count ; i++)
-        {
-            [self.collectionView deleteItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:1]]];
-        }
-        
-        [self.requestsAndOffersForSelectedDate removeAllObjects];
-    } completion:^(BOOL finished) {
-
-        [self.requestsAndOffersForSelectedDate addObjectsFromArray:[self.offers where:^BOOL(CarPoolOffer *offer) {
-            return [offer.date isTheSameDayAs:self.selectedDate];
-        }]];
-        
-        [self.requestsAndOffersForSelectedDate addObjectsFromArray:[self.requests where:^BOOL(CarPoolRequest *request) {
-            return [request.date isTheSameDayAs:self.selectedDate];
-        }]];
-        
-        [self.collectionView performBatchUpdates:^{
-            for (int i=0 ; i<self.requestsAndOffersForSelectedDate.count ; i++)
-            {
-                [self.collectionView insertItemsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:1]]];
-            }
-        } completion:nil];
-    }];
+    [self.tableView beginUpdates];
+    
+    for (int i=0 ; i<self.requestsAndOffersForSelectedDate.count ; i++)
+    {
+        [self.tableView deleteRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+    }
+    
+    [self.requestsAndOffersForSelectedDate removeAllObjects];
+    
+    if (self.currentCalendarDate.month != self.selectedDate.month)
+    {
+        [self.tableView endUpdates];
+        return;
+    }
+    
+    [self.requestsAndOffersForSelectedDate addObjectsFromArray:[self.offers where:^BOOL(CarPoolOffer *offer) {
+        return [offer.date isTheSameDayAs:self.selectedDate];
+    }]];
+    
+    [self.requestsAndOffersForSelectedDate addObjectsFromArray:[self.requests where:^BOOL(CarPoolRequest *request) {
+        return [request.date isTheSameDayAs:self.selectedDate];
+    }]];
+    
+    for (int i=0 ; i<self.requestsAndOffersForSelectedDate.count ; i++)
+    {
+        [self.tableView insertRowsAtIndexPaths:@[[NSIndexPath indexPathForRow:i inSection:0]] withRowAnimation:UITableViewRowAnimationTop];
+    }
+    
+    [self.tableView endUpdates];
 }
 
 #pragma mark - CalendarHeaderDelegate -

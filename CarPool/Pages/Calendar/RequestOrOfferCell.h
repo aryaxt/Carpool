@@ -10,7 +10,7 @@
 #import "CarPoolOffer.h"
 #import "CarPoolRequest.h"
 
-@interface RequestOrOfferCell : UICollectionViewCell
+@interface RequestOrOfferCell : UITableViewCell
 
 - (void)setOffer:(CarPoolOffer *)offer;
 - (void)setRequest:(CarPoolRequest *)request;
